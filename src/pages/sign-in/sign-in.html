@@ -1,0 +1,35 @@
+<ion-content padding class="profiles">
+<div class="list-form">
+  <div class="all-frm">
+    <div text-center>
+        <h4>Sign In</h4>
+    </div>
+    <form [formGroup]="onLoginForm">
+      <div class="frmone">
+      <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email"></ion-input>
+      <p ion-text color="danger" class="text-12x has-error" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">This field is required</p>
+      <p ion-text color="danger" class="text-12x has-error" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('pattern')">Email address invalid</p>
+
+    </div>
+
+      <div class="frmone">
+          <ion-input type="password" formControlName="password" name="password" placeholder="Password" [(ngModel)]="user_password"></ion-input>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">This field is required</p>
+
+        </div>
+
+
+      <div class="frmone">
+         <button (click) = "forgotpwd()">
+            Forgot Password ?
+          </button>
+      </div>
+
+          <button class="login-btn" ion-button (click) = "login()" [disabled]="!onLoginForm.valid">
+              Log In
+            </button>
+    </form>
+    </div>
+</div>
+
+</ion-content>

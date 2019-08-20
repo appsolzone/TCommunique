@@ -1,0 +1,72 @@
+page-domestic {
+
+  .topImg
+  {
+      height: 200px;
+      width: 100%;
+  }
+
+  .searchDiv1
+  {
+      position: absolute;
+      top: 140px;
+      height: 25px;
+      width: 100%;
+  }
+
+  .searchDiv2
+  {
+      width: 80%;
+      display: block;
+      margin: auto;
+  }
+  .col10
+  {
+      background: #ffffffba;
+      border-bottom-left-radius: 15px;
+      border-top-left-radius: 15px;
+  }
+  .col2
+  {
+      background:#ccc;
+      border-bottom-right-radius: 15px;
+      border-top-right-radius: 15px;
+  }
+  .ionIcon
+  {
+      color: white;
+      margin-top: 2px;
+      margin-left: 7px;
+  }
+  .ionInput
+  {
+      height: 20px;
+      padding: -14px;
+      margin-top: -10px;
+      margin-left: 8px;
+      height: 20px;
+  }
+
+  .expDiv
+  {
+      height: 220px;
+      background: white;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      position: absolute;
+      top: 186px;
+      width: 100%;
+  }
+  .expiDiv
+  {
+      background: #0e6262;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: -8px;
+      height: 30px;
+      border-radius: 20px;
+      color: white;
+      font-size: 18px;
+  }
+}

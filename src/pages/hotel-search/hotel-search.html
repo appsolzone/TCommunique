@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar  color="searchbg">
+      <button ion-button color="searchbg">
+        <ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon>
+    </button>
+      <ion-title>
+          <span ion-text>HOTELS SEARCH</span>
+      </ion-title>
+  </ion-navbar>
+
+  <ion-card class="abc">
+      <span class="spanname">Pricing</span>
+      <ion-range min="500" max="25000" (ionChange)="rangeChange($event)" color="searchbg" pin="true">
+        <ion-label range-left>500</ion-label>
+        <ion-label range-right>25000</ion-label>
+      </ion-range>
+    </ion-card  >
+</ion-header>
+
+<ion-content padding>
+
+
+        <ion-grid class="newcard">
+            <ion-card>
+                <ion-card-content class="cardcontent">
+            <ion-row align-items-start>
+                <ion-col>
+                    <img src="assets/imgs/lake_como.png" class="offerOutletImg">
+                </ion-col>
+                <ion-col>
+
+              <!-- <rating class="rating"[(ngModel)]="rate"
+              readonly="true"
+              small="true"
+              (ngModelChange)="onModelChange($event)">
+              </rating> -->
+                  <span  *ngFor="let level of outletPriceLevel">
+                  <ion-icon ios="ios-star" md="md-star" color="star"></ion-icon>
+                </span>
+                <span  *ngFor="let level of hello">
+                    <ion-icon ios="ios-star-half" md="md-star-half" color="star"></ion-icon>
+                  </span>
+
+                  </ion-col>
+                  <ion-col>
+                      [end] ion-col
+                    </ion-col>
+              </ion-row>
+              </ion-card-content>
+              </ion-card>
+
+        </ion-grid>
+
+
+</ion-content>

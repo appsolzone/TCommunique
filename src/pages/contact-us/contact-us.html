@@ -1,0 +1,44 @@
+<ion-content padding class="profiles">
+
+    <div class="list-form">
+      <div class="all-frm">
+        <div text-center>
+            <h4>Contact Us</h4>
+        </div>
+        <form [formGroup]="onContactForm">
+
+            <div class="frmone">
+                <ion-input type="text" formControlName="name" name="name" placeholder="Name" [(ngModel)]="user_name"></ion-input>
+                <p ion-text color="danger" class="text-12x has-error" *ngIf="onContactForm.get('name').touched && onContactForm.get('name').hasError('required')">This field is required</p>
+
+              </div>
+
+          <div class="frmone">
+          <ion-input type="email" formControlName="email" name="email" placeholder="Email" [(ngModel)]="user_email"></ion-input>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="onContactForm.get('email').touched && onContactForm.get('email').hasError('required')">This field is required</p>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="onContactForm.get('email').touched && onContactForm.get('email').hasError('pattern')">Email address invalid</p>
+
+          </div>
+          <div class="frmone">
+              <ion-input type="number" formControlName="phone" name="phone" placeholder="Phone No" [(ngModel)]="user_phone"></ion-input>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onContactForm.get('phone').touched && onContactForm.get('phone').hasError('required')">This field is required</p>
+
+            </div>
+
+          <div class="frmone">
+              <ion-textarea  rows="6" cols="10"  type="text" formControlName="message" name="message" placeholder="Message" [(ngModel)]="user_message"></ion-textarea>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onContactForm.get('message').touched && onContactForm.get('message').hasError('required')">This field is required</p>
+
+            </div>
+
+              <button class="login-btn" ion-button (click) = "submit()" [disabled]="!onContactForm.valid">
+                  Submit
+                </button>
+                <button class="login-btn" ion-button (click) = "callnow()">
+                    Call Now
+                  </button>
+        </form>
+        </div>
+    </div>
+
+    </ion-content>

@@ -1,0 +1,105 @@
+page-car-booking {
+
+  .cl{
+    width: 100%;
+    padding: 0 12px;
+
+}
+.thre{
+        list-style-type: none;
+        display: inline-block;
+        margin: 0 2px;
+        }
+        .thre li {
+            list-style-type: none;
+            display: inline-block;
+            width: 32%;
+            // padding: 0 4px;
+            margin-right: 4px;
+            float: left;
+        }
+        .button{
+            width: 100%
+
+        }
+        .text-input-ios {
+            margin: 11px 8px 11px 0;
+            /* padding: unset; */
+            width: calc(100% - 8px);
+            padding: 0 10px;
+        }
+        .thre ul{
+
+                padding: 0 2px;
+
+        }
+.time-sec
+{
+    width: 30%;
+    float: right;
+}
+.date-ces{
+    float: left;
+    width: 60%;
+}
+.sec{
+    background:rgb(177, 177, 177) ;
+    border-radius: 50px;
+    width: 28%;
+}
+.lbl{
+    margin-bottom: 5px;
+    width: 100%;
+
+}
+.btn{
+    background: #EFF1F0 ;
+    border-radius: 50px;
+    width: 100%;
+    font-size: 12;
+}
+.card{
+ul{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    li{
+        list-style-type: none;
+        width: 23%;
+        display: inline-block;
+        margin: 0 2px;
+        background-color: #0a5a53;
+
+        img{
+
+        }
+        h3{
+            font-size: 14px;
+            text-align: center;
+            margin: 4px 0;
+            color: #fff;
+        }
+    }
+}
+}
+
+.carbbtn {
+position: inherit;
+bottom: 0;
+width: 100%;
+text-align: center;
+background-color: #036f56;
+padding: 17px;
+border-radius: 20px 20px 0px 0px;
+left: 0;
+right: 0;
+}
+.carbbtn button {
+background: none;
+color: #fff;
+font-size: 20px;
+text-transform: uppercase;
+font-weight: 400;
+letter-spacing: 1px;
+}
+}

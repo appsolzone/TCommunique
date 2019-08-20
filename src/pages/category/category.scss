@@ -1,0 +1,89 @@
+page-category {
+
+  .newcard {
+    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin: 0;
+    width: 100%;
+}
+.card-content-ios {
+  padding: 0;
+}
+.outletOfferCount
+        {
+            z-index: 1;
+            position: absolute;
+            right: -10px;
+            text-align: right;
+            top: -10px;
+            font-size: 30px;
+            opacity: .9;
+            border: 0px solid;
+            font-weight: bold;
+            color: #070707;
+            padding: 5px;
+        }
+        .offerCountVal
+        {
+            font-size: 20px;
+            color: #ff0;
+        }
+        .offerOutletImg
+        {
+             width: 100%;
+             opacity: .8;
+        }
+
+       .outletName {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          margin: 5px;
+          padding: 4px 26px;
+          background: #fff;
+          font-size: 15px ;
+          border-radius: 50px;
+      }
+      .grid {
+        padding: 0;
+    }
+    .ion-ios-heart:before {
+      content: "\f443";
+      padding: 10px;
+      font-size: 24px;
+  }
+      .outletNameRight {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+        padding: 10px;
+        color: #fff;
+        font-size: 13px !important;
+        background: none;
+        opacity: 0.9;
+        font-weight: 400;
+        margin: -25px;
+        float: right;
+        line-height: 1;
+        text-align: right;
+    }
+    .outletNameRight span {
+      display: table;
+      font-weight: bold;
+      font-size: 15px;
+      margin-top: 4px;
+  }
+  .toru{
+    padding: 0;
+    background-color: #000;
+}
+.card-content.card-content-md {
+  padding: 0;
+}
+.ion-md-heart:before {
+  content: "\f308";
+  padding: 10px;
+  font-size: 30px;
+  color: #fff;
+}
+}

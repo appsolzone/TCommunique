@@ -1,0 +1,45 @@
+page-currency-converter {
+  .cl{
+    width: 100%;
+    padding: 0 33px;
+
+
+
+}
+
+.myview {
+
+
+    background-image: url('../assets/imgs/login-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.dc {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 53%;
+    font-size: x-large;
+
+}
+
+ion-item.item.item-block.item-md.item-select {
+    background: #0E6767;
+    border-radius: 25px;
+
+}
+.sel{
+    font-size: 20px;
+
+}
+
+.select-md {
+    padding: 13px 8px 13px 16px;
+    position: absolute;
+    right: 12px;
+}
+ion-label.label.label-md {
+    margin-top: 40px;
+}
+
+
+}

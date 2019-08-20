@@ -1,3 +1,16 @@
 page-home {
 
+  .tabs-ios[tabsPlacement=top] .tabbar {
+    border-top: 0;
+    background: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 30px;
+}
+.tabs-md .tabbar {
+    background: #ffffff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 40px;
+}
 }

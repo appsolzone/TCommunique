@@ -1,14 +1,16 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-header >
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+    <ion-navbar >
+      <ion-title>Expense Manager</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+      <ion-tabs>
+          <ion-tab [root]="internationalRoot" tabTitle="INTERNATIONAL"></ion-tab>
+          <ion-tab [root]="domesticRoot" tabTitle="DOMESTIC"></ion-tab>
+        </ion-tabs>
+      </ion-content>
+
+
+

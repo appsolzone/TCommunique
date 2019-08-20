@@ -1,0 +1,35 @@
+
+<div *ngFor="let data of listArray; let idx = index">
+      <ion-grid>
+        <ion-row >
+          <ion-col >
+            <ion-card class="newcard" (click)="goclick()">
+              <ion-card-content >
+
+                <ion-row>
+                  <ion-col class="toru">
+                    <span class="outletOfferCount">
+                      <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+
+                    </span>
+                    <img src="assets/imgs/lake_como.png" class="offerOutletImg">
+
+                    <p class="outletName" text-wrap>KERALA</p>
+                    <p class="outletNameRight" text-wrap>
+                        Starting Budget <span>&#8377;10,000/Persion</span>
+                       </p>
+
+
+
+                    </ion-col>
+
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+  </div>

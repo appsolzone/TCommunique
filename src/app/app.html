@@ -1,1 +1,112 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-split-pane when="lg">
+  	<ion-menu side="left" id="authenticated" [content]="content" class="menu-bg">
+        <ion-header>
+            <ion-toolbar class="user-profile">
+
+              <div class="user-profile">
+                <ion-list no-margin>
+                  <ion-item>
+
+                    <ion-avatar item-left>
+                      <img src="assets/imgs/0.jpeg">
+                    </ion-avatar>
+                    <ion-avatar item-right>
+                        <button ion-button icon-left round color="skyblack" class="logoutbtn" menuClose (click)="openPage(homeItem)">
+                            <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+                            <span ion-text color="skyblue" class="fw500">Logout</span>
+                          </button>
+                      </ion-avatar>
+
+                    <h2 ion-text class="fw700 text-15x"  color="skyblue">
+                      Tuhin Kole
+                    </h2>
+                    <p ion-text color="light">This is your full informations.</p>
+
+                    <button ion-button icon-left round color="light" *ngFor="let menuItem of accountMenuItems" menuClose (click)="openPage(menuItem)">
+                      <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
+                      {{menuItem.title}}
+                    </button>
+
+                  </ion-item>
+                </ion-list>
+              </div>
+
+            </ion-toolbar>
+          </ion-header>
+          <ion-content color="searchbg" class="profile-bg">
+
+              <ion-list class="user-list"  >
+                  <ion-list-header no-margin color="searchbg">
+                    <span ion-text color="font" class="fw500">Search</span>
+                  </ion-list-header>
+                  <button  menuClose ion-item *ngFor="let menuItem of searchMenuItems" (click)="openPage(menuItem)">
+                    <ion-icon item-left [name]="menuItem.icon"></ion-icon>
+                    {{menuItem.title}}
+                  </button>
+                </ion-list>
+
+
+              <ion-list class="user-list">
+                <button menuClose ion-item *ngFor="let menuItem of nearbyplacesItem" (click)="openPage(menuItem)">
+                  <ion-icon item-left [name]="menuItem.icon"></ion-icon>
+                  {{menuItem.title}}
+                </button>
+              </ion-list>
+
+
+              <ion-list class="user-list">
+                <button menuClose ion-item *ngFor="let menuItem of converterItem" (click)="openPage(menuItem)">
+                  <ion-icon item-left [name]="menuItem.icon"></ion-icon>
+                  {{menuItem.title}}
+                </button>
+              </ion-list>
+
+
+              <ion-list class="user-list">
+                <button menuClose ion-item (click)="openPage(homeItem)">
+                  <ion-icon item-left ios="ios-shirt" md="md-shirt"></ion-icon>
+                  <span ion-text color="font" class="fw500">Theme</span>
+                </button>
+
+
+                    <button menuClose ion-item (click)="openPage(homeItem)">
+                      <ion-icon item-left ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon>
+                      <span ion-text color="font" class="fw500">Passpor Scanner</span>
+                    </button>
+
+                    <button menuClose ion-item (click)="openPage(myexperience)">
+                        <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon>
+                        <span ion-text color="font" class="fw500">My Experience</span>
+                      </button>
+
+                    <button menuClose ion-item (click)="openPage(homeItem)">
+                          <ion-icon item-left ios="ios-information-circle" md="md-information-circle"></ion-icon>
+                          <span ion-text color="font" class="fw500">About Us</span>
+                        </button>
+
+                    <button menuClose ion-item (click)="openPage(homeItem)">
+                            <ion-icon item-left ios="ios-information-circle" md="md-information-circle"></ion-icon>
+                            <span ion-text color="font" class="fw500">Privacy Policy</span>
+                          </button>
+
+                    <button menuClose ion-item (click)="openPage(homeItem)">
+                              <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
+                              <span ion-text color="font" class="fw500">Emergency Calling</span>
+                            </button>
+                    <button menuClose ion-item (click)="openPage(contactUs)">
+                      <ion-icon item-left ios="ios-headset" md="md-headset"></ion-icon>
+                      <span ion-text color="font" class="fw500">Contact Us</span>
+                      <ion-badge color="font">
+                        2
+                      </ion-badge>
+                    </button>
+              </ion-list>
+
+
+
+
+
+            </ion-content>
+    </ion-menu>
+<ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>
+</ion-split-pane>

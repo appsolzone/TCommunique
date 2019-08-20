@@ -1,0 +1,67 @@
+<ion-content padding class="profiles">
+
+  <div class="list-form">
+    <div class="all-frm">
+        <ion-col class="myprofile">
+            <img src="assets/imgs/0.jpeg">
+          </ion-col>
+
+
+      <form [formGroup]="onProfileForm">
+        <div class="frmone">
+            <ion-input type="text" name="fname" placeholder="First Name" ></ion-input>
+            <!-- <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('fname').touched && onProfileForm.get('fname').hasError('required')">This field is required</p> -->
+
+          </div>
+          <div class="frmone">
+              <ion-input type="text" name="lname" placeholder="Last Name" ></ion-input>
+              <!-- <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('lname').touched && onProfileForm.get('lname').hasError('required')">This field is required</p> -->
+
+            </div>
+            <div class="frmone">
+                <ion-input type="text" formControlName="dob" name="dob" placeholder="Date-Of-Birth" ></ion-input>
+                <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('dob').touched && onProfileForm.get('dob').hasError('required')">This field is required</p>
+
+              </div>
+              <div class="frmone">
+                  <ion-input type="email" formControlName="email" name="email" placeholder="Email" ></ion-input>
+                  <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('email').touched && onProfileForm.get('email').hasError('required')">This field is required</p>
+                  <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('email').touched && onProfileForm.get('email').hasError('pattern')">Email address invalid</p>
+
+                </div>
+
+                <div class="frmone">
+                    <ion-input type="number" formControlName="phone" name="phone" placeholder="Phone No" ></ion-input>
+                    <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('phone').touched && onProfileForm.get('phone').hasError('required')">This field is required</p>
+
+                  </div>
+                  <div class="frmone">
+                      <ion-input type="text" formControlName="address" name="address" placeholder="Address" ></ion-input>
+                      <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('address').touched && onProfileForm.get('address').hasError('required')">This field is required</p>
+
+                    </div>
+                    <ion-row>
+                        <ion-col>
+                            <div class="frmone">
+                                <ion-input type="text" formControlName="address" name="address" placeholder="Type of Doc" ></ion-input>
+                                <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('address').touched && onProfileForm.get('address').hasError('required')">This field is required</p>
+
+                              </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="frmone">
+                                <ion-input type="text" formControlName="address" name="address" placeholder="Choose File" ></ion-input>
+                                <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('address').touched && onProfileForm.get('address').hasError('required')">This field is required</p>
+
+                              </div>
+                        </ion-col>
+                        </ion-row>
+
+            <button class="login-btn" ion-button (click) = "submit()" [disabled]="!onProfileForm.valid">
+                Submit
+              </button>
+      </form>
+      </div>
+  </div>
+
+  </ion-content>
