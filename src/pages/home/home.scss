@@ -13,4 +13,42 @@ page-home {
     border-bottom-right-radius: 20px;
     height: 40px;
 }
+
+.blinking_button {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  -webkit-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+  }
+  @-webkit-keyframes glowing {
+  0% { background-color: #0E6262; -webkit-box-shadow: 0 0 3px #0E6262; }
+  50% { background-color: #0E6262; -webkit-box-shadow: 0 0 40px #0E6262; }
+  100% { background-color: #0E6262; -webkit-box-shadow: 0 0 3px #0E6262; }
+  }
+
+  @-moz-keyframes glowing {
+  0% { background-color: #0E6262; -moz-box-shadow: 0 0 3px #0E6262; }
+  50% { background-color: #0E6262; -moz-box-shadow: 0 0 40px #0E6262; }
+  100% { background-color: #0E6262; -moz-box-shadow: 0 0 3px #0E6262; }
+  }
+
+  @-o-keyframes glowing {
+  0% { background-color: #0E6262; box-shadow: 0 0 3px #0E6262; }
+  50% { background-color: #0E6262; box-shadow: 0 0 40px #0E6262; }
+  100% { background-color: #0E6262; box-shadow: 0 0 3px #0E6262; }
+  }
+
+  @keyframes glowing {
+  0% { background-color: #0E6262; box-shadow: 0 0 3px #0E6262; }
+  50% { background-color: #0E6262; box-shadow: 0 0 40px #0E6262; }
+  100% { background-color: #0E6262; box-shadow: 0 0 3px #0E6262; }
+  }
+  .blink_img
+  {
+  height: 20px;
+  width: 20px;
+  }
+
+
 }

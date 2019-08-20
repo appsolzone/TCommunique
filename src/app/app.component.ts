@@ -38,7 +38,8 @@ export class TCommuniqueApp {
 
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
-    rootPage:any = SignUpPage;
+    // rootPage:any = SignUpPage;
+    rootPage:any = HomePage;
     homeItem: any;
     initialItem: any;
     messagesItem: any;

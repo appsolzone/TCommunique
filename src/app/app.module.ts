@@ -35,7 +35,6 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 
 
-
 @NgModule({
   declarations: [
     TCommuniqueApp

@@ -1,4 +1,5 @@
 <ion-content >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <div style="background: #0c5555; height:50px;">
       <ion-icon name="arrow-round-back" style="color: white; margin-left: 10px; margin-top: 16px;"></ion-icon>
       <p style="text-align: left; margin-left: 34px;  margin-top: -18px; color: white;">CAR BOOKING</p>
@@ -6,52 +7,61 @@
   <div>
     <img src="assets/imgs/car.jpg" style="height: 125px;width: 100%;">
   </div>
+<form [formGroup]="carbook">
   <div class="cl">
 
-
       <ion-label class="lbl"> Pickup Location</ion-label>
-      <ion-input class="btn"></ion-input>
+      <ion-input class="btn" formControlName="finp" name="finp"[(ngModel)]="first"></ion-input>
+        <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('finp').touched && carbook.get('finp').hasError('required')">This field is required</p>
       <ion-label class="lbl"> Drop Location</ion-label>
-      <ion-input class="btn"></ion-input>
+      <ion-input class="btn" formControlName="sinp" name="sinp"[(ngModel)]="secon"></ion-input>
+       <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('sinp').touched && carbook.get('sinp').hasError('required')">This field is required</p>
 
-      <!-- <div class="dtpkr"> -->
-          <ion-label class="lbl">Pickup Date</ion-label>
+
+        <ion-label class="lbl">Pickup Date</ion-label>
           <ion-row>
             <ion-col col-7>
                 <div>
-                    <ion-datetime displayFormat="MM/DD/YYYY"class="btn"placeholder="Date"></ion-datetime>
-            </div>
+                    <ion-datetime displayFormat="MM/DD/YYYY"class="btn" formControlName="date" name="date"placeholder="Date" [(ngModel)]="date1"> </ion-datetime>
+                </div>
+                     <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('date').touched && carbook.get('date').hasError('required')">Date is required</p>
             </ion-col>
             <ion-col col-5>
                 <div >
-                    <ion-datetime displayFormat="hh:mm:ss"class="btn" placeholder="&nbsp;Time"></ion-datetime>
+                    <ion-datetime displayFormat="hh:mm:ss"class="btn" placeholder="&nbsp;Time"formControlName="time" name="time"placeholder="time"[(ngModel)]="seven"></ion-datetime>
         </div>
+        <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('time').touched && carbook.get('time').hasError('required')">Time is required</p>
             </ion-col>
           </ion-row>
 
 
-      <!-- </div> -->
+
 
 
   <div class="thre">
-  <ion-label class="lbl"> Number of Passengers</ion-label>
+    <ion-label class="lbl"> Number of Passengers</ion-label>
 
-  <ul>
-    <li>
-        <ion-input class="btn"placeholder=" Adult"></ion-input>
-    </li>
-    <li>
-        <ion-input class="btn"placeholder="Child"></ion-input>
-    </li>
-    <li>
-        <ion-input class="btn"placeholder="Infant"></ion-input>
-    </li>
-  </ul>
-</div>
+    <ul>
+     <li>
+        <ion-input class="btn"placeholder=" Adult"formControlName="tinp" name="tinp" [(ngModel)]="third"></ion-input>
+        <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('tinp').touched && carbook.get('tinp').hasError('required')">This field is required</p>
+     </li>
+     <li>
+        <ion-input class="btn"placeholder="Child"formControlName="foinp" name="foinp"[(ngModel)]="fourt"> </ion-input>
+        <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('foinp').touched && carbook.get('foinp').hasError('required')">This field is required</p>
+     </li>
+      <li>
+        <ion-input class="btn"placeholder="Infant"formControlName="fiinp" name="fiinp" [(ngModel)]="fifth"></ion-input>
+        <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('fiinp').touched && carbook.get('fiinp').hasError('required')">This field is required</p>
+     </li>
+     </ul>
+   </div>
+
 
   <div>
       <ion-label class="lbl"> Number of Seats</ion-label>
-      <ion-input class="btn"></ion-input>
+      <ion-input class="btn"formControlName="siinp" name="siinp"[(ngModel)]="sixth"></ion-input>
+      <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('siinp').touched && carbook.get('siinp').hasError('required')">This field is required</p>
   </div>
   <div>
       <ion-label class="lbl"> car type</ion-label>
@@ -59,28 +69,28 @@
   <div class="card">
     <ul class="abc">
       <li>
-        <img src="assets/imgs/car.jpg">
+        <img src="assets/imgs/car.jpg" class="selectEnable" (click)="select(1)" value="1" >
         <h3>Hatchback</h3>
       </li>
       <li>
-          <img src="assets/imgs/car.jpg">
+          <img src="assets/imgs/car.jpg" class="selectEnable" (click)="select(2)" value="2">
           <h3>Hatchback</h3>
         </li>
         <li>
-            <img src="assets/imgs/car.jpg">
+            <img src="assets/imgs/car.jpg"class="selectEnable"(click)="select(3)" value="3">
             <h3>Hatchback</h3>
           </li>
           <li>
-              <img src="assets/imgs/car.jpg">
+              <img src="assets/imgs/car.jpg"class="selectEnable"(click)="select(4)" value="4" >
               <h3>Hatchback</h3>
             </li>
 
 
     </ul>
    <div class="carbbtn">
-      <button>book now</button>
+      <button (click)="check()">book now</button>
   </div>
   </div>
 </div>
-
+</form>
 </ion-content>

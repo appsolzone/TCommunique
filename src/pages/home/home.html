@@ -1,8 +1,27 @@
 <ion-header >
 
-    <ion-navbar >
-      <ion-title>Expense Manager</ion-title>
-    </ion-navbar>
+    <ion-navbar color="searchbg">
+        <button ion-button menuToggle>
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+        <ion-title>
+          <span ion-text class="fw700">Expense</span><span ion-text class="fw300"></span>Manager
+        </ion-title>
+
+        <ion-buttons end>
+            <button ion-button class="blinking_button" >
+                <img src="assets/imgs/notify_icon.png" class="blink_img">
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+          <button ion-button class="blinking_button" >
+            <img src="assets/imgs/menu_icon.png" class="blink_img">
+        </button>
+        </ion-buttons>
+
+      </ion-navbar>
+
+
   </ion-header>
 
   <ion-content>

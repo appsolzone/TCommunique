@@ -1,14 +1,29 @@
 page-car-booking {
-
   .cl{
     width: 100%;
     padding: 0 12px;
 
 }
+.selectDisable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.selectEnable {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+}
 .thre{
         list-style-type: none;
         display: inline-block;
         margin: 0 2px;
+        width: 100%;
         }
         .thre li {
             list-style-type: none;
@@ -82,10 +97,10 @@ ul{
     }
 }
 }
-
+}
 .carbbtn {
 position: inherit;
-bottom: 0;
+bottom: 1px;
 width: 100%;
 text-align: center;
 background-color: #036f56;
@@ -101,5 +116,5 @@ font-size: 20px;
 text-transform: uppercase;
 font-weight: 400;
 letter-spacing: 1px;
-}
+
 }
