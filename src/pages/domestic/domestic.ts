@@ -28,7 +28,7 @@ export class DomesticPage {
     console.log('ionViewDidLoad DomesticPage');
   }
   go(){
-    this.navCtrl.setRoot(CategoryPage);
+    this.navCtrl.push(CategoryPage);
 
   }
 

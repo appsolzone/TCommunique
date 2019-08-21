@@ -1,9 +1,23 @@
+<ion-header >
 
-<div *ngFor="let data of listArray; let idx = index">
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+        <button class="button button-clear  ion-arrow-left-c  " ></button>
+      </button>
+      <ion-title>
+        <span ion-text class="fw700">Category</span>
+      </ion-title>
+    </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content >
       <ion-grid>
         <ion-row >
           <ion-col >
-            <ion-card class="newcard" (click)="goclick()">
+            <ion-card class="newcard" (click)="goclick()" *ngFor="let data of listArray; let idx = index">
               <ion-card-content >
 
                 <ion-row>
@@ -32,4 +46,4 @@
 
 
 
-  </div>
+</ion-content>

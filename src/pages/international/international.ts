@@ -29,7 +29,7 @@ export class InternationalPage {
   }
 
   go(){
-    this.navCtrl.setRoot(CategoryPage);
+    this.navCtrl.push(CategoryPage);
 
 
   }
