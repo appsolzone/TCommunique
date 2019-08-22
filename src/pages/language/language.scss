@@ -1,0 +1,50 @@
+page-language {
+
+  .list {
+    display: table;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+ul {
+    display: table-cell;
+    list-style: none;
+    margin-top: 10%;
+    vertical-align: middle;
+}
+.label-md {
+    margin: 13px 8px 13px 0;
+    font-size: 25px;
+    font-weight: 600;
+}
+.all {
+    width: 100%;
+    padding: 0 12px;
+
+  }
+  .dc{
+    text-align: center;
+    display: table;
+     margin-top: 50%;
+
+
+  }
+  .cdx {
+    height: auto;
+    margin-top: 40%;
+    text-align: center;
+    position: auto;
+    overflow:auto;
+    font-size: 20vw;
+}
+
+.myview {
+    background-image: url('../../assets/imgs/login-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+
+}

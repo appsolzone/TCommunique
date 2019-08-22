@@ -25,11 +25,12 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { CustomizePackagePage } from '../pages/customize-package/customize-package';
 import { BookNowPage } from '../pages/book-now/book-now';
 import { ExperiencePage } from '../pages/experience/experience';
-import { InternationalPage } from '../pages/international/international';
-import { DomesticPage } from '../pages/domestic/domestic';
 import { CurrencyConverterPage } from '../pages/currency-converter/currency-converter';
 import { CarBookingPage } from '../pages/car-booking/car-booking';
 import { NearbyPlacesPage } from '../pages/nearby-places/nearby-places';
+import { BusSearchPage } from '../pages/bus-search/bus-search';
+import { LanguagePage } from '../pages/language/language';
+import { FilterPage } from '../pages/filter/filter';
 @Component({
   templateUrl: 'app.html'
 })
@@ -38,8 +39,8 @@ export class TCommuniqueApp {
 
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
-    // rootPage:any = SignUpPage;
-    rootPage:any = HomePage;
+    rootPage:any = LanguagePage;
+    // rootPage:any = CarBookingPage;
     homeItem: any;
     initialItem: any;
     messagesItem: any;
@@ -119,9 +120,9 @@ export class TCommuniqueApp {
                   ];
 
         this.searchMenuItems = [
-            {title: 'Hotel Search', component: 'page-home', icon: 'md-home'},
-            {title: 'Flight Search', component: 'page-home', icon: 'md-plane'},
-            {title: 'Bus Search', component: 'page-home', icon: 'md-bus'}
+            {title: 'Hotel Search', component: 'page-bus-search', icon: 'md-home'},
+            {title: 'Flight Search', component: 'page-bus-search', icon: 'md-plane'},
+            {title: 'Bus Search', component: 'page-bus-search', icon: 'md-bus'}
 
         ];
 

@@ -1,0 +1,236 @@
+<ion-header >
+
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+        <button class="button button-clear  ion-arrow-left-c  " ></button>
+      </button>
+      <ion-title>
+        <span ion-text class="fw700">PACKAGE FILTER</span>
+      </ion-title>
+    </ion-navbar>
+
+
+</ion-header>
+
+<ion-content>
+  <!-- <ion-card class="ion-card">
+    <ion-item *ngFor="let item of options; let i=index">
+      <ion-label>{{item}}</ion-label>
+      <ion-checkbox item-right [ngModel]="checkedIdx == i"(ngModelChange)="$event ? checkedIdx = i : checkedIdx = -1" [disabled]="checkedIdx >= 0 && checkedIdx != i"></ion-checkbox>
+    </ion-item>
+  </ion-card> -->
+
+  <div class="margin">
+    <ion-row>
+      <ion-col col-11>
+        <ion-label class="font">Price(Per Person)</ion-label>
+      </ion-col>
+      <ion-col col-1>
+        <img src="../../assets/imgs/refresh.png" class="imgs" (click)="refreshPage1()">
+      </ion-col>
+    </ion-row>
+    <div class="middle">
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Below 10,000</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="p1" (click)="check(1)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">60,000-80,000</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="p2" (click)="check(2)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">10,000-20,000</ion-label>
+            <ion-checkbox color="primary"[(ngModel)]="p3" (click)="check(3)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">{{abc}}</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="p4" (click)="check(4)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">20,000-40,000</ion-label>
+            <ion-checkbox color="primary"[(ngModel)]="p5" (click)="check(5)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">1Lac-2Lac</ion-label>
+            <ion-checkbox color="primary"[(ngModel)]="p6" (click)="check(6)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">40,000-60,000</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="p7" (click)="check(7)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Above 2Lac</ion-label>
+            <ion-checkbox color="primary"[(ngModel)]="p8" (click)="check(8)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col col-11>
+        <ion-label class="font">Duration(Days)</ion-label>
+      </ion-col>
+      <ion-col col-1>
+        <img src="../../assets/imgs/refresh.png" (click)="refreshPage2()" class="imgs">
+      </ion-col>
+    </ion-row>
+    <div class="middle">
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">1-3</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="d1" (click)="check1(9)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">4-6</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="d2" (click)="check1(10)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">7-9</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="d3" (click)="check1(11)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">10-12</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="d4" (click)="check1(12)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">13-15</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="d5" (click)="check1(13)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">>15</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="d6" (click)="check1(14)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </div>
+    <ion-row>
+      <ion-col col-11>
+        <ion-label class="font">Activities</ion-label>
+      </ion-col>
+      <ion-col col-1>
+        <img src="../../assets/imgs/refresh.png" (click)="refreshPage3()" class="imgs">
+      </ion-col>
+    </ion-row>
+    <div class="middle">
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Nature</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="a1" (click)="check2(15)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Beach</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="a2" (click)="check2(16)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Historical</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="a3" (click)="check2(17)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Religious</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="a4" (click)="check2(18)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Lifestyle</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="a5" (click)="check2(19)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col col-11>
+        <ion-label class="font">Month of travel</ion-label>
+      </ion-col>
+      <ion-col col-1>
+        <img src="../../assets/imgs/refresh.png"(click)="refreshPage4()" class="imgs">
+      </ion-col>
+    </ion-row>
+    <div class="middle">
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Jan-Mar</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="m1" (click)="check3(20)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Apr-Jun</ion-label>
+            <ion-checkbox color="primary"[(ngModel)]="m2" (click)="check3(21)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Jul-Sept</ion-label>
+            <ion-checkbox color="primary"[(ngModel)]="m3" (click)="check3(22)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label style="font-size: 2.5vw;">Oct-Dec</ion-label>
+            <ion-checkbox color="primary"[(ngModel)]="m4" (click)="check3(23)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </div>
+
+
+
+  </div>
+  <div class="btn">
+    <button (click)="val()">Apply Filter</button>
+  </div>
+</ion-content>

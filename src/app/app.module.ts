@@ -16,8 +16,6 @@ import { EditProfilePageModule } from '../pages/edit-profile/edit-profile.module
 import { CustomizePackagePageModule } from '../pages/customize-package/customize-package.module';
 import { BookNowPageModule } from '../pages/book-now/book-now.module';
 import { ExperiencePageModule } from '../pages/experience/experience.module';
-import { InternationalPageModule } from '../pages/international/international.module';
-import { DomesticPageModule } from '../pages/domestic/domestic.module';
 import { CurrencyConverterPageModule } from '../pages/currency-converter/currency-converter.module';
 import { CarBookingPageModule } from '../pages/car-booking/car-booking.module';
 import { NearbyPlacesPageModule } from '../pages/nearby-places/nearby-places.module';
@@ -26,6 +24,9 @@ import { Geolocation ,GeolocationOptions } from '@ionic-native/geolocation/ngx';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { BusSearchPageModule } from '../pages/bus-search/bus-search.module';
+import { LanguagePageModule } from '../pages/language/language.module';
+import { FilterPageModule } from '../pages/filter/filter.module';
 
 
 
@@ -52,11 +53,12 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
     CustomizePackagePageModule,
     BookNowPageModule,
     ExperiencePageModule,
-    InternationalPageModule,
-    DomesticPageModule,
     CurrencyConverterPageModule,
     CarBookingPageModule,
     NearbyPlacesPageModule,
+    BusSearchPageModule,
+    LanguagePageModule,
+    FilterPageModule,
     BrowserModule,
     IonicModule.forRoot(TCommuniqueApp, {
     	preloadModules: true,

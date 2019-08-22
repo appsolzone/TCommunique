@@ -1,0 +1,156 @@
+page-bus-search {
+
+  .text-input-md {
+    margin: 15px 30px;
+    padding: 0;
+    width: calc(100% - 8px - 8px);
+    font-size: 15p;
+}
+.xz {
+    border-radius: 50px;background: #CECCCD; width: 100%;padding: 4px 0 4px 30px;
+}
+.margi{
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+
+}
+ion-label.dept.label.label-md {
+    padding: 6px 0 2px;
+}
+.label-md {
+    margin: 13px 8px 13px 0;
+    padding: 6px 0 2px;
+}
+ion-item.item.item-block.item-md.item-datetime {
+    margin-top: 0px;
+    border-radius: 50px;
+    background: #CECCCD;
+}
+
+select {
+    width:67px;
+    margin: 5px;
+}
+.all{
+    width: 100%;
+    padding: 0 12px;
+    height: auto;
+}
+.imgk{
+    position: absolute;top: 0;
+  border-radius: 0 20px 20px 0;right: 0;
+  background: #036f56;
+    height: 55px;
+width: 55px;
+top: 0px;
+}
+.thre{
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 ;
+    width: 100%;
+    margin-top: -12px;
+    ul{
+        width: 100%
+    }
+    }
+    .thre li {
+        list-style-type: none;
+        display: inline-block;
+        width: 30%;
+        padding: 0px 10px;
+        margin: 0 3px;
+        border-radius: 50px;
+        background: #CECCCD;
+
+        .select-md {
+            padding: 12px 5px;
+        }
+
+    }
+    ion-select {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+
+}
+.select-ios {
+padding: 10px 2px;
+}
+    .button{
+        width: 100%
+
+    }
+
+    .thre ul{
+
+        padding: 0;
+
+    }
+    page-bussearch .inp {
+border-radius: 50px;
+background: #CECCCD;
+width: 100%;
+padding: 4px 0 4px 30px;
+}
+
+    .carbbtn {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background-color: #036f56;
+        padding: 17px;
+        border-radius: 20px 20px 0px 0px;
+        left: 0;
+        right: 0;
+        margin-bottom: 1%;
+    }
+.inp{
+    // margin: -3px 0 0 33px;
+    border-radius: 50px;
+    background: #CECCCD;
+     width: 100%;
+}
+.dept{
+    margin: 0 0 12px 38px;
+    padding : 6px 0 0 0;
+}
+page-bussearch .thre {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+
+}
+page-bussearch .inp {
+    border-radius: 50px;
+    background: #CECCCD;
+    width: 100%;
+    padding: 4px 0 4px 30px;
+}
+page-bussearch .xz {
+    border-radius: 50px;
+    background: #CECCCD;
+    width: 100%;
+
+}
+
+.layer {
+    width: 100%;
+}
+ion-select {
+    max-width: 100%;
+}
+.item-cover{
+    width: auto;
+    height: auto;
+}
+
+.select-md .select-placeholder {
+    color: #999;
+    text-align: left;
+}
+}
