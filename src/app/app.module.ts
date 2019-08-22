@@ -27,6 +27,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { BusSearchPageModule } from '../pages/bus-search/bus-search.module';
 import { LanguagePageModule } from '../pages/language/language.module';
 import { FilterPageModule } from '../pages/filter/filter.module';
+import { CategoryPackageDetailsPageModule } from '../pages/category-package-details/category-package-details.module';
 
 
 
@@ -59,6 +60,7 @@ import { FilterPageModule } from '../pages/filter/filter.module';
     BusSearchPageModule,
     LanguagePageModule,
     FilterPageModule,
+    CategoryPackageDetailsPageModule,
     BrowserModule,
     IonicModule.forRoot(TCommuniqueApp, {
     	preloadModules: true,
@@ -80,7 +82,6 @@ import { FilterPageModule } from '../pages/filter/filter.module';
     GooglePlus,
     Push,AndroidPermissions,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
-
   ]
 })
 export class AppModule {}

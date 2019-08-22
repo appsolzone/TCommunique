@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CustomizePackagePage } from '../../pages/customize-package/customize-package';
+import { CategoryPackageDetailsPage } from '../../pages/category-package-details/category-package-details';
+
 
 /**
  * Generated class for the CategoryPage page.
@@ -29,7 +30,7 @@ export class CategoryPage {
   }
 
   goclick(){
-    this.navCtrl.push(CustomizePackagePage);
+    this.navCtrl.push(CategoryPackageDetailsPage);
 
   }
 

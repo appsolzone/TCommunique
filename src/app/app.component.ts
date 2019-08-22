@@ -31,6 +31,7 @@ import { NearbyPlacesPage } from '../pages/nearby-places/nearby-places';
 import { BusSearchPage } from '../pages/bus-search/bus-search';
 import { LanguagePage } from '../pages/language/language';
 import { FilterPage } from '../pages/filter/filter';
+import { CategoryPackageDetailsPage } from '../pages/category-package-details/category-package-details';
 @Component({
   templateUrl: 'app.html'
 })
