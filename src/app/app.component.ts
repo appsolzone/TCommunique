@@ -32,6 +32,7 @@ import { BusSearchPage } from '../pages/bus-search/bus-search';
 import { LanguagePage } from '../pages/language/language';
 import { FilterPage } from '../pages/filter/filter';
 import { CategoryPackageDetailsPage } from '../pages/category-package-details/category-package-details';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -41,7 +42,7 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     rootPage:any = LanguagePage;
-    // rootPage:any = CarBookingPage;
+    // rootPage:any = ContactUsPage;
     homeItem: any;
     initialItem: any;
     messagesItem: any;
@@ -55,8 +56,6 @@ export class TCommuniqueApp {
 
   constructor(public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
     this.initializeApp();
-
-
 
     platform.registerBackButtonAction(() => {
 
@@ -183,7 +182,13 @@ export class TCommuniqueApp {
 
 const options: PushOptions = {
   android: {
-    senderID:'416461815684'
+    senderID:'416461815684',
+        icon: 'icon',
+        iconColor: '#228DFE',
+        sound: true,
+        vibrate: true,
+        clearBadge: true,
+        clearNotifications: true,
   },
   ios: {
       alert: 'true',
@@ -199,9 +204,34 @@ const options: PushOptions = {
 const pushObject: PushObject = this.push.init(options);
 
 
-pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+pushObject.on('notification').subscribe((notification: any) =>
+{
+  // if (notification.additionalData.foreground) {
+  //   let youralert = this.alertCtrl.create({
+  //     title: notification.title+"--"+notification.image,
+  //     message: notification.message,
 
-pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+  //   });
+  //   youralert.present();
+  // }
+
+  console.log('Received a notification', notification);
+});
+
+// // data contains the push payload just like a notification event
+// pushObject.on('picture').subscribe((data:any) => {
+//   console.log('I should email my guests',data);
+// });
+const subsc =["college"];
+pushObject.on('registration').subscribe((registration: any) =>
+{
+  for(let ss of subsc){
+    pushObject.subscribe(ss).then((res:any) => {
+      console.log("subscribed to topic: ", res);
+    });
+  }
+  console.log('Device registered', registration);
+});
 
 pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 
