@@ -1,23 +1,28 @@
 <ion-header>
-  <ion-navbar  color="searchbg">
-      <button ion-button color="searchbg">
-        <ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon>
-    </button>
-      <ion-title>
-          <span ion-text>HOTELS SEARCH</span>
-      </ion-title>
-  </ion-navbar>
 
-  <ion-card class="abc">
-      <span class="spanname">Pricing</span>
-      <ion-range min="500" max="25000" (ionChange)="rangeChange($event)" color="searchbg" pin="true">
-        <ion-label range-left>500</ion-label>
-        <ion-label range-right>25000</ion-label>
-      </ion-range>
-    </ion-card  >
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+      <ion-title>
+        <span ion-text class="fw700">Hotel Search</span>
+      </ion-title>
+    </ion-navbar>
+
+
 </ion-header>
 
+
 <ion-content padding>
+
+
+    <ion-card class="abc">
+        <span class="spanname">Pricing</span>
+        <ion-range min="500" max="25000" (ionChange)="rangeChange($event)" color="searchbg" pin="true">
+          <ion-label range-left>500</ion-label>
+          <ion-label range-right>25000</ion-label>
+        </ion-range>
+      </ion-card  >
 
 
         <ion-grid class="newcard">

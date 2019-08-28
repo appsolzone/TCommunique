@@ -3,7 +3,9 @@ import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule,IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS} from '@angular/common/http';
+import { Http,RequestOptions,HttpModule } from '@angular/http';
 import { TCommuniqueApp } from './app.component';
 import { HomePageModule } from '../pages/home/home.module';
 import { SignInPageModule } from '../pages/sign-in/sign-in.module';
@@ -28,6 +30,10 @@ import { BusSearchPageModule } from '../pages/bus-search/bus-search.module';
 import { LanguagePageModule } from '../pages/language/language.module';
 import { FilterPageModule } from '../pages/filter/filter.module';
 import { CategoryPackageDetailsPageModule } from '../pages/category-package-details/category-package-details.module';
+import { FlightSearchPageModule } from '../pages/flight-search/flight-search.module';
+import { AboutUsPageModule } from '../pages/about-us/about-us.module';
+import { PrivacyPolicyPageModule } from '../pages/privacy-policy/privacy-policy.module';
+import { ConstantProvider } from '../providers/constant/constant';
 
 
 
@@ -61,7 +67,12 @@ import { CategoryPackageDetailsPageModule } from '../pages/category-package-deta
     LanguagePageModule,
     FilterPageModule,
     CategoryPackageDetailsPageModule,
+    FlightSearchPageModule,
+    AboutUsPageModule,
+    PrivacyPolicyPageModule,
     BrowserModule,
+    HttpClientModule,
+    HttpModule,
     IonicModule.forRoot(TCommuniqueApp, {
     	preloadModules: true,
       scrollPadding: false,
@@ -81,7 +92,9 @@ import { CategoryPackageDetailsPageModule } from '../pages/category-package-deta
     Geolocation,
     GooglePlus,
     Push,AndroidPermissions,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    HttpClientModule,HttpClient,  
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConstantProvider
   ]
 })
 export class AppModule {}

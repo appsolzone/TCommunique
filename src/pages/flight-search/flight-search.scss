@@ -1,3 +1,240 @@
 page-flight-search {
 
+  .text-input-md {
+    margin: 15px 30px;
+    padding: 0;
+    width: calc(100% - 8px - 8px);
+    font-size: 15p;
+}
+.xz {
+    border-radius: 50px;background: #CECCCD; width: 100%;padding: 4px 0 4px 30px;
+}
+.margi{
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+
+}
+ion-label.dept.label.label-md {
+    padding: 6px 0 2px;
+}
+.label-md {
+    margin: 13px 8px 13px 0;
+    padding: 6px 0 2px;
+}
+ion-item.item.item-block.item-md.item-datetime {
+    margin-top: 0px;
+    border-radius: 50px;
+    background: #CECCCD;
+}
+
+select {
+    width:67px;
+    margin: 5px;
+}
+.all{
+    width: 100%;
+    padding: 0 12px;
+    height: auto;
+}
+.imgk{
+    position: absolute;top: 0;
+  border-radius: 0 20px 20px 0;right: 0;
+  background: #036f56;
+    height: 47px;
+width: 55px;
+top: 0px;
+}
+.placimgs{
+    height: 30px; width: 30px;position: absolute;top: 0;
+}
+.thre{
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 ;
+    width: 100%;
+    margin-top: -12px;
+    ul{
+        width: 100%
+    }
+    }
+    .thre li {
+        list-style-type: none;
+        display: inline-block;
+        width: 30%;
+        padding: 0px 10px;
+        margin: 0 3px;
+        border-radius: 50px;
+        background: #CECCCD;
+
+        .select-md {
+            padding: 12px 5px;
+        }
+
+    }
+    ion-select {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+
+}
+.select-ios {
+padding: 10px 18px;
+}
+    .button{
+        width: 100%
+
+    }
+
+    .thre ul{
+
+        padding: 0;
+
+    }
+    page-flightscr .inp {
+border-radius: 50px;
+background: #CECCCD;
+width: 100%;
+padding: 4px 0 4px 30px;
+}
+page-flightscr .carbbtn {
+position: absolute;
+}
+.bdftt button {
+text-transform: uppercase;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #036f56;
+    padding: 17px;
+    border-radius: 20px 20px 0px 0px;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.bdftt {
+position: absolute;
+position: absolute;
+bottom: 0;
+width: 100%;
+/* background-color: #000; */
+text-align: center;
+padding: 6px 0;
+
+}
+.bttn {
+
+position: absolute;
+width: 100%;
+text-align: center;
+background-color: #036f56;
+padding: 17px;
+border-radius: 20px 20px 0px 0px;
+left: 0;
+right: 0;
+bottom: 0;
+
+
+button {
+    background: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+}
+
+
+
+.inp{
+    // margin: -3px 0 0 33px;
+    border-radius: 50px;
+    background: #CECCCD;
+     width: 100%;
+}
+.dept{
+    margin: 0 0 12px 38px;
+    padding : 6px 0 0 0;
+}
+page-flightscr .thre {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+
+}
+page-flightscr .inp {
+    border-radius: 50px;
+    background: #CECCCD;
+    width: 100%;
+    padding: 4px 0 4px 30px;
+}
+page-flightscr .xz {
+    border-radius: 50px;
+    background: #CECCCD;
+    width: 100%;
+
+}
+.icom{
+    color: white; margin-left: 10px; margin-top: 16px;
+}
+.navin{
+    text-align: left; margin-left: 34px;  margin-top: -18px; color: white;
+}
+.divhead{
+    position: relative; border-radius: 50px; background: #CECCCD;border-radius: 50px;
+    background: #CECCCD;
+}
+.divhead2{
+    position: relative; border-radius: 50px; background: #CECCCD;border-radius: 50px;
+    background: #CECCCD;
+}
+.layer {
+    width: 100%;
+    display:inline-block;
+}
+ion-select {
+    max-width: 100%;
+}
+.item-cover{
+    width: auto;
+    height: auto;
+}
+.item-ios {
+
+    padding-left: 16px;
+
+    position: relative;
+    font-size: 1.7rem;
+    color: #000;
+    background-color: #CECCCD;
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+    border-radius: 50px;
+}
+page-flightscr .select-ios {
+    padding: 8px 18px;
+}
+page-flightscr .bdftt {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* background-color: #000; */
+    text-align: center;
+    /* padding: 6px 0; */
+}
+
+.select-md .select-placeholder {
+    color: #999;
+    text-align: left;
+}
+
+
 }

@@ -1,15 +1,133 @@
-<!--
-  Generated template for the FlightSearchPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>FlightSearch</ion-title>
-  </ion-navbar>
+
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+      <ion-title>
+        <span ion-text class="fw700">Flight Search</span>
+      </ion-title>
+    </ion-navbar>
+
+
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+  <form [formGroup]="searchit">
+<div class="all">
+
+    <div class="margi"  >
+     <div style = "position: relative;" >
+       <img src="/../assets/imgs/bus.png" class="placimgs">
+         <ion-label class="dept">Departure</ion-label>
+      </div>
+
+
+
+<div style = "position: relative;">
+     <ion-input placeholder="Search" class="xz"[(ngModel)]="inp1" formControlName="finp" name="finp"></ion-input>
+     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('finp').touched && searchit.get('finp').hasError('required')">Departure place is required</p>
+     <img   src="../../assets/imgs/search.png" class="imgk"  (click)="inp()" >
+</div>
+
+    </div>
+<div class="margi"  >
+    <div style = "position: relative;" >
+        <img src="/../assets/imgs/bus.png" class="placimgs">
+        <ion-label class="dept">Destination</ion-label>
+    </div>
+
+  <div style = "position: relative;">
+
+     <ion-input placeholder="Search" class="xz" formControlName="sinp" name="sinp" [(ngModel)]="inp2"></ion-input>
+     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('sinp').touched && searchit.get('sinp').hasError('required')">Destination place is required</p>
+
+     <img src="../../assets/imgs/search.png" class="imgk">
+  </div>
+</div>
+<div class="margi"  >
+    <div style = "position: relative;" >
+       <img src="/../assets/imgs/bus.png" class="placimgs">
+       <ion-label class="dept">Departure Date</ion-label>
+    </div>
+</div>
+
+<ion-item>
+    <ion-datetime displayFormat="DD/MM/YY" placeholder="Select Date" formControlName="tinp" name="tinp"[(ngModel)]="date1"></ion-datetime>
+
+</ion-item>
+<p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
+
+  <div class="margi"  >
+      <div style = "position: relative;" >
+          <img src="/../assets/imgs/bus.png" class="placimgs">
+          <ion-label style=" margin: 0 0 12px 38px">Passengers</ion-label>
+      </div>
+  </div>
+
+<div class = "layer">
+    <div class = "thre">
+        <ul>
+            <li>
+                <ion-select placeholder="Adult"formControlName="foinp"[(ngModel)]="adult">
+                    <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+                </ion-select>
+            </li>
+            <li>
+                <ion-select placeholder="Child" formControlName="fifinp" [(ngModel)]="child">
+                    <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+                </ion-select>
+
+            </li>
+            <li>
+                <ion-select placeholder="Infant" formControlName="siinp"[(ngModel)]="infant">
+                    <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+                </ion-select>
+
+            </li>
+          </ul>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('foinp').touched && searchit.get('foinp').hasError('required')">How many adults info is required</p>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('fifinp').touched && searchit.get('fifinp').hasError('required')">How many child info is required</p>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('siinp').touched && searchit.get('siinp').hasError('required')">How many infants info is required</p>
+    </div>
+</div>
+<div class="margi"  >
+    <div style = "position: relative;" >
+      <img src="/../assets/imgs/bus.png" class="placimgs">
+        <ion-label class="dept">Economy</ion-label>
+     </div>
+     <div class="divhead">
+        <ion-select formControlName="eco" [(ngModel)]="economy">
+            <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+        </ion-select>
+   </div>
+   <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>
+</div>
+<div class="margi"  >
+    <div style = "position: relative;" >
+      <img src="/../assets/imgs/bus.png" class="placimgs">
+        <ion-label class="dept">Payment Types</ion-label>
+     </div>
+     <div class="divhead2">
+        <ion-select formControlName="pay" [(ngModel)]="payment">
+            <ion-option *ngFor="let data of paymentList" [value]="data">{{data}}</ion-option>
+        </ion-select>
+     </div>
+     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('pay').touched && searchit.get('pay').hasError('required')">How would you pay?</p>
+</div>
+
+
+
+</div>
+<div class="bttn" (click)="inp()">
+<button>book now</button>
+</div>
+</form>
+
+
+
+
+
+
 
 </ion-content>

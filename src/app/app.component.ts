@@ -32,7 +32,9 @@ import { BusSearchPage } from '../pages/bus-search/bus-search';
 import { LanguagePage } from '../pages/language/language';
 import { FilterPage } from '../pages/filter/filter';
 import { CategoryPackageDetailsPage } from '../pages/category-package-details/category-package-details';
-
+import { FlightSearchPage } from '../pages/flight-search/flight-search';
+import { AboutUsPage } from '../pages/about-us/about-us';
+import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 @Component({
   templateUrl: 'app.html'
 })
@@ -41,11 +43,12 @@ export class TCommuniqueApp {
 
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
-    rootPage:any = LanguagePage;
-    // rootPage:any = ContactUsPage;
+    // rootPage:any = LanguagePage;
+    rootPage:any = HomePage;
     homeItem: any;
     initialItem: any;
-    messagesItem: any;
+    aboutus: any;
+    privacypolicy:any;
     settingsItem: any;
     contactUs:any;
     myexperience:any;
@@ -101,7 +104,8 @@ export class TCommuniqueApp {
 
 
         this.homeItem = { component: 'page-sign-in' };
-        this.messagesItem = { component: 'page-home'};
+        this.aboutus = { component: 'page-about-us'};
+        this.privacypolicy = { component: 'page-privacy-policy'};
         this.contactUs = { component: 'page-contact-us'};
         this.myexperience={component:'page-experience'};
 
@@ -120,8 +124,8 @@ export class TCommuniqueApp {
                   ];
 
         this.searchMenuItems = [
-            {title: 'Hotel Search', component: 'page-bus-search', icon: 'md-home'},
-            {title: 'Flight Search', component: 'page-bus-search', icon: 'md-plane'},
+            {title: 'Hotel Search', component: 'page-hotel-search', icon: 'md-home'},
+            {title: 'Flight Search', component: 'page-flight-search', icon: 'md-plane'},
             {title: 'Bus Search', component: 'page-bus-search', icon: 'md-bus'}
 
         ];
