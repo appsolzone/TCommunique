@@ -24,60 +24,65 @@
 
   <p class="bsp">BEST SELLING PACKAGES</p>
 
-  <ion-card class="cardBody" (click)="goclick()">
+  <ion-slides pager class="cardBody1">
+      <ion-slide *ngFor="let data of listArray; let idx = index">
+          <ion-card class="cardBody" (click)="goclick()">
 
-      <ion-card-header class="cardHeader">
-        <p style="margin-top: -6px; color: white; font-size: 14px;">Spectacular Cochin Tour Package</p>
-        <p style="margin-top: -22px; float: right; font-size: 14px; color: white;">2 Day 1 Night</p>
-      </ion-card-header>
+              <ion-card-header class="cardHeader">
+                <p style="margin-top: -6px; color: white; font-size: 14px;">Spectacular Cochin Tour Package</p>
+                <p style="margin-top: -22px; float: right; font-size: 14px; color: white;">2 Day 1 Night</p>
+              </ion-card-header>
 
-      <ion-card-content>
+              <ion-card-content>
 
-          <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
-          <P style="margin-top: 5px;">Starting budget</P>
-          <p style="margin-top: -6px; color: #0b9595">7000</p>
-          <p style="margin-top: -24px; margin-left: 38px;">/person</p>
+                  <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
+                  <P style="margin-top: 5px;">Starting budget</P>
+                  <p style="margin-top: -6px; color: #0b9595">7000</p>
+                  <p style="margin-top: -24px; margin-left: 38px;">/person</p>
 
-          <ion-row>
-            <ion-col col-2>
-                <img src="assets/imgs/lake_como.png" style="height: 30px; border-radius: 5px;">
-                <div>
-                   <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">aaaaa</p>
-                </div>
-            </ion-col>
+                  <ion-row>
+                    <ion-col col-2.4>
+                      <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
+                          <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
+                      </div>
+                      <p style="font-size: 10px; text-align: center; margin-top: 2px;">Flight</p>
+                  </ion-col>
+                  <ion-col col-2.4>
+                      <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
+                          <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
+                        </div>
+                        <p style="font-size: 10px; text-align: center; margin-top: 2px;">Cab</p>
+                  </ion-col>
+                  <ion-col col-2.4>
+                      <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
+                          <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
+                        </div>
+                        <p style="font-size: 10px; text-align: center; margin-top: 2px;">3 stars</p>
+                  </ion-col>
+                  <ion-col col-2.4>
+                      <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
+                          <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
+                        </div>
+                        <p style="font-size: 10px; text-align: center; margin-top: 2px;">Meals</p>
+                  </ion-col>
+                  <ion-col col-2.4>
+                      <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
+                          <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
+                        </div>
+                        <p style="font-size: 10px; text-align: center; margin-top: 2px;">Slight seeing</p>
+                  </ion-col>
+                    <ion-col col-2.4>
+                      <p style="text-align: center;">+1</p>
+                    </ion-col>
+                  </ion-row>
 
-            <ion-col col-2>
-                <img src="assets/imgs/lake_como.png" style="height: 30px; border-radius: 5px;">
-                <div>
-                   <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">aaaaa</p>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-                <img src="assets/imgs/lake_como.png" style="height: 30px; border-radius: 5px;">
-                <div>
-                   <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">aaaaa</p>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-                <img src="assets/imgs/lake_como.png" style="height: 30px; border-radius: 5px;">
-                <div>
-                   <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">aaaaa</p>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-                <img src="assets/imgs/lake_como.png" style="height: 30px; border-radius: 5px;">
-                <div>
-                   <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">aaaaa</p>
-                </div>
-            </ion-col>
-            <ion-col col-2>
-              <p style="text-align: center;">+1</p>
-            </ion-col>
-          </ion-row>
+              </ion-card-content>
 
-      </ion-card-content>
+            </ion-card>
+      </ion-slide>
+    </ion-slides>
 
-    </ion-card>
+
 
     <div style="background: #d6d6d6; height:5px; width:100%; margin-top:25px;"></div>
 
@@ -104,7 +109,7 @@
             </ion-col>
           </ion-row>
 
-          <p style="margin-left: 20px; font-size: 10px;">Aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaa aaaaaa aaaa aaaaaaaaaa aaaaaa aaaaaaa</p>
+          <p style="margin-left: 20px; font-size: 10px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
           <P style="color: red; float: right; margin-top: 5px;">read more..</P>
 
         </ion-card-content>
@@ -121,7 +126,7 @@
           </div>
           <p style="margin-top: -24px; margin-left: 40px; font-weight: bold;">By Air</p>
 
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">Aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaa aaaaaa aaaa</p>
+          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
       </div>
 
       <div>
@@ -130,7 +135,7 @@
           </div>
           <p style="margin-top: -24px; margin-left: 40px; font-weight: bold;">By Car</p>
 
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">Aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaa aaaaaa aaaa</p>
+          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
       </div>
 
       <div>
@@ -139,7 +144,7 @@
           </div>
           <p style="    margin-top: -24px; margin-left: 40px; font-weight: bold;">By Bus</p>
 
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">Aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaa aaaaaa aaaa</p>
+          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
       </div>
 
 
@@ -148,7 +153,7 @@
           <button class="book">BOOK NOW</button>
         </ion-col>
         <ion-col col-6>
-            <button class="customize">CUSTOMIZE</button>
+            <button class="customize" (click)="customize()">CUSTOMIZE</button>
         </ion-col>
       </ion-row>
 

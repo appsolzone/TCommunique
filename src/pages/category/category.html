@@ -17,7 +17,7 @@
       <ion-grid>
         <ion-row >
           <ion-col >
-            <ion-card class="newcard" (click)="goclick()" *ngFor="let data of listArray; let idx = index">
+            <ion-card class="newcard" (click)="goclick()" *ngFor="let data of destination_details; let idx = index">
               <ion-card-content >
 
                 <ion-row>
@@ -26,11 +26,11 @@
                       <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
 
                     </span>
-                    <img src="assets/imgs/lake_como.png" class="offerOutletImg">
+                    <img src="{{data.destinationImg}}" class="offerOutletImg">
 
-                    <p class="outletName" text-wrap>KERALA</p>
+                    <p class="outletName" text-wrap>{{data.destinationName}}</p>
                     <p class="outletNameRight" text-wrap>
-                        Starting Budget <span>&#8377;10,000/Persion</span>
+                        Starting Budget <span>&#8377;{{data.startingPrice}}/Persion</span>
                        </p>
 
 

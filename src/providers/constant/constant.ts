@@ -11,6 +11,8 @@ import { Injectable } from '@angular/core';
 export class ConstantProvider {
 
   public get_category_list='https://appsolzone.com/aszdev/tcApi/category/categoryList.php';
+  public get_destinationByCat="https://appsolzone.com/aszdev/tcApi/category/destinationByCat.php";
+  public get_destinationByCatId = "http://appsolzone.com/aszdev/tcApi/destination/destinationByCatId.php"
 
 
   constructor(public http: HttpClient) {

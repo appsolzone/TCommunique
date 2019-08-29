@@ -13,11 +13,12 @@
                 <img src="assets/imgs/notify_icon.png" class="blink_img">
             </button>
         </ion-buttons>
-        <ion-buttons end>
+         <ion-buttons end>
           <button ion-button class="blinking_button" >
             <img src="assets/imgs/menu_icon.png" class="blink_img">
         </button>
         </ion-buttons>
+
 
       </ion-navbar>
 
@@ -33,7 +34,12 @@
 
   </ion-header>
 
+
+
   <ion-content>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
 
           <!--This is INTERNATIONAL Section-->
 
@@ -60,13 +66,13 @@
                   <div class="expDiv" >
 
                     <div class="expiDiv">
-                      <p style="text-align: center; padding-top: 4px;">Experiances People Love</p>
+                      <p style="text-align: center; padding-top: 4px;">Experiences People Love</p>
                     </div>
 
                     <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
                       <ion-row nowrap>
                         <div *ngFor="let category_inter of categorydet_inter; let idx = index" >
-                            <ion-card style="width: 150px; border-radius: 10px;" (click)="go()">
+                            <ion-card style="width: 150px; border-radius: 10px;" (click)="go(category_inter)">
                                 <ion-card-content style="padding: 0px 0px;">
                                     <img src="{{category_inter.catImg}}" style="width: 150px; height: 80px;">
                                     <div>
@@ -101,20 +107,20 @@
                   </div>
 
 
-                  <div class="expDiv" style="margin-top: 440px;">
+                  <div *ngFor="let dest_inter of  destination_inter">
 
                       <div class="expiDiv">
-                        <p style="text-align: center; padding-top: 4px;">Top Honeymoon Destinations</p>
+                        <p style="text-align: center; padding-top: 3px;">Top {{dest_inter.catName}} Destinations</p>
                       </div>
 
                       <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
                         <ion-row nowrap>
-                          <div *ngFor="let data of listArray; let idx = index" >
-                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go()">
+                          <div *ngFor="let data of dest_inter.destination; let idx = index" >
+                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det()">
                                   <ion-card-content style="padding: 0px 0px;">
-                                      <img src="assets/imgs/lake_como.png" style="width: 150px;">
+                                      <img src="{{data.destinationImg}}" style="width: 150px; height: 80px;">
                                       <div>
-                                         <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">{{data.name}}</p>
+                                         <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">{{data.destinationName}}</p>
                                       </div>
                                   </ion-card-content>
                                 </ion-card>
@@ -122,15 +128,6 @@
                         </ion-row>
                       </ion-scroll>
                     </div>
-
-                    <div style="height: 30px; background: orange; color: white; margin-top: 212px; width: 150px; display: block; margin-left: auto; margin-right: auto; border-radius: 24px;">
-                      <p style="text-align: center; padding-top: 6px;">View More</p>
-                    </div>
-
-                    <div style="height: 50px; background: #0e6262; color: white; margin-top: 25px;">
-                        <p style="text-align: center; padding-top: 11px;">PLAN MY HOLIDAY</p>
-                      </div>
-
                     </div>
             </ion-list>
       </div>
@@ -161,13 +158,13 @@
                   <div class="expDiv" >
 
                     <div class="expiDiv">
-                      <p style="text-align: center; padding-top: 4px;">Experiances People Love</p>
+                      <p style="text-align: center; padding-top: 4px;">Experiences People Love</p>
                     </div>
 
                     <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
                       <ion-row nowrap>
                         <div *ngFor="let category_dom of categorydet_domestic; let idx = index" >
-                            <ion-card style="width: 150px; border-radius: 10px;" (click)="go()">
+                            <ion-card style="width: 150px; border-radius: 10px;" (click)="go(category_dom)">
                                 <ion-card-content style="padding: 0px 0px;">
                                     <img src="{{category_dom.catImg}}" style="width: 150px; height: 80px;">
                                     <div>
@@ -202,20 +199,20 @@
                   </div>
 
 
-                  <div class="expDiv" style="margin-top: 440px;">
+                  <div *ngFor="let dest_domestic of destination_domestic">
 
                       <div class="expiDiv">
-                        <p style="text-align: center; padding-top: 4px;">Top Honeymoon Destinations</p>
+                        <p style="text-align: center; padding-top: 3px;">Top {{dest_domestic.catName}} Destinations</p>
                       </div>
 
                       <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
                         <ion-row nowrap>
-                          <div *ngFor="let data of listArray; let idx = index" >
-                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go()">
+                          <div *ngFor="let data of dest_domestic.destination; let idx = index" >
+                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det()">
                                   <ion-card-content style="padding: 0px 0px;">
-                                      <img src="assets/imgs/lake_como.png" style="width: 150px;">
+                                      <img src="{{data.destinationImg}}" style="width: 150px; height: 80px;">
                                       <div>
-                                         <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">{{data.name}}</p>
+                                         <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">{{data.destinationName}}</p>
                                       </div>
                                   </ion-card-content>
                                 </ion-card>
@@ -224,13 +221,6 @@
                       </ion-scroll>
                     </div>
 
-                    <div style="height: 30px; background: orange; color: white; margin-top: 212px; width: 150px; display: block; margin-left: auto; margin-right: auto; border-radius: 24px;">
-                      <p style="text-align: center; padding-top: 6px;">View More</p>
-                    </div>
-
-                    <div style="height: 50px; background: #0e6262; color: white; margin-top: 25px;">
-                        <p style="text-align: center; padding-top: 11px;">PLAN MY HOLIDAY</p>
-                      </div>
 
                     </div>
 
@@ -239,7 +229,31 @@
 
 
 
+
+
+
+
+
+
+
+
       </ion-content>
+
+      <ion-fab right bottom class="fabbtn">
+          <button ion-fab class="funcbtn"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>
+          <ion-fab-list side="top">
+            <button ion-fab>  <ion-icon ios="ios-chatboxes" md="md-chatboxes"></ion-icon></button>
+            <button ion-fab><ion-icon ios="ios-call" md="md-call"></ion-icon></button>
+            <button ion-fab><ion-icon ios="ios-videocam" md="md-videocam"></ion-icon></button>
+          </ion-fab-list>
+      </ion-fab>
+      <ion-footer style="height: 50px; background: #ffffff00; display: block;">
+
+
+          <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
+            <p style="text-align: center;">PLAN MY HOLIDAY</p>
+          </button>
+      </ion-footer>
 
 
 

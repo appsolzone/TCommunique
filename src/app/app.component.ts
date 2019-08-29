@@ -35,6 +35,7 @@ import { CategoryPackageDetailsPage } from '../pages/category-package-details/ca
 import { FlightSearchPage } from '../pages/flight-search/flight-search';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
+import { PackageDetailsPage } from '../pages/package-details/package-details';
 @Component({
   templateUrl: 'app.html'
 })

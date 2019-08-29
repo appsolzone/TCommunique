@@ -34,6 +34,7 @@ import { FlightSearchPageModule } from '../pages/flight-search/flight-search.mod
 import { AboutUsPageModule } from '../pages/about-us/about-us.module';
 import { PrivacyPolicyPageModule } from '../pages/privacy-policy/privacy-policy.module';
 import { ConstantProvider } from '../providers/constant/constant';
+import { PackageDetailsPageModule } from '../pages/package-details/package-details.module';
 
 
 
@@ -67,6 +68,7 @@ import { ConstantProvider } from '../providers/constant/constant';
     LanguagePageModule,
     FilterPageModule,
     CategoryPackageDetailsPageModule,
+    PackageDetailsPageModule,
     FlightSearchPageModule,
     AboutUsPageModule,
     PrivacyPolicyPageModule,
@@ -92,7 +94,7 @@ import { ConstantProvider } from '../providers/constant/constant';
     Geolocation,
     GooglePlus,
     Push,AndroidPermissions,
-    HttpClientModule,HttpClient,  
+    HttpClientModule,HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConstantProvider
   ]
