@@ -8,6 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { CategoryPackageDetailsPage } from '../../pages/category-package-details/category-package-details';
 import 'rxjs/add/observable/interval';
+import { QuotePreferencePage } from '../../pages/quote-preference/quote-preference';
 
 
 
@@ -98,8 +99,16 @@ export class HomePage {
 
 
   }
-  go_package_det(){
-    this.navCtrl.push(CategoryPackageDetailsPage);
+  go_package_det(catId,destId){
+
+    console.log("DATA",catId,destId);
+    if(this.icons==="INTERNATIONAL"){
+      this.navCtrl.push(CategoryPackageDetailsPage,{catId:catId,tourType:"International",destId:destId});
+    }
+    if(this.icons==="DOMESTIC"){
+          this.navCtrl.push(CategoryPackageDetailsPage,{catId:catId,tourType:"Domestic",destId:destId});
+    }
+
   }
 
   doRefresh(refresher) {
@@ -112,6 +121,9 @@ export class HomePage {
       console.log('Async operation has ended',this.icons);
       refresher.complete();
     }, 2000);
+  }
+  plan_my_holiday(){
+    this.navCtrl.push(QuotePreferencePage);
   }
 
 

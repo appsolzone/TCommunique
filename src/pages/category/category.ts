@@ -41,8 +41,8 @@ export class CategoryPage {
     console.log('ionViewDidLoad CategoryPage');
   }
 
-  goclick(){
-    this.navCtrl.push(CategoryPackageDetailsPage);
+  goclick(destId){
+    this.navCtrl.push(CategoryPackageDetailsPage,{catId:this.catId,tourType:this.tourType,destId:destId});
 
   }
 

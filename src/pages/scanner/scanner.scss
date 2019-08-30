@@ -1,0 +1,61 @@
+page-scanner {
+  .head {
+    font-size: xx-large;
+    text-align: center;
+    margin-top: 31%;
+
+}
+ion-col.col {
+    margin-left: -6%;
+}
+.lowbttn{
+    background: #036f56;
+    width: 50%;
+margin-left: 6%;
+border-radius: 50px;
+bottom: auto;
+}
+.align {
+    margin-top: 7%;
+    margin-left: 26%;
+}
+page-scanner .btn {
+    width: 50%;
+    min-width: 50px;
+    max-width: 500px;
+    margin-left: 25%;
+    margin-top: 10%;
+}
+
+.scan{
+    width: 100%;
+    height: auto;
+    margin-top: 10%;
+
+
+}
+.back{
+    background-image: url('../assets/imgs/login-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.imgs {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 10%;
+  }
+  .btn {
+    width: 50%;
+    min-width: 50px;
+    max-width: 500px;
+    margin-left: 25%;
+    background: #036f56;
+
+ }
+
+}

@@ -1,0 +1,134 @@
+<ion-header>
+
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+      <ion-title>
+        <span ion-text class="fw700">Quote Preference</span>
+      </ion-title>
+
+      <ion-buttons end>
+        <button ion-button >
+          <ion-icon ios="ios-call" md="md-call"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+
+
+</ion-header>
+
+<ion-content >
+  <form [formGroup]="searchit">
+
+<div class="all">
+
+    <div class="margi"  >
+     <div style = "position: relative;" >
+       <img src="/../assets/imgs/bus.png\" class="placimgs">
+         <ion-label class="dept">Departure</ion-label>
+
+      </div>
+
+
+
+<div style = "position: relative;">
+     <ion-input placeholder="Search" class="xz"[(ngModel)]="inp1" formControlName="finp" name="finp"></ion-input>
+     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('finp').touched && searchit.get('finp').hasError('required')">Departure place is required</p>
+     <img   src="../../assets/imgs/search.png" class="imgk"  (click)="inp()" >
+     <ion-item>
+        <ion-label>I am exploring Destinations</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+</div>
+
+    </div>
+
+<div class="margi"  >
+    <div style = "position: relative;" >
+        <img src="/../assets/imgs/bus.png\" class="placimgs">
+        <ion-label class="dept">Destination</ion-label>
+    </div>
+
+  <div style = "position: relative;">
+
+     <ion-input placeholder="Search" class="xz" formControlName="sinp" name="sinp" [(ngModel)]="inp2"></ion-input>
+     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('sinp').touched && searchit.get('sinp').hasError('required')">Destination place is required</p>
+
+     <img src="../../assets/imgs/search.png" class="imgk">
+  </div>
+</div>
+
+<div class="margi"  >
+    <div style = "position: relative;" >
+      <img src="/../assets/imgs/bus.png\" class="placimgs">
+        <ion-label class="dept">No of days</ion-label>
+     </div>
+     <div class="divhead">
+        <ion-select formControlName="days" [(ngModel)]="days">
+            <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+        </ion-select>
+   </div>
+   <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('days').touched && searchit.get('days').hasError('required')">How many days?</p>
+</div>
+
+
+
+  <div class="margi"  >
+      <div style = "position: relative;" >
+          <img src="/../assets/imgs/bus.png\" class="placimgs">
+          <ion-label style=" margin: 0 0 12px 38px">Starting Date</ion-label>
+      </div>
+  </div>
+  <ion-item>
+      <ion-datetime displayFormat="DD/MM/YY" placeholder="Select Date" formControlName="date" name="tinp"[(ngModel)]="date1"></ion-datetime>
+
+  </ion-item>
+  <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('date').touched && searchit.get('date').hasError('required')">Date is required</p>
+
+
+
+<div class="margi"  >
+    <div style = "position: relative;" >
+      <img src="/../assets/imgs/bus.png\" class="placimgs">
+        <ion-label class="dept">Mobile no</ion-label>
+
+     </div>
+   <ion-row>
+     <ion-col col-3>
+        <ion-select>
+            <ion-option *ngFor="let data of std" [value]="data" (ionSelect)="selectEmployee(data)">{{data}}</ion-option>
+        </ion-select>
+     </ion-col>
+     <ion-col col-9>
+        <ion-input formControlName="mob"></ion-input>
+      </ion-col>
+     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('mob').touched && searchit.get('mob').hasError('required')">Mobile no is needed</p>
+
+   </ion-row>
+   <div class="margi"  >
+      <div style = "position: relative;" >
+        <img src="/../assets/imgs/bus.png\" class="placimgs">
+          <ion-label class="dept">Email ID</ion-label>
+       </div>
+       <ion-input formControlName="email" [(ngModel)]="email"></ion-input>
+
+
+   <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('email').touched && searchit.get('email').hasError('required')">Email is needed!</p>
+</div>
+
+
+
+</div>
+</div>
+
+</form>
+</ion-content>
+<ion-footer style="height: 50px; background: #0e6262;">
+  <ion-toolbar position="bottom">
+    <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
+      <p style="text-align: center;">GET CUSTOMISED QUOTE </p>
+    </button>
+
+  </ion-toolbar>
+</ion-footer>

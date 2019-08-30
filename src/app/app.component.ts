@@ -45,13 +45,14 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     // rootPage:any = LanguagePage;
-    rootPage:any = HomePage;
+    rootPage:any = SignInPage;
     homeItem: any;
     initialItem: any;
     aboutus: any;
     privacypolicy:any;
     settingsItem: any;
     contactUs:any;
+    scanner:any;
     myexperience:any;
     nearbyplacesItem: Array<MenuItem>;
     converterItem: Array<MenuItem>;
@@ -109,6 +110,7 @@ export class TCommuniqueApp {
         this.privacypolicy = { component: 'page-privacy-policy'};
         this.contactUs = { component: 'page-contact-us'};
         this.myexperience={component:'page-experience'};
+        this.scanner={component:'page-scanner'};
 
 
 
@@ -211,22 +213,11 @@ const pushObject: PushObject = this.push.init(options);
 
 pushObject.on('notification').subscribe((notification: any) =>
 {
-  // if (notification.additionalData.foreground) {
-  //   let youralert = this.alertCtrl.create({
-  //     title: notification.title+"--"+notification.image,
-  //     message: notification.message,
 
-  //   });
-  //   youralert.present();
-  // }
 
   console.log('Received a notification', notification);
 });
 
-// // data contains the push payload just like a notification event
-// pushObject.on('picture').subscribe((data:any) => {
-//   console.log('I should email my guests',data);
-// });
 const subsc =["college"];
 pushObject.on('registration').subscribe((registration: any) =>
 {

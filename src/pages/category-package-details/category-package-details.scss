@@ -15,6 +15,10 @@ page-category-package-details {
       color: #0f5054;
       font-weight: bold;
   }
+  ion-icon {
+    display: inline-block;
+    font-size: 2em;
+}
 
   .sb
   {
@@ -45,14 +49,13 @@ page-category-package-details {
       margin-left: 10px;
       font-size: 18px;
       margin-top: 10px;
+      margin-bottom: 10px;
   }
   .cardBody
   {
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      height: 160px;
+      border-radius: 20px;
+      height: auto;
+      box-shadow: none;
       border: 1px solid #0b9595;
   }
 
@@ -64,10 +67,11 @@ page-category-package-details {
   .cardHeader
   {
       background: #0b9595;
-      height: 40px;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      padding: 8px 16px;
   }
+  .bxtxt ion-icon.icon.icon-md.ion-md-heart:hover {
+    color: #0b9595;
+}
 
   .book
   {
@@ -91,5 +95,26 @@ page-category-package-details {
       background-image: linear-gradient(#0c959c, #02413f);
       color: white;
   }
+  .cardHeader {
+    p {
+      text-align: left;
+      span {
+        float: right;
+        color: #fff;
+        font-size: 13px;
+    }
+  }
+}
+.bxtxt {
+  p {
+  text-align: left;
+  font-size: 15px;
+  span {
+    font-size: 20px;
+    color: #06cccc;
+}
+}
+}
+
 
 }

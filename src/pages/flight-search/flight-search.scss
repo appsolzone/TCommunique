@@ -4,7 +4,7 @@ page-flight-search {
     margin: 15px 30px;
     padding: 0;
     width: calc(100% - 8px - 8px);
-    font-size: 15p;
+    font-size: 15px;
 }
 .xz {
     border-radius: 50px;background: #CECCCD; width: 100%;padding: 4px 0 4px 30px;
@@ -98,36 +98,8 @@ background: #CECCCD;
 width: 100%;
 padding: 4px 0 4px 30px;
 }
-page-flightscr .carbbtn {
-position: absolute;
-}
-.bdftt button {
-text-transform: uppercase;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    background-color: #036f56;
-    padding: 17px;
-    border-radius: 20px 20px 0px 0px;
-    left: 0;
-    right: 0;
-    margin-bottom: 0;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: #fff;
-}
-.bdftt {
-position: absolute;
-position: absolute;
-bottom: 0;
-width: 100%;
-/* background-color: #000; */
-text-align: center;
-padding: 6px 0;
 
-}
+
 .bttn {
 
 position: absolute;
@@ -219,10 +191,10 @@ ion-select {
     transition: background-color 200ms linear;
     border-radius: 50px;
 }
-page-flightscr .select-ios {
+ .select-ios {
     padding: 8px 18px;
 }
-page-flightscr .bdftt {
+ .bdftt {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -235,6 +207,5 @@ page-flightscr .bdftt {
     color: #999;
     text-align: left;
 }
-
 
 }

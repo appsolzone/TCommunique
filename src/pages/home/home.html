@@ -116,7 +116,7 @@
                       <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
                         <ion-row nowrap>
                           <div *ngFor="let data of dest_inter.destination; let idx = index" >
-                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det()">
+                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det(dest_inter.catId,data.destId)">
                                   <ion-card-content style="padding: 0px 0px;">
                                       <img src="{{data.destinationImg}}" style="width: 150px; height: 80px;">
                                       <div>
@@ -208,7 +208,7 @@
                       <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
                         <ion-row nowrap>
                           <div *ngFor="let data of dest_domestic.destination; let idx = index" >
-                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det()">
+                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det(dest_domestic.catId,data.destId)">
                                   <ion-card-content style="padding: 0px 0px;">
                                       <img src="{{data.destinationImg}}" style="width: 150px; height: 80px;">
                                       <div>
@@ -250,7 +250,7 @@
       <ion-footer style="height: 50px; background: #ffffff00; display: block;">
 
 
-          <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
+          <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="plan_my_holiday()">
             <p style="text-align: center;">PLAN MY HOLIDAY</p>
           </button>
       </ion-footer>

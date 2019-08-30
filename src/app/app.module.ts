@@ -35,6 +35,10 @@ import { AboutUsPageModule } from '../pages/about-us/about-us.module';
 import { PrivacyPolicyPageModule } from '../pages/privacy-policy/privacy-policy.module';
 import { ConstantProvider } from '../providers/constant/constant';
 import { PackageDetailsPageModule } from '../pages/package-details/package-details.module';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ScannerPageModule } from '../pages/scanner/scanner.module';
+import { QuotePreferencePageModule } from '../pages/quote-preference/quote-preference.module';
+
 
 
 
@@ -72,6 +76,8 @@ import { PackageDetailsPageModule } from '../pages/package-details/package-detai
     FlightSearchPageModule,
     AboutUsPageModule,
     PrivacyPolicyPageModule,
+    ScannerPageModule,
+    QuotePreferencePageModule,
     BrowserModule,
     HttpClientModule,
     HttpModule,
@@ -93,6 +99,7 @@ import { PackageDetailsPageModule } from '../pages/package-details/package-detai
     SplashScreen,
     Geolocation,
     GooglePlus,
+    BarcodeScanner,
     Push,AndroidPermissions,
     HttpClientModule,HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
