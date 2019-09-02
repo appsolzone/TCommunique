@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HTTP_INTERCEPTORS} from '@angular/common/http';
 import { Http,RequestOptions,HttpModule } from '@angular/http';
+import { Network } from '@ionic-native/network';
 import { TCommuniqueApp } from './app.component';
 import { HomePageModule } from '../pages/home/home.module';
 import { SignInPageModule } from '../pages/sign-in/sign-in.module';
@@ -35,7 +36,7 @@ import { AboutUsPageModule } from '../pages/about-us/about-us.module';
 import { PrivacyPolicyPageModule } from '../pages/privacy-policy/privacy-policy.module';
 import { ConstantProvider } from '../providers/constant/constant';
 import { PackageDetailsPageModule } from '../pages/package-details/package-details.module';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { ScannerPageModule } from '../pages/scanner/scanner.module';
 import { QuotePreferencePageModule } from '../pages/quote-preference/quote-preference.module';
 
@@ -85,8 +86,7 @@ import { QuotePreferencePageModule } from '../pages/quote-preference/quote-prefe
     	preloadModules: true,
       scrollPadding: false,
       scrollAssist: true,
-      autoFocusAssist: false,
-      tabsPlacement: 'top'
+      autoFocusAssist: false
     }),
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -100,6 +100,7 @@ import { QuotePreferencePageModule } from '../pages/quote-preference/quote-prefe
     Geolocation,
     GooglePlus,
     BarcodeScanner,
+    Network,
     Push,AndroidPermissions,
     HttpClientModule,HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

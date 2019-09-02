@@ -15,6 +15,7 @@ export class ConstantProvider {
   public get_destinationByCatId = "https://appsolzone.com/aszdev/tcApi/destination/destinationByCatId.php"
   public get_listOfPackageByDestId="https://appsolzone.com/aszdev/tcApi/package/listOfPackageByDestId.php";
   public login="https://appsolzone.com/aszdev/tcApi/login/login.php";
+  public get_packageDetails="https://appsolzone.com/aszdev/tcApi/package/packageDetails.php";
 
 
 

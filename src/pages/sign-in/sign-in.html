@@ -20,14 +20,22 @@
 
 
       <div class="frmone">
+          <button (click) = "signup()">
+              Create new account.
+            </button>
          <button (click) = "forgotpwd()">
             Forgot Password ?
           </button>
+
+
       </div>
+
 
           <button class="login-btn" ion-button (click) = "login()" [disabled]="!onLoginForm.valid">
               Log In
             </button>
+
+
     </form>
     </div>
 </div>

@@ -26,7 +26,7 @@
 
   <ion-slides pager class="cardBody1">
       <ion-slide *ngFor="let data of ListofPackage_byDest; let idx = index">
-          <ion-card class="cardBody" (click)="goclick()">
+          <ion-card class="cardBody" (click)="goclick(data.pkgId)">
 
               <ion-card-header class="cardHeader">
                 <p style=" color: white; font-size: 14px;">{{data.pkgTitle}}<span>{{data.duration}}</span></p>

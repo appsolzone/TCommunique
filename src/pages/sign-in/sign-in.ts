@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { IonicPage,ToastController,ModalController,Nav,NavController, NavParams,MenuController,Loading,LoadingController,AlertController,Platform} from 'ionic-angular';
 import { CategoryPage } from '../../pages/category/category';
 import { ConstantProvider } from '../../providers/constant/constant';
@@ -10,6 +10,9 @@ import 'rxjs/add/observable/interval';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HomePage } from '../../pages/home/home';
 import { ForgotPwdPage } from '../../pages/forgot-pwd/forgot-pwd';
+import { Network } from '@ionic-native/network';
+import { SignUpPage } from '../../pages/sign-up/sign-up';
+
 
 
 
@@ -28,7 +31,7 @@ import { ForgotPwdPage } from '../../pages/forgot-pwd/forgot-pwd';
   selector: 'page-sign-in',
   templateUrl: 'sign-in.html',
 })
-export class SignInPage {
+export class SignInPage implements OnInit{
   public onLoginForm: FormGroup;
   user_email:any;
   user_password:any;
@@ -37,12 +40,45 @@ export class SignInPage {
 
 
 
-  constructor(public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+
+  constructor(public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+    let status=this.network.type;
+
+    if(status=='none')
+    {
+    let t = this.toastCtrl.create({
+      message: 'Please enable your internet connection to continue.',
+      showCloseButton: true,
+      closeButtonText: 'Retry',
+      position: 'bottom',
+
+    });
+    let closedByTimeout = false;
+    let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 30000);
+    t.onDidDismiss(() => {
+      if (closedByTimeout) return;
+      clearTimeout(timeoutHandle);
+      // Dismiss manually
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      console.log('dismiss manually');
+    });
+    t.present();
+    }
+    else
+    {
+      this.menu.swipeEnable(false);
+      this.menu.enable(false);
+    }
+
+
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignInPage');
   }
+
 
   ngOnInit() {
     let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
@@ -81,12 +117,23 @@ export class SignInPage {
         if(data.json().status=="200"){
               this.navCtrl.setRoot(HomePage);
         }else{
-          let alert = this.alertCtrl.create({
-            title: 'Invalid Details',
-            subTitle: 'Invalid Details',
-            buttons: ['Dismiss']
-          });
-          alert.present();
+
+      let t = this.toastCtrl.create({
+        message: data.json().msg,
+        showCloseButton: true,
+        closeButtonText: 'Retry',
+        position: 'bottom'
+      });
+      let closedByTimeout = false;
+      let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 30000);
+      t.onDidDismiss(() => {
+        if (closedByTimeout) return;
+        clearTimeout(timeoutHandle);
+        // Dismiss manually
+        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+        console.log('dismiss manually');
+      });
+      t.present();
 
         }
 
@@ -96,14 +143,11 @@ export class SignInPage {
 
   }
   forgotpwd(){
-    // let alert = this.alertCtrl.create({
-    //   title: 'Forgot Password!',
-    //   subTitle: 'Progress is in Process.',
-    //   buttons: ['OK']
-    // });
-    // alert.present();
     this.navCtrl.push(ForgotPwdPage);
 
+  }
+  signup(){
+    this.navCtrl.push(SignUpPage);
   }
 
 

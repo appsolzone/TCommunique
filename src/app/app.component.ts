@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import {IonicApp } from 'ionic-angular';
+
 
 
 
@@ -45,7 +47,8 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     // rootPage:any = LanguagePage;
-    rootPage:any = SignInPage;
+    rootPage = HomePage;
+
     homeItem: any;
     initialItem: any;
     aboutus: any;
@@ -59,10 +62,14 @@ export class TCommuniqueApp {
     accountMenuItems: Array<MenuItem>;
     searchMenuItems: Array<MenuItem>;
 
-  constructor(public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
-    this.initializeApp();
+  constructor(private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
 
     platform.registerBackButtonAction(() => {
+      let activeModal=this.ionicApp._modalPortal.getActive();
+      if(activeModal){
+          activeModal.dismiss();
+            return;
+        }
 
       let nav = app.getActiveNavs()[0];
       let activeView = nav.getActive();
@@ -91,6 +98,16 @@ export class TCommuniqueApp {
               });
               alert.present();
 
+      }else if(page && (page instanceof SignInPage)){
+        const val = null;
+          if(val==null)
+          {
+
+          }
+          else
+          {
+            this.nav.setRoot(HomePage);
+          }
       }
       else
       {
@@ -103,6 +120,8 @@ export class TCommuniqueApp {
         }
       }
   });
+      this.initializeApp();
+
 
 
         this.homeItem = { component: 'page-sign-in' };

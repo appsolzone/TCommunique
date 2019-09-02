@@ -63,64 +63,23 @@
                      </div>
                   </div>
 
-                  <div class="expDiv" >
 
-                    <div class="expiDiv">
-                      <p style="text-align: center; padding-top: 4px;">Experiences People Love</p>
-                    </div>
+                  <!--change-->
 
-                    <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
-                      <ion-row nowrap>
-                        <div *ngFor="let category_inter of categorydet_inter; let idx = index" >
-                            <ion-card style="width: 150px; border-radius: 10px;" (click)="go(category_inter)">
-                                <ion-card-content style="padding: 0px 0px;">
-                                    <img src="{{category_inter.catImg}}" style="width: 150px; height: 80px;">
-                                    <div>
-                                       <p style="color: #000000; height: 30px; text-align: center; padding-top: 6px; height: 30px;">{{category_inter.catName}}</p>
-                                    </div>
-                                </ion-card-content>
-                              </ion-card>
-                        </div>
-                      </ion-row>
-                    </ion-scroll>
-                  </div>
-
-                  <div style="margin-top: 160px;">
-                      <img src="assets/imgs/lake_como.png" style="width: 100%;">
-
-                      <ion-scroll scrollX="true" style="width:100%; height:160px; margin-top: -82px;;" >
-                          <ion-row nowrap>
-                            <div *ngFor="let data of listArray; let idx = index" >
-                                <ion-card style="width: 150px; border-radius: 10px;" (click)="go()">
-                                    <ion-card-content style="padding: 0px 0px;">
-                                        <img src="assets/imgs/lake_como.png" style="width: 150px;">
-                                        <div>
-                                           <p style="color: #000000; height: 30px; margin-left: 10px;; padding-top: 4px; height: 20px;">{{data.name}}</p>
-                                           <p style="color: #000000; height: 30px; position: absolute; margin-left: 10px;; padding-top: 4px;">Starting</p>
-                                           <p style="color: #ff0000; height: 30px; text-align: center; padding-top: 6px; margin-left: 11px;">$100</p>
-                                        </div>
-                                    </ion-card-content>
-                                  </ion-card>
-                            </div>
-                          </ion-row>
-                        </ion-scroll>
-                  </div>
-
-
-                  <div *ngFor="let dest_inter of  destination_inter">
+                  <div class ="expDiv" >
 
                       <div class="expiDiv">
-                        <p style="text-align: center; padding-top: 3px;">Top {{dest_inter.catName}} Destinations</p>
+                        <p style="text-align: center; padding-top: 4px;">Experiences People Love</p>
                       </div>
 
-                      <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
+                      <ion-scroll scrollX="true" style="width:100%; height:150px; margin-top: 10px;" >
                         <ion-row nowrap>
-                          <div *ngFor="let data of dest_inter.destination; let idx = index" >
-                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det(dest_inter.catId,data.destId)">
+                          <div *ngFor="let category_inter of categorydet_inter; let idx = index" >
+                              <ion-card style="width: 150px; border-radius: 10px;" (click)="go(category_inter)">
                                   <ion-card-content style="padding: 0px 0px;">
-                                      <img src="{{data.destinationImg}}" style="width: 150px; height: 80px;">
+                                      <img src="{{category_inter.catImg}}" style="width: 150px; height: 80px;">
                                       <div>
-                                         <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">{{data.destinationName}}</p>
+                                         <p style="color: #000000; height: 30px; text-align: center; padding-top: 6px; height: 30px;">{{category_inter.catName}}</p>
                                       </div>
                                   </ion-card-content>
                                 </ion-card>
@@ -128,6 +87,56 @@
                         </ion-row>
                       </ion-scroll>
                     </div>
+
+
+
+                  <div class="mdlsecscrl">
+                      <img class="mdlsecimg" src="assets/imgs/lake_como.png" alt="#" style="width: 100%; height: 219px;">
+                      <div class="mdlsec-ext">
+                        <p class=boxpsec>Top ffffff Destinations</p>
+
+
+                      <ion-scroll scrollX="true" style="width:100%; height:180px; margin-top: 40px;" >
+                        <ion-row nowrap>
+                          <div *ngFor="let data of listArray; let idx = index" class="occ" >
+                              <ion-card class="box-img-sec" >
+                                  <ion-card-content style="padding: 0px 0px;">
+                                      <img src="assets/imgs/lake_como.png">
+                                      <div class="inner-txts">
+                                          <h4>{{data.name}}</h4>
+                                          <p>Starting<span>$100</span></p>
+                                       </div>
+                                  </ion-card-content>
+                                </ion-card>
+                          </div>
+                        </ion-row>
+                      </ion-scroll>
+                    </div>
+                    </div>
+
+                    <!--change-->
+                    <div *ngFor="let dest_inter of  destination_inter">
+
+                        <div class="expiDiv">
+                          <p style="text-align: center; padding-top: 3px;">Top {{dest_inter.catName}} Destinations</p>
+                        </div>
+
+                        <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
+                          <ion-row nowrap>
+                            <div *ngFor="let data of dest_inter.destination; let idx = index" >
+                                <ion-card style="width: 150px; border-radius: 10px;" (click)="go_package_det(dest_inter.catId,data.destId)">
+                                    <ion-card-content style="padding: 0px 0px;">
+                                        <img src="{{data.destinationImg}}" style="width: 150px; height: 80px;">
+                                        <div>
+                                           <p style="color: #000000; height: 30px; text-align: center; padding-top: 4px;">{{data.destinationName}}</p>
+                                        </div>
+                                    </ion-card-content>
+                                  </ion-card>
+                            </div>
+                          </ion-row>
+                        </ion-scroll>
+                      </div>
+
                     </div>
             </ion-list>
       </div>
@@ -139,7 +148,7 @@
           <ion-list *ngSwitchCase="'DOMESTIC'">
 
               <div>
-
+                <div class="homebnr">
                   <img src="assets/imgs/lake_como.png" class="topImg">
 
                   <div class="searchDiv1">
@@ -154,14 +163,15 @@
                           </ion-row>
                      </div>
                   </div>
+                </div>
 
-                  <div class="expDiv" >
+                  <div class ="expDiv" >
 
                     <div class="expiDiv">
                       <p style="text-align: center; padding-top: 4px;">Experiences People Love</p>
                     </div>
 
-                    <ion-scroll scrollX="true" style="width:100%; height:130px; margin-top: 10px;" >
+                    <ion-scroll scrollX="true" style="width:100%; height:150px; margin-top: 10px;" >
                       <ion-row nowrap>
                         <div *ngFor="let category_dom of categorydet_domestic; let idx = index" >
                             <ion-card style="width: 150px; border-radius: 10px;" (click)="go(category_dom)">
@@ -177,26 +187,30 @@
                     </ion-scroll>
                   </div>
 
-                  <div style="margin-top: 160px;">
-                      <img src="assets/imgs/lake_como.png" style="width: 100%;">
+                  <!--change-->
+                  <div class="mdlsecscrl">
+                      <img class="mdlsecimg" src="assets/imgs/lake_como.png" alt="#" style="width: 100%; height: 219px;">
+                      <div class="mdlsec-ext">
+                        <p class=boxpsec>Top ffffff Destinations</p>
 
-                      <ion-scroll scrollX="true" style="width:100%; height:160px; margin-top: -82px;;" >
-                          <ion-row nowrap>
-                            <div *ngFor="let data of listArray; let idx = index" >
-                                <ion-card style="width: 150px; border-radius: 10px;" (click)="go()">
-                                    <ion-card-content style="padding: 0px 0px;">
-                                        <img src="assets/imgs/lake_como.png" style="width: 150px;">
-                                        <div>
-                                           <p style="color: #000000; height: 30px; margin-left: 10px;; padding-top: 4px; height: 20px;">{{data.name}}</p>
-                                           <p style="color: #000000; height: 30px; position: absolute; margin-left: 10px;; padding-top: 4px;">Starting</p>
-                                           <p style="color: #ff0000; height: 30px; text-align: center; padding-top: 6px; margin-left: 11px;">$100</p>
-                                        </div>
-                                    </ion-card-content>
-                                  </ion-card>
-                            </div>
-                          </ion-row>
-                        </ion-scroll>
-                  </div>
+
+                      <ion-scroll scrollX="true" style="width:100%; height:180px; margin-top: 40px;" >
+                        <ion-row nowrap>
+                          <div *ngFor="let data of listArray; let idx = index" class="occ" >
+                              <ion-card class="box-img-sec" >
+                                  <ion-card-content style="padding: 0px 0px;">
+                                      <img src="assets/imgs/lake_como.png">
+                                      <div class="inner-txts">
+                                          <h4>{{data.name}}</h4>
+                                          <p>Starting<span>$100</span></p>
+                                       </div>
+                                  </ion-card-content>
+                                </ion-card>
+                          </div>
+                        </ion-row>
+                      </ion-scroll>
+                    </div>
+                    </div>
 
 
                   <div *ngFor="let dest_domestic of destination_domestic">

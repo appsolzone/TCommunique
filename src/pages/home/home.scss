@@ -59,7 +59,6 @@ page-home {
 
     .searchDiv1
     {
-        position: absolute;
         top: 140px;
         height: 25px;
         width: 100%;
@@ -97,14 +96,18 @@ page-home {
         margin-left: 8px;
         height: 20px;
     }
-
+    .searchDiv1 {
+      position: absolute;
+      display: table;
+  }
+  .homebnr{
+    position: relative;
+  }
     .expDiv
     {
-        height: 220px;
         background: white;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-        position: absolute;
         top: 186px;
         width: 100%;
     }
@@ -152,5 +155,53 @@ page-home {
 .fabbtn .fab {
   font-size: 35px;
 }
-
+.carp p{
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.mdlsecscrl .mdlsec-ext {
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  text-align: center;
+}
+.mdlsecscrl{
+  position: relative;
+  background-color: #000;
+  margin-bottom: 65px;
+}
+.mdlsecimg{
+  opacity: .3;
+}
+p.boxpsec {
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.box-img-sec.card.card-md {
+  width: 150px;
+  border-radius: 10px;
+}
+.inner-txts h4 {
+  color: #000;
+  text-align: left;
+  font-weight: 500;
+}
+.inner-txts p {
+  text-align: left;
+  font-size: 15px;
+}
+.inner-txts {
+  padding: 7px 5px;
+}
+.inner-txts p span {
+  color: #f21111;
+  font-size: 18px;
+  margin-left: 7px;
+  font-weight: 700;
+}
 }

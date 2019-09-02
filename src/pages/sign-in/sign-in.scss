@@ -27,12 +27,12 @@ page-sign-in {
 .frmone {
   margin-bottom: 20px;
 }
-
-.frmone button {
+.frmone button:last-child {
   float: right;
+}
+.frmone button {
   background: none;
   color: #0a6e6e;
-  display: table;
   margin-bottom: 15px;
 }
 .frmone input[type="submit"] {

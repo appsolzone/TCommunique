@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/Observable';
 import { CategoryPackageDetailsPage } from '../../pages/category-package-details/category-package-details';
 import 'rxjs/add/observable/interval';
 import { QuotePreferencePage } from '../../pages/quote-preference/quote-preference';
+import { Network } from '@ionic-native/network';
+
 
 
 
@@ -41,10 +43,44 @@ export class HomePage {
 
   public listArray=[{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'},{name:'ASU',id:'#103',bgColor:'#8C1D40',fontColor:'#FFC627'},{name:'WVU',id:'#104',bgColor:'#EAAA00',fontColor:'#002855'},{name:'UNC',id:'#105',bgColor:'#7BAFD4',fontColor:'#ffffff'},{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'}];
 
-  constructor(public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.icons = "INTERNATIONAL";
-    this.getCategoryList();
-    this.destinationByCat();
+    this.networkCheck();
+
+
+
+  }
+
+  networkCheck(){
+    let status=this.network.type;
+    console.log("status",status);
+    if(status=='none')
+    {
+      let t = this.toastCtrl.create({
+        message: 'Please enable your internet connection to continue.',
+        showCloseButton: true,
+        closeButtonText: 'Retry',
+        position: 'bottom'
+      });
+      let closedByTimeout = false;
+      let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 30000);
+      t.onDidDismiss(() => {
+        if (closedByTimeout) return;
+        clearTimeout(timeoutHandle);
+        // Dismiss manually
+        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+        console.log('dismiss manually');
+      });
+      t.present();
+    }
+    else
+    {
+      this.menuCtrl.swipeEnable(true, 'authenticated');
+      this.menuCtrl.enable(true);
+      this.getCategoryList();
+      this.destinationByCat();
+
+    }
 
 
   }
@@ -113,8 +149,10 @@ export class HomePage {
 
   doRefresh(refresher) {
 
-    this.getCategoryList();
-    this.destinationByCat();
+    // this.getCategoryList();
+    // this.destinationByCat();
+
+    this.networkCheck();
 
 
     setTimeout(() => {

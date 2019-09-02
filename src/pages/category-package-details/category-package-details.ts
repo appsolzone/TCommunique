@@ -47,8 +47,10 @@ export class CategoryPackageDetailsPage {
     console.log('ionViewDidLoad CategoryPackageDetailsPage');
   }
 
-  goclick(){
-    this.navCtrl.push(PackageDetailsPage);
+  goclick(pkgId){
+    console.log("pkgId",pkgId);
+    this.navCtrl.push(PackageDetailsPage,{pkgId:pkgId});
+
   }
 
   customize(){
@@ -70,7 +72,7 @@ export class CategoryPackageDetailsPage {
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
 
-      console.log("DATA_#",(JSON.stringify(data.json().destinationImg)));
+      console.log("DATA_#",(JSON.stringify(data.json())));
       this.ListofPackage_byDest = data.json().data;
       this.destinationName = data.json().destinationName;
       this.destinationImg = data.json().destinationImg;
