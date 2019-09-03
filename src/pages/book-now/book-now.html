@@ -79,7 +79,7 @@
 
               <label style="margin-left: 4%; font-size: 18px; color: #4f8894;">Departure City</label>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                  <ion-input type="text" style="margin-left: 10px;"></ion-input>
+                  <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="book_city"></ion-input>
               </div>
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Passengers</p>
@@ -87,17 +87,17 @@
               <ion-row style="margin-top: -23px;">
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input type="text" placeholder="Adult" style="margin-left: 10px;"></ion-input>
+                        <ion-input type="text" placeholder="Adult" style="margin-left: 10px;" [(ngModel)]="book_adult"></ion-input>
                     </div>
                 </ion-col>
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input placeholder="Child" type="text" style="margin-left: 10px;"></ion-input>
+                        <ion-input placeholder="Child" type="text" style="margin-left: 10px;" [(ngModel)]="book_child"></ion-input>
                     </div>
                 </ion-col>
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input placeholder="Infant" type="text" style="margin-left: 10px;"></ion-input>
+                        <ion-input placeholder="Infant" type="text" style="margin-left: 10px;" [(ngModel)]="book_infant"></ion-input>
                     </div>
                 </ion-col>
               </ion-row>
@@ -108,38 +108,38 @@
               <ion-row style="margin-top: -23px;">
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-datetime placeholder="Start Date" displayFormat="MM/DD/YYYY"></ion-datetime>
+                        <ion-datetime placeholder="Start Date" displayFormat="MM/DD/YYYY" [(ngModel)]="book_startdate"></ion-datetime>
                     </div>
                 </ion-col>
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-datetime placeholder="End Date" displayFormat="MM/DD/YYYY" ></ion-datetime>
+                        <ion-datetime placeholder="End Date" displayFormat="MM/DD/YYYY" [(ngModel)]="book_enddate"></ion-datetime>
                     </div>
                 </ion-col>
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input placeholder="Total days" type="number" style="margin-left: 10px;"></ion-input>
+                        <ion-input placeholder="Total days" type="number" style="margin-left: 10px;" [(ngModel)]="book_days"></ion-input>
                     </div>
                 </ion-col>
               </ion-row>
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Email</p>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-                  <ion-input type="text" style="margin-left: 10px;"></ion-input>
+                  <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="book_email"></ion-input>
               </div>
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Phone</p>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-                  <ion-input type="number" style="margin-left: 10px;"></ion-input>
+                  <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="book_phone"></ion-input>
               </div>
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Price</p>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-                  <ion-input type="text" style="margin-left: 10px;"></ion-input>
+                  <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="book_price"></ion-input>
               </div>
 
 
-              <div style="background-image: linear-gradient(#0a989a, #075a5a); height: 50px; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+              <div style="background-image: linear-gradient(#0a989a, #075a5a); height: 50px; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;" (click)="book_submit()">
                   <p style="color: white; text-align: center; padding-top: 17px;">SUBMIT</p>
               </div>
 

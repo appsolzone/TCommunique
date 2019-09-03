@@ -47,7 +47,7 @@ export class TCommuniqueApp {
 
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
-    // rootPage:any = EmergencyCallingPage;
+    // rootPage:any = BookNowPage;
     rootPage = HomePage;
 
     homeItem: any;

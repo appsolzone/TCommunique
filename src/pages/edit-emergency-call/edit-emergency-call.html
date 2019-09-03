@@ -1,10 +1,15 @@
 <div class="bg" padding>
-
-  <h4 class="header_bg">Hello</h4>
-
 <ion-row >
-  <ion-col class="height-70">
-      <button class="box" (click)="submit()">Ok</button>
+  <ion-col>
+      <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Full Name</p>
+      <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+          <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="contactName" value={{contactName}}></ion-input>
+      </div>
+      <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Phone Number</p>
+        <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+            <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="contactNo" value={{contactNo}}></ion-input>
+        </div>
+      <button class="login-btn"   ion-button (click)="submit()">Update</button>
   </ion-col>
 </ion-row>
 

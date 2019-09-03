@@ -31,6 +31,7 @@ export class EmergencyCallingPage {
   primary_name:any;
   primary_number:any;
   primary_uid:any;
+  primary_id:any;
 
   constructor(private modal: ModalController,private callNumber: CallNumber,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.get_emergencyContact();
@@ -59,7 +60,7 @@ export class EmergencyCallingPage {
       this.primary_name=data.json().data.primary.name;
       this.primary_number= data.json().data.primary.contactNo;
       this.primary_uid  = data.json().data.primary.uId;
-
+      this.primary_id = data.json().data.primary.id;
 
     });
   }
@@ -71,10 +72,11 @@ export class EmergencyCallingPage {
     .catch(err => console.log('Error launching dialer', err));
   }
 
-  edit_details(){
-    let myModal = this.modal.create(EditEmergencyCallPage, { userId: 8675309 });
+  edit_details(emergContactId,number,name){
+    let myModal = this.modal.create(EditEmergencyCallPage, { emergContactId: emergContactId,contactName:name,contactNo:number});
       myModal.onDidDismiss(data =>
         {
+          this.get_emergencyContact();
 
         });
       myModal.present();

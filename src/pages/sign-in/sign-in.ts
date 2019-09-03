@@ -120,18 +120,14 @@ export class SignInPage implements OnInit{
 
       let t = this.toastCtrl.create({
         message: data.json().msg,
-        showCloseButton: true,
-        closeButtonText: 'Retry',
         position: 'bottom'
       });
       let closedByTimeout = false;
-      let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 30000);
+      let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
       t.onDidDismiss(() => {
         if (closedByTimeout) return;
         clearTimeout(timeoutHandle);
-        // Dismiss manually
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
-        console.log('dismiss manually');
+
       });
       t.present();
 

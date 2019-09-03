@@ -1,43 +1,16 @@
 page-customize-package {
-
-  .bodybg{
-    background: #ffffff;
+  .divstyle{
+    background: transparent;
+    text-align:center;
+    height: 50px;
+     width: 50px;
+      border-radius: 5px;
+      display: block;
+       margin: auto;
   }
-  .bodydiv{
-    background: #0c5555;
-    height:50px;
-    ion-icon{
-      color: white;
-      margin-left: 10px;
-      margin-top: 16px;
-    }
-
-  }
-  .bdytxt{
-    text-align: left;
-    margin-left: 34px;
-    margin-top: -18px;
-    color: white;
-  }
-  .bodyimgs{
-    height: 150px;
-     width: 100%;
-  }
-  .bodycontent{
-    background: white;
-    position: absolute;
-    top: 178px;
-    width: 100%;
-    bottom: 0px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-  }
-  .div-style1{
-    background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;
-  }
-  .divbtn{
-    background-image: linear-gradient(#0a989a, #075a5a); height: 50px; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;
-    color: white; text-align: center; padding-top: 15px;
-  }
+  ion-icon {
+    display: inline-block;
+    font-size: 2em;
+}
 
 }

@@ -53,7 +53,7 @@ export class PackageDetailsPage {
   }
 
   customize(){
-    this.navCtrl.push(CustomizePackagePage,{pkgId:this.pkgId});
+    this.navCtrl.push(CustomizePackagePage,{pkgId:this.pkgId,package_details:this.package_details});
 
   }
   getPackageDetails(pkgId){
