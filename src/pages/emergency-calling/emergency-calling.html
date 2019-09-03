@@ -1,0 +1,68 @@
+<ion-header>
+
+    <ion-navbar color="searchbg">
+        <button ion-button menuToggle>
+            <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+          </button>
+        <ion-title>
+          <span ion-text class="fw700">Emergency Calling</span>
+        </ion-title>
+      </ion-navbar>
+
+
+  </ion-header>
+<ion-content >
+
+    <ion-grid>
+        <ion-row>
+          <ion-col col-4 class="profile">
+              <ion-avatar>
+                  <img src="assets/imgs/0.jpeg">
+                </ion-avatar>
+          </ion-col>
+          <ion-col col-6>
+            <P>{{primary_name}}</P>
+            <P>{{primary_number}}</P>
+            <button ion-button icon-left round color="secondary" (click)="callNumber_ph(primary_number)" >
+                <ion-icon ios="ios-call" md="md-call" ></ion-icon>
+                Call
+              </button>
+          </ion-col>
+          <ion-col col-2>
+              <div class="iconbdr">
+                  <ion-icon ios="ios-create" md="md-create" style="color: white;" (click)="edit_details()"></ion-icon>
+
+              </div>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+
+        <div style="background: #d6d6d6; height:5px; width:100%; margin-top:20px;"></div>
+
+    <ion-grid>
+        <ion-row *ngFor="let data of secondary_no">
+          <ion-col col-4 class="profile1">
+              <ion-avatar>
+                  <img src="assets/imgs/0.jpeg">
+                </ion-avatar>
+          </ion-col>
+          <ion-col col-4>
+            <P style="font-weight: 500;">{{data.name}}</P>
+            <P style="font-weight: 500;">{{data.contactNo}}</P>
+          </ion-col>
+          <ion-col col-2>
+              <div class="iconbdr">
+                  <ion-icon ios="ios-call" md="md-call" style="color: white;" (click)="callNumber_ph(data.contactNo)"></ion-icon>
+
+              </div>
+          </ion-col>
+          <ion-col col-2>
+              <div class="iconbdr">
+                  <ion-icon ios="ios-create" md="md-create" style="color: white;" (click)="edit_details()"></ion-icon>
+
+              </div>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+
+</ion-content>

@@ -10,6 +10,8 @@ import { CategoryPackageDetailsPage } from '../../pages/category-package-details
 import 'rxjs/add/observable/interval';
 import { QuotePreferencePage } from '../../pages/quote-preference/quote-preference';
 import { Network } from '@ionic-native/network';
+import { CallNumber } from '@ionic-native/call-number';
+
 
 
 
@@ -39,11 +41,12 @@ export class HomePage {
   categorydet_domestic:any;
   destination_inter:any;
   destination_domestic:any;
+  emergency_number:any;
 
 
   public listArray=[{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'},{name:'ASU',id:'#103',bgColor:'#8C1D40',fontColor:'#FFC627'},{name:'WVU',id:'#104',bgColor:'#EAAA00',fontColor:'#002855'},{name:'UNC',id:'#105',bgColor:'#7BAFD4',fontColor:'#ffffff'},{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'}];
 
-  constructor(public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(private callNumber: CallNumber, public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.icons = "INTERNATIONAL";
     this.networkCheck();
 
@@ -79,6 +82,7 @@ export class HomePage {
       this.menuCtrl.enable(true);
       this.getCategoryList();
       this.destinationByCat();
+      this.get_viewAgentContact();
 
     }
 
@@ -121,6 +125,19 @@ export class HomePage {
     })
   }
 
+  get_viewAgentContact(){
+    this.loading = this.loadingCtrl.create({
+      content:"Please wait... ",
+      dismissOnPageChange:true
+    });
+    var url2 = this.constant.get_viewAgentContact;
+    this.data = this.http.get(url2);
+    this.data.subscribe(data=>{
+      console.log("Emergency",data.json().data);
+      this.emergency_number = data.json().data;
+    })
+  }
+
   go(category_inter){
     let catId=category_inter.catId;
 
@@ -148,10 +165,6 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
-
-    // this.getCategoryList();
-    // this.destinationByCat();
-
     this.networkCheck();
 
 
@@ -162,6 +175,11 @@ export class HomePage {
   }
   plan_my_holiday(){
     this.navCtrl.push(QuotePreferencePage);
+  }
+  callNumber_ph(){
+    this.callNumber.callNumber(this.emergency_number, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 
 

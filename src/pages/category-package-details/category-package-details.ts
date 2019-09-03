@@ -34,6 +34,9 @@ export class CategoryPackageDetailsPage {
   ListofPackage_byDest:any;
   destinationName:any;
   destinationImg:any;
+  byAir:any;
+  byCar:any;
+  byTrain:any;
   public listArray=[{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'},{name:'ASU',id:'#103',bgColor:'#8C1D40',fontColor:'#FFC627'},{name:'WVU',id:'#104',bgColor:'#EAAA00',fontColor:'#002855'},{name:'UNC',id:'#105',bgColor:'#7BAFD4',fontColor:'#ffffff'},{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
@@ -73,6 +76,9 @@ export class CategoryPackageDetailsPage {
     this.data.subscribe(data =>{
 
       console.log("DATA_#",(JSON.stringify(data.json())));
+      this.byAir = data.json().howToReach.byAir;
+      this.byCar = data.json().howToReach.byCar;
+      this.byTrain = data.json().howToReach.byTrain;
       this.ListofPackage_byDest = data.json().data;
       this.destinationName = data.json().destinationName;
       this.destinationImg = data.json().destinationImg;

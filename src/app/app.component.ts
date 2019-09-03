@@ -38,6 +38,7 @@ import { FlightSearchPage } from '../pages/flight-search/flight-search';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { PackageDetailsPage } from '../pages/package-details/package-details';
+import { EmergencyCallingPage } from '../pages/emergency-calling/emergency-calling';
 @Component({
   templateUrl: 'app.html'
 })
@@ -46,7 +47,7 @@ export class TCommuniqueApp {
 
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
-    // rootPage:any = LanguagePage;
+    // rootPage:any = EmergencyCallingPage;
     rootPage = HomePage;
 
     homeItem: any;
@@ -57,6 +58,7 @@ export class TCommuniqueApp {
     contactUs:any;
     scanner:any;
     myexperience:any;
+    emergency_calling:any;
     nearbyplacesItem: Array<MenuItem>;
     converterItem: Array<MenuItem>;
     accountMenuItems: Array<MenuItem>;
@@ -130,6 +132,7 @@ export class TCommuniqueApp {
         this.contactUs = { component: 'page-contact-us'};
         this.myexperience={component:'page-experience'};
         this.scanner={component:'page-scanner'};
+        this.emergency_calling = {component:'page-emergency-calling'};
 
 
 

@@ -122,46 +122,56 @@
 
       </ion-card>
 
-      <div style="background: #d6d6d6; height:5px; width:100%; margin-top:25px;"></div>
+      <div style="background: #d6d6d6; height:5px; width:100%; margin-top:20px;"></div>
 
       <p class="bsp">HOW TO REACH</p>
 
-      <div>
-          <div style="height: 25px; border-radius: 50%; width: 25px; margin-left: 10px; background: #0b9595;">
+      <div style="margin-top: 10px; display: table;    width: 100%;
+      margin: 15px 0;">
+          <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
               <ion-icon ios="ios-plane" md="md-plane" style="margin-left: 7px; margin-top: 4px;  color: white;"></ion-icon>
           </div>
-          <p style="margin-top: -24px; margin-left: 40px; font-weight: bold;">By Air</p>
+          <p style="margin-top: -35px;
+          margin-left: 50px; font-weight: bold;">By Air</p>
 
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+          <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byAir}}</p>
       </div>
 
-      <div>
-          <div style="height: 25px; border-radius: 50%; width: 25px; margin-left: 10px; background: #0b9595;">
+      <div style="margin-top: 10px; display: table;    width: 100%;
+      margin: 15px 0;">
+          <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
               <ion-icon ios="ios-car" md="md-car" style="margin-left: 7px; margin-top: 4px;  color: white;"></ion-icon>
           </div>
-          <p style="margin-top: -24px; margin-left: 40px; font-weight: bold;">By Car</p>
+          <p style="margin-top: -35px;
+          margin-left: 50px; font-weight: bold;">By Car</p>
 
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+          <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byCar}}</p>
       </div>
 
-      <div>
-          <div style="height: 25px; border-radius: 50%; width: 25px; margin-left: 10px; background: #0b9595;">
-              <ion-icon ios="ios-bus" md="md-bus" style="margin-left: 7px; margin-top: 4px;  color: white;"></ion-icon>
+      <div style="margin-top: 10px; display: table;    width: 100%;
+      margin: 15px 0;">
+          <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
+              <ion-icon ios="ios-train" md="md-train" style="margin-left: 7px; margin-top: 4px;  color: white;"></ion-icon>
           </div>
-          <p style="    margin-top: -24px; margin-left: 40px; font-weight: bold;">By Bus</p>
+          <p style=" margin-top: -35px;
+          margin-left: 50px; font-weight: bold;">By Train</p>
 
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 40px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+          <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byTrain}}</p>
       </div>
 
 
-      <ion-row>
-        <ion-col col-6>
-          <button class="book">BOOK NOW</button>
-        </ion-col>
-        <ion-col col-6>
-            <button class="customize" (click)="customize()">CUSTOMIZE</button>
-        </ion-col>
-      </ion-row>
+
 
 
 </ion-content>
+
+<ion-footer style="height: 50px; background: #ffffff00; display: block;">
+  <ion-row>
+    <ion-col col-6 class="rmd">
+      <button ion-button full  class="book">BOOK NOW</button>
+    </ion-col>
+    <ion-col col-6 class="lmd">
+        <button  ion-button full  class="customize" (click)="customize()">CUSTOMIZE</button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

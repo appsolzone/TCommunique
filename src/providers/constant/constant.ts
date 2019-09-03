@@ -16,6 +16,11 @@ export class ConstantProvider {
   public get_listOfPackageByDestId="https://appsolzone.com/aszdev/tcApi/package/listOfPackageByDestId.php";
   public login="https://appsolzone.com/aszdev/tcApi/login/login.php";
   public get_packageDetails="https://appsolzone.com/aszdev/tcApi/package/packageDetails.php";
+  public get_viewAgentContact="https://appsolzone.com/aszdev/tcApi/emergContact/viewAgentContact.php";
+  public get_emergencyContact="https://appsolzone.com/aszdev/tcApi/emergContact/emergencyContact.php";
+  public edit_addEmergContact="https://appsolzone.com/aszdev/tcApi/emergContact/addEmergContact.php";
+  public bookPackage="https://appsolzone.com/aszdev/tcApi/package/bookPackage.php";
+  public customizePackage="https://appsolzone.com/aszdev/tcApi/package/customizePackage.php";
 
 
 

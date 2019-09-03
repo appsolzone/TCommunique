@@ -39,6 +39,10 @@ import { PackageDetailsPageModule } from '../pages/package-details/package-detai
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { ScannerPageModule } from '../pages/scanner/scanner.module';
 import { QuotePreferencePageModule } from '../pages/quote-preference/quote-preference.module';
+import { StarRatingModule } from 'ionic3-star-rating';
+import { CallNumber } from '@ionic-native/call-number';
+import { EmergencyCallingPageModule } from '../pages/emergency-calling/emergency-calling.module';
+import { EditEmergencyCallPageModule } from '../pages/edit-emergency-call/edit-emergency-call.module';
 
 
 
@@ -56,6 +60,7 @@ import { QuotePreferencePageModule } from '../pages/quote-preference/quote-prefe
   imports: [
     IonicRatingModule,
     HomePageModule,
+    StarRatingModule,
     SignInPageModule,
     SignUpPageModule,
     ForgotPwdPageModule,
@@ -69,6 +74,7 @@ import { QuotePreferencePageModule } from '../pages/quote-preference/quote-prefe
     CurrencyConverterPageModule,
     CarBookingPageModule,
     NearbyPlacesPageModule,
+    EditEmergencyCallPageModule,
     BusSearchPageModule,
     LanguagePageModule,
     FilterPageModule,
@@ -79,6 +85,7 @@ import { QuotePreferencePageModule } from '../pages/quote-preference/quote-prefe
     PrivacyPolicyPageModule,
     ScannerPageModule,
     QuotePreferencePageModule,
+    EmergencyCallingPageModule,
     BrowserModule,
     HttpClientModule,
     HttpModule,
@@ -103,6 +110,7 @@ import { QuotePreferencePageModule } from '../pages/quote-preference/quote-prefe
     Network,
     Push,AndroidPermissions,
     HttpClientModule,HttpClient,
+    CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConstantProvider
   ]

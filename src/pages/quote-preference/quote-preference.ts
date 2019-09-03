@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,Loading} from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CallNumber } from '@ionic-native/call-number';
+import { ConstantProvider } from '../../providers/constant/constant';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 /**
  * Generated class for the QuotePreferencePage page.
  *
@@ -17,7 +24,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: 'quote-preference.html',
 })
 export class QuotePreferencePage {
+  loading:Loading;
+  data:Observable<any>;
   public searchit: FormGroup;
+  emergency_number:any;
   inp1:any;
   inp2:any;
   date1:any;
@@ -28,7 +38,9 @@ export class QuotePreferencePage {
   peopleList=["1","2","3","4","5"];
   ss:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public fb:FormBuilder) {
+  constructor(private callNumber: CallNumber,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public fb:FormBuilder) {
+    this.get_viewAgentContact();
+
   }
 
   ionViewDidLoad() {
@@ -40,6 +52,11 @@ export class QuotePreferencePage {
     console.log(data);
   }
 
+  callNumber_ph(){
+    this.callNumber.callNumber(this.emergency_number, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+  }
 
   ngOnInit() {
     // let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
@@ -67,6 +84,19 @@ export class QuotePreferencePage {
       console.log("input 2",this.inp2);
       console.log("date",this.date1);
       console.log("payment",this.email);
+    }
+
+    get_viewAgentContact(){
+      this.loading = this.loadingCtrl.create({
+        content:"Please wait... ",
+        dismissOnPageChange:true
+      });
+      var url2 = this.constant.get_viewAgentContact;
+      this.data = this.http.get(url2);
+      this.data.subscribe(data=>{
+        console.log("Emergency",data.json().data);
+        this.emergency_number = data.json().data;
+      })
     }
 
 }

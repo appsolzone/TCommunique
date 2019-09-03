@@ -34,43 +34,43 @@
 
             <ion-row style="width: 90%; margin: auto;">
                 <ion-col col-2 *ngIf="package_flight ==='yes'">
-                  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                    <div class="divstyle">
                       <ion-icon ios="ios-plane" md="md-plane" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
 
                   </div>
-                  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Flight</p>
+                  <p style="font-size: 11px; text-align: center; margin-top: 2px; ">Flight</p>
               </ion-col>
               <ion-col col-2 *ngIf="package_cab ==='yes'">
-                  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                  <div class="divstyle">
                     <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
                     </div>
-                    <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Cab</p>
+                    <p style="font-size: 11px; text-align: center; margin-top: 2px;">Cab</p>
               </ion-col>
               <ion-col col-2 *ngIf="package_hotel ==='yes'">
-                  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                    <ion-icon ios="ios-home" md="md-home"
+                  <div class="divstyle">
+                                        <ion-icon ios="ios-home" md="md-home"
                     style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
                     </div>
-                    <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">{{package_hotelRating}}</p>
+                    <p style="font-size: 11px; text-align: center; margin-top: 2px; ">{{package_hotelRating}}</p>
               </ion-col>
               <ion-col col-2 *ngIf="package_meal ==='yes'">
-                  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                    <ion-icon ios="ios-pizza" md="md-pizza"
+                  <div class="divstyle">
+                                        <ion-icon ios="ios-pizza" md="md-pizza"
                     style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
                     </div>
-                    <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Meals</p>
+                    <p style="font-size: 11px; text-align: center; margin-top: 2px;">Meals</p>
               </ion-col>
               <ion-col col-2 *ngIf="package_sightSeeing ==='yes'">
-                  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                      <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+                  <div class="divstyle">
+                                        <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
                     </div>
-                    <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Sight Seeing</p>
+                    <p style="font-size: 11px; text-align: center; margin-top: 2px; ">Sight Seeing</p>
               </ion-col>
               <ion-col col-2 *ngIf="package_other ==='yes'">
-                <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                    <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
+                  <div class="divstyle">
+                                      <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
                   </div>
-                  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Other</p>
+                  <p style="font-size: 11px; text-align: center; margin-top: 2px; ">Other</p>
             </ion-col>
               </ion-row>
 
@@ -82,23 +82,33 @@
 
             <p style="margin-left: 11px; font-size: 20px;">HOTELS</p>
 
-            <div style="height: 200px; border: 1px solid black; margin-left: 11px; margin-right: 11px; margin-top: -10px; border-radius: 10px;">
-
-              <ion-row>
+            <div >
+              <ion-slides pager class="cardBody1">
+                <ion-slide *ngFor="let data of hotel_details; let idx = index">
+              <ion-row class="cardBody">
                 <ion-col col-6>
-                  <img src="assets/imgs/lake_como.png" style="height: 188px; width: 100%; border-radius: 10px;">
+                  <img src="{{data.hotelImg}}" style="height: 100%; width: 100%; border-radius: 10px;">
                 </ion-col>
                 <ion-col col-6>
-                  <p style="font-size: 20px; font-weight: bold; color: #42852a; margin-top: 5px;">Day 1</p>
-                  <p style="font-size: 20px; margin-top: -18px; color: #115a58;">Abaam Hotel</p>
-                  <img src="assets/imgs/rating.png" style="width: 75%; margin-top: -12px; height: 28px;">
-                  <p>326 Reviews</p>
-                  <p style="margin-top: -10px; ">Air Condition</p>
-                  <p style="margin-top: -10px;">Restaurant</p>
+                  <p style="font-size: 20px; font-weight: bold; color: #42852a; margin-top: 5px;">{{data.day}}</p>
+                  <p style="font-size: 20px; margin-top: -15px; color: #115a58;">{{data.hotelName}}</p>
+                  <ionic3-star-rating
+                  activeIcon = "ios-star"
+                  defaultIcon = "ios-star-outline"
+                  activeColor = "#ffbf01"
+                  defaultColor = "red"
+                  readonly="false"
+                  [rating]=[data.hotelRating]>
+                 </ionic3-star-rating>
+                  <!-- <p>326 Reviews</p> -->
+                  <p style="margin-top: 10px; ">{{data.details}}</p>
+                  <!-- <p style="margin-top: -10px;">Restaurant</p> -->
                 </ion-col>
               </ion-row>
+              </ion-slide>
+              </ion-slides>
 
-              <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+              <!-- <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> -->
 
             </div>
 
@@ -108,18 +118,18 @@
               <div style="margin-left: 11px; margin-right:11px; background:#ffffff;" *ngFor="let data of itinerary_details; let idx = index">
                 <div style="height: 30px; width:100%; background:#0d6262">
                 <p style="color: white; padding-top: 6px; font-size: 16px; margin-left: 10px;">{{data.dayTitle}}</p>
-                <ion-icon ios="ios-arrow-down" md="md-arrow-down" style="margin-right: 10px; float: right; margin-top: -32px;  color: white;"></ion-icon>
+                <!-- <ion-icon ios="ios-arrow-down" md="md-arrow-down" style="margin-right: 10px; float: right; margin-top: -32px;  color: white;"></ion-icon> -->
                 </div>
 
                 <ion-row>
                   <ion-col col-4>
-                    <div style="height: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Leisure Day</p></div>
+                    <div style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Leisure Day</p></div>
                   </ion-col>
                   <ion-col col-4>
-                    <div  style="height: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Sightseeing Tours</p></div>
+                    <div  style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Sightseeing Tours</p></div>
                   </ion-col>
                   <ion-col col-4>
-                    <div  style="height: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Marine drive</p></div>
+                    <div  style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Marine drive</p></div>
                   </ion-col>
                 </ion-row>
 
@@ -185,16 +195,22 @@
 
               </ion-card>
 
-              <ion-row>
-                <ion-col col-6>
-                  <button class="book">BOOK NOW</button>
-                </ion-col>
-                <ion-col col-6>
-                    <button class="customize" (click)="customize()">CUSTOMIZE</button>
-                </ion-col>
-              </ion-row>
+
 
             </div>
 
       </div>
 </ion-content>
+
+
+
+<ion-footer style="height: 50px; background: #ffffff00; display: block;">
+    <ion-row>
+      <ion-col col-6 class="rmd">
+        <button ion-button full  class="book" (click)="book()">BOOK NOW</button>
+      </ion-col>
+      <ion-col col-6 class="lmd">
+          <button  ion-button full  class="customize" (click)="customize()">CUSTOMIZE</button>
+      </ion-col>
+    </ion-row>
+  </ion-footer>

@@ -7,6 +7,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import { BookNowPage } from '../../pages/book-now/book-now';
+
+
 
 /**
  * Generated class for the PackageDetailsPage page.
@@ -40,7 +43,6 @@ export class PackageDetailsPage {
   package_meal:any;
   package_cab:any;
   package_other:any;
-
   constructor(public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.pkgId=navParams.get('pkgId');
     this.getPackageDetails(this.pkgId);
@@ -51,7 +53,7 @@ export class PackageDetailsPage {
   }
 
   customize(){
-    this.navCtrl.push(CustomizePackagePage);
+    this.navCtrl.push(CustomizePackagePage,{pkgId:this.pkgId});
 
   }
   getPackageDetails(pkgId){
@@ -95,6 +97,12 @@ export class PackageDetailsPage {
 
 
     });
+  }
+
+  book(){
+
+    this.navCtrl.push(BookNowPage,{pkgId:this.pkgId,package_details:this.package_details});
+
   }
 
 }

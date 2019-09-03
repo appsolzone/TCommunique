@@ -23,26 +23,61 @@ page-package-details {
         border-top-right-radius: 20px;
     }
 
-    .book
-    {
-        height: 40px;
-        width: 100%;
-        margin-left: -5px;
-        margin-bottom: -5px;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        background-image: linear-gradient(#0c959c, #02413f);
-        color: white;
-    }
-    .customize
-    {
-        height: 40px;
-        width: 100%;
-        margin-left: 5px;
-        margin-bottom: -5px;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        background-image: linear-gradient(#0c959c, #02413f);
-        color: white;
-    }
+    .book{
+      height: 50px;
+      width: 100%;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      background-image: linear-gradient(#0c959c, #02413f);
+      color: white;
+  }
+  .customize
+  {
+      height: 50px;
+      width: 100%;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      background-image: linear-gradient(#0c959c, #02413f);
+      color: white;
+  }
+    .cardBody
+  {
+      border-radius: 20px;
+      height: 200px;
+      box-shadow: none;
+      border: 1px solid #0b9595;
+      margin: 0 10px;
+      img{
+        border-radius: 20px 0px 0px 20px;
+      }
+  }
+  .cardBody1{
+    height: 200px;
+    display: unset;
+  }
+  .ionic3-star-rating {
+    width: 105%;
+    margin-top: 5px;
+}
+.rmd {
+  margin-left: 0;
+  padding-left: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.lmd {
+  margin-right: 0;
+  padding-right: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.divstyle{
+  background: transparent;
+  text-align:center;
+  height: 50px;
+   width: 50px;
+    border-radius: 5px;
+    display: block;
+     margin: auto;
+}
 }

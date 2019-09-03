@@ -75,10 +75,8 @@ page-category-package-details {
 
   .book
   {
-      height: 40px;
+      height: 50px;
       width: 100%;
-      margin-left: -5px;
-      margin-bottom: -5px;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
       background-image: linear-gradient(#0c959c, #02413f);
@@ -86,10 +84,8 @@ page-category-package-details {
   }
   .customize
   {
-      height: 40px;
+      height: 50px;
       width: 100%;
-      margin-left: 5px;
-      margin-bottom: -5px;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
       background-image: linear-gradient(#0c959c, #02413f);
@@ -115,6 +111,17 @@ page-category-package-details {
 }
 }
 }
-
+.rmd {
+  margin-left: 0;
+  padding-left: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.lmd {
+  margin-right: 0;
+  padding-right: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
 
 }
