@@ -14,37 +14,42 @@
 
 <ion-content>
 
-    <div style="padding-top: 25px; background: #d4d4d4; height: 125px;">
-
-      <img src="assets/imgs/lake_como.png" style="height: 75px; width: 75px; display: block; margin-left: auto; margin-right: auto; border: 1px solid white; border-radius: 50%;">
-
+    <div style="height: 150px;text-align: center;">
+      <img *ngIf="img_status" src={{selectedImage}} style="height: 120px; width: 100%; text-align: center;">
+      <img *ngIf="!img_status" src="assets/imgs/galleryicon.png" style="height: 70px; width: 70px; display: block; margin-left: auto; margin-right: auto; border: 1px solid white; border-radius: 10%;">
+      <button ion-button icon-left round color="searchbg" class="upload" (click)="uploadImage()">
+        <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon>
+        Upload
+      </button>
     </div>
 
+    <ion-row class="firstrow">
+        <ion-input style="border: 1px solid #c0c0c0; border-radius: 5px; height: 35px;" [(ngModel)]="name" placeholder="Enter Title"></ion-input>
+    </ion-row>
    <ion-row>
      <ion-col col-8>
-        <ion-input style="border: 1px solid #c0c0c0; border-radius: 10px; height: 75px;"></ion-input>
+        <ion-input style="border: 1px solid #c0c0c0; border-radius: 10px; height: 75px;" [(ngModel)]="note" placeholder="Enter Description"></ion-input>
      </ion-col>
      <ion-col col-4>
        <div style="background: #0c5555; height: 25px; width: 90%; border-radius: 10px; margin-top: 5px;">
-            <p style="color: white; text-align: center; padding-top: 5px;">POST</p>
+            <p style="color: white; text-align: center; padding-top: 5px;" (click)="PostDataClick()">POST</p>
        </div>
      </ion-col>
    </ion-row>
 
-   <div style="margin-top: 10px;">
-      <img src="assets/imgs/lake_como.png" style="width: 100%; height: 125px;">
+   <div class="cardstyle" *ngFor="let data of experienceShare_expView_Data">
+      <img src="{{data.expImg}}" style="width: 100%; height: 120px;">
       <ion-row>
-        <ion-col col-8 style="height: 50px;">
-            <p style="font-size: 18px; margin-left: 6px; margin-top: 8px;">Lorem Ipsum</p>
+        <ion-col col-8 style="height: 30px;">
+            <p style="font-size: 18px; margin-left: 6px; margin-top: 8px;">{{data.expTitle}}</p>
         </ion-col>
         <ion-col col-4>
-            <div style="background: #0c5555; height: 40px; width: 40px; border-radius: 50%; float: right; color: white;">
+            <div style="background: #0c5555; height: 40px; width: 40px; border-radius: 50%; float: right; color: white;" (click)="share(data)">
                 <ion-icon ios="ios-share" md="md-share" style="padding-left: 10px; padding-top: 11px; color:#ffffff"></ion-icon>
             </div>
         </ion-col>
       </ion-row>
-
-      <p style="margin-left: 10px;">Appsolzone ahiohio jikujuiohuioh jhuohj ohioh oihpioh oioh oihioh oihioh oih</p>
+      <p style="margin-left: 10px;">{{data.expContent}}</p>
 
    </div>
 

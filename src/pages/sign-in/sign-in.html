@@ -8,7 +8,7 @@
       <div class="frmone">
       <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email"></ion-input>
       <p ion-text color="danger" class="text-12x has-error" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('required')">This field is required</p>
-      <p ion-text color="danger" class="text-12x has-error" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('pattern')">Email address invalid</p>
+      <!-- <p ion-text color="danger" class="text-12x has-error" *ngIf="onLoginForm.get('email').touched && onLoginForm.get('email').hasError('pattern')">Email address invalid</p> -->
 
     </div>
 

@@ -43,6 +43,12 @@ import { StarRatingModule } from 'ionic3-star-rating';
 import { CallNumber } from '@ionic-native/call-number';
 import { EmergencyCallingPageModule } from '../pages/emergency-calling/emergency-calling.module';
 import { EditEmergencyCallPageModule } from '../pages/edit-emergency-call/edit-emergency-call.module';
+import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera';
+import { MyDocumentsPageModule } from '../pages/my-documents/my-documents.module';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 
 
@@ -86,6 +92,7 @@ import { EditEmergencyCallPageModule } from '../pages/edit-emergency-call/edit-e
     ScannerPageModule,
     QuotePreferencePageModule,
     EmergencyCallingPageModule,
+    MyDocumentsPageModule,
     BrowserModule,
     HttpClientModule,
     HttpModule,
@@ -95,6 +102,7 @@ import { EditEmergencyCallPageModule } from '../pages/edit-emergency-call/edit-e
       scrollAssist: true,
       autoFocusAssist: false
     }),
+    IonicStorageModule.forRoot(),
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [IonicApp],
@@ -107,10 +115,10 @@ import { EditEmergencyCallPageModule } from '../pages/edit-emergency-call/edit-e
     Geolocation,
     GooglePlus,
     BarcodeScanner,
-    Network,
+    Network,Camera,
     Push,AndroidPermissions,
     HttpClientModule,HttpClient,
-    CallNumber,
+    CallNumber,SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConstantProvider
   ]

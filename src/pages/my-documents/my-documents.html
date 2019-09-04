@@ -1,0 +1,37 @@
+<ion-header >
+
+    <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+      </button>
+        <ion-title>
+          <span ion-text class="fw700">My Documents</span>
+        </ion-title>
+      </ion-navbar>
+
+
+  </ion-header>
+
+<ion-content class="profiles">
+<div class="ionrow">
+
+    <ion-row align-items-center >
+        <ion-col>
+            <div class="frmone">
+                <ion-input type="text" placeholder="Type of Documents"  [(ngModel)]="name"></ion-input>
+              </div>
+        </ion-col>
+        <ion-col>
+            <button ion-button icon-left round color="searchbg" class="upload" (click)="uploadImage()">
+                <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon>
+                Choose File
+              </button>
+        </ion-col>
+        </ion-row>
+        <img *ngIf="img_status" src={{selectedImage}} style="height: 150px; width: 100%; text-align: center;">
+        <div class="ionbutton">
+        <button ion-button (click)="UploadDocuments()">Upload File</button>
+      </div>
+    </div>
+
+</ion-content>

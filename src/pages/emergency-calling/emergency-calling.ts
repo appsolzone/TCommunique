@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { CallNumber } from '@ionic-native/call-number';
 import { EditEmergencyCallPage } from '../../pages/edit-emergency-call/edit-emergency-call';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the EmergencyCallingPage page.
@@ -32,16 +33,24 @@ export class EmergencyCallingPage {
   primary_number:any;
   primary_uid:any;
   primary_id:any;
+  uId:any;
 
-  constructor(private modal: ModalController,private callNumber: CallNumber,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
-    this.get_emergencyContact();
+  constructor(private storage: Storage,private modal: ModalController,private callNumber: CallNumber,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+
+      storage.get('user_login_data').then((val) => {
+        console.log('user_login_data', val);
+        this.uId = val.uId;
+        this.get_emergencyContact(this.uId);
+      });
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EmergencyCallingPage');
   }
 
-  get_emergencyContact(){
+  get_emergencyContact(u_Id){
 
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
@@ -50,7 +59,9 @@ export class EmergencyCallingPage {
     // this.loading.present();
     var url =this.constant.get_emergencyContact;
     let postData = new FormData();
-    postData.append('uId',"1");
+
+    console.log("uId",u_Id);
+    postData.append('uId',u_Id);
 
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
@@ -76,7 +87,7 @@ export class EmergencyCallingPage {
     let myModal = this.modal.create(EditEmergencyCallPage, { emergContactId: emergContactId,contactName:name,contactNo:number});
       myModal.onDidDismiss(data =>
         {
-          this.get_emergencyContact();
+          this.get_emergencyContact(this.uId);
 
         });
       myModal.present();

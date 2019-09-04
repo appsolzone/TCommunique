@@ -12,6 +12,8 @@ import { HomePage } from '../../pages/home/home';
 import { ForgotPwdPage } from '../../pages/forgot-pwd/forgot-pwd';
 import { Network } from '@ionic-native/network';
 import { SignUpPage } from '../../pages/sign-up/sign-up';
+import { Storage } from '@ionic/storage';
+
 
 
 
@@ -41,7 +43,7 @@ export class SignInPage implements OnInit{
 
 
 
-  constructor(public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+  constructor(private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
     let status=this.network.type;
 
     if(status=='none')
@@ -82,9 +84,12 @@ export class SignInPage implements OnInit{
 
   ngOnInit() {
     let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+    let MobilePattern = "[7-9]{1}[0-9]{9}";
     this.onLoginForm = this._fb.group({
       // email: ['', Validators.compose([
-      //   Validators.required,Validators.pattern(EMAILPATTERN)
+      //   Validators.required,
+      //   Validators.pattern(EMAILPATTERN),
+      //   Validators.pattern(MobilePattern)
       // ])],
       email: ['', Validators.compose([
         Validators.required])],
@@ -116,6 +121,7 @@ export class SignInPage implements OnInit{
         console.log("section_group",(JSON.stringify(data.json().status)));
         if(data.json().status=="200"){
               this.navCtrl.setRoot(HomePage);
+              this.storage.set('user_login_data',data.json());
         }else{
 
       let t = this.toastCtrl.create({

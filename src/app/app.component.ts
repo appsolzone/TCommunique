@@ -39,6 +39,7 @@ import { AboutUsPage } from '../pages/about-us/about-us';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { PackageDetailsPage } from '../pages/package-details/package-details';
 import { EmergencyCallingPage } from '../pages/emergency-calling/emergency-calling';
+import { MyDocumentsPage } from '../pages/my-documents/my-documents';
 @Component({
   templateUrl: 'app.html'
 })
@@ -47,8 +48,8 @@ export class TCommuniqueApp {
 
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
-    // rootPage:any = BookNowPage;
-    rootPage = HomePage;
+    rootPage:any = LanguagePage;
+    // rootPage = MyDocumentsPage;
 
     homeItem: any;
     initialItem: any;
@@ -59,6 +60,7 @@ export class TCommuniqueApp {
     scanner:any;
     myexperience:any;
     emergency_calling:any;
+    mydocuments:any;
     nearbyplacesItem: Array<MenuItem>;
     converterItem: Array<MenuItem>;
     accountMenuItems: Array<MenuItem>;
@@ -133,6 +135,7 @@ export class TCommuniqueApp {
         this.myexperience={component:'page-experience'};
         this.scanner={component:'page-scanner'};
         this.emergency_calling = {component:'page-emergency-calling'};
+        this.mydocuments = { component:'page-my-documents'};
 
 
 
