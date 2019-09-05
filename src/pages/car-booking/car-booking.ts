@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,Loading,ToastController} from 'ionic-angular';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
+import { ConstantProvider } from '../../providers/constant/constant';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the CarBookingPage page.
  *
@@ -17,24 +25,32 @@ import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
   templateUrl: 'car-booking.html',
 })
 export class CarBookingPage {
+  loading:Loading;
+  data:Observable<any>;
   public carbook: FormGroup;
-  first: any;
-  secon: any;
-  third: any;
-  fourt: any;
-  fifth: any;
-  sixth: any;
-  seven: any;
-  eight: any;
-  date1:any;
-  time:any;
-  type:any;
+  pickuploc: any;
+  droploc: any;
+  adult: any;
+  pickupdate:any;
+  pickuptime: any;
+  dropdate:any;
+  droptime: any;
+  infant: any;
+  child: any;
+  noofseats: any;
+
+
+  uId:any;
   ClickablePic:any;
 
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public fb:FormBuilder) {
+  constructor(public toastCtrl:ToastController,public storage:Storage,public navCtrl: NavController, public navParams: NavParams,public fb:FormBuilder,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+    storage.get('user_login_data').then((val) => {
+      console.log('user_login_data', val);
+      this.uId = val.uId;
+    });
   }
 
 
@@ -42,22 +58,27 @@ export class CarBookingPage {
   ngOnInit() {
     // let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     this.carbook = this.fb.group({
-      finp: ['', Validators.compose([
+      pickuploc: ['', Validators.compose([
         Validators.required])],
-      sinp: ['', Validators.compose([
+      droploc: ['', Validators.compose([
         Validators.required])],
-      tinp: ['', Validators.compose([
-        Validators.required])],
-      foinp: ['', Validators.compose([
-        Validators.required])],
-      fiinp: ['', Validators.compose([
-        Validators.required])],
-      siinp: ['', Validators.compose([
-        Validators.required])],
-        date: ['', Validators.compose([
+      pickupdate: ['', Validators.compose([
           Validators.required])],
-        time: ['', Validators.compose([
-            Validators.required])]
+      pickuptime: ['', Validators.compose([
+            Validators.required])],
+      dropdate: ['', Validators.compose([
+              Validators.required])],
+      droptime: ['', Validators.compose([
+                Validators.required])],
+      adult: ['', Validators.compose([
+        Validators.required])],
+      infant: ['', Validators.compose([
+        Validators.required])],
+      child: ['', Validators.compose([
+        Validators.required])],
+      noofseats: ['', Validators.compose([
+        Validators.required])]
+
 
 
   });
@@ -69,16 +90,57 @@ select(a){
 
 check()
 {
-  console.log(this.first);
-  console.log(this.secon);
-  console.log(this.third);
-  console.log(this.fourt);
-  console.log(this.fifth);
-  console.log(this.sixth);
-  console.log(this.seven);
-  // this.eight = new Date().toISOString().substring(0, 10);
+  console.log(this.pickuploc);
+  console.log(this.droploc);
+  console.log(this.adult);
+  console.log(this.infant);
+  console.log(this.child);
+  console.log(this.noofseats);
+  console.log(this.pickuptime);
+  console.log(this.dropdate);
+  console.log(this.droptime);
+  console.log( "Selected Date" ,this.pickupdate );
+  console.log("this.ClickablePic",this.ClickablePic);
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+    var url =this.constant.get_listOfPackageByDestId;
+    let postData = new FormData();
+    postData.append('uId',this.uId);
+    postData.append('pickUpLoc',this.pickuploc);
+    postData.append('dropLoc',this.droploc);
+    postData.append('pickUpDate',this.pickupdate);
+    postData.append('pickUpTime',this.pickuptime);
+    postData.append('dropDate',this.dropdate);
+    postData.append('dropTime',this.droptime);
+    postData.append('adult',this.adult);
+    postData.append('child',this.child);
+    postData.append('infant',this.infant);
+    postData.append('seat',this.noofseats);
+    postData.append('carType',this.ClickablePic);
 
-  console.log( "Selected Date" ,this.date1 );
+    this.data = this.http.post(url,postData);
+    this.data.subscribe(data =>{
+
+      this.loading.dismiss();
+      console.log("DATA_#",(JSON.stringify(data.json())));
+      let t = this.toastCtrl.create({
+        message: data.json().msg,
+        position: 'bottom'
+      });
+      let closedByTimeout = false;
+      let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+      t.onDidDismiss(() => {
+        if (closedByTimeout) return;
+        clearTimeout(timeoutHandle);
+      });
+      t.present();
+
+
+    });
+
 
 }
 

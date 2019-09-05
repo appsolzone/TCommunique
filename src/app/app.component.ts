@@ -40,6 +40,8 @@ import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { PackageDetailsPage } from '../pages/package-details/package-details';
 import { EmergencyCallingPage } from '../pages/emergency-calling/emergency-calling';
 import { MyDocumentsPage } from '../pages/my-documents/my-documents';
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -49,7 +51,7 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     rootPage:any = LanguagePage;
-    // rootPage = MyDocumentsPage;
+    // rootPage = CarBookingPage;
 
     homeItem: any;
     initialItem: any;
@@ -61,6 +63,7 @@ export class TCommuniqueApp {
     myexperience:any;
     emergency_calling:any;
     mydocuments:any;
+    carBooking:any;
     nearbyplacesItem: Array<MenuItem>;
     converterItem: Array<MenuItem>;
     accountMenuItems: Array<MenuItem>;
@@ -136,6 +139,7 @@ export class TCommuniqueApp {
         this.scanner={component:'page-scanner'};
         this.emergency_calling = {component:'page-emergency-calling'};
         this.mydocuments = { component:'page-my-documents'};
+        this.carBooking = { component:'page-car-booking'};
 
 
 

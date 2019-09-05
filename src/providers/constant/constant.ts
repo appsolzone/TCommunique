@@ -25,6 +25,9 @@ export class ConstantProvider {
   public experienceShare_expView="https://appsolzone.com/aszdev/tcApi/experienceShare/expView.php";
   public uploadDoc="https://appsolzone.com/aszdev/tcApi/uploadDoc/upload.php";
   public contactUs="https://appsolzone.com/aszdev/tcApi/contactUs/contactUs.php";
+  public carBooking="https://appsolzone.com/aszdev/tcApi/carBooking/carBooking.php";
+  public getProfileData="https://appsolzone.com/aszdev/tcApi/profile/getProfileData.php";
+  public updateProfile="https://appsolzone.com/aszdev/tcApi/profile/updateProfile.php";
 
 
 
