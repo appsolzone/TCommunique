@@ -51,7 +51,7 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     rootPage:any = LanguagePage;
-    // rootPage = CarBookingPage;
+    // rootPage = EditProfilePage;
 
     homeItem: any;
     initialItem: any;

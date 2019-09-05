@@ -15,60 +15,46 @@
 
   <div class="list-form">
     <div class="all-frm">
-        <ion-col class="myprofile">
-            <img src="assets/imgs/0.jpeg">
+        <ion-col class="myprofile" (click)="changepic()">
+            <img *ngIf="!img_status" src="assets/imgs/0.jpeg">
+            <img *ngIf="img_status" src={{selectedImage}}>
           </ion-col>
 
 
       <form [formGroup]="onProfileForm">
         <div class="frmone">
-            <ion-input type="text" name="fname" placeholder="First Name" ></ion-input>
-            <!-- <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('fname').touched && onProfileForm.get('fname').hasError('required')">This field is required</p> -->
+            <ion-input type="text" formControlName="fname" name="fname" placeholder="First Name" [(ngModel)]="firstname" value={{firstname}}></ion-input>
+            <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('fname').touched && onProfileForm.get('fname').hasError('required')">This field is required</p>
 
           </div>
           <div class="frmone">
-              <ion-input type="text" name="lname" placeholder="Last Name" ></ion-input>
-              <!-- <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('lname').touched && onProfileForm.get('lname').hasError('required')">This field is required</p> -->
+              <ion-input type="text" formControlName="lname" name="lname" placeholder="Last Name" [(ngModel)]="lastname" value={{lastname}}></ion-input>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('lname').touched && onProfileForm.get('lname').hasError('required')">This field is required</p>
 
             </div>
             <div class="frmone">
-                <ion-input type="text" formControlName="dob" name="dob" placeholder="Date-Of-Birth" ></ion-input>
+                <ion-input type="text" formControlName="dob" name="dob" placeholder="Date-Of-Birth" [(ngModel)]="dateofbirth" value={{dateofbirth}}></ion-input>
                 <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('dob').touched && onProfileForm.get('dob').hasError('required')">This field is required</p>
 
               </div>
               <div class="frmone">
-                  <ion-input type="email" formControlName="email" name="email" placeholder="Email" ></ion-input>
+                  <ion-input type="email" formControlName="email" name="email" placeholder="Email" [(ngModel)]="emailid" value={{emailid}}></ion-input>
                   <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('email').touched && onProfileForm.get('email').hasError('required')">This field is required</p>
                   <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('email').touched && onProfileForm.get('email').hasError('pattern')">Email address invalid</p>
 
                 </div>
 
                 <div class="frmone">
-                    <ion-input type="number" formControlName="phone" name="phone" placeholder="Phone No" ></ion-input>
+                    <ion-input type="number" formControlName="phone" name="phone" placeholder="Phone No" [(ngModel)]="phoneno" value={{phoneno}}> </ion-input>
                     <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('phone').touched && onProfileForm.get('phone').hasError('required')">This field is required</p>
 
                   </div>
                   <div class="frmone">
-                      <ion-input type="text" formControlName="address" name="address" placeholder="Address" ></ion-input>
+                      <ion-input type="text" formControlName="address" name="address" placeholder="Address" [(ngModel)]="addressid" value={{addressid}}></ion-input>
                       <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('address').touched && onProfileForm.get('address').hasError('required')">This field is required</p>
 
                     </div>
-                    <ion-row>
-                        <ion-col>
-                            <div class="frmone">
-                                <ion-input type="text" formControlName="address" name="address" placeholder="Type of Doc" ></ion-input>
-                                <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('address').touched && onProfileForm.get('address').hasError('required')">This field is required</p>
 
-                              </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="frmone">
-                                <ion-input type="text" formControlName="address" name="address" placeholder="Choose File" ></ion-input>
-                                <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('address').touched && onProfileForm.get('address').hasError('required')">This field is required</p>
-
-                              </div>
-                        </ion-col>
-                        </ion-row>
 
             <button class="login-btn" ion-button (click) = "submit()" [disabled]="!onProfileForm.valid">
                 Submit
