@@ -26,7 +26,7 @@ page-sign-up {
   width: 100%;
 }
 .frmone {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .frmone button {
@@ -34,6 +34,19 @@ page-sign-up {
   background: none;
   color: #0a6e6e;
   display: table;
+  margin-bottom: 15px;
+}
+
+
+.frmone1 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.frmone1 button {
+  display: table;
+  margin: 0 auto;
+  background: none;
+  color: #0a6e6e;
   margin-bottom: 15px;
 }
 .frmone input[type="submit"] {

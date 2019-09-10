@@ -14,7 +14,7 @@
             </button>
         </ion-buttons>
          <ion-buttons end>
-          <button ion-button class="blinking_button" >
+          <button ion-button class="blinking_button"  (click)="filter()">
             <img src="assets/imgs/menu_icon.png" class="blink_img">
         </button>
         </ion-buttons>
@@ -48,21 +48,26 @@
 
               <div>
 
-                  <img src="assets/imgs/lake_como.png" class="topImg">
+                  <img src="{{internationalImg}}" class="topImg">
 
                   <div class="searchDiv1">
                      <div class="searchDiv2">
                         <ion-row style="height: 30px;">
                             <ion-col col-10 class="col10">
-                              <ion-input  placeholder="search here..." class="ionInput"></ion-input>
+                              <ion-input  placeholder="search here..." class="ionInput" [(ngModel)]="searchTerm"></ion-input>
                             </ion-col>
                             <ion-col col-2 class="col2">
-                              <ion-icon ios="ios-search" md="md-search" class="ionIcon"></ion-icon>
+                              <ion-icon ios="ios-search" md="md-search" class="ionIcon" (click)="search('International')"></ion-icon>
                             </ion-col>
                           </ion-row>
                      </div>
-                  </div>
 
+                      <!-- <ion-list *ngIf="searchTerm">
+                        <ion-item *ngFor="let item of items; let pos=index" (click)="getSearchitem(item,type[pos])">
+                            {{item+' in '+type[pos]}}
+                        </ion-item>
+                    </ion-list> -->
+                  </div>
 
                   <!--change-->
 
@@ -149,18 +154,18 @@
 
               <div>
                 <div class="homebnr">
-                  <img src="assets/imgs/lake_como.png" class="topImg">
+                  <img src="{{domesticImg}}" class="topImg">
 
                   <div class="searchDiv1">
                      <div class="searchDiv2">
-                        <ion-row style="height: 30px;">
-                            <ion-col col-10 class="col10">
-                              <ion-input  placeholder="search here..." class="ionInput"></ion-input>
-                            </ion-col>
-                            <ion-col col-2 class="col2">
-                              <ion-icon ios="ios-search" md="md-search" class="ionIcon"></ion-icon>
-                            </ion-col>
-                          </ion-row>
+                      <ion-row style="height: 30px;">
+                        <ion-col col-10 class="col10">
+                          <ion-input  placeholder="search here..." class="ionInput" [(ngModel)]="searchTerm"></ion-input>
+                        </ion-col>
+                        <ion-col col-2 class="col2">
+                          <ion-icon ios="ios-search" md="md-search" class="ionIcon" (click)="search('Domestic')"></ion-icon>
+                        </ion-col>
+                      </ion-row>
                      </div>
                   </div>
                 </div>
@@ -258,7 +263,7 @@
           <ion-fab-list side="top">
             <button ion-fab>  <ion-icon ios="ios-chatboxes" md="md-chatboxes"></ion-icon></button>
             <button ion-fab (click)="callNumber_ph()"><ion-icon ios="ios-call" md="md-call"></ion-icon></button>
-            <button ion-fab><ion-icon ios="ios-videocam" md="md-videocam"></ion-icon></button>
+            <button ion-fab><ion-icon ios="ios-videocam" md="md-videocam" (click)="VideoCall()"></ion-icon></button>
           </ion-fab-list>
       </ion-fab>
       <ion-footer style="height: 50px; background: #ffffff00; display: block;">

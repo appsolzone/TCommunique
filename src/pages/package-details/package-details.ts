@@ -18,7 +18,10 @@ import { BookNowPage } from '../../pages/book-now/book-now';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name:'page-package-details',
+  segment:'page-package-details'
+})
 @Component({
   selector: 'page-package-details',
   templateUrl: 'package-details.html',
@@ -30,7 +33,7 @@ export class PackageDetailsPage {
   package_details:any;
   hotel_details:any;
   itinerary_details:any;
-
+  similarPackage:any;
   package_pkgImg:any;
   package_duration:any;
   package_pkgTitle:any;
@@ -92,8 +95,9 @@ export class PackageDetailsPage {
 
       this.hotel_details = data.json().data["hotel"];
       this.itinerary_details = data.json().data["itinerary"]
+      this.similarPackage = data.json().data["similarPackage"]
 
-      console.log("itinerary_details",this.itinerary_details)
+      console.log("itinerary_details",this.itinerary_details,this.similarPackage)
 
 
     });
@@ -104,5 +108,8 @@ export class PackageDetailsPage {
     this.navCtrl.push(BookNowPage,{pkgId:this.pkgId,package_details:this.package_details});
 
   }
-
+  goclick(id)
+      {
+        this.navCtrl.push(PackageDetailsPage,{pkgId:id});
+      }
 }

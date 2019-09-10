@@ -30,19 +30,36 @@ export class CategoryPage {
   loading:Loading;
   data:Observable<any>;
   destination_details:any;
+  searchDetails:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+
+    this.searchDetails = navParams.get('Details');
     this.catId=navParams.get('catId');
     this.tourType=navParams.get('tourType');
-    this.getDestinationList(this.catId,this.tourType);
+
+    // this.getDestinationList(this.catId,this.tourType);
+
+    if (this.searchDetails != null) {
+
+      console.log("this.searchDetails",this.searchDetails)
+      this.showsearchData(this.searchDetails);
+    }
+
+    if(this.catId!=null){
+      console.log("this.catId",this.catId)
+      this.getDestinationList(this.catId,this.tourType);
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoryPage');
   }
 
-  goclick(destId){
-    this.navCtrl.push(CategoryPackageDetailsPage,{catId:this.catId,tourType:this.tourType,destId:destId});
+  goclick(destId,cat_id){
+
+    console.log("catId",this.catId,"dest",destId);
+    this.navCtrl.push(CategoryPackageDetailsPage,{catId:cat_id,tourType:this.tourType,destId:destId});
 
   }
 
@@ -60,9 +77,17 @@ export class CategoryPage {
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
 
-      // console.log("group",(JSON.stringify(data.json().data)));
+      console.log("group",(data.json().data));
       this.destination_details = data.json().data;
     });
+  }
+
+  showsearchData(data){
+
+    console.log("DATA__",data);
+    this.destination_details = data.data;
+
+
   }
 
 }

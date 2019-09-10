@@ -141,60 +141,69 @@
             <div>
               <p style="margin-left: 11px; font-size: 20px;">SIMILAR PACKAGES</p>
 
-              <ion-card class="cardBody">
+              <ion-slides pager class="cardBody2">
+                <ion-slide *ngFor="let data of similarPackage; let idx = index">
+                    <ion-card class="cardBody" (click)="goclick(data.pkgId)">
 
-                <ion-card-header class="cardHeader">
-                  <p style="margin-top: -6px; color: white; font-size: 14px;">Spectacular Cochin Tour Package</p>
-                  <p style="margin-top: -22px; float: right; font-size: 14px; color: white;">2 Day 1 Night</p>
-                </ion-card-header>
+                        <ion-card-header class="cardHeader">
+                          <p style=" color: white; font-size: 14px;">{{data.pkgTitle}}<span>{{data.duration}}</span></p>
+                        </ion-card-header>
 
-                <ion-card-content>
-
-                    <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
-                    <P style="margin-top: 5px;">Starting budget</P>
-                    <p style="margin-top: -6px; color: #0b9595">7000</p>
-                    <p style="margin-top: -24px; margin-left: 38px;">/person</p>
-
-                    <ion-row>
-                        <ion-col col-2.4>
-                            <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
-                                <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
+                        <ion-card-content>
+                            <div class="bxtxt">
+                            <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
+                            <P>Starting budget</P>
+                            <p><span>{{data.startingPrice}}</span>/person</p>
                             </div>
-                            <p style="font-size: 10px; text-align: center; margin-top: 2px;">Flight</p>
-                        </ion-col>
-                        <ion-col col-2.4>
-                            <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
-                                <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
-                              </div>
-                              <p style="font-size: 10px; text-align: center; margin-top: 2px;">Cab</p>
-                        </ion-col>
-                        <ion-col col-2.4>
-                            <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
-                                <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
-                              </div>
-                              <p style="font-size: 10px; text-align: center; margin-top: 2px;">3 stars</p>
-                        </ion-col>
-                        <ion-col col-2.4>
-                            <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
-                                <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
-                              </div>
-                              <p style="font-size: 10px; text-align: center; margin-top: 2px;">Meals</p>
-                        </ion-col>
-                        <ion-col col-2.4>
-                            <div style="background: yellowgreen; height: 50px; width: 50px; border-radius: 10px; display: block; margin: auto;">
-                                <ion-icon ios="ios-car" md="md-car" style="color: white; margin-left: 17px; margin-top: 15px;"></ion-icon>
-                              </div>
-                              <p style="font-size: 10px; text-align: center; margin-top: 2px;">Slight seeing</p>
-                        </ion-col>
-                      <ion-col col-2>
-                        <p style="text-align: center;">+1</p>
-                      </ion-col>
-                    </ion-row>
 
-                </ion-card-content>
 
-              </ion-card>
+                            <ion-row>
+                              <ion-col col-2 *ngIf="data.flight ==='yes'">
+                                <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                                    <ion-icon ios="ios-plane" md="md-plane" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
 
+                                </div>
+                                <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Flight</p>
+                            </ion-col>
+                            <ion-col col-2 *ngIf="data.cab ==='yes'">
+                                <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                                  <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+                                  </div>
+                                  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Cab</p>
+                            </ion-col>
+                            <ion-col col-2 *ngIf="data.hotel ==='yes'">
+                                <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                                  <ion-icon ios="ios-home" md="md-home"
+                                  style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
+                                  </div>
+                                  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">{{data.hotelRating}}</p>
+                            </ion-col>
+                            <ion-col col-2 *ngIf="data.meal ==='yes'">
+                                <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                                  <ion-icon ios="ios-pizza" md="md-pizza"
+                                  style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+                                  </div>
+                                  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Meals</p>
+                            </ion-col>
+                            <ion-col col-2 *ngIf="data.sightSeeing ==='yes'">
+                                <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                                    <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+                                  </div>
+                                  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Sight Seeing</p>
+                            </ion-col>
+                            <ion-col col-2 *ngIf="data.other ==='yes'">
+                              <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+                                  <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
+                                </div>
+                                <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Other</p>
+                          </ion-col>
+                            </ion-row>
+
+                        </ion-card-content>
+
+                      </ion-card>
+                </ion-slide>
+              </ion-slides>
 
 
             </div>

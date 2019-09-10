@@ -1,10 +1,12 @@
 import {Component, ViewChild} from '@angular/core';
-import {App,Nav, Platform,AlertController} from 'ionic-angular';
+import {Events,App,Nav, Platform,AlertController,ModalController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import {IonicApp } from 'ionic-angular';
+import {DataProvider} from '../providers/data/data';
+import {VideoProvider} from '../providers/video/video';
 
 
 
@@ -40,6 +42,8 @@ import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { PackageDetailsPage } from '../pages/package-details/package-details';
 import { EmergencyCallingPage } from '../pages/emergency-calling/emergency-calling';
 import { MyDocumentsPage } from '../pages/my-documents/my-documents';
+import { VideoCallPage } from '../pages/video-call/video-call';
+import { OtpVarificationPage} from '../pages/otp-varification/otp-varification';
 
 
 @Component({
@@ -51,7 +55,7 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     rootPage:any = LanguagePage;
-    // rootPage = EditProfilePage;
+    // rootPage = OtpVarificationPage;
 
     homeItem: any;
     initialItem: any;
@@ -69,7 +73,7 @@ export class TCommuniqueApp {
     accountMenuItems: Array<MenuItem>;
     searchMenuItems: Array<MenuItem>;
 
-  constructor(private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
+  constructor(public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
 
     platform.registerBackButtonAction(() => {
       let activeModal=this.ionicApp._modalPortal.getActive();
@@ -169,6 +173,20 @@ export class TCommuniqueApp {
     this.platform.ready().then(() => {
         this.statusBar.overlaysWebView(false);
         this.splashScreen.hide();
+
+        this.events.subscribe('openVideocall',()=>{
+          let profileModal = this.modalCtrl.create(VideoCallPage);
+          profileModal.present();
+        })
+
+        const userData= {
+          uniqueId:"1234",
+          name:"Tuhin"
+
+        }
+
+
+        this.videoProvider.InitializingRTC(userData);
         this.pushNotify();
     });
 

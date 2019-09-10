@@ -8,11 +8,12 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { HomePage } from '../../pages/home/home';
 import { ForgotPwdPage } from '../../pages/forgot-pwd/forgot-pwd';
 import { Network } from '@ionic-native/network';
 import { SignUpPage } from '../../pages/sign-up/sign-up';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 
 

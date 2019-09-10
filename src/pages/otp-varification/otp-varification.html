@@ -1,0 +1,67 @@
+
+
+<ion-content padding class="profiles">
+
+  <div class="bodydc">
+    <div class="bodydb">
+    <h3>Please Enter one time verification code send to {{user_email}}</h3>
+ 
+
+    <form class="form-container">
+        <div>
+          <ion-input name="a" #a (keyup)="moveFocus($event,b,'')" type="tel" [(ngModel)]="otp1" placeholder="0"
+            maxlength="1">
+          </ion-input>
+        </div>
+    
+        <div>
+          <ion-input name="b" #b (keyup)="moveFocus($event,c,a)" type="tel" [(ngModel)]="otp2" placeholder="0"
+            maxlength="1">
+          </ion-input>
+        </div>
+    
+        <div>
+          <ion-input name="c"  #c (keyup)="moveFocus($event,d,b)" type="tel" [(ngModel)]="otp3" placeholder="0"
+            maxlength="1">
+          </ion-input>
+        </div>
+    
+        <div>
+          <ion-input name="d"  #d (keyup)="moveFocus($event,e,c)" type="tel" [(ngModel)]="otp4" placeholder="0"
+            maxlength="1">
+          </ion-input>
+        </div>
+    
+        <div>
+          <ion-input name="e"  #e (keyup)="moveFocus($event,f,d)"  [(ngModel)]="otp5" type="tel" placeholder="0"
+            maxlength="1">
+          </ion-input>
+        </div>
+    
+        <div>
+          <ion-input name="f"  #f (keyup)="moveFocus($event,'',e)" [(ngModel)]="otp6"type="tel" placeholder="0"
+            maxlength="1"></ion-input>
+        </div>
+      </form>
+
+
+      <button class="login-btn" ion-button (click)="save()">
+          Send OTP
+        </button>
+
+        <div class="frmone">
+            <button (click) = "signin()">
+                Back to SignIn.
+              </button>
+
+              <button (click) = "resendotp()">
+                  Resend Otp
+                </button>
+        
+  
+  
+        </div>
+      </div>
+    </div>
+
+</ion-content>

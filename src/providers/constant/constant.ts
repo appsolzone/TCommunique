@@ -15,6 +15,10 @@ export class ConstantProvider {
   public get_destinationByCatId = "https://appsolzone.com/aszdev/tcApi/destination/destinationByCatId.php";
   public get_listOfPackageByDestId="https://appsolzone.com/aszdev/tcApi/package/listOfPackageByDestId.php";
   public login="https://appsolzone.com/aszdev/tcApi/login/login.php";
+  public signup="https://appsolzone.com/aszdev/tcApi/signup/signup.php";
+  public otp="https://appsolzone.com/aszdev/tcApi/signup/activateAccount.php";
+  public resendOtp = "https://appsolzone.com/aszdev/tcApi/signup/resendOtp.php";
+  public Forgotpassword="https://appsolzone.com/aszdev/tcApi/login/sendCode.php";
   public get_packageDetails="https://appsolzone.com/aszdev/tcApi/package/packageDetails.php";
   public get_viewAgentContact="https://appsolzone.com/aszdev/tcApi/emergContact/viewAgentContact.php";
   public get_emergencyContact="https://appsolzone.com/aszdev/tcApi/emergContact/emergencyContact.php";
@@ -28,6 +32,11 @@ export class ConstantProvider {
   public carBooking="https://appsolzone.com/aszdev/tcApi/carBooking/carBooking.php";
   public getProfileData="https://appsolzone.com/aszdev/tcApi/profile/getProfileData.php";
   public updateProfile="https://appsolzone.com/aszdev/tcApi/profile/updateProfile.php";
+  public search="https://appsolzone.com/aszdev/tcApi/search/search.php";
+  public filter ="https://appsolzone.com/aszdev/tcApi/filter/filter.php";
+  public fetch_user_review="https://appsolzone.com/aszdev/tcApi/review/userReview.php";
+  public submit_user_review = "https://appsolzone.com/aszdev/tcApi/review/submitReview.php";
+  public bannerImages="https://appsolzone.com/aszdev/tcApi/banner/bannerImages.php";
 
 
 

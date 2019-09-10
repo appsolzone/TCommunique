@@ -1,0 +1,86 @@
+page-otp-varification {
+
+  form{
+    margin-top: 34px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    div{
+        margin-top: 23px;
+        margin-right: 5px;
+        h2{
+            margin: 0;
+            font-size: 12px;
+            color: #b6b6be;
+        }
+        ion-input{
+            text-align: center;
+            border: 1px solid #e1e5e8;
+            border-radius: 5px;
+            margin-top: 8px;
+            font-size: 14px;
+            padding: 3px !important;
+            padding-left: 0px !important;
+            color: #383838;
+            font-weight: 600;
+            --padding-start: 0;
+        }
+        &:last-child{
+            margin-top: 23px;
+            margin-right: 0px;
+        }
+    }
+}
+.login-btn{
+  display: table;
+  margin-top: 25px;
+  background: -moz-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(111,227,252,1)), color-stop(100%, rgba(0,99,99,1)));
+  background: -webkit-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+  background: -o-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+  background: -ms-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+  background: linear-gradient(181deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6FE3FC', endColorstr='#006363',GradientType=0 );
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 50px;
+  padding: 9px;
+  font-size: 21px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+form.form-container.ng-untouched.ng-pristine.ng-valid {
+  padding: 20px;
+}
+.profiles{
+  background-image: url("../assets/imgs/login-bg.png");
+  background-repeat: no-repeat;
+  background-size:cover;
+
+}
+h3 {
+  text-align: center;
+}
+.bodydc {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.frmone {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.frmone button:last-child {
+  float: right;
+}
+.frmone button {
+  background: none;
+  color: #0a6e6e;
+  margin-bottom: 15px;
+}
+}

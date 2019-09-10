@@ -1,8 +1,19 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { Component,OnInit } from '@angular/core';
+import { IonicPage,ToastController,ModalController,Nav,NavController, NavParams,MenuController,Loading,LoadingController,AlertController,Platform} from 'ionic-angular';
+import { ConstantProvider } from '../../providers/constant/constant';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { HomePage } from '../../pages/home/home';
+import { ForgotPwdPage } from '../../pages/forgot-pwd/forgot-pwd';
+import { Network } from '@ionic-native/network';
 import { SignInPage } from '../../pages/sign-in/sign-in';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { Storage } from '@ionic/storage';
+import { OtpVarificationPage } from '../../pages/otp-varification/otp-varification';
 
 
 /**
@@ -24,10 +35,14 @@ export class SignUpPage {
 
   public onRegForm: FormGroup;
   user_email:any;
+  user_password:any;
+  user_con_password:any;
   googleData:any;
+  loading:Loading;
+  data:Observable<any>;
 
 
-  constructor(private googlePlus: GooglePlus,public navCtrl: NavController, public navParams: NavParams, public _fb:FormBuilder) {
+  constructor(private storage: Storage,private googlePlus: GooglePlus,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -38,14 +53,91 @@ export class SignUpPage {
     let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     this.onRegForm = this._fb.group({
       email: ['', Validators.compose([
-        Validators.required,Validators.pattern(EMAILPATTERN)
+        Validators.required
+      ])],
+      password: ['', Validators.compose([
+        Validators.required
+      ])],
+      confirmPass: ['', Validators.compose([
+        Validators.required
       ])]
-    });
+    },
+    {validator: this.checkIfMatchingPasswords('password', 'confirmPass')});
 
   }
 
+  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+    return (group: FormGroup) => {
+        let passwordInput = group.controls[passwordKey],
+            passwordConfirmationInput = group.controls[passwordConfirmationKey];
+        if (passwordInput.value !== passwordConfirmationInput.value) {
+            return passwordConfirmationInput.setErrors({notEquivalent: true})
+        }
+        else {
+            return passwordConfirmationInput.setErrors(null);
+        }
+    }
+  }
+
+
   register(){
-    this.navCtrl.push(SignInPage);
+    // this.navCtrl.push(SignInPage);
+    // signup
+
+    console.log("Hello");
+    console.log("Hello",this.user_email,this.user_password);
+
+
+      this.loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        dismissOnPageChange: true
+      });
+      // this.loading.present();
+      var url =this.constant.signup;
+      let postData = new FormData();
+      postData.append('username',this.user_email);
+      postData.append('password',this.user_password);
+      postData.append('channel','app');
+
+      this.data = this.http.post(url,postData);
+      this.data.subscribe(data =>{
+
+        console.log("section_group",(JSON.stringify(data.json())));
+        if(data.json().status=="200"){
+                           let t = this.toastCtrl.create({
+                message: data.json().msg,
+                position: 'bottom'
+              });
+              let closedByTimeout = false;
+              let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+              t.onDidDismiss(() => {
+                if (closedByTimeout) return;
+                clearTimeout(timeoutHandle);
+        
+              });
+              t.present();
+
+               this.navCtrl.setRoot(OtpVarificationPage,{user_email:this.user_email});
+        
+        }else{
+
+      let t = this.toastCtrl.create({
+        message: data.json().msg,
+        position: 'bottom'
+      });
+      let closedByTimeout = false;
+      let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+      t.onDidDismiss(() => {
+        if (closedByTimeout) return;
+        clearTimeout(timeoutHandle);
+
+      });
+      t.present();
+
+        }
+
+      });
+
 
   }
 
@@ -80,6 +172,10 @@ export class SignUpPage {
     }, (error) => {
       console.log("ERROR",error);
     });
+  }
+
+  signin(){
+    this.navCtrl.setRoot(SignInPage);
   }
 
 }

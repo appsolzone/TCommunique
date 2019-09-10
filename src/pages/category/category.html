@@ -17,7 +17,7 @@
       <ion-grid>
         <ion-row >
           <ion-col >
-            <ion-card class="newcard" (click)="goclick(data.destId)" *ngFor="let data of destination_details; let idx = index">
+            <ion-card class="newcard" (click)="goclick(data.destId,data.catId)" *ngFor="let data of destination_details; let idx = index">
               <ion-card-content >
 
                 <ion-row>

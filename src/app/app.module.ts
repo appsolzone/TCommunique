@@ -48,6 +48,12 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { MyDocumentsPageModule } from '../pages/my-documents/my-documents.module';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { VideoProvider } from '../providers/video/video';
+import { VideoCallPageModule } from '../pages/video-call/video-call.module';
+import { DataProvider } from '../providers/data/data';
+import {NativeAudio} from "@ionic-native/native-audio";
+import { OtpVarificationPageModule } from '../pages/otp-varification/otp-varification.module';
+
 
 
 
@@ -93,6 +99,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     QuotePreferencePageModule,
     EmergencyCallingPageModule,
     MyDocumentsPageModule,
+    OtpVarificationPageModule,
+    VideoCallPageModule,
     BrowserModule,
     HttpClientModule,
     HttpModule,
@@ -120,7 +128,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     HttpClientModule,HttpClient,
     CallNumber,SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConstantProvider
+    ConstantProvider,
+    VideoProvider,
+    DataProvider,
+    NativeAudio
   ]
 })
 export class AppModule {}

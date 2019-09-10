@@ -9,10 +9,10 @@
         <div class="social">
 
 
-                <button ion-button class="fb">
+                <!-- <button ion-button class="fb">
                   <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
 
-                </button>
+                </button> -->
             <button ion-button class="google"  (click)="googleLogin()">
                 <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>
 
@@ -23,18 +23,43 @@
             _______________ Or _______________
                   </div>
         <form [formGroup]="onRegForm">
+
+         
           <div class="frmone">
-          <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email"></ion-input>
-          <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('email').touched && onRegForm.get('email').hasError('required')">This field is required</p>
+              <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email"></ion-input>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('email').touched && onRegForm.get('email').hasError('required')">This field is required</p>
           <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('email').touched && onRegForm.get('email').hasError('pattern')">Email address invalid</p>
+
+        </div>
+        <div class="frmone">
+          <ion-input type="password" formControlName="password" name="password" placeholder="Password" [(ngModel)]="user_password"></ion-input>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('password').touched && onRegForm.get('password').hasError('required')">This field is required</p>
+
+        </div>
+        <div class="frmone">
+          <ion-input type="password" formControlName="confirmPass" name="confirmPass" placeholder="Confirm Password" [(ngModel)]="user_con_password"></ion-input>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('confirmPass').touched && onRegForm.get('confirmPass').hasError('required')">This field is required</p>
 
         </div>
 
               <button class="login-btn" ion-button (click) = "register()" [disabled]="!onRegForm.valid">
                   Send OTP
                 </button>
+
+                <div class="frmone1">
+                    <button (click) = "signin()">
+                        Back to <a>Sigin In</a>
+                      </button>
+                
+          
+          
+                </div>
+
+
         </form>
         </div>
+
+       
     </div>
 
     </ion-content>
