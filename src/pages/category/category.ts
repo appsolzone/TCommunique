@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import { Storage } from '@ionic/storage';
+
 
 
 /**
@@ -32,7 +34,9 @@ export class CategoryPage {
   destination_details:any;
   searchDetails:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  default_currency:any;
+
+  constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
 
     this.searchDetails = navParams.get('Details');
     this.catId=navParams.get('catId');
@@ -50,6 +54,20 @@ export class CategoryPage {
       console.log("this.catId",this.catId)
       this.getDestinationList(this.catId,this.tourType);
     }
+
+    this.storage.get('currency').then((val)=>{
+
+      if(val==null){
+        this.default_currency = "INR";
+
+      }else{
+        this.default_currency = val.name;
+        console.log("VAL",this.default_currency);
+
+      
+      }
+
+    });
   }
 
   ionViewDidLoad() {

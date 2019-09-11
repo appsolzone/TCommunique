@@ -29,10 +29,34 @@
                     <img src="{{data.destinationImg}}" class="offerOutletImg">
 
                     <p class="outletName" text-wrap>{{data.destinationName}}</p>
-                    <p class="outletNameRight" text-wrap>
+                      <p class="outletNameRight" text-wrap *ngIf="default_currency=='INR'">
                         Starting Budget <span>&#8377;{{data.startingPrice}}/Persion</span>
                        </p>
-
+                       <p class="outletNameRight" text-wrap *ngIf="default_currency=='USD'">
+                          Starting Budget <span>&#36;{{data.startingpriceUSD}}/Persion</span>
+                         </p>
+                         <p class="outletNameRight" text-wrap *ngIf="default_currency=='EUR'">
+                            Starting Budget <span>&#8364;{{data.startingpriceEUR}}/Persion</span>
+                           </p>
+                           <p class="outletNameRight" text-wrap *ngIf="default_currency=='JPY'">
+                              Starting Budget <span>&#165;{{data.startingpriceJPY}}/Persion</span>
+                             </p>
+                             <p class="outletNameRight" text-wrap *ngIf="default_currency=='GBP'">
+                                Starting Budget <span>&#163;{{data.startingpriceGBP}}/Persion</span>
+                               </p>
+                               <p class="outletNameRight" text-wrap *ngIf="default_currency=='AUD'">
+                                  Starting Budget <span>A&#36;{{data.startingpriceAUD}}/Persion</span>
+                                 </p>
+                                 <p class="outletNameRight" text-wrap *ngIf="default_currency=='CAD'">
+                                    Starting Budget <span>C&#36;{{data.startingpriceCAD}}/Persion</span>
+                                   </p>
+                                   <p class="outletNameRight" text-wrap *ngIf="default_currency=='CHF'">
+                                      Starting Budget <span>Fr. {{data.startingpriceCHF}}/Persion</span>
+                                     </p>
+                                     <p class="outletNameRight" text-wrap *ngIf="default_currency=='CNH'">
+                                        Starting Budget <span>&#65509;{{data.startingpriceCNH}}/Persion</span>
+                                       </p>
+                        
 
 
                     </ion-col>

@@ -53,6 +53,7 @@ import { VideoCallPageModule } from '../pages/video-call/video-call.module';
 import { DataProvider } from '../providers/data/data';
 import {NativeAudio} from "@ionic-native/native-audio";
 import { OtpVarificationPageModule } from '../pages/otp-varification/otp-varification.module';
+import { UserProvider } from '../providers/user/user';
 
 
 
@@ -131,7 +132,8 @@ import { OtpVarificationPageModule } from '../pages/otp-varification/otp-varific
     ConstantProvider,
     VideoProvider,
     DataProvider,
-    NativeAudio
+    NativeAudio,
+    UserProvider
   ]
 })
 export class AppModule {}

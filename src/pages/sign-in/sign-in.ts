@@ -13,6 +13,8 @@ import { Network } from '@ionic-native/network';
 import { SignUpPage } from '../../pages/sign-up/sign-up';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
+import { UserProvider } from '../../providers/user/user';
+
 
 
 
@@ -44,7 +46,7 @@ export class SignInPage implements OnInit{
 
 
 
-  constructor(private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+  constructor(public userprovider:UserProvider,private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
     let status=this.network.type;
 
     if(status=='none')
@@ -119,10 +121,14 @@ export class SignInPage implements OnInit{
       this.data = this.http.post(url,postData);
       this.data.subscribe(data =>{
 
-        console.log("section_group",(JSON.stringify(data.json().status)));
+        console.log("SignIn_Page",(JSON.stringify(data.json().username)));
         if(data.json().status=="200"){
-              this.navCtrl.setRoot(HomePage);
               this.storage.set('user_login_data',data.json());
+              this.userprovider.put_user_img(data.json().profileData.profImg);
+              this.userprovider.put_user_name(data.json().username);
+
+              this.navCtrl.setRoot(HomePage);
+              
         }else{
 
       let t = this.toastCtrl.create({

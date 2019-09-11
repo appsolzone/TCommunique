@@ -7,24 +7,34 @@
                 <ion-list no-margin>
                   <ion-item>
 
-                    <ion-avatar item-left>
+                    <ion-avatar item-left *ngIf="!login_status">
                       <img src="assets/imgs/0.jpeg">
                     </ion-avatar>
-                    <ion-avatar item-right>
-                        <button ion-button icon-left round color="skyblack" class="logoutbtn" menuClose (click)="openPage(homeItem)">
+                    <ion-avatar item-left *ngIf="login_status">
+                      <img src="{{user_img}}">
+                    </ion-avatar>
+                    <ion-avatar item-right *ngIf="login_status">
+                        <button  ion-button icon-left round color="skyblack" class="logoutbtn" menuClose (click)="logout(homeItem)">
                             <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
                             <span ion-text color="skyblue" class="fw500">Logout</span>
                           </button>
                       </ion-avatar>
 
-                    <h2 ion-text class="fw700 text-15x"  color="skyblue">
-                      Tuhin Kole
+                      <ion-avatar item-right *ngIf="!login_status">
+                        <button  ion-button icon-left round color="skyblack" class="logoutbtn" menuClose (click)="openPage(signinItem)">
+                            <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+                            <span ion-text color="skyblue" class="fw500">Login</span>
+                          </button>
+                      </ion-avatar>
+                    <h2 ion-text *ngIf="login_status" class="fw700 text-15x"  color="skyblue">
+                      {{username}}
                     </h2>
-                    <p ion-text color="light">This is your full informations.</p>
-
-                    <button ion-button icon-left round color="light" *ngFor="let menuItem of accountMenuItems" menuClose (click)="openPage(menuItem)">
+                    <h2  *ngIf="!login_status"ion-text class="fw700 text-15x"  color="skyblue">
+                     Hi, Guest
+                    </h2>
+                    <button *ngIf="login_status"  ion-button icon-left round color="light"  menuClose (click)="openPage(accountMenuItems)">
                       <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
-                      {{menuItem.title}}
+                      Edit Profile
                     </button>
 
                   </ion-item>

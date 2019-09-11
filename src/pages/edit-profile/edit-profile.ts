@@ -40,13 +40,14 @@ export class EditProfilePage {
   uId:any;
   selectedImage:any;
   encoded_img:any;
-  public img_status=false;
+  img_status:any;
 
 
   constructor(public toastCtrl:ToastController,public camera:Camera,public actionSheetCtrl:ActionSheetController ,private storage:Storage,private modal: ModalController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public view:ViewController,private _fb: FormBuilder) {
 
     storage.get('user_login_data').then((val) => {
       console.log('user_login_data', val);
+      this.img_status = false;
       this.uId = val.uId;
       this.getProfileData(this.uId);
     });
@@ -106,6 +107,14 @@ export class EditProfilePage {
         this.lastname=data.json().data.lName;
         this.phoneno=data.json().data.phone;
         this.selectedImage=data.json().data.profImg;
+
+        console.log("this.selectedImage",this.selectedImage);
+
+        if(this.selectedImage == null){
+          this.img_status = false
+        }else{
+          this.img_status = true
+        }
       }
 
     });

@@ -7,6 +7,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import {IonicApp } from 'ionic-angular';
 import {DataProvider} from '../providers/data/data';
 import {VideoProvider} from '../providers/video/video';
+import { Storage } from '@ionic/storage';
+
 
 
 
@@ -44,6 +46,8 @@ import { EmergencyCallingPage } from '../pages/emergency-calling/emergency-calli
 import { MyDocumentsPage } from '../pages/my-documents/my-documents';
 import { VideoCallPage } from '../pages/video-call/video-call';
 import { OtpVarificationPage} from '../pages/otp-varification/otp-varification';
+import { UserProvider } from '../providers/user/user';
+
 
 
 @Component({
@@ -54,8 +58,8 @@ export class TCommuniqueApp {
 
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
-    rootPage:any = LanguagePage;
-    // rootPage = OtpVarificationPage;
+    rootPage:any = HomePage;
+    // rootPage = CurrencyConverterPage;
 
     homeItem: any;
     initialItem: any;
@@ -68,12 +72,18 @@ export class TCommuniqueApp {
     emergency_calling:any;
     mydocuments:any;
     carBooking:any;
+    signinItem:any;
     nearbyplacesItem: Array<MenuItem>;
     converterItem: Array<MenuItem>;
-    accountMenuItems: Array<MenuItem>;
+    accountMenuItems: any;
     searchMenuItems: Array<MenuItem>;
+    public login_status = false;
+    user_img:any;
+    username:any;
 
-  constructor(public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
+
+
+  constructor(public userProvider:UserProvider,public storage:Storage,public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
 
     platform.registerBackButtonAction(() => {
       let activeModal=this.ionicApp._modalPortal.getActive();
@@ -131,11 +141,41 @@ export class TCommuniqueApp {
         }
       }
   });
+
+  events.subscribe('user:login', () => {
+    console.log("logged in");
+    this.storage.get('user_login_data').then((val)=>{
+   
+    console.log("hsh",val);
+    if(val==null)
+    {
+      this.login_status = false;
+    }
+    else
+    {
+    console.log("username","come here");
+    this.login_status=true;
+    this.user_img=val.profileData.profImg;
+    this.username=val.username;
+    console.log("username",this.username);
+    }
+    
+    })
+    });
+
+
+    this.user_img=this.userProvider.get_user_img();
+    this.username=this.userProvider.get_user_name();
+    console.log('Image :- '+this.user_img);
+    console.log('Name :- '+this.username);
+
+
+
       this.initializeApp();
 
 
 
-        this.homeItem = { component: 'page-sign-in' };
+        this.homeItem = { component: 'page-home' };
         this.aboutus = { component: 'page-about-us'};
         this.privacypolicy = { component: 'page-privacy-policy'};
         this.contactUs = { component: 'page-contact-us'};
@@ -144,6 +184,7 @@ export class TCommuniqueApp {
         this.emergency_calling = {component:'page-emergency-calling'};
         this.mydocuments = { component:'page-my-documents'};
         this.carBooking = { component:'page-car-booking'};
+        this.signinItem = { component: 'page-sign-in' };
 
 
 
@@ -155,9 +196,8 @@ export class TCommuniqueApp {
           {title: 'Converter', component: 'page-currency-converter', icon: 'logo-yen'}
 
       ];
-        this.accountMenuItems = [
-            {title: 'Edit Profile', component: 'page-edit-profile', icon: 'create'}
-                  ];
+        this.accountMenuItems =
+            {component: 'page-edit-profile'};
 
         this.searchMenuItems = [
             {title: 'Hotel Search', component: 'page-hotel-search', icon: 'md-home'},
@@ -173,7 +213,6 @@ export class TCommuniqueApp {
     this.platform.ready().then(() => {
         this.statusBar.overlaysWebView(false);
         this.splashScreen.hide();
-
         this.events.subscribe('openVideocall',()=>{
           let profileModal = this.modalCtrl.create(VideoCallPage);
           profileModal.present();
@@ -195,9 +234,23 @@ export class TCommuniqueApp {
       this.tabsLayout = 'icon-left';
     }
   }
-  openPage(page) {
+   openPage(page) {
+      this.nav.setRoot(page.component);
+    }
+
+   login(page)
+    {
     this.nav.setRoot(page.component);
-  }
+    }
+    logout(page){
+      console.log('Logout');
+      this.login_status=false;
+      this.storage.remove('user_login_data');
+
+
+      this.nav.setRoot(HomePage);
+
+    }
 
   pushNotify(){
 

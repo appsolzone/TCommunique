@@ -27,10 +27,10 @@
     <div class="middle">
       <ion-row >
         <ion-col col-6 *ngFor="let item of price; let i=index">
-          <ion-item >
-            <ion-label style="font-size: 2.5vw;">{{item}}</ion-label>
-            <ion-checkbox  [ngModel]="checkedIdxofPri == i"(ngModelChange)="$event ? checkedIdxofPri = i : checkedIdx = -1" (click)="get_Price(item)"></ion-checkbox>
-          </ion-item>
+          <ion-item>
+              <ion-label>{{item.val}}</ion-label>
+              <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.val)" ></ion-checkbox>
+            </ion-item>
         </ion-col>
       </ion-row>
     </div>
@@ -48,9 +48,9 @@
       <ion-row>
         <ion-col col-6 *ngFor="let item of duration; let i=index">
           <ion-item>
-            <ion-label style="font-size: 2.5vw;">{{item}}</ion-label>
-            <ion-checkbox  [ngModel]="checkedIdxofDur == i"(ngModelChange)="$event ? checkedIdxofDur = i : checkedIdxofDur = -1" (click)="get_Dur(item)"></ion-checkbox>
-          </ion-item>
+              <ion-label>{{item.val}}</ion-label>
+              <ion-checkbox   [checked]="item.isChecked" (ionChange)="durationsType($event,item.id,item.val)" ></ion-checkbox>
+            </ion-item>
         </ion-col>
  </ion-row>
 
@@ -66,10 +66,10 @@
     <div class="middle">
       <ion-row>
         <ion-col col-6 *ngFor="let item of activities; let i=index">
-          <ion-item>
-            <ion-label style="font-size: 2.5vw;">{{item}}</ion-label>
-            <ion-checkbox  [ngModel]="checkedIdxofAct == i"(ngModelChange)="$event ? checkedIdxofAct = i : checkedIdxofAct = -1" (click)="get_Act(item)"></ion-checkbox>
-          </ion-item>
+            <ion-item>
+                <ion-label>{{item.val}}</ion-label>
+                <ion-checkbox   [checked]="item.isChecked" (ionChange)="activitiesType($event,item.id,item.val)" ></ion-checkbox>
+              </ion-item>
         </ion-col>
 
       </ion-row>
@@ -86,10 +86,10 @@
 
       <ion-row>
         <ion-col col-6 *ngFor="let item of months; let i=index">
-          <ion-item>
-            <ion-label style="font-size: 2.5vw;">{{item}}</ion-label>
-            <ion-checkbox  [ngModel]="checkedIdxofMon == i"(ngModelChange)="$event ? checkedIdxofMon = i : checkedIdxofMon = -1" (click)="get_Mon(item)"></ion-checkbox>
-          </ion-item>
+            <ion-item>
+                <ion-label>{{item.val}}</ion-label>
+                <ion-checkbox   [checked]="item.isChecked" (ionChange)="monthsType($event,item.id,item.val)" ></ion-checkbox>
+              </ion-item>
         </ion-col>
       </ion-row>
 

@@ -1,47 +1,52 @@
 <ion-header>
 
-    <ion-navbar color="searchbg">
-        <button ion-button menuToggle>
-            <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
-          </button>
-        <ion-title>
-          <span ion-text class="fw700">Currency Converter</span>
-        </ion-title>
-      </ion-navbar>
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+      <ion-title>
+        <span ion-text class="fw700">Currency Converter</span>
+      </ion-title>
+    </ion-navbar>
 
 
-  </ion-header>
+</ion-header>
 
-<ion-content class="myview">
-
-
-  <div class="cl">
-
-    <div class="dc">
-      <ion-label>Currency Converter</ion-label>
-    </div>
+<ion-content padding class="myview">
 
 
-      <div class="sel" onclick="">
-          <ion-label>Currency I have</ion-label>
-        <ion-item>
-            <ion-select >
-              <ion-option value="inr">Indian Rupees</ion-option>
-              <ion-option value="usd">United State Dollar</ion-option>
-            </ion-select>
-          </ion-item>
-    </div>
-    <div class="sel">
-      <ion-label>Currency I want</ion-label>
-        <ion-item>
-            <ion-select >
-              <ion-option value="inr">Indian Rupees</ion-option>
-              <ion-option value="usd">United State Dollar</ion-option>
-            </ion-select>
-          </ion-item>
-    </div>
+<div class="cl">
 
+  <div class="dc">
+    <ion-label>Currency Converter</ion-label>
   </div>
+
+
+    <div class="sel">
+        <ion-label>Currency I have</ion-label>
+      <ion-item>
+          <ion-select [(ngModel)]="set_default_currency">
+            <ion-option *ngFor="let data of set_default_currency" [value]="data">{{data.name}}</ion-option>
+
+          </ion-select>
+        </ion-item>
+  </div>
+  <div class="sel">
+    <ion-label>Currency I want</ion-label>
+      <ion-item>
+        <ion-select [(ngModel)]="selected_currency">
+        <ion-option *ngFor="let data of currency" [value]="data">{{data.name}}</ion-option>
+      </ion-select>
+        </ion-item>
+  </div>
+
+ 
+
+</div>
+
+<button class="login-btn" ion-button (click) = "save()">
+    Save
+  </button>
 
 
 </ion-content>
