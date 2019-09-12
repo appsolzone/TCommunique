@@ -43,6 +43,8 @@ export class HomePage {
   searching: any = false;
   domesticImg:any;
   internationalImg:any;
+  trendingDest_domestic:any;
+  trendingDest_international:any;
 
 
 
@@ -91,6 +93,7 @@ export class HomePage {
       this.destinationByCat();
       this.get_viewAgentContact();
       this.get_bannerImages();
+      this.get_trendingDest();
 
     }
 
@@ -267,25 +270,6 @@ export class HomePage {
 
 
 
-// let LiquorTypes = data.json().searchSuggestions;
-//         for(let data1 of LiquorTypes)
-//         {
-
-
-
-//           let value=data1.value;
-//           for(let data2 of value)
-//         {
-//           this.type.push(data1.source);
-//           this.items.push(data2.searchRes);
-
-//         }
-
-//         }
-
-
-
-
     });
   }
 
@@ -296,15 +280,39 @@ export class HomePage {
       content: 'Please wait...',
       dismissOnPageChange: true
     });
-    this.loading.present();
+    // this.loading.present();
     var url =this.constant.bannerImages;
     this.data = this.http.get(url);
     this.data.subscribe(data =>{
       console.log("bannerImages",data.json().data.internationalImg);
       this.internationalImg = data.json().data.internationalImg;
       this.domesticImg = data.json().data.domesticImg;
-      this.loading.dismiss();
+      // this.loading.dismiss();
     });
+
+  }
+  get_trendingDest(){
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    // this.loading.present();
+    var url =this.constant.trendingDest;
+    this.data = this.http.get(url);
+    this.data.subscribe(data =>{
+      // this.loading.dismiss();
+      this.trendingDest_international = data.json().data["International"];
+      this.trendingDest_domestic = data.json().data["Domestic"];
+    });
+
+  }
+
+  trending_inter_click(data){
+
+  }
+
+  trending_domestic_click(data){
 
   }
 

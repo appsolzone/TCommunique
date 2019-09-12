@@ -54,11 +54,14 @@ export class CustomizePackagePage {
   cust_enddate:any;
   cust_days:any;
   cust_email:any;
+  uId:any;
 
 
   constructor(public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
 
     this.pkgId=navParams.get('pkgId');
+    this.uId = navParams.get('uId');
+
     this.package_details = navParams.get('package_details');
 
       this.package_pkgImg = this.package_details.pkgImg;
@@ -99,6 +102,7 @@ export class CustomizePackagePage {
     postData.append('email',this.cust_email);
     postData.append('phone',this.cust_phone);
     postData.append('totalPrice',this.cust_note);
+    postData.append('uId',this.uId);
 
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{

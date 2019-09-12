@@ -54,10 +54,11 @@ export class CategoryPackageDetailsPage {
   startingpriceGBP:any;
   startingpriceJPY:any;
   startingpriceUSD:any;
+  userReview:any;
 
   constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.searchDetails = navParams.get('Details');
-   
+
     this.catId=navParams.get('catId');
     this.tourType=navParams.get('tourType');
     this.destId = navParams.get('destId');
@@ -71,11 +72,11 @@ export class CategoryPackageDetailsPage {
         this.default_currency = val.name;
         console.log("VAL)))",this.default_currency);
 
-      
+
       }
 
     });
-   
+
 
     if (this.searchDetails != null) {
 
@@ -87,6 +88,8 @@ export class CategoryPackageDetailsPage {
       console.log("this.catId",this.catId)
       this.getListofPackage_byDest(this.catId,this.tourType,this.destId);
     }
+
+    this.get_UserReview();
   }
 
   ionViewDidLoad() {
@@ -149,10 +152,35 @@ export class CategoryPackageDetailsPage {
       this.destinationName = data.destinationName;
       this.destinationImg = data.destinationImg;
 
+      this.startingprice = data.startingPrice;
+      this.startingpriceAUD= data.startingpriceAUD;
+      this.startingpriceCAD = data.startingpriceCAD;
+      this.startingpriceCHF = data.startingpriceCHF;
+      this.startingpriceCNH = data.startingpriceCNH;
+      this.startingpriceEUR = data.startingpriceEUR;
+      this.startingpriceGBP = data.startingpriceGBP;
+      this.startingpriceJPY = data.startingpriceJPY;
+      this.startingpriceUSD = data.startingpriceUSD;
+
 
   }
   filter(){
     this.navCtrl.push(FilterPage,{tourType:this.tourType});
+
+  }
+
+  get_UserReview(){
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+    var url =this.constant.fetch_user_review;
+    this.data = this.http.get(url);
+    this.data.subscribe(data =>{
+      this.userReview = data.json().data;
+      this.loading.dismiss();
+    });
 
   }
 

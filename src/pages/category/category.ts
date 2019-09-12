@@ -64,7 +64,7 @@ export class CategoryPage {
         this.default_currency = val.name;
         console.log("VAL",this.default_currency);
 
-      
+
       }
 
     });

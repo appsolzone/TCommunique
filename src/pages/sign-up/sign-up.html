@@ -24,7 +24,7 @@
                   </div>
         <form [formGroup]="onRegForm">
 
-         
+
           <div class="frmone">
               <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email"></ion-input>
               <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('email').touched && onRegForm.get('email').hasError('required')">This field is required</p>
@@ -43,23 +43,23 @@
         </div>
 
               <button class="login-btn" ion-button (click) = "register()" [disabled]="!onRegForm.valid">
-                  Send OTP
+                  Register
                 </button>
 
                 <div class="frmone1">
                     <button (click) = "signin()">
                         Back to <a>Sigin In</a>
                       </button>
-                
-          
-          
+
+
+
                 </div>
 
 
         </form>
         </div>
 
-       
+
     </div>
 
     </ion-content>

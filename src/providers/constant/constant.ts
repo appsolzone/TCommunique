@@ -37,6 +37,8 @@ export class ConstantProvider {
   public fetch_user_review="https://appsolzone.com/aszdev/tcApi/review/userReview.php";
   public submit_user_review = "https://appsolzone.com/aszdev/tcApi/review/submitReview.php";
   public bannerImages="https://appsolzone.com/aszdev/tcApi/banner/bannerImages.php";
+  public getCatList="https://appsolzone.com/aszdev/tcApi/category/getCatList.php";
+  public trendingDest="https://appsolzone.com/aszdev/tcApi/trending/trendingDest.php";
 
 
 

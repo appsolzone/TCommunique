@@ -10,7 +10,7 @@
 
     <ion-buttons end>
         <button ion-button class="blinking_button"  (click)="filter()">
-          <img src="assets/imgs/menu_icon.png" class="blink_img">
+          <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
       </button>
       </ion-buttons>
   </ion-navbar>
@@ -49,7 +49,7 @@
               <ion-card-content>
                   <div class="bxtxt">
                   <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
-                 
+
                   <p>Starting Budget </p>
                       <p *ngIf="default_currency=='INR'"><span>&#8377;{{data.startingPrice}}</span>/Persion
                      </p>
@@ -69,7 +69,7 @@
                                    </p>
                           <p *ngIf="default_currency=='CNH'"> <span>&#65509;{{data.priceCNH}}</span>/Persion
                                      </p>
-                      
+
 
 
 
@@ -129,34 +129,45 @@
     <div style="background: #d6d6d6; height:5px; width:100%; margin-top:25px;"></div>
 
     <p class="bsp">USER REVIEW</p>
-
-    <ion-card class="cardBody">
+    <ion-slides pager class="cardBody1">
+        <ion-slide *ngFor="let data of userReview; let idx = index">
+    <ion-card class="cardBody" >
 
         <ion-card-content>
 
           <ion-row>
-            <ion-col col-6><img src="assets/imgs/lake_como.png" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
-            <ion-col col-6>
+            <ion-col col-4><img src="{{data.profImg}}" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
+            <ion-col col-8>
                 <div>
-                  <P style="margin-left: 4px;">Loream Ipsum</P>
+                  <P style="margin-left: 4px;">{{data.comment}}</P>
                     <ion-row style=" font-size: 6px;">
                       <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
-                      <ion-col col-5>Loream Ipsum</ion-col>
+                      <ion-col col-5>{{data.fName}}{{data.lName}}</ion-col>
                       <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
-                      <ion-col col-5>20-08-19</ion-col>
+                      <ion-col col-5>{{data.date}}</ion-col>
                     </ion-row>
-                    <img src="assets/imgs/rating.png" style="height: 10px; width: 50px; margin-left: 4px;">
+                    <!-- <img src="assets/imgs/rating.png" style="height: 10px; width: 50px; margin-left: 4px;"> -->
+                    <ionic3-star-rating
+                      activeIcon = "ios-star"
+                      defaultIcon = "ios-star-outline"
+                      activeColor = "#ffbf01"
+                      defaultColor = "red"
+                      readonly="false"
+                      [rating]=[data.rating]>
+                    </ionic3-star-rating>
                   </div>
 
             </ion-col>
           </ion-row>
 
-          <p style="margin-left: 20px; font-size: 10px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+          <p style="margin-left: 20px; font-size: 10px;">{{data.comment}}</p>
           <P style="color: red; float: right; margin-top: 5px;">read more..</P>
 
         </ion-card-content>
 
       </ion-card>
+    </ion-slide>
+  </ion-slides>
 
       <div style="background: #d6d6d6; height:5px; width:100%; margin-top:20px;"></div>
 

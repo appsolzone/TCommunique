@@ -56,6 +56,18 @@ ion-label.label.label-md {
   text-transform: uppercase;
   color: #fff;
 }
-
+.select-text {
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  color: #fff;
+  font-weight: 600;
+  min-width: 16px;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 }

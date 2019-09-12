@@ -28,8 +28,16 @@
 
             <div style="margin-top: -15px;">
               <p style="margin-left: 17px; color: #615d5d;">Starting from</p>
-              <p style="margin-left: 17PX; font-size: 25px; margin-top: -13px; color: #0aae99; font-weight: bold;">{{package_startingPrice}}</p>
-              <p style="margin-top: -48px; margin-left: 85px; color: black;">per person no twin sharing</p>
+              <p class="price" *ngIf="default_currency=='INR'">&#8377;{{package_startingPrice}}</p>
+              <p class="price" *ngIf="default_currency=='USD'">&#36;{{startingpriceUSD}}</p>
+              <p class="price" *ngIf="default_currency=='EUR'">&#8364;{{startingpriceEUR}}</p>
+              <p class="price" *ngIf="default_currency=='JPY'">&#165;{{startingpriceJPY}}</p>
+              <p class="price" *ngIf="default_currency=='GBP'">&#163;{{startingpriceGBP}}</p>
+              <p class="price" *ngIf="default_currency=='CAD'">C&#36;{{startingpriceCAD}}</p>
+              <p class="price" *ngIf="default_currency=='CHF'">Fr.{{startingpriceCHF}}</p>
+              <p class="price" *ngIf="default_currency=='CNH'">&#65509;{{startingpriceCNH}}</p>
+              <p class="price" *ngIf="default_currency=='AUD'">A&#36;{{startingpriceAUD}}</p>
+              <p class="pdetails">per person no twin sharing</p>
             </div>
 
             <ion-row style="width: 90%; margin: auto;">
@@ -122,18 +130,13 @@
                 </div>
 
                 <ion-row>
-                  <ion-col col-4>
-                    <div style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Leisure Day</p></div>
+                  <ion-col col-4 *ngFor="let tag of data.tag">
+                    <div style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">{{tag}}</p></div>
                   </ion-col>
-                  <ion-col col-4>
-                    <div  style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Sightseeing Tours</p></div>
-                  </ion-col>
-                  <ion-col col-4>
-                    <div  style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">Marine drive</p></div>
-                  </ion-col>
+                  
                 </ion-row>
 
-                <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;">{{data.content}}</p>
+                <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;"[innerHTML]="data.content"></p>
               </div>
 
             </div>
@@ -150,10 +153,32 @@
                         </ion-card-header>
 
                         <ion-card-content>
-                            <div class="bxtxt">
+                             <div class="bxtxt">
                             <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
-                            <P>Starting budget</P>
-                            <p><span>{{data.startingPrice}}</span>/person</p>
+
+                            <p>Starting Budget </p>
+                                <p *ngIf="default_currency=='INR'"><span>&#8377;{{data.startingPrice}}</span>/Persion
+                               </p>
+                               <p *ngIf="default_currency=='USD'"> <span>&#36;{{data.priceUSD}}</span>/Persion
+                                 </p>
+                                <p *ngIf="default_currency=='EUR'"><span>&#8364;{{data.priceEUR}}</span>/Persion
+                                   </p>
+                                 <p *ngIf="default_currency=='JPY'"><span>&#165;{{data.priceJPY}}</span>/Persion
+                                     </p>
+                                  <p *ngIf="default_currency=='GBP'"><span>&#163;{{data.priceGBP}}</span>/Persion
+                                       </p>
+                                    <p *ngIf="default_currency=='AUD'"><span>A&#36;{{data.priceAUD}}</span>/Persion
+                                         </p>
+                                 <p *ngIf="default_currency=='CAD'"><span>C&#36;{{data.priceCAD}}</span>/Persion
+                                           </p>
+                                 <p *ngIf="default_currency=='CHF'"><span>Fr. {{data.priceCHF}}</span>/Persion
+                                             </p>
+                                    <p *ngIf="default_currency=='CNH'"> <span>&#65509;{{data.priceCNH}}</span>/Persion
+                                               </p>
+
+
+
+
                             </div>
 
 
@@ -204,6 +229,7 @@
                       </ion-card>
                 </ion-slide>
               </ion-slides>
+
 
 
             </div>

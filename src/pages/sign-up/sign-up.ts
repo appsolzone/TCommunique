@@ -81,9 +81,6 @@ export class SignUpPage {
 
 
   register(){
-    // this.navCtrl.push(SignInPage);
-    // signup
-
     console.log("Hello");
     console.log("Hello",this.user_email,this.user_password);
 
@@ -92,7 +89,7 @@ export class SignUpPage {
         content: 'Please wait...',
         dismissOnPageChange: true
       });
-      // this.loading.present();
+      this.loading.present();
       var url =this.constant.signup;
       let postData = new FormData();
       postData.append('username',this.user_email);
@@ -101,6 +98,7 @@ export class SignUpPage {
 
       this.data = this.http.post(url,postData);
       this.data.subscribe(data =>{
+        this.loading.dismiss();
 
         console.log("section_group",(JSON.stringify(data.json())));
         if(data.json().status=="200"){
@@ -113,12 +111,12 @@ export class SignUpPage {
               t.onDidDismiss(() => {
                 if (closedByTimeout) return;
                 clearTimeout(timeoutHandle);
-        
+
               });
               t.present();
 
                this.navCtrl.setRoot(OtpVarificationPage,{user_email:this.user_email});
-        
+
         }else{
 
       let t = this.toastCtrl.create({

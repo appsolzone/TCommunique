@@ -85,4 +85,29 @@ page-package-details {
 {
     height: 210px;
 }
+.price{
+  margin-left: 15PX;
+  font-size: 16px;
+  margin-top: -10px;
+  color: #0aae99;
+  font-weight: bold;
+}
+.pdetails{
+  margin-top: -39px;
+  margin-left: 100px;
+  color: black;
+}
+.bxtxt {
+  p {
+  text-align: left;
+  font-size: 15px;
+  span {
+    font-size: 20px;
+    color: #06cccc;
+}
+}
+}
+.bxtxt ion-icon.icon.icon-md.ion-md-heart:hover {
+  color: #0b9595;
+}
 }

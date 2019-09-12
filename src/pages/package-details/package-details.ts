@@ -8,6 +8,10 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { BookNowPage } from '../../pages/book-now/book-now';
+import { Storage } from '@ionic/storage';
+import { SignInPage } from '../../pages/sign-in/sign-in';
+
+
 
 
 
@@ -38,7 +42,18 @@ export class PackageDetailsPage {
   package_duration:any;
   package_pkgTitle:any;
   package_overview:any;
+
   package_startingPrice:any;
+  startingpriceAUD:any;
+  startingpriceCAD:any;
+  startingpriceCHF:any;
+  startingpriceCNH:any;
+  startingpriceEUR:any;
+  startingpriceGBP:any;
+  startingpriceJPY:any;
+  startingpriceUSD:any;
+
+
   package_sightSeeing:any;
   package_flight:any;
   package_hotel:any;
@@ -46,8 +61,40 @@ export class PackageDetailsPage {
   package_meal:any;
   package_cab:any;
   package_other:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  default_currency:any;
+  login_status:any;
+  uId:any;
+  constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.pkgId=navParams.get('pkgId');
+
+    this.storage.get('user_login_data').then((val)=>{
+      console.log("hsh",val);
+      if(val==null)
+      {
+        this.login_status = false;
+      }
+      else
+      {
+      this.uId = val.uId;
+      this.login_status=true;
+      
+      }
+      
+      })
+
+    this.storage.get('currency').then((val)=>{
+
+      if(val==null){
+        this.default_currency = "INR";
+
+      }else{
+        this.default_currency = val.name;
+        console.log("VAL)))",this.default_currency);
+
+
+      }
+
+    });
     this.getPackageDetails(this.pkgId);
   }
 
@@ -56,7 +103,13 @@ export class PackageDetailsPage {
   }
 
   customize(){
-    this.navCtrl.push(CustomizePackagePage,{pkgId:this.pkgId,package_details:this.package_details});
+
+    if(this.login_status){
+      this.navCtrl.push(CustomizePackagePage,{pkgId:this.pkgId,package_details:this.package_details,uId:this.uId});
+
+    }else{
+      this.navCtrl.push(SignInPage);
+    }
 
   }
   getPackageDetails(pkgId){
@@ -81,6 +134,16 @@ export class PackageDetailsPage {
       this.package_pkgTitle =  data.json().data.package.pkgTitle;
       this.package_duration = data.json().data.package.duration;
       this.package_startingPrice = data.json().data.package.startingPrice;
+      this.startingpriceAUD= data.json().data.package.priceAUD;
+      this.startingpriceCAD = data.json().data.package.priceCAD;
+      this.startingpriceCHF = data.json().data.package.priceCHF;
+      this.startingpriceCNH = data.json().data.package.priceCNH;
+      this.startingpriceEUR = data.json().data.package.priceEUR;
+      this.startingpriceGBP = data.json().data.package.priceGBP;
+      this.startingpriceJPY = data.json().data.package.priceJPY;
+      this.startingpriceUSD = data.json().data.package.priceUSD;
+
+
       this.package_flight = data.json().data.package.flight;
       this.package_hotel = data.json().data.package.hotel;
       this.package_hotelRating = data.json().data.package.hotelRating;
@@ -105,7 +168,13 @@ export class PackageDetailsPage {
 
   book(){
 
-    this.navCtrl.push(BookNowPage,{pkgId:this.pkgId,package_details:this.package_details});
+    if(this.login_status){
+      this.navCtrl.push(BookNowPage,{pkgId:this.pkgId,package_details:this.package_details,uId:this.uId});
+
+    }else{
+      this.navCtrl.push(SignInPage);
+    }
+
 
   }
   goclick(id)

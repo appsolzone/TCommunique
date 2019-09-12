@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Network } from '@ionic-native/network';
 import { Storage } from '@ionic/storage';
-
+import { FilterDataPage } from '../../pages/filter-data/filter-data';
 /**
  * Generated class for the FilterPage page.
  *
@@ -27,11 +27,10 @@ import { Storage } from '@ionic/storage';
 export class FilterPage {
   loading:Loading;
   data:Observable<any>;
-  price =[{ id:1,val: 'Below 10,000', isChecked: false },{ id:2,val: '60,000-80,000', isChecked: false },{id:3, val: '10,000-20,000', isChecked: false },{ id:4,val: '90,000-1,00,000', isChecked: false },{id:5, val: '20,000-40,000', isChecked: false },{ id:6,val: '1Lac-2Lac', isChecked: false },{id:7, val: '40,000-60,000', isChecked: false },{id:8, val: 'Above 2Lac', isChecked: false }];
+  price =[{ id:1,val: 'Below 10000', isChecked: false },{ id:2,val: '60000-80000', isChecked: false },{id:3, val: '10000-20000', isChecked: false },{ id:4,val: '90000-100000', isChecked: false },{id:5, val: '20000-40000', isChecked: false },{ id:6,val: '1Lac-2Lac', isChecked: false },{id:7, val: '40000-60000', isChecked: false },{id:8, val: 'Above 2Lac', isChecked: false }];
   duration = [{ id:1,val: '1-3', isChecked: false },{ id:2,val: '4-6', isChecked: false },{ id:3,val: '7-9', isChecked: false },{ id:4,val: '10-12', isChecked: false },{ id:5,val: '13-15', isChecked: false },{ id:6,val: '>15', isChecked: false }];
-  activities = [{ id:1,val: 'Nature', isChecked: false },{ id:2,val: 'Beach', isChecked: false },{ id:3,val: 'Historical', isChecked: false },{ id:4,val: 'Religious', isChecked: false },{ id:5,val: 'Lifestyle', isChecked: false }];
   months=[{ id:1,val: 'Jan-Mar', isChecked: false },{ id:2,val: 'Apr-Jun', isChecked: false },{ id:3,val: 'Jul-Sept', isChecked: false },{ id:4,val: 'Oct-Dec', isChecked: false }]
-
+  activities = [];
   checkedIdxofPri;
   checkedIdxofDur;
   checkedIdxofAct;
@@ -44,37 +43,57 @@ export class FilterPage {
   selectedPrice = [];
   selectedMonth=[];
   selectedActivity=[];
+  selectedActivity1=[];
   selectedDuration=[];
   tourType:any;
 
+  filterData:any;
+
 
   constructor(public navParams:NavParams,private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public alertCtrl:AlertController) {
-  
+
     this.tourType=navParams.get('tourType');
+    this.getCatList();
+
+
+  }
+
+  getCatList(){
+
+    this.loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          dismissOnPageChange: true
+        });
+        this.loading.present();
+        var url =this.constant.getCatList;
+
+        this.data = this.http.get(url);
+        this.data.subscribe(data =>{
+          this.loading.dismiss();
+
+          console.log("DATA",(JSON.stringify(data.json())));
+          if(data.json().status=="200"){
+
+            for(let dataid of data.json().data)
+            {
+              this.activities.push({id:dataid.catId,val:dataid.catName,isChecked:false});
+            }
+
+
+
+
+          }else{
+
+          }
+
+        });
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FilterPage');
   }
- 
-  refreshPage1()
-  {
-    this.checkedIdxofPri=-1;
-  }
-  refreshPage2()
-  {
-    this.checkedIdxofDur=-1;
-  }
-  refreshPage3()
-  {
-    this.checkedIdxofAct=-1;
 
-  }
-  refreshPage4()
-  {
-    this.checkedIdxofMon=-1;
-
-  }
 
   fetchBotton()
   {
@@ -85,57 +104,60 @@ export class FilterPage {
     console.log("this.selectedMonth",this.selectedMonth);
 
 
-        // this.loading = this.loadingCtrl.create({
-        //   content: 'Please wait...',
-        //   dismissOnPageChange: true
-        // });
-        // // this.loading.present();
-        // var url =this.constant.filter;
-        // let postData = new FormData();
-        // postData.append('tourType',this.user_email);
-        // postData.append('password',this.user_password);
-        // postData.append('channel','app');
-  
-        // this.data = this.http.post(url,postData);
-        // this.data.subscribe(data =>{
-  
-        //   console.log("section_group",(JSON.stringify(data.json())));
-        //   if(data.json().status=="200"){
-        //                      let t = this.toastCtrl.create({
-        //           message: data.json().msg,
-        //           position: 'bottom'
-        //         });
-        //         let closedByTimeout = false;
-        //         let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
-        //         t.onDidDismiss(() => {
-        //           if (closedByTimeout) return;
-        //           clearTimeout(timeoutHandle);
-          
-        //         });
-        //         t.present();
-  
-          
-        //   }else{
-  
-        // let t = this.toastCtrl.create({
-        //   message: data.json().msg,
-        //   position: 'bottom'
-        // });
-        // let closedByTimeout = false;
-        // let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
-        // t.onDidDismiss(() => {
-        //   if (closedByTimeout) return;
-        //   clearTimeout(timeoutHandle);
-  
-        // });
-        // t.present();
-  
-        //   }
-  
-        // });
-  
-  
-    
+
+
+        this.loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          dismissOnPageChange: true
+        });
+        // this.loading.present();
+        var url =this.constant.filter;
+        let postData = new FormData();
+
+        postData.append('tourType',this.tourType);
+        for (var i = 0; i < this.selectedActivity.length; i++) {
+          console.log("DATA",this.selectedActivity[i].name);
+          postData.append('catId[]',this.selectedActivity[i].id);
+      }
+        for (var j = 0; j < this.selectedMonth.length; j++) {
+          postData.append('travelTime[]',this.selectedMonth[j].name);
+      }
+        for (var k = 0; k < this.selectedDuration.length; k++) {
+          postData.append('durationBetween[]',this.selectedDuration[k].name);
+      }
+        for (var l= 0; l < this.selectedPrice.length; l++) {
+          postData.append('priceBetween[]',this.selectedPrice[l].name);
+      }
+
+        this.data = this.http.post(url,postData);
+        this.data.subscribe(data =>{
+
+          console.log("Return",(JSON.stringify(data.json())));
+          if(data.json().status=="200"){
+            this.filterData= data.json().data;
+            this.navCtrl.push(FilterDataPage,{tourType:this.tourType,filterData:this.filterData});
+
+          }else{
+
+        let t = this.toastCtrl.create({
+          message: data.json().msg,
+          position: 'bottom'
+        });
+        let closedByTimeout = false;
+        let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+        t.onDidDismiss(() => {
+          if (closedByTimeout) return;
+          clearTimeout(timeoutHandle);
+
+        });
+        t.present();
+
+          }
+
+        });
+
+
+
 
   }
 
@@ -146,7 +168,7 @@ export class FilterPage {
     }
     else{
       this.selectedPrice= this.selectedPrice.filter(name=>name.id!=id)
-     } 
+     }
   }
   durationsType(event,id,name){
 
@@ -155,17 +177,19 @@ export class FilterPage {
     }
     else{
       this.selectedDuration= this.selectedDuration.filter(name=>name.id!=id)
-     } 
+     }
 
   }
   activitiesType(event,id,name){
+
+    console.log("COME",event,id,name);
 
     if(event.value){
       this.selectedActivity.push({name:name,id:id});
     }
     else{
       this.selectedActivity= this.selectedActivity.filter(name=>name.id!=id)
-     } 
+     }
 
   }
   monthsType(event,id,name){
@@ -175,7 +199,7 @@ export class FilterPage {
     }
     else{
       this.selectedMonth= this.selectedMonth.filter(name=>name.id!=id)
-     } 
+     }
   }
 
 }

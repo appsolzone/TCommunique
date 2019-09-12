@@ -78,15 +78,16 @@ page-home {
     }
     .col2
     {
-        background:#ccc;
+        background:dimgray;
         border-bottom-right-radius: 15px;
         border-top-right-radius: 15px;
     }
     .ionIcon
     {
         color: white;
-        margin-top: 2px;
-        margin-left: 7px;
+        align-content: center;
+        display: table;
+        margin: 2px auto;
     }
     .ionSearchbar{
         height: 20px;
@@ -210,5 +211,17 @@ p.boxpsec {
   font-size: 18px;
   margin-left: 7px;
   font-weight: 700;
+}
+
+
+
+.item-md.item-block .item-inner {
+  padding-right: 0px;
+  border-bottom: 1px solid #dedede;
+  font-size: 14px;
+}
+img {
+  height: 100px;
+  width: 100%;
 }
 }

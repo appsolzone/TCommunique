@@ -5,7 +5,7 @@
   <div class="bodydc">
     <div class="bodydb">
     <h3>Please Enter one time verification code send to {{user_email}}</h3>
- 
+
 
     <form class="form-container">
         <div>
@@ -13,31 +13,31 @@
             maxlength="1">
           </ion-input>
         </div>
-    
+
         <div>
           <ion-input name="b" #b (keyup)="moveFocus($event,c,a)" type="tel" [(ngModel)]="otp2" placeholder="0"
             maxlength="1">
           </ion-input>
         </div>
-    
+
         <div>
           <ion-input name="c"  #c (keyup)="moveFocus($event,d,b)" type="tel" [(ngModel)]="otp3" placeholder="0"
             maxlength="1">
           </ion-input>
         </div>
-    
+
         <div>
           <ion-input name="d"  #d (keyup)="moveFocus($event,e,c)" type="tel" [(ngModel)]="otp4" placeholder="0"
             maxlength="1">
           </ion-input>
         </div>
-    
+
         <div>
           <ion-input name="e"  #e (keyup)="moveFocus($event,f,d)"  [(ngModel)]="otp5" type="tel" placeholder="0"
             maxlength="1">
           </ion-input>
         </div>
-    
+
         <div>
           <ion-input name="f"  #f (keyup)="moveFocus($event,'',e)" [(ngModel)]="otp6"type="tel" placeholder="0"
             maxlength="1"></ion-input>
@@ -46,7 +46,7 @@
 
 
       <button class="login-btn" ion-button (click)="save()">
-          Send OTP
+          Verify
         </button>
 
         <div class="frmone">
@@ -57,9 +57,9 @@
               <button (click) = "resendotp()">
                   Resend Otp
                 </button>
-        
-  
-  
+
+
+
         </div>
       </div>
     </div>

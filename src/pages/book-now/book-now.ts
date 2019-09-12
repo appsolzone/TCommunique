@@ -52,10 +52,13 @@ export class BookNowPage {
   book_enddate:any;
   book_days:any;
   book_email:any;
+  uId:any;
 
   constructor(public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.pkgId=navParams.get('pkgId');
+    this.uId = navParams.get('uId');
     this.package_details = navParams.get('package_details');
+
 
     console.log("pkgId",this.pkgId);
     console.log("package_details",this.package_details);
@@ -97,6 +100,7 @@ export class BookNowPage {
       postData.append('email',this.book_email);
       postData.append('phone',this.book_phone);
       postData.append('totalPrice',this.book_price);
+      postData.append('uId',this.uId);
 
       this.data = this.http.post(url,postData);
       this.data.subscribe(data =>{

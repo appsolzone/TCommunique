@@ -111,7 +111,7 @@ export class SignInPage implements OnInit{
         content: 'Please wait...',
         dismissOnPageChange: true
       });
-      // this.loading.present();
+      this.loading.present();
       var url =this.constant.login;
       let postData = new FormData();
       postData.append('username',this.user_email);
@@ -121,6 +121,7 @@ export class SignInPage implements OnInit{
       this.data = this.http.post(url,postData);
       this.data.subscribe(data =>{
 
+        this.loading.dismiss();
         console.log("SignIn_Page",(JSON.stringify(data.json().username)));
         if(data.json().status=="200"){
               this.storage.set('user_login_data',data.json());
@@ -128,7 +129,7 @@ export class SignInPage implements OnInit{
               this.userprovider.put_user_name(data.json().username);
 
               this.navCtrl.setRoot(HomePage);
-              
+
         }else{
 
       let t = this.toastCtrl.create({
