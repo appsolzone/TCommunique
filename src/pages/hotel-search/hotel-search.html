@@ -17,39 +17,92 @@
 
 
     <ion-card class="abc">
-        <span class="spanname">Pricing</span>
-        <ion-range min="500" max="25000" (ionChange)="rangeChange($event)" color="searchbg" pin="true">
-          <ion-label range-left>500</ion-label>
-          <ion-label range-right>25000</ion-label>
-        </ion-range>
+      <div class="abc2">
+          <span class="spanname">Pricing</span>
+          <button  ion-button icon-left round color="light"  menuClose style="float: right;height: 25px">
+              {{defaultvalue}}
+            </button>
+
+
+
+      </div>
+      <div class="abc3">
+        <ion-range min="1000" max="50000" step="500" snaps="true" ticks="false" [(ngModel)]="defaultvalue" (ionChange)="rangeChange($event)" color="searchbg">
+            <ion-label range-left slot="start">1000</ion-label>
+            <ion-label range-right slot="end">50000</ion-label>
+          </ion-range>
+          </div>
       </ion-card  >
 
 
         <ion-grid class="newcard">
-            <ion-card>
+            <ion-card *ngFor="let item of searchData">
                 <ion-card-content class="cardcontent">
             <ion-row align-items-start>
                 <ion-col>
-                    <img src="assets/imgs/lake_como.png" class="offerOutletImg">
+                    <img src="{{item.hotelImg}}" class="offerOutletImg">
+                    <ionic3-star-rating
+                    activeIcon = "ios-star"
+                    defaultIcon = "ios-star-outline"
+                    activeColor = "#ffbf01"
+                    defaultColor = "red"
+                    readonly="false"
+                    [rating]=[item.hotelRating]>
+                   </ionic3-star-rating>
                 </ion-col>
                 <ion-col>
+                  <div class="firstDiv">
+                    <div>
+                        <button *ngIf="default_currency=='INR'" ion-button icon-left round color="light"  menuClose>
+                            <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                            &#8377;{{item.price}}
+                          </button>
+                          <button *ngIf="default_currency=='AUD'" ion-button icon-left round color="light"  menuClose>
+                              <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                              A&#36;{{item.priceAUD}}
+                            </button>
+                            <button *ngIf="default_currency=='CHN'" ion-button icon-left round color="light"  menuClose>
+                                <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                                &#65509;{{item.priceCNH}}
+                              </button>
+                              <button *ngIf="default_currency=='CHF'" ion-button icon-left round color="light"  menuClose>
+                                  <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                                  Fr. {{item.priceCHF}}
+                                </button>
+                                <button *ngIf="default_currency=='CAD'" ion-button icon-left round color="light"  menuClose>
+                                    <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                                    C&#36;{{item.priceCAD}}
+                                  </button>
+                                  <button *ngIf="default_currency=='GBP'" ion-button icon-left round color="light"  menuClose>
+                                      <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                                      &#163;{{item.priceGBP}}
+                                    </button>
+                                    <button *ngIf="default_currency=='JPY'" ion-button icon-left round color="light"  menuClose>
+                                        <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                                        &#165;{{item.priceJPY}}
+                                      </button>
+                                      <button *ngIf="default_currency=='EUR'" ion-button icon-left round color="light"  menuClose>
+                                          <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                                          &#8364;{{item.priceEUR}}
+                                        </button>
+                                        <button *ngIf="default_currency=='USD'" ion-button icon-left round color="light"  menuClose>
+                                            <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
+                                            &#36;{{item.priceUSD}}
+                                          </button>
 
-              <!-- <rating class="rating"[(ngModel)]="rate"
-              readonly="true"
-              small="true"
-              (ngModelChange)="onModelChange($event)">
-              </rating> -->
-                  <span  *ngFor="let level of outletPriceLevel">
-                  <ion-icon ios="ios-star" md="md-star" color="star"></ion-icon>
-                </span>
-                <span  *ngFor="let level of hello">
-                    <ion-icon ios="ios-star-half" md="md-star-half" color="star"></ion-icon>
-                  </span>
+                    </div>
+                  <div>
+                      <button ion-button icon-left round color="light"  menuClose>
+                          <ion-icon ios="ios-locate" md="md-locate"></ion-icon>
+                          {{item.hotelAddress}}
+                        </button>
+                  </div>
+                </div>
+                <div class="secondDiv">
+                    <p>{{item.details}}</p>
 
+                  </div>
                   </ion-col>
-                  <ion-col>
-                      [end] ion-col
-                    </ion-col>
               </ion-row>
               </ion-card-content>
               </ion-card>

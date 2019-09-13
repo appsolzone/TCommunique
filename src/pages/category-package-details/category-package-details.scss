@@ -124,4 +124,18 @@ page-category-package-details {
   margin-top: 0;
 }
 
+.notFavBtn, .favBtn
+{
+
+    background: white;
+    float: right;
+    margin-top: 10px;
+}
+
+.favBtn
+{
+    color: #a00404;
+    opacity: 1;
+}
+
 }

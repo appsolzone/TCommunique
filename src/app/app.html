@@ -88,16 +88,16 @@
                 </button>
 
 
-                    <button menuClose ion-item (click)="openPage(scanner)">
+                    <!-- <button menuClose ion-item (click)="openPage(scanner)">
                       <ion-icon item-left ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon>
                       <span ion-text color="font" class="fw500">Passpor Scanner</span>
-                    </button>
+                    </button> -->
 
-                    <button menuClose ion-item (click)="openPage(myexperience)">
+                    <button *ngIf="login_status" menuClose ion-item (click)="openPage(myexperience)">
                         <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon>
                         <span ion-text color="font" class="fw500">My Experience</span>
                       </button>
-                      <button menuClose ion-item (click)="openPage(mydocuments)">
+                      <button *ngIf="login_status" menuClose ion-item (click)="openPage(mydocuments)">
                           <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon>
                           <span ion-text color="font" class="fw500">My Documents</span>
                         </button>

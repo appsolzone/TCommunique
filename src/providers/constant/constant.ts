@@ -39,6 +39,9 @@ export class ConstantProvider {
   public bannerImages="https://appsolzone.com/aszdev/tcApi/banner/bannerImages.php";
   public getCatList="https://appsolzone.com/aszdev/tcApi/category/getCatList.php";
   public trendingDest="https://appsolzone.com/aszdev/tcApi/trending/trendingDest.php";
+  public viewDoc="https://appsolzone.com/aszdev/tcApi/uploadDoc/viewDoc.php";
+  public hotelsearch = "https://appsolzone.com/aszdev/tcApi/search/hotelSearch.php";
+  public viewWishList="https://appsolzone.com/aszdev/tcApi/wishlist/viewWishList.php";
 
 
 

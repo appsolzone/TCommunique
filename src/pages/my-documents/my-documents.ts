@@ -32,6 +32,7 @@ export class MyDocumentsPage {
   selectedImage:any;
   encoded_img:any;
   public img_status = false;
+  allmyDoc:any;
 
 
   constructor(public toastCtrl:ToastController,private storage: Storage,public actionSheetCtrl:ActionSheetController,public navCtrl: NavController, public navParams: NavParams,public camera:Camera,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
@@ -39,6 +40,7 @@ export class MyDocumentsPage {
     storage.get('user_login_data').then((val) => {
       console.log('user_login_data', val);
       this.uId = val.uId;
+      this.getMyDocuments(this.uId);
     });
   }
 
@@ -104,7 +106,7 @@ export class MyDocumentsPage {
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
        this.loading.dismiss();
-
+       this.getMyDocuments(this.uId);
       console.log("GET_DATA",(JSON.stringify(data.json())));
 
       let t = this.toastCtrl.create({
@@ -121,6 +123,28 @@ export class MyDocumentsPage {
 
     });
 
+  }
+
+  getMyDocuments(u_Id){
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+    var url =this.constant.viewDoc;
+    let postData = new FormData();
+
+    console.log("uId",u_Id);
+    postData.append('uId',u_Id);
+
+    this.data = this.http.post(url,postData);
+    this.data.subscribe(data =>{
+
+      this.loading.dismiss();
+      console.log("allmyDoc",(JSON.stringify(data.json())));
+      this.allmyDoc = data.json().data;
+
+    });
   }
 
 }

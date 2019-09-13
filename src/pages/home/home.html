@@ -95,7 +95,7 @@
 
 
 
-                  <div class="mdlsecscrl">
+                  <div class="mdlsecscrl" *ngIf="trendingDest_international">
                       <img class="mdlsecimg" src="assets/imgs/lake_como.png" alt="#" style="width: 100%; height: 219px;">
                       <div class="mdlsec-ext">
                         <p class=boxpsec>TRENDING DESTINATION</p>
@@ -109,7 +109,18 @@
                                       <img src="{{data.destinationImg}}">
                                       <div class="inner-txts">
                                           <h4>{{data.destinationName}}</h4>
-                                          <!-- <p>Starting<span>$100</span></p> -->
+                                          <p>Starting
+                                              <span class="price" *ngIf="default_currency=='INR'">&#8377;{{data.startingPrice}}</span>
+                                              <span class="price" *ngIf="default_currency=='USD'">&#36;{{data.priceUSD}}</span>
+                                                <span class="price" *ngIf="default_currency=='EUR'">&#8364;{{data.priceEUR}}</span>
+                                                  <span class="price" *ngIf="default_currency=='JPY'">&#165;{{data.priceJPY}}</span>
+                                                    <span class="price" *ngIf="default_currency=='GBP'">&#163;{{data.priceGBP}}</span>
+                                                      <span class="price" *ngIf="default_currency=='CAD'">C&#36;{{data.priceCAD}}</span>
+                                                        <span class="price" *ngIf="default_currency=='CHF'">Fr.{{data.priceCHF}}</span>
+                                                          <span class="price" *ngIf="default_currency=='CNH'">&#65509;{{data.priceCNH}}</span>
+                                                            <span class="price" *ngIf="default_currency=='AUD'">A&#36;{{data.priceAUD}}</span>
+
+                                          </p>
                                        </div>
                                   </ion-card-content>
                                 </ion-card>
@@ -193,7 +204,7 @@
                   </div>
 
                   <!--change-->
-                  <div class="mdlsecscrl">
+                  <div class="mdlsecscrl" *ngIf="trendingDest_domestic">
                       <img class="mdlsecimg" src="assets/imgs/lake_como.png" alt="#" style="width: 100%; height: 219px;">
                       <div class="mdlsec-ext">
                         <p class=boxpsec>TRENDING DESTINATION</p>
@@ -207,7 +218,17 @@
                                       <img src="{{data.destinationImg}}">
                                       <div class="inner-txts">
                                           <h4>{{data.destinationName}}</h4>
-                                          <!-- <p>Starting<span>$100</span></p> -->
+                                          <p>Starting
+                                              <span class="price" *ngIf="default_currency=='INR'">&#8377;{{data.startingPrice}}</span>
+                                                <span class="price" *ngIf="default_currency=='USD'">&#36;{{data.priceUSD}}</span>
+                                                  <span class="price" *ngIf="default_currency=='EUR'">&#8364;{{data.priceEUR}}</span>
+                                                    <span class="price" *ngIf="default_currency=='JPY'">&#165;{{data.priceJPY}}</span>
+                                                      <span class="price" *ngIf="default_currency=='GBP'">&#163;{{data.priceGBP}}</span>
+                                                        <span class="price" *ngIf="default_currency=='CAD'">C&#36;{{data.priceCAD}}</span>
+                                                          <span class="price" *ngIf="default_currency=='CHF'">Fr.{{data.priceCHF}}</span>
+                                                            <span class="price" *ngIf="default_currency=='CNH'">&#65509;{{data.priceCNH}}</span>
+                                                              <span class="price" *ngIf="default_currency=='AUD'">A&#36;{{data.priceAUD}}</span>
+                                          </p>
                                        </div>
                                   </ion-card-content>
                                 </ion-card>

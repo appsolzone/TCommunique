@@ -55,6 +55,11 @@ export class CategoryPackageDetailsPage {
   startingpriceJPY:any;
   startingpriceUSD:any;
   userReview:any;
+  isFav:boolean=false;
+  uId:any;
+
+  getWishlistData:any;
+
 
   constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.searchDetails = navParams.get('Details');
@@ -62,6 +67,12 @@ export class CategoryPackageDetailsPage {
     this.catId=navParams.get('catId');
     this.tourType=navParams.get('tourType');
     this.destId = navParams.get('destId');
+
+    storage.get('user_login_data').then((val) => {
+      console.log('user_login_data', val);
+      this.uId = val.uId;
+      this.viewWishlist(this.uId);
+    });
 
     this.storage.get('currency').then((val)=>{
 
@@ -180,6 +191,29 @@ export class CategoryPackageDetailsPage {
     this.data.subscribe(data =>{
       this.userReview = data.json().data;
       this.loading.dismiss();
+    });
+
+  }
+
+  setUserFav(){
+
+  }
+
+  viewWishlist(u_id){
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    // this.loading.present();
+    var url =this.constant.viewWishList;
+    let postData = new FormData();
+    postData.append('uId',u_id);
+    this.data = this.http.post(url,postData);
+    this.data.subscribe(data =>{
+      console.log("getWishlistData",data);
+      this.getWishlistData = data.json().data;
+      // this.loading.dismiss();
     });
 
   }

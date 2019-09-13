@@ -48,7 +48,12 @@
 
               <ion-card-content>
                   <div class="bxtxt">
-                  <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
+                      <ion-icon class="favBtn" ios="ios-heart" md="md-heart" (click)="setUserFav()"></ion-icon>
+
+                  <!-- <div class="xyz" *ngFor="let item of getWishlistData">
+                      <ion-icon class="notFavBtn"ios="ios-heart" md="md-heart" *ngIf="item.pkgId != data.pkgId" (click)="setUserFav()"></ion-icon>
+                      <ion-icon class="favBtn" ios="ios-heart" md="md-heart"  *ngIf="item.pkgId == data.pkgId"  (click)="setUserFav()"></ion-icon>
+                  </div> -->
 
                   <p>Starting Budget </p>
                       <p *ngIf="default_currency=='INR'"><span>&#8377;{{data.startingPrice}}</span>/Persion

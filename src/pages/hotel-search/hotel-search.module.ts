@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HotelSearchPage } from './hotel-search';
-import { IonicRatingModule } from "ionic-rating";
+import { StarRatingModule } from 'ionic3-star-rating';
 
 
 
@@ -10,7 +10,7 @@ import { IonicRatingModule } from "ionic-rating";
     HotelSearchPage,
   ],
   imports: [
-    IonicRatingModule,
+    StarRatingModule,
     IonicPageModule.forChild(HotelSearchPage),
   ],
 })

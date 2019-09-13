@@ -53,4 +53,32 @@ page-hotel-search {
       font-size: 1.4rem;
       line-height: 1.5;
 }
+.abc2{
+  height: 40px;
+}
+.firstDiv {
+  position: relative;
+  clear: both;
+  display: table;
+  width: 100%;
+}
+.scroll-content{
+  padding: 0 !important;
+}
+.button-round-md {
+  border-radius: 4px;
+  padding: 0;
+}
+.button-md {
+  font-size: 11px;
+  padding: 2px 8px;
+}
+.firstDiv {
+  text-align: right;
+}
+.secondDiv p {
+  text-align: right;
+  font-size: 16px;
+  text-transform: capitalize;
+}
 }

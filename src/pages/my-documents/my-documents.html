@@ -34,4 +34,11 @@
       </div>
     </div>
 
+    <div class="cardstyle" *ngFor="let data of allmyDoc">
+      <p style="margin-left: 10px;text-align: center;color: #fff;font-weight: 600;">{{data.docTitle}}</p>
+      <img src="{{data.docLink}}" style="width: 100%;height: 120px;border-radius: 7px 7px 7px 7px;">
+   </div>
+
+
+
 </ion-content>
