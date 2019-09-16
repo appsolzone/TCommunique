@@ -5,7 +5,7 @@
           <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
         </button>
       <ion-title>
-        <span ion-text class="fw700">Quote Preference</span>
+        <span ion-text class="fw700">Plan My Holiday</span>
       </ion-title>
 
       <ion-buttons end>
@@ -19,6 +19,8 @@
 </ion-header>
 
 <ion-content >
+
+
   <form [formGroup]="searchit">
 
 <div class="all">
@@ -33,9 +35,28 @@
 
 
 <div style = "position: relative;">
-     <ion-input placeholder="Search" class="xz"[(ngModel)]="inp1" formControlName="finp" name="finp"></ion-input>
-     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('finp').touched && searchit.get('finp').hasError('required')">Departure place is required</p>
-     <img   src="../../assets/imgs/search.png" class="imgk"  (click)="inp()" >
+
+    <ion-searchbar
+    class="xz"
+    [formControl]="searchControl"
+    (ionChange)="onSearchInput()"
+    placeholder="Search"
+    [showCancelButton]="true"
+    [(ngModel)]="departure">
+  </ion-searchbar>
+
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="showlist">
+    <ion-item *ngFor="let item of items" (click)="selectdeparture(item)">
+      {{ item.NAME }}
+    </ion-item>
+  </ion-list>
+     <!-- <ion-input placeholder="Search" class="xz"[(ngModel)]="inp1" formControlName="finp" name="finp"></ion-input> -->
+     <!-- <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('finp').touched && searchit.get('finp').hasError('required')">Departure place is required</p> -->
+     <img   src="../../assets/imgs/search.png" class="imgk">
      <ion-item>
         <ion-label>I am exploring Destinations</ion-label>
       <ion-checkbox></ion-checkbox>
@@ -52,8 +73,27 @@
 
   <div style = "position: relative;">
 
-     <ion-input placeholder="Search" class="xz" formControlName="sinp" name="sinp" [(ngModel)]="inp2"></ion-input>
-     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('sinp').touched && searchit.get('sinp').hasError('required')">Destination place is required</p>
+      <ion-searchbar
+      class="xz"
+      [formControl]="searchControlnew"
+      (ionChange)="onSearchInput2()"
+      placeholder="Search"
+      [showCancelButton]="true"
+      [(ngModel)]="destination">
+    </ion-searchbar>
+
+    <div *ngIf="searching1" class="spinner-container">
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <ion-list *ngIf="showlist2">
+      <ion-item *ngFor="let item of items2" (click)="selectdestination(item)">
+        {{ item.NAME }}
+      </ion-item>
+    </ion-list>
+
+     <!-- <ion-input placeholder="Search" class="xz" formControlName="sinp" name="sinp" [(ngModel)]="inp2"></ion-input>
+     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('sinp').touched && searchit.get('sinp').hasError('required')">Destination place is required</p> -->
 
      <img src="../../assets/imgs/search.png" class="imgk">
   </div>
@@ -95,13 +135,8 @@
 
      </div>
    <ion-row>
-     <ion-col col-3>
-        <ion-select>
-            <ion-option *ngFor="let data of std" [value]="data" (ionSelect)="selectEmployee(data)">{{data}}</ion-option>
-        </ion-select>
-     </ion-col>
-     <ion-col col-9>
-        <ion-input formControlName="mob"></ion-input>
+     <ion-col >
+        <ion-input formControlName="mob" [(ngModel)]="phoneno"></ion-input>
       </ion-col>
      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('mob').touched && searchit.get('mob').hasError('required')">Mobile no is needed</p>
 
@@ -126,7 +161,7 @@
 </ion-content>
 <ion-footer style="height: 50px; background: #0e6262;">
   <ion-toolbar position="bottom">
-    <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
+    <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="SaveRequest()">
       <p style="text-align: center;">GET CUSTOMISED QUOTE </p>
     </button>
 

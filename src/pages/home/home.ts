@@ -15,6 +15,7 @@ import {VideoProvider} from '../../providers/video/video';
 import { FilterPage } from '../../pages/filter/filter';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { SignInPage } from '../../pages/sign-in/sign-in';
 
 
 
@@ -48,6 +49,8 @@ export class HomePage {
   trendingDest_domestic:any;
   trendingDest_international:any;
   default_currency:any;
+  login_status:any;
+  uId:any;
 
 
 
@@ -59,11 +62,12 @@ export class HomePage {
     this.icons = "INTERNATIONAL";
 
     this.storage.get('currency').then((val)=>{
-
+      console.log("VAL11",val);
       if(val==null){
         this.default_currency = "INR";
 
       }else{
+        console.log("VAL22",val);
         this.default_currency = val.name;
         console.log("VAL)))",this.default_currency);
 
@@ -71,6 +75,21 @@ export class HomePage {
       }
 
     });
+
+    this.storage.get('user_login_data').then((val)=>{
+      console.log("hsh",val);
+      if(val==null)
+      {
+        this.login_status = false;
+      }
+      else
+      {
+      this.uId = val.uId;
+      this.login_status=true;
+
+      }
+
+      })
     this.networkCheck();
 
 
@@ -207,7 +226,13 @@ export class HomePage {
     }, 2000);
   }
   plan_my_holiday(){
-    this.navCtrl.push(QuotePreferencePage);
+
+    if(this.login_status){
+
+      this.navCtrl.push(QuotePreferencePage);
+    }else{
+      this.navCtrl.push(SignInPage);
+    }
   }
   callNumber_ph(){
     this.callNumber.callNumber(this.emergency_number, true)

@@ -10,6 +10,8 @@ import { CustomizePackagePage } from '../../pages/customize-package/customize-pa
 import { PackageDetailsPage } from '../../pages/package-details/package-details';
 import { FilterPage } from '../../pages/filter/filter';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 
 
@@ -216,6 +218,10 @@ export class CategoryPackageDetailsPage {
       // this.loading.dismiss();
     });
 
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

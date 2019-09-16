@@ -55,6 +55,7 @@ import {NativeAudio} from "@ionic-native/native-audio";
 import { OtpVarificationPageModule } from '../pages/otp-varification/otp-varification.module';
 import { UserProvider } from '../providers/user/user';
 import { FilterDataPageModule } from '../pages/filter-data/filter-data.module';
+import { MyWishListPageModule } from '../pages/my-wish-list/my-wish-list.module';
 
 
 
@@ -103,6 +104,7 @@ import { FilterDataPageModule } from '../pages/filter-data/filter-data.module';
     MyDocumentsPageModule,
     OtpVarificationPageModule,
     VideoCallPageModule,
+    MyWishListPageModule,
     FilterDataPageModule,
     BrowserModule,
     HttpClientModule,

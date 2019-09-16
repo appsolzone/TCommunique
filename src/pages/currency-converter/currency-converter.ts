@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
 
 
 /**
@@ -31,26 +32,27 @@ export class CurrencyConverterPage {
     ];
     set_default_currency:any;
     selected_currency:any;
-  
+
 
   constructor(public toastCtrl:ToastController,public storage:Storage,public navCtrl: NavController, public navParams: NavParams) {
 
-   
+
 
     this.storage.get('currency').then((val)=>{
 
       if(val==null){
 
         this.set_default_currency = [this.currency[0]];
-        this.selected_currency = [this.currency[0]];
+        this.selected_currency = this.currency[0];
         console.log("set_default_currency",this.set_default_currency);
+
 
 
       }else{
 
         this.set_default_currency = [this.currency[val.id]];
         console.log("VAL",this.set_default_currency);
-       this.selected_currency = [this.currency[0]];
+       this.selected_currency = this.currency[0];
       }
 
     });
@@ -76,6 +78,7 @@ export class CurrencyConverterPage {
       clearTimeout(timeoutHandle);
     });
     t.present();
+    this.navCtrl.setRoot(HomePage);
 
   }
 

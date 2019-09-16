@@ -10,32 +10,30 @@ import { CustomizePackagePage } from '../../pages/customize-package/customize-pa
 import { PackageDetailsPage } from '../../pages/package-details/package-details';
 import { FilterPage } from '../../pages/filter/filter';
 import { Storage } from '@ionic/storage';
-import { HomePage } from '../../pages/home/home';
-
-
 /**
- * Generated class for the FilterDataPage page.
+ * Generated class for the MyWishListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-@IonicPage()
-@Component({
-  selector: 'page-filter-data',
-  templateUrl: 'filter-data.html',
+@IonicPage({
+  name: 'page-my-wish-list',
+  segment: 'page-my-wish-list',
 })
-export class FilterDataPage {
-
-  tourType:any;
-  filterData:any;
+@Component({
+  selector: 'page-my-wish-list',
+  templateUrl: 'my-wish-list.html',
+})
+export class MyWishListPage {
+  uId:any;
   default_currency:any;
-
-
+  loading:Loading;
+  data:Observable<any>;
+  wishlistData:any
 
   constructor(public navCtrl: NavController,public storage:Storage, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
-    this.tourType=navParams.get('tourType');
-    this.filterData=navParams.get('filterData');
+
 
     this.storage.get('currency').then((val)=>{
 
@@ -50,20 +48,44 @@ export class FilterDataPage {
       }
 
     });
-
+    storage.get('user_login_data').then((val) => {
+      console.log('user_login_data', val);
+      this.uId = val.uId;
+      this.get_WishList(this.uId);
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FilterDataPage');
+    console.log('ionViewDidLoad MyWishListPage');
+  }
+
+  get_WishList(u_Id){
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    // this.loading.present();
+    var url =this.constant.viewWishList;
+    let postData = new FormData();
+
+    console.log("uId",u_Id);
+    postData.append('uId',u_Id);
+
+    this.data = this.http.post(url,postData);
+    this.data.subscribe(data =>{
+
+      console.log("WishList",(JSON.stringify(data.json())));
+      this.wishlistData = data.json().data;
+
+    });
+
   }
 
   goclick(pkgId){
+    console.log("Data",pkgId);
     this.navCtrl.push(PackageDetailsPage,{pkgId:pkgId});
 
-  }
-
-  home(){
-    this.navCtrl.setRoot(HomePage);
   }
 
 }

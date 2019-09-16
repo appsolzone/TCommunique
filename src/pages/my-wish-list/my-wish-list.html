@@ -1,0 +1,99 @@
+<ion-header>
+
+    <ion-navbar color="searchbg">
+        <button ion-button menuToggle>
+            <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+          </button>
+        <ion-title>
+          <span ion-text class="fw700">My WishList</span>
+        </ion-title>
+      </ion-navbar>
+
+
+  </ion-header>
+
+  <ion-content>
+
+              <ion-card class="cardBody" *ngFor="let data of wishlistData; let idx = index" (click)="goclick(data.pkgId)">
+
+                  <ion-card-header class="cardHeader">
+                    <p style=" color: white; font-size: 14px;">{{data.pkgTitle}}<span>{{data.duration}}</span></p>
+                  </ion-card-header>
+
+                  <ion-card-content>
+                      <div class="bxtxt">
+                      <ion-icon ios="ios-heart" md="md-heart" style="float: right; margin-top: 10px;"></ion-icon>
+
+                      <p>Starting Budget </p>
+                          <p *ngIf="default_currency=='INR'"><span>&#8377;{{data.startingPrice}}</span>/Persion
+                         </p>
+                         <p *ngIf="default_currency=='USD'"> <span>&#36;{{data.priceUSD}}</span>/Persion
+                           </p>
+                          <p *ngIf="default_currency=='EUR'"><span>&#8364;{{data.priceEUR}}</span>/Persion
+                             </p>
+                           <p *ngIf="default_currency=='JPY'"><span>&#165;{{data.priceJPY}}</span>/Persion
+                               </p>
+                            <p *ngIf="default_currency=='GBP'"><span>&#163;{{data.priceGBP}}</span>/Persion
+                                 </p>
+                              <p *ngIf="default_currency=='AUD'"><span>A&#36;{{data.priceAUD}}</span>/Persion
+                                   </p>
+                           <p *ngIf="default_currency=='CAD'"><span>C&#36;{{data.priceCAD}}</span>/Persion
+                                     </p>
+                           <p *ngIf="default_currency=='CHF'"><span>Fr. {{data.priceCHF}}</span>/Persion
+                                       </p>
+                              <p *ngIf="default_currency=='CNH'"> <span>&#65509;{{data.priceCNH}}</span>/Persion
+                                         </p>
+
+
+
+
+                      </div>
+
+
+                      <ion-row>
+                        <ion-col col-2 *ngIf="data.flight ==='yes'">
+                          <div class="changedb">
+                              <ion-icon ios="ios-plane" md="md-plane" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+
+                          </div>
+                          <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Flight</p>
+                      </ion-col>
+                      <ion-col col-2 *ngIf="data.cab ==='yes'">
+                          <div class="changedb">
+                            <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+                            </div>
+                            <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Cab</p>
+                      </ion-col>
+                      <ion-col col-2 *ngIf="data.hotel ==='yes'">
+                          <div class="changedb">
+                            <ion-icon ios="ios-home" md="md-home"
+                            style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
+                            </div>
+                            <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">{{data.hotelRating}}</p>
+                      </ion-col>
+                      <ion-col col-2 *ngIf="data.meal ==='yes'">
+                          <div class="changedb">
+                            <ion-icon ios="ios-pizza" md="md-pizza"
+                            style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+                            </div>
+                            <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Meals</p>
+                      </ion-col>
+                      <ion-col col-2 *ngIf="data.sightSeeing ==='yes'">
+                          <div class="changedb">
+                              <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+                            </div>
+                            <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Sight Seeing</p>
+                      </ion-col>
+                      <ion-col col-2 *ngIf="data.other ==='yes'">
+                        <div class="changedb">
+                            <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
+                          </div>
+                          <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Other</p>
+                    </ion-col>
+                      </ion-row>
+
+                  </ion-card-content>
+
+                </ion-card>
+
+  </ion-content>

@@ -9,6 +9,8 @@ import 'rxjs/add/observable/interval';
 import { Network } from '@ionic-native/network';
 import { Storage } from '@ionic/storage';
 import { FilterDataPage } from '../../pages/filter-data/filter-data';
+import { HomePage } from '../../pages/home/home';
+
 /**
  * Generated class for the FilterPage page.
  *
@@ -200,6 +202,10 @@ export class FilterPage {
     else{
       this.selectedMonth= this.selectedMonth.filter(name=>name.id!=id)
      }
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

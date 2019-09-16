@@ -47,6 +47,7 @@ import { MyDocumentsPage } from '../pages/my-documents/my-documents';
 import { VideoCallPage } from '../pages/video-call/video-call';
 import { OtpVarificationPage} from '../pages/otp-varification/otp-varification';
 import { UserProvider } from '../providers/user/user';
+import { MyWishListPage } from '../pages/my-wish-list/my-wish-list';
 
 
 
@@ -59,7 +60,7 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     rootPage:any = HomePage;
-    // rootPage = CurrencyConverterPage;
+    // rootPage = MyWishListPage;
 
     homeItem: any;
     initialItem: any;
@@ -80,6 +81,7 @@ export class TCommuniqueApp {
     public login_status = false;
     user_img:any;
     username:any;
+    mywishlist:any;
 
 
 
@@ -145,7 +147,7 @@ export class TCommuniqueApp {
   events.subscribe('user:login', () => {
     console.log("logged in");
     this.storage.get('user_login_data').then((val)=>{
-   
+
     console.log("hsh",val);
     if(val==null)
     {
@@ -159,7 +161,7 @@ export class TCommuniqueApp {
     this.username=val.username;
     console.log("username",this.username);
     }
-    
+
     })
     });
 
@@ -185,6 +187,7 @@ export class TCommuniqueApp {
         this.mydocuments = { component:'page-my-documents'};
         this.carBooking = { component:'page-car-booking'};
         this.signinItem = { component: 'page-sign-in' };
+        this.mywishlist = { component: 'page-my-wish-list' };
 
 
 

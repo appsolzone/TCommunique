@@ -8,6 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
+import {HomePage} from '../../pages/home/home';
 
 
 
@@ -106,6 +107,10 @@ export class CategoryPage {
     this.destination_details = data.data;
 
 
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

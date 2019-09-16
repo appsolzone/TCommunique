@@ -10,6 +10,7 @@ import 'rxjs/add/observable/interval';
 import { BookNowPage } from '../../pages/book-now/book-now';
 import { Storage } from '@ionic/storage';
 import { SignInPage } from '../../pages/sign-in/sign-in';
+import { HomePage } from '../../pages/home/home';
 
 
 
@@ -64,6 +65,7 @@ export class PackageDetailsPage {
   default_currency:any;
   login_status:any;
   uId:any;
+  userReview:any;
   constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.pkgId=navParams.get('pkgId');
 
@@ -77,9 +79,9 @@ export class PackageDetailsPage {
       {
       this.uId = val.uId;
       this.login_status=true;
-      
+
       }
-      
+
       })
 
     this.storage.get('currency').then((val)=>{
@@ -96,6 +98,7 @@ export class PackageDetailsPage {
 
     });
     this.getPackageDetails(this.pkgId);
+    this.get_UserReview();
   }
 
   ionViewDidLoad() {
@@ -180,5 +183,24 @@ export class PackageDetailsPage {
   goclick(id)
       {
         this.navCtrl.push(PackageDetailsPage,{pkgId:id});
+      }
+
+      get_UserReview(){
+        this.loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          dismissOnPageChange: true
+        });
+        this.loading.present();
+        var url =this.constant.fetch_user_review;
+        this.data = this.http.get(url);
+        this.data.subscribe(data =>{
+          this.userReview = data.json().data;
+          this.loading.dismiss();
+        });
+
+      }
+
+      home(){
+        this.navCtrl.setRoot(HomePage);
       }
 }

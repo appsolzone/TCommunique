@@ -10,6 +10,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 
 
@@ -90,6 +92,10 @@ export class HotelSearchPage {
       this.searchData = data.json().data;
 
     });
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 

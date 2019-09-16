@@ -7,6 +7,11 @@
       <ion-title>
         <span ion-text class="fw700">Package Details</span>
       </ion-title>
+      <ion-buttons end>
+          <button ion-button class="blinking_button" (click)="home()">
+              <ion-icon ios="ios-home" md="md-home"></ion-icon>
+          </button>
+      </ion-buttons>
     </ion-navbar>
 
 
@@ -140,6 +145,50 @@
               </div>
 
             </div>
+
+
+            <div class="xyab">
+                <p style="margin-left: 11px; font-size: 20px;">USER REVIEW</p>
+            <ion-slides pager class="cardBody1">
+                <ion-slide *ngFor="let data of userReview; let idx = index">
+            <ion-card class="cardBody" >
+
+                <ion-card-content>
+
+                  <ion-row>
+                    <ion-col col-4><img src="{{data.profImg}}" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
+                    <ion-col col-8>
+                        <div>
+                          <P style="margin-left: 4px;">{{data.comment}}</P>
+                            <ion-row style=" font-size: 6px;">
+                              <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
+                              <ion-col col-5>{{data.fName}}{{data.lName}}</ion-col>
+                              <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
+                              <ion-col col-5>{{data.date}}</ion-col>
+                            </ion-row>
+                            <!-- <img src="assets/imgs/rating.png" style="height: 10px; width: 50px; margin-left: 4px;"> -->
+                            <ionic3-star-rating
+                              activeIcon = "ios-star"
+                              defaultIcon = "ios-star-outline"
+                              activeColor = "#ffbf01"
+                              defaultColor = "red"
+                              readonly="false"
+                              [rating]=[data.rating]>
+                            </ionic3-star-rating>
+                          </div>
+
+                    </ion-col>
+                  </ion-row>
+
+                  <p style="margin-left: 20px; font-size: 10px;">{{data.comment}}</p>
+                  <P style="color: red; float: right; margin-top: 5px;">read more..</P>
+
+                </ion-card-content>
+
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+        </div>
 
             <div>
               <p style="margin-left: 11px; font-size: 20px;">SIMILAR PACKAGES</p>

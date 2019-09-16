@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+
 
 /*
   Generated class for the ConstantProvider provider.
@@ -9,6 +12,9 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class ConstantProvider {
+  public items: any = [];
+  data:Observable<any>;
+
 
   public get_category_list='https://appsolzone.com/aszdev/tcApi/category/categoryList.php';
   public get_destinationByCat="https://appsolzone.com/aszdev/tcApi/category/destinationByCat.php";
@@ -42,11 +48,41 @@ export class ConstantProvider {
   public viewDoc="https://appsolzone.com/aszdev/tcApi/uploadDoc/viewDoc.php";
   public hotelsearch = "https://appsolzone.com/aszdev/tcApi/search/hotelSearch.php";
   public viewWishList="https://appsolzone.com/aszdev/tcApi/wishlist/viewWishList.php";
+  public planMyHoliday="https://appsolzone.com/aszdev/tcApi/planHoliday/planMyHoliday.php";
 
 
 
-  constructor(public http: HttpClient) {
+  constructor(public httpClient: HttpClient,) {
     console.log('Hello ConstantProvider Provider');
+    this.getBusList();
   }
+
+
+  getBusList(){
+
+    // return this.httpClient.get('assets/json/Bus_List.json').toPromise()
+    this.data = this.httpClient.get('assets/json/Bus_List.json');
+    this.data.subscribe(data =>{
+      this.items = data;
+    });
+        }
+
+        filterItems(searchTerm) {
+
+            console.log("THIS>ITEM",this.items);
+            return this.items.filter(item => {
+              return item.NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+            });
+
+        }
+        filterItems2(searchTerm) {
+
+          console.log("THIS>ITEM",this.items);
+          return this.items.filter(item => {
+            return item.NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+          });
+
+      }
+
 
 }
