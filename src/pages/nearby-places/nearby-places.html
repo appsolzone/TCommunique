@@ -5,16 +5,18 @@
       <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
     </button>
       <ion-title>
-        <span ion-text class="fw700">Nearby Places</span>
+        <span ion-text class="fw700">Nearby Restaurant</span>
       </ion-title>
     </ion-navbar>
 
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 <div #map id="map"></div>
-<ion-item>
+
+
+<!-- <ion-item>
 <ion-label>Select Place</ion-label>
   <ion-select [(ngModel)]="isType" (ionChange)="nearbyPlace()">
   <ion-option value="">Select</ion-option>
@@ -29,10 +31,10 @@
     <ion-option value="police">Police Station</ion-option>
     <ion-option value="zoo">Zoo</ion-option>
   </ion-select>
-</ion-item>
+</ion-item> -->
 
-<ion-item>
-<ion-label>Select Distance</ion-label>
+<!-- <ion-item>
+ <ion-label>Select Distance</ion-label>
   <ion-select [(ngModel)]="isKM" (ionChange)="nearbyPlace()">
   <ion-option value="500">Select</ion-option>
       <ion-option value="2000">2 KM</ion-option>
@@ -40,7 +42,7 @@
       <ion-option value="6000">6 KM</ion-option>
       <ion-option value="8000">8 KM</ion-option>
   </ion-select>
-</ion-item>
+</ion-item> -->
 
 
 
@@ -48,54 +50,27 @@
 
     <div *ngFor="let data of arraySource">
     <ion-row style="background: white; margin-bottom: 5px;">
-    <!-- <ion-col col-6 style="height: 130px;" *ngIf="data.photos[0]">
-    <img src="{{data.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})}}" class="img">
-    </ion-col> -->
     <ion-col col-6 style="height: 130px;">
         <img src="{{data.photo}}" class="img">
         </ion-col>
-    <ion-col col-6 style="height: 130px;">
-    <p style="position: absolute; top: -8px;">{{data.name}}</p>
+    <ion-col col-6 style="height: 130px; position: relative;">
+        <div *ngIf="data.rating"><p class="rat">{{data.rating}}</p>
+            </div>
+        <p class="bname">{{data.name}}</p>
+       <!-- <p style="margin-top: -6px; font-size: 10px;">{{data.loc}}</p> -->
 
-    <ion-row>
-    <ion-col col-6></ion-col>
-    <ion-col col-6 *ngIf="data.rating">
-    <p style=" font-size: 11px; float: right;">{{data.rating}}</p>
-    </ion-col>
-    </ion-row>
+       <div (click)="f1(data)" class="btndir">
+        <ion-icon ios="ios-call" md="md-call"
+        style="height: 16px;
+       width: 16px;
+       margin-left: 10px;
+       margin-top: 5px;"></ion-icon>
+       </div>
 
-    <p style="margin-top: -6px; font-size: 10px;">{{data.loc}}</p>
+    
 
-    <ion-row style="position: absolute; width: 100%; bottom: 0px; left: 0px;">
-    <ion-col col-6>
-    <div (click)="f1(data)" style="background: darkcyan;
-    height: 25px;
-    border-radius: 11px;
-    margin-top: -10px;">
-    <img src="assets/imgs/call.png" style="height: 16px;
-    width: 16px;
-    margin-left: 10px;
-    margin-top: 5px;">
-    <p style="position: absolute;
-    top: -14px;
-    right: 27px;">Ok</p>
-    </div>
-    </ion-col>
-    <ion-col col-6>
-    <div style="background: darkcyan;
-    height: 25px;
-    border-radius: 11px;
-    margin-top: -10px;">
-    <img src="assets/imgs/call.png" style="height: 16px;
-    width: 16px;
-    margin-left: 10px;
-    margin-top: 5px;">
-    <p style="position: absolute;
-    top: -14px;
-    right: 27px;">Ok</p>
-    </div>
-    </ion-col>
-    </ion-row>
+
+
     </ion-col>
     </ion-row>
     </div>

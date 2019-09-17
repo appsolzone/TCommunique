@@ -1,9 +1,8 @@
 import { Component ,NgZone, ElementRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation';
 
 /**
- * Generated class for the NearbyPlacesPage page.
+ * Generated class for the PlacesOfInterestPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,15 +10,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 declare var google;
 
 @IonicPage({
-  name: 'page-nearby-places',
-  segment: 'page-nearby-places',
+  name: 'page-places-of-interest',
+  segment: 'page-places-of-interest',
 })
 @Component({
-  selector: 'page-nearby-places',
-  templateUrl: 'nearby-places.html',
+  selector: 'page-places-of-interest',
+  templateUrl: 'places-of-interest.html',
 })
-
-export class NearbyPlacesPage {
+export class PlacesOfInterestPage {
   @ViewChild('map') mapElement: ElementRef;
 
   map:any;
@@ -27,7 +25,7 @@ export class NearbyPlacesPage {
   markers:any;
   mapOptions:any;
   isKM:any=5000;
-  isType:any="restaurant";
+  isType:any="hospital";
   infowindow: any;
   options = {
     enableHighAccuracy: true,
@@ -109,7 +107,9 @@ export class NearbyPlacesPage {
   }
   /*--------------------Find Nearby Place------------------------*/
 
-  nearbyPlace(){
+  nearbyPlace(data){
+    this.isType = data;
+    console.log("isType DATA",data);
     this.arraySource = [];
     this.arraySource.length = 0;
     this.loadMap();
@@ -166,6 +166,4 @@ export class NearbyPlacesPage {
     console.log("Selected Data",data);
 
   }
-
-
 }

@@ -31,8 +31,16 @@
 
               <div style="margin-top: -15px;">
                 <p style="margin-left: 17px; color: #615d5d;">Starting from</p>
-                <p style="margin-left: 17PX; font-size: 25px; margin-top: -13px; color: #0aae99; font-weight: bold;">{{package_startingPrice}}</p>
-                <p style="margin-top: -48px; margin-left: 85px; color: black;">per person no twin sharing</p>
+                <p class="price" *ngIf="default_currency=='INR'">&#8377;{{package_startingPrice}}</p>
+                <p class="price" *ngIf="default_currency=='USD'">&#36;{{startingpriceUSD}}</p>
+                <p class="price" *ngIf="default_currency=='EUR'">&#8364;{{startingpriceEUR}}</p>
+                <p class="price" *ngIf="default_currency=='JPY'">&#165;{{startingpriceJPY}}</p>
+                <p class="price" *ngIf="default_currency=='GBP'">&#163;{{startingpriceGBP}}</p>
+                <p class="price" *ngIf="default_currency=='CAD'">C&#36;{{startingpriceCAD}}</p>
+                <p class="price" *ngIf="default_currency=='CHF'">Fr.{{startingpriceCHF}}</p>
+                <p class="price" *ngIf="default_currency=='CNH'">&#65509;{{startingpriceCNH}}</p>
+                <p class="price" *ngIf="default_currency=='AUD'">A&#36;{{startingpriceAUD}}</p>
+                <p class="pdetails">per person no twin sharing</p>
               </div>
 
               <ion-row style="width: 90%; margin: auto;">
@@ -87,41 +95,31 @@
               <ion-row style="margin-top: -23px;">
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input type="text" placeholder="Adult" style="margin-left: 10px;" [(ngModel)]="book_adult"></ion-input>
+                        <ion-input type="text" placeholder="Adult" style="margin-left: 10px;" [(ngModel)]="book_adult" (ionChange)="calculate1($event)"></ion-input>
                     </div>
                 </ion-col>
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input placeholder="Child" type="text" style="margin-left: 10px;" [(ngModel)]="book_child"></ion-input>
+                        <ion-input placeholder="Child" type="text" style="margin-left: 10px;" [(ngModel)]="book_child" (ionChange)="calculate2($event)"></ion-input>
                     </div>
                 </ion-col>
                 <ion-col col-4>
                     <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input placeholder="Infant" type="text" style="margin-left: 10px;" [(ngModel)]="book_infant"></ion-input>
+                        <ion-input placeholder="Infant" type="text" style="margin-left: 10px;" [(ngModel)]="book_infant" (ionChange)="calculate3($event)"></ion-input>
                     </div>
                 </ion-col>
               </ion-row>
 
 
-              <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Days & Date</p>
-
-              <ion-row style="margin-top: -23px;">
-                <ion-col col-4>
-                    <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-datetime placeholder="Start Date" displayFormat="MM/DD/YYYY" [(ngModel)]="book_startdate"></ion-datetime>
-                    </div>
-                </ion-col>
-                <ion-col col-4>
-                    <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-datetime placeholder="End Date" displayFormat="MM/DD/YYYY" [(ngModel)]="book_enddate"></ion-datetime>
-                    </div>
-                </ion-col>
-                <ion-col col-4>
-                    <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                        <ion-input placeholder="Total days" type="number" style="margin-left: 10px;" [(ngModel)]="book_days"></ion-input>
-                    </div>
-                </ion-col>
-              </ion-row>
+              <!-- <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Select Start Date</p> -->
+              <div class="sel">
+                <ion-label style="margin-left: 4%; font-size: 18px; color: #4f8894;">Select Start Date</ion-label>
+                  <ion-item>
+                    <ion-select [(ngModel)]="book_startdate">
+                    <ion-option *ngFor="let data of package_startDate">{{data}}</ion-option>
+                  </ion-select>
+                    </ion-item>
+              </div>
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Email</p>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
@@ -134,8 +132,8 @@
               </div>
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Price</p>
-              <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-                  <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="book_price"></ion-input>
+              <div style="background: #7e7e7e; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                  <ion-input type="text" style="margin-left: 10px;" readonly [(ngModel)]="book_price" value="book_price"></ion-input>
               </div>
 
 

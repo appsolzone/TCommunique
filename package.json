@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/android-permissions": "^5.12.0",
     "@ionic-native/barcode-scanner": "^4.20.0",
+    "@ionic-native/calendar": "^4.20.0",
     "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "^3.14.0",
@@ -39,6 +40,7 @@
     "cordova-android": "^8.0.0",
     "cordova-custom-config": "^5.1.0",
     "cordova-plugin-android-permissions": "^1.0.0",
+    "cordova-plugin-calendar": "^5.1.4",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^2.0.2",
@@ -118,7 +120,8 @@
       "cordova-plugin-x-socialsharing": {
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
       },
-      "cordova-plugin-nativeaudio": {}
+      "cordova-plugin-nativeaudio": {},
+      "cordova-plugin-calendar": {}
     },
     "platforms": [
       "android"

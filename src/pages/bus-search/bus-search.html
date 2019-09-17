@@ -27,9 +27,24 @@
 
 
     <div style = "position: relative;">
-         <ion-input placeholder="Search" class="xz"[(ngModel)]="inp1" formControlName="finp" name="finp"></ion-input>
-         <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('finp').touched && searchit.get('finp').hasError('required')">Departure place is required</p>
-         <img   src="../../assets/imgs/search.png" class="imgk"  (click)="inp()" >
+         <ion-searchbar
+         class="xzy"
+         [formControl]="searchControl"
+         (ionChange)="onSearchInput()"
+         placeholder="Search"
+         [showCancelButton]="true"
+         [(ngModel)]="departure">
+       </ion-searchbar>
+     
+       <div *ngIf="searching" class="spinner-container">
+         <ion-spinner></ion-spinner>
+       </div>
+     
+       <ion-list *ngIf="showlist">
+         <ion-item *ngFor="let item of items" (click)="selectdeparture(item)">
+           {{ item.NAME }}
+         </ion-item>
+       </ion-list>
     </div>
 
         </div>
@@ -41,10 +56,24 @@
 
       <div style = "position: relative;">
 
-         <ion-input placeholder="Search" class="xz" formControlName="sinp" name="sinp" [(ngModel)]="inp2"></ion-input>
-         <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('sinp').touched && searchit.get('sinp').hasError('required')">Destination place is required</p>
-
-         <img src="../../assets/imgs/search.png" class="imgk">
+          <ion-searchbar
+          class="xzy"
+          [formControl]="searchControlnew"
+          (ionChange)="onSearchInput2()"
+          placeholder="Search"
+          [showCancelButton]="true"
+          [(ngModel)]="destination">
+        </ion-searchbar>
+    
+        <div *ngIf="searching1" class="spinner-container">
+          <ion-spinner></ion-spinner>
+        </div>
+    
+        <ion-list *ngIf="showlist2">
+          <ion-item *ngFor="let item of items2" (click)="selectdestination(item)">
+            {{ item.NAME }}
+          </ion-item>
+        </ion-list>
       </div>
   </div>
     <div class="margi"  >
@@ -60,14 +89,14 @@
     </ion-item>
     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
 
-      <div class="margi"  >
+      <!-- <div class="margi"  >
           <div style = "position: relative;" >
               <img src="/../assets/imgs/bus.png\" style="height: 30px; width: 30px;position: absolute;top: 0;">
               <ion-label style=" margin: 0 0 12px 38px">Passengers</ion-label>
           </div>
-      </div>
+      </div> -->
 
-    <div class = "layer" style = "display:inline-block;">
+    <!-- <div class = "layer" style = "display:inline-block;">
         <div class = "thre">
             <ul>
                 <li>
@@ -92,16 +121,20 @@
               <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('fifinp').touched && searchit.get('fifinp').hasError('required')">How many child info is required</p>
               <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('siinp').touched && searchit.get('siinp').hasError('required')">How many infants info is required</p>
         </div>
-    </div>
-    <div class="carbbtn" (click)="inp()">
-        <button>book now</button>
-    </div>
-
+    </div> -->
+  
 </div>
 </form>
 
 
-
+<ion-footer style="height: 50px; background:  #0e6262" (click)="SaveRequest()">
+    <ion-toolbar position="bottom">
+      <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
+        <p style="text-align: center;">BOOK NOW</p>
+      </button>
+    
+    </ion-toolbar>
+    </ion-footer>
 
 </ion-content>
 

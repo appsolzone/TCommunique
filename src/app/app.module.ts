@@ -56,6 +56,12 @@ import { OtpVarificationPageModule } from '../pages/otp-varification/otp-varific
 import { UserProvider } from '../providers/user/user';
 import { FilterDataPageModule } from '../pages/filter-data/filter-data.module';
 import { MyWishListPageModule } from '../pages/my-wish-list/my-wish-list.module';
+import { ComponentsExpandableComponent } from "../components/components-expandable/components-expandable";
+import { Calendar } from '@ionic-native/calendar';
+import {PlacesOfInterestPageModule} from '../pages/places-of-interest/places-of-interest.module';
+import { DatePipe } from '@angular/common'
+
+
 
 
 
@@ -137,7 +143,9 @@ import { MyWishListPageModule } from '../pages/my-wish-list/my-wish-list.module'
     VideoProvider,
     DataProvider,
     NativeAudio,
-    UserProvider
+    UserProvider,
+    Calendar,
+    DatePipe
   ]
 })
 export class AppModule {}

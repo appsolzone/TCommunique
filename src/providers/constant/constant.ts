@@ -16,6 +16,8 @@ export class ConstantProvider {
   data:Observable<any>;
 
 
+  public goibibo_app_key = "80fa1efbb2254fb73c587c042251ceeb";
+  public goibibi_app_id = "9729a4de";
   public get_category_list='https://appsolzone.com/aszdev/tcApi/category/categoryList.php';
   public get_destinationByCat="https://appsolzone.com/aszdev/tcApi/category/destinationByCat.php";
   public get_destinationByCatId = "https://appsolzone.com/aszdev/tcApi/destination/destinationByCatId.php";
@@ -49,6 +51,7 @@ export class ConstantProvider {
   public hotelsearch = "https://appsolzone.com/aszdev/tcApi/search/hotelSearch.php";
   public viewWishList="https://appsolzone.com/aszdev/tcApi/wishlist/viewWishList.php";
   public planMyHoliday="https://appsolzone.com/aszdev/tcApi/planHoliday/planMyHoliday.php";
+  public reminder="https://appsolzone.com/aszdev/tcApi/reminder/reminder.php";
 
 
 

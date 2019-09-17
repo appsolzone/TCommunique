@@ -38,7 +38,9 @@ export class PackageDetailsPage {
   package_details:any;
   hotel_details:any;
   itinerary_details:any;
+  itinerary_details_length:any;
   similarPackage:any;
+  similarPackage_length:any;
   package_pkgImg:any;
   package_duration:any;
   package_pkgTitle:any;
@@ -66,7 +68,13 @@ export class PackageDetailsPage {
   login_status:any;
   uId:any;
   userReview:any;
+  icons:any;
+  exclusion_data:any;
+  inclusion_data:any;
+  package_Date:any;
+  package_Date_length:any;
   constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+    this.icons = "Inclusion";
     this.pkgId=navParams.get('pkgId');
 
     this.storage.get('user_login_data').then((val)=>{
@@ -129,7 +137,7 @@ export class PackageDetailsPage {
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
 
-      console.log("DATA_#",(JSON.stringify(data.json())));
+      console.log("DATA_#***",(JSON.stringify(data.json())));
       this.package_details = data.json().data.package;
 
       this.package_pkgImg = data.json().data.package.pkgImg;
@@ -146,6 +154,8 @@ export class PackageDetailsPage {
       this.startingpriceJPY = data.json().data.package.priceJPY;
       this.startingpriceUSD = data.json().data.package.priceUSD;
 
+      this.package_Date = data.json().data.package.startDate;
+      this.package_Date_length = this.package_Date.length;
 
       this.package_flight = data.json().data.package.flight;
       this.package_hotel = data.json().data.package.hotel;
@@ -156,14 +166,20 @@ export class PackageDetailsPage {
       this.package_cab = data.json().data.package.cab;
 
       console.log(" this.package_pkgImg", this.package_pkgImg)
+      this.inclusion_data = data.json().data.package.inclusion;
+      this.exclusion_data = data.json().data.package.exclusion;
 
 
 
       this.hotel_details = data.json().data["hotel"];
       this.itinerary_details = data.json().data["itinerary"]
       this.similarPackage = data.json().data["similarPackage"]
+      this.similarPackage_length = this.similarPackage.length;
+      this.itinerary_details_length = this.itinerary_details.length;
 
-      console.log("itinerary_details",this.itinerary_details,this.similarPackage)
+
+
+      console.log("itinerary_details",this.itinerary_details,this.similarPackage.length)
 
 
     });
@@ -202,5 +218,20 @@ export class PackageDetailsPage {
 
       home(){
         this.navCtrl.setRoot(HomePage);
+      }
+
+      expandItem(item): void {
+        if (item.expanded) {
+          item.expanded = false;
+        } else {
+          this.itinerary_details.map(listItem => {
+            if (item == listItem) {
+              listItem.expanded = !listItem.expanded;
+            } else {
+              listItem.expanded = false;
+            }
+            return listItem;
+          });
+        }
       }
 }

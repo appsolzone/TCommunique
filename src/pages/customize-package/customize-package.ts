@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
-
+import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
 /**
  * Generated class for the CustomizePackagePage page.
  *
@@ -56,19 +57,59 @@ export class CustomizePackagePage {
   cust_email:any;
   uId:any;
 
+  startingpriceAUD:any;
+  startingpriceCAD:any;
+  startingpriceCHF:any;
+  startingpriceCNH:any;
+  startingpriceEUR:any;
+  startingpriceGBP:any;
+  startingpriceJPY:any;
+  startingpriceUSD:any;
+  default_currency:any;
 
-  constructor(public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+
+  constructor(public storage:Storage,public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
 
     this.pkgId=navParams.get('pkgId');
     this.uId = navParams.get('uId');
 
     this.package_details = navParams.get('package_details');
 
+
+    this.storage.get('currency').then((val)=>{
+
+      if(val==null){
+        this.default_currency = "INR";
+
+      }else{
+        this.default_currency = val.name;
+        console.log("VAL)))",this.default_currency);
+
+
+      }
+
+    });
+
+    storage.get('user_login_data').then((val) => {
+      console.log('user_login_data_bookPage', val);
+      this.cust_email = val.email;
+      this.cust_phone = val.mobile;
+
+    });
+
       this.package_pkgImg = this.package_details.pkgImg;
       this.package_overview = this.package_details.overview;
       this.package_pkgTitle =  this.package_details.pkgTitle;
       this.package_duration = this.package_details.duration;
       this.package_startingPrice = this.package_details.startingPrice;
+      this.startingpriceAUD= this.package_details.priceAUD;
+      this.startingpriceCAD = this.package_details.priceCAD;
+      this.startingpriceCHF = this.package_details.priceCHF;
+      this.startingpriceCNH = this.package_details.priceCNH;
+      this.startingpriceEUR = this.package_details.priceEUR;
+      this.startingpriceGBP = this.package_details.priceGBP;
+      this.startingpriceJPY = this.package_details.priceJPY;
+      this.startingpriceUSD = this.package_details.priceUSD;
       this.package_flight = this.package_details.flight;
       this.package_hotel = this.package_details.hotel;
       this.package_hotelRating = this.package_details.hotelRating;
@@ -120,6 +161,7 @@ export class CustomizePackagePage {
         clearTimeout(timeoutHandle);
       });
       t.present();
+      this.navCtrl.setRoot(HomePage);
 
 
     });

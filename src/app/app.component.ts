@@ -8,6 +8,12 @@ import {IonicApp } from 'ionic-angular';
 import {DataProvider} from '../providers/data/data';
 import {VideoProvider} from '../providers/video/video';
 import { Storage } from '@ionic/storage';
+import { ConstantProvider } from '../providers/constant/constant';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { DatePipe } from '@angular/common'
 
 
 
@@ -48,6 +54,8 @@ import { VideoCallPage } from '../pages/video-call/video-call';
 import { OtpVarificationPage} from '../pages/otp-varification/otp-varification';
 import { UserProvider } from '../providers/user/user';
 import { MyWishListPage } from '../pages/my-wish-list/my-wish-list';
+import { Calendar } from '@ionic-native/calendar';
+
 
 
 
@@ -60,7 +68,7 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     rootPage:any = HomePage;
-    // rootPage = MyWishListPage;
+    // rootPage = CarBookingPage;
 
     homeItem: any;
     initialItem: any;
@@ -82,10 +90,11 @@ export class TCommuniqueApp {
     user_img:any;
     username:any;
     mywishlist:any;
+    data:Observable<any>;
+    latest_date:any;
 
 
-
-  constructor(public userProvider:UserProvider,public storage:Storage,public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
+  constructor(public datepipe: DatePipe,private calendar: Calendar,public http:HttpClient,public constant:ConstantProvider,public userProvider:UserProvider,public storage:Storage,public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
 
     platform.registerBackButtonAction(() => {
       let activeModal=this.ionicApp._modalPortal.getActive();
@@ -155,6 +164,7 @@ export class TCommuniqueApp {
     }
     else
     {
+      this.getReminder(val.uId);
     console.log("username","come here");
     this.login_status=true;
     this.user_img=val.profileData.profImg;
@@ -192,7 +202,9 @@ export class TCommuniqueApp {
 
 
         this.nearbyplacesItem = [
-            {title: 'Nearby Places', component: 'page-nearby-places', icon: 'md-locate'}
+            {title: 'Nearby Restaurant', component: 'page-nearby-places', icon: 'md-locate'},
+            {title: 'Places of Interest', component: 'page-places-of-interest', icon: 'md-locate'}
+
 
         ];
         this.converterItem = [
@@ -210,6 +222,39 @@ export class TCommuniqueApp {
         ];
 
 
+  }
+
+  getReminder(u_Id){
+
+    var url =this.constant.reminder;
+    let postData = new FormData();
+    postData.append('uId',u_Id);
+   
+
+    this.data = this.http.post(url,postData);
+    this.data.subscribe(data =>{
+
+      console.log("Reminder DATA",data);
+      for(let file of data.data) {
+
+        console.log("Hello",file);
+        this.calendar.createEvent(file.title,null, 'TC', new Date(file.date+' '+file.time), new Date(file.date+' '+'23:59')).then(
+
+          (msg) => { 
+            console.log("Success Msg",msg);
+          },
+          (err) => { 
+            console.log("err Msg",err);
+          }
+        ); 
+
+      }
+
+    
+
+     
+
+    });
   }
 
   initializeApp() {

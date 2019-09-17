@@ -124,5 +124,9 @@ img.selectEnable {
   letter-spacing: 1px;
 
   }
+
+  ion-item:hover a {
+    background-color: slategray !important;
+  }
 }
 

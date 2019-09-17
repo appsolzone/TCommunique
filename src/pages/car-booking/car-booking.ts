@@ -8,6 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 /**
  * Generated class for the CarBookingPage page.
@@ -46,7 +48,9 @@ export class CarBookingPage {
 
 
 
+
   constructor(public toastCtrl:ToastController,public storage:Storage,public navCtrl: NavController, public navParams: NavParams,public fb:FormBuilder,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+
     storage.get('user_login_data').then((val) => {
       console.log('user_login_data', val);
       this.uId = val.uId;
@@ -86,6 +90,7 @@ export class CarBookingPage {
 select(a){
   this.ClickablePic=a;
   console.log(this.ClickablePic);
+
 }
 
 check()
@@ -137,6 +142,7 @@ check()
         clearTimeout(timeoutHandle);
       });
       t.present();
+      this.navCtrl.setRoot(HomePage);
 
 
     });

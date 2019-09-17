@@ -87,10 +87,45 @@
             </ion-col>
               </ion-row>
 
+              <div *ngIf="package_Date_length > 0">
+                  <ion-row>
+                      <ion-col col-4 *ngFor="let data of package_Date">
+                        <div style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">{{data}}</p></div>
+                      </ion-col>
+
+                    </ion-row>
+              </div>
+
             <div style="background: #f6f6f6; height:100px; width:100%;">
               <p style="margin-left: 11px; padding-top: 10px; font-size: 20px;">OVERVIEW</p>
               <p style="margin-top: -10px; margin-left: 11px; margin-right: 11px;">{{package_overview}}</p>
               <p style="float: right; margin-top: 0px; margin-right: 10px; color: red;">read more...</p>
+            </div>
+
+            <div class="inex">
+
+                <ion-segment [(ngModel)]="icons" color="searchbg">
+                    <ion-segment-button value="Inclusion" class="segment-button segment-activated">Inclusion
+
+                    </ion-segment-button>
+                    <ion-segment-button value="Exclusion">Exclusion
+
+                    </ion-segment-button>
+                  </ion-segment>
+
+                  <div [ngSwitch]="icons">
+                      <ion-list *ngSwitchCase="'Inclusion'">
+                          <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;"[innerHTML]="inclusion_data"></p>
+
+                        </ion-list>
+                        </div>
+                  <div [ngSwitch]="icons">
+                        <ion-list *ngSwitchCase="'Exclusion'">
+                            <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;"[innerHTML]="exclusion_data"></p>
+
+                          </ion-list>
+                          </div>
+
             </div>
 
             <p style="margin-left: 11px; font-size: 20px;">HOTELS</p>
@@ -125,15 +160,17 @@
 
             </div>
 
-            <div style="background:#f6f6f6; margin-top: 60px;">
+            <div style="background:#f6f6f6; margin-top: 60px;" *ngIf="itinerary_details_length > 0">
               <p style="margin-left: 11px; font-size: 20px;">ITINERARY</p>
 
-              <div style="margin-left: 11px; margin-right:11px; background:#ffffff;" *ngFor="let data of itinerary_details; let idx = index">
+              <div style="margin-left: 11px; margin-right:11px; background:#ffffff;"  *ngFor="let data of itinerary_details; let idx = index">
                 <div style="height: 30px; width:100%; background:#0d6262">
                 <p style="color: white; padding-top: 6px; font-size: 16px; margin-left: 10px;">{{data.dayTitle}}</p>
-                <!-- <ion-icon ios="ios-arrow-down" md="md-arrow-down" style="margin-right: 10px; float: right; margin-top: -32px;  color: white;"></ion-icon> -->
-                </div>
+                <ion-icon ios="ios-arrow-down" md="md-arrow-down" style="margin-right: 10px; float: right; margin-top: -38px;  color: white;" (click)="expandItem(data)"></ion-icon>
 
+              </div>
+
+                <components-expandable [expanded]="data.expanded">
                 <ion-row>
                   <ion-col col-4 *ngFor="let tag of data.tag">
                     <div style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">{{tag}}</p></div>
@@ -142,12 +179,13 @@
                 </ion-row>
 
                 <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;"[innerHTML]="data.content"></p>
+              </components-expandable>
               </div>
 
             </div>
 
 
-            <div class="xyab">
+            <div class="xyab" *ngIf="userReview">
                 <p style="margin-left: 11px; font-size: 20px;">USER REVIEW</p>
             <ion-slides pager class="cardBody1">
                 <ion-slide *ngFor="let data of userReview; let idx = index">
@@ -190,7 +228,7 @@
           </ion-slides>
         </div>
 
-            <div>
+            <div *ngIf="similarPackage_length > 0">
               <p style="margin-left: 11px; font-size: 20px;">SIMILAR PACKAGES</p>
 
               <ion-slides pager class="cardBody2">

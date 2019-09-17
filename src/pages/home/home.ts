@@ -16,6 +16,7 @@ import { FilterPage } from '../../pages/filter/filter';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { SignInPage } from '../../pages/sign-in/sign-in';
+import { CurrencyConverterPage } from '../../pages/currency-converter/currency-converter';
 
 
 
@@ -365,6 +366,12 @@ export class HomePage {
     this.navCtrl.push(CategoryPackageDetailsPage,{catId:data.catId,tourType:"Domestic",destId:data.destId});
 
   }
+
+  go_converter(){
+    this.navCtrl.push(CurrencyConverterPage);
+
+  }
+
 
 
 }

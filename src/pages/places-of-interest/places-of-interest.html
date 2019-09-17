@@ -1,0 +1,70 @@
+<ion-header >
+
+    <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+      </button>
+        <ion-title>
+          <span ion-text class="fw700">Places of Interest</span>
+        </ion-title>
+      </ion-navbar>
+  
+  
+  </ion-header>
+  
+  <ion-content>
+  <div #map id="map"></div>
+  
+  <ion-item>
+  <ion-label>Select Place</ion-label>
+    <ion-select [(ngModel)]="isType" (ionChange)="nearbyPlace(isType)">
+        <ion-option value="airport">Airport</ion-option>
+        <ion-option value="atm">Atm</ion-option>
+        <ion-option value="casino">Casino</ion-option>
+        <ion-option value="hospital">Hospital</ion-option>
+        <ion-option value="hindu_temple">Hindu Temple</ion-option>
+        <ion-option value="mosque">Mosque</ion-option>
+      <ion-option value="museum">Museum</ion-option>
+      <ion-option value="park">Park</ion-option>
+      <ion-option value="police">Police Station</ion-option>
+      <ion-option value="supermarket">Supermarket</ion-option>
+    </ion-select>
+  </ion-item>
+  
+ 
+  
+  
+  <ion-content style="background: #d6d6d6">
+  
+      <div *ngFor="let data of arraySource">
+      <ion-row style="background: white; margin-bottom: 5px;">
+      <ion-col col-6 style="height: 130px;">
+          <img src="{{data.photo}}" class="img">
+          </ion-col>
+      <ion-col col-6 style="height: 130px; position: relative;">
+          <div *ngIf="data.rating"><p class="rat">{{data.rating}}</p>
+              </div>
+          <p class="bname">{{data.name}}</p>
+         <!-- <p style="margin-top: -6px; font-size: 10px;">{{data.loc}}</p> -->
+  
+         <div (click)="f1(data)" class="btndir">
+          <ion-icon ios="ios-call" md="md-call"
+          style="height: 16px;
+         width: 16px;
+         margin-left: 10px;
+         margin-top: 5px;"></ion-icon>
+         </div>
+  
+      
+  
+  
+  
+      </ion-col>
+      </ion-row>
+      </div>
+  
+      </ion-content>
+  
+  
+  </ion-content>
+  

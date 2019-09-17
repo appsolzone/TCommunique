@@ -30,10 +30,18 @@
         </ion-row>
 
         <div style="margin-top: -15px;">
-          <p style="margin-left: 17px; color: #615d5d;">Starting from</p>
-          <p style="margin-left: 17PX; font-size: 25px; margin-top: -13px; color: #0aae99; font-weight: bold;">{{package_startingPrice}}</p>
-          <p style="margin-top: -48px; margin-left: 85px; color: black;">per person no twin sharing</p>
-        </div>
+            <p style="margin-left: 17px; color: #615d5d;">Starting from</p>
+            <p class="price" *ngIf="default_currency=='INR'">&#8377;{{package_startingPrice}}</p>
+            <p class="price" *ngIf="default_currency=='USD'">&#36;{{startingpriceUSD}}</p>
+            <p class="price" *ngIf="default_currency=='EUR'">&#8364;{{startingpriceEUR}}</p>
+            <p class="price" *ngIf="default_currency=='JPY'">&#165;{{startingpriceJPY}}</p>
+            <p class="price" *ngIf="default_currency=='GBP'">&#163;{{startingpriceGBP}}</p>
+            <p class="price" *ngIf="default_currency=='CAD'">C&#36;{{startingpriceCAD}}</p>
+            <p class="price" *ngIf="default_currency=='CHF'">Fr.{{startingpriceCHF}}</p>
+            <p class="price" *ngIf="default_currency=='CNH'">&#65509;{{startingpriceCNH}}</p>
+            <p class="price" *ngIf="default_currency=='AUD'">A&#36;{{startingpriceAUD}}</p>
+            <p class="pdetails">per person no twin sharing</p>
+          </div>
 
         <ion-row style="width: 90%; margin: auto;">
             <ion-col col-2 *ngIf="package_flight ==='yes'">

@@ -119,5 +119,6 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1+" />
     </plugin>
     <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
+    <plugin name="cordova-plugin-calendar" spec="^5.1.4" />
     <engine name="android" spec="^8.0.0" />
 </widget>
