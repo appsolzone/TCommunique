@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ConstantProvider {
   public items: any = [];
+  public flight_items:any=[];
   data:Observable<any>;
 
 
@@ -27,6 +28,7 @@ export class ConstantProvider {
   public otp="https://appsolzone.com/aszdev/tcApi/signup/activateAccount.php";
   public resendOtp = "https://appsolzone.com/aszdev/tcApi/signup/resendOtp.php";
   public Forgotpassword="https://appsolzone.com/aszdev/tcApi/login/sendCode.php";
+  public updatePassword = "https://appsolzone.com/aszdev/tcApi/login/updatePassword.php";
   public get_packageDetails="https://appsolzone.com/aszdev/tcApi/package/packageDetails.php";
   public get_viewAgentContact="https://appsolzone.com/aszdev/tcApi/emergContact/viewAgentContact.php";
   public get_emergencyContact="https://appsolzone.com/aszdev/tcApi/emergContact/emergencyContact.php";
@@ -58,6 +60,8 @@ export class ConstantProvider {
   constructor(public httpClient: HttpClient,) {
     console.log('Hello ConstantProvider Provider');
     this.getBusList();
+    this.getAirPort_List();
+    this.getCity_List();
   }
 
 
@@ -73,19 +77,52 @@ export class ConstantProvider {
         filterItems(searchTerm) {
 
             console.log("THIS>ITEM",this.items);
-            return this.items.filter(item => {
-              return item.NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+            return this.items.filter(data => {
+              return data.NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
             });
 
         }
         filterItems2(searchTerm) {
 
           console.log("THIS>ITEM",this.items);
-          return this.items.filter(item => {
-            return item.NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+          return this.items.filter(data => {
+            return data.NAME.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
           });
 
       }
 
+      getAirPort_List(){
+        this.data = this.httpClient.get('assets/json/Airport_List.json');
+        this.data.subscribe(data =>{
+          this.flight_items = data;
+        });
+            }
+
+
+
+
+                  flight_filterItems(searchTerm) {
+
+                    console.log("Flight",this.flight_items);
+                    return this.flight_items.filter(item => {
+                      return item.Name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+                    });
+
+                }
+                flight_filterItems2(searchTerm) {
+
+                  console.log("Flight",this.flight_items);
+                  return this.flight_items.filter(item => {
+                    return item.Name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+                  });
+
+              }
+
+              getCity_List(){
+                this.data = this.httpClient.get('assets/json/City_List.json');
+                this.data.subscribe(data =>{
+                  // this.items = data;
+                });
+                    }
 
 }

@@ -4,23 +4,23 @@ page-bus-search {
     margin: 15px 30px;
     padding: 0;
     width: calc(100% - 8px - 8px);
-    font-size: 15p;
+    font-size: 15px;
 }
 .xz {
     border-radius: 50px;background: #CECCCD; width: 100%;padding: 4px 0 4px 30px;
 }
 .margi{
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 
 
 }
 ion-label.dept.label.label-md {
-    padding: 6px 0 2px;
+    padding: 0px 0 0px;
 }
 .label-md {
-    margin: 13px 8px 13px 0;
-    padding: 6px 0 2px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0 0px;
 }
 ion-item.item.item-block.item-md.item-datetime {
     margin-top: 0px;
@@ -115,9 +115,10 @@ padding: 4px 0 4px 30px;
      width: 100%;
 }
 .dept{
-    margin: 0 0 12px 38px;
-    padding : 6px 0 0 0;
+    margin: 0px 0px 0px 0px;
+    padding : 0px 0 0 0;
 }
+
 page-bussearch .thre {
     list-style-type: none;
     display: inline-block;
@@ -185,5 +186,29 @@ color: #141414;
 background-color: #CECCCD;
 -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.searchbar-md {
+  /* background: inherit; */
+  padding: 0px;
+}
+
+.cardBody
+{
+    border-radius: 20px;
+    height: auto;
+    box-shadow: none;
+    border: 1px solid #0b9595;
+}
+
+.cardHeader
+{
+    background: #0b9595;
+    padding: 6px 15px;
+}
+.head1{
+  float: left;
+}
+.head2{
+  float: right;
 }
 }

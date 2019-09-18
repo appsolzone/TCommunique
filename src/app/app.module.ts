@@ -56,10 +56,11 @@ import { OtpVarificationPageModule } from '../pages/otp-varification/otp-varific
 import { UserProvider } from '../providers/user/user';
 import { FilterDataPageModule } from '../pages/filter-data/filter-data.module';
 import { MyWishListPageModule } from '../pages/my-wish-list/my-wish-list.module';
-import { ComponentsExpandableComponent } from "../components/components-expandable/components-expandable";
 import { Calendar } from '@ionic-native/calendar';
 import {PlacesOfInterestPageModule} from '../pages/places-of-interest/places-of-interest.module';
 import { DatePipe } from '@angular/common'
+import { UserReviewPageModule } from '../pages/user-review/user-review.module';
+import {UpdatePasswordPageModule} from '../pages/update-password/update-password.module';
 
 
 
@@ -97,18 +98,21 @@ import { DatePipe } from '@angular/common'
     NearbyPlacesPageModule,
     EditEmergencyCallPageModule,
     BusSearchPageModule,
+    UserReviewPageModule,
     LanguagePageModule,
     FilterPageModule,
     CategoryPackageDetailsPageModule,
     PackageDetailsPageModule,
     FlightSearchPageModule,
     AboutUsPageModule,
+    UpdatePasswordPageModule,
     PrivacyPolicyPageModule,
     ScannerPageModule,
     QuotePreferencePageModule,
     EmergencyCallingPageModule,
     MyDocumentsPageModule,
     OtpVarificationPageModule,
+    PlacesOfInterestPageModule,
     VideoCallPageModule,
     MyWishListPageModule,
     FilterDataPageModule,

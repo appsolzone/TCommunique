@@ -27,14 +27,10 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'bus-search.html',
 })
 export class BusSearchPage {
- loading:Loading;
+  loading:Loading;
   data:Observable<any>;
   public searchit: FormGroup;
   date1:any;
-  // adult:any;
-  // child:any;
-  // infant:any;
-  peopleList=["1","2","3","4","5"];
   public searchTerm: string = "";
   public searchControl: FormControl;
   public searchControlnew : FormControl;
@@ -48,6 +44,9 @@ export class BusSearchPage {
   showlist2 = false;
 
   uId:any;
+  bus_returnflights:any;
+  bus_onwardflights:any;
+
 
   constructor(public toastCtrl:ToastController,public storage:Storage,private callNumber: CallNumber,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public fb:FormBuilder) {
     this.searchControl = new FormControl();
@@ -58,7 +57,7 @@ export class BusSearchPage {
     });
   }
 
- 
+
   ionViewDidLoad() {
     this.setFilteredItems("");
     this.setFilteredItems2("");
@@ -171,24 +170,16 @@ selectdestination(data){
 
 SaveRequest(){
   console.log("ALL DATA",this.destination,this,this.departure,this,this.date1)
-
+  let d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
+  console.log(d2);
       this.loading = this.loadingCtrl.create({
         content: 'Please wait...',
         dismissOnPageChange: true
       });
       this.loading.present();
-      // var url =this.constant.planMyHoliday;
-      // let postData = new FormData();
-      // postData.append('uId',this.uId);
-      // postData.append('departure',this.departure);
-      // postData.append('noOfDays',this.days);
-      // postData.append('destination',this.destination);
-      // postData.append('startDate',this.date1);
-      // postData.append('mobile',this.phoneno);
-      // postData.append('email',this.email);
-     var url= "http://developer.goibibo.com/api/bus/search/?app_id="
+     var url= "https://developer.goibibo.com/api/bus/search/?app_id="
      +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+
-     "&format=json&source="+this.departure+"&destination="+this.destination+"&dateofdeparture=20190920";
+     "&format=json&source="+this.departure+"&destination="+this.destination+"&dateofdeparture="+d2+"";
 
       this.data = this.http.get(url);
       this.data.subscribe(data =>{
@@ -196,6 +187,7 @@ SaveRequest(){
 
         console.log("DATA",data.json());
 
+        this.bus_onwardflights = data.json().data.onwardflights;
 
       });
 

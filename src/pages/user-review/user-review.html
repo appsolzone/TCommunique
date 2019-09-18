@@ -1,15 +1,65 @@
-<!--
-  Generated template for the UserReviewPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>UserReview</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
+    <ion-navbar color="searchbg">
+        <button ion-button menuToggle>
+            <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+          </button>
+        <ion-title>
+          <span ion-text class="fw700">User Review</span>
+        </ion-title>
+      </ion-navbar>
 
-</ion-content>
+
+  </ion-header>
+<ion-content padding class="profiles">
+
+    <div class="list-form">
+      <div class="all-frm">
+        <div text-center>
+            <h4>User Review</h4>
+        </div>
+
+        <ionic3-star-rating class="star_rating"
+          activeIcon = "ios-star"
+          defaultIcon = "ios-star-outline"
+          activeColor = "#488aff"
+          defaultColor = "red"
+          readonly="false"
+          [rating]="rating">
+    </ionic3-star-rating>
+
+    <!-- Selected rating: {{rating}} -->
+
+        <form [formGroup]="onRegForm">
+
+
+          <div class="frmone">
+
+              <input type="destination" formControlName="destination" name="destination" placeholder="Destination" [(ngModel)]="destination"/>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('destination').touched && onRegForm.get('destination').hasError('required')">This field is required</p>
+
+           </div>
+
+        <div class="frmone">
+          <input type="date" formControlName="date" name="date" placeholder="Date" [(ngModel)]="date" />
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('date').touched && onRegForm.get('date').hasError('required')">This field is required</p>
+        </div>
+
+        <div class="frmone">
+          <textarea type="text" formControlName="comment" name="comment" placeholder="Comment" [(ngModel)]="comment" rows = "5" cols = "50" class="cmtInputArea">
+
+          </textarea>
+          <p ion-text color="danger" class="text-12x has-error" *ngIf="onRegForm.get('comment').touched && onRegForm.get('comment').hasError('required')">This field is required</p>
+
+        </div>
+
+              <button class="login-btn" ion-button (click) = "postUserReview()" [disabled]="!onRegForm.valid">
+                  Submit
+                </button>
+        </form>
+        </div>
+
+
+    </div>
+
+    </ion-content>

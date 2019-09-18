@@ -17,53 +17,73 @@
 <div class="all">
 
     <div class="margi"  >
-     <div style = "position: relative;" >
-       <img src="/../assets/imgs/bus.png\" class="placimgs">
-         <ion-label class="dept">Departure</ion-label>
-      </div>
+        <div style = "position: relative;">
+            <ion-label class="dept">Departure</ion-label>
+               <ion-searchbar
+               class="xzy"
+               [formControl]="searchControl"
+               (ionChange)="onSearchInput()"
+               placeholder="Search"
+               [showCancelButton]="true"
+               [(ngModel)]="departure">
+             </ion-searchbar>
 
+             <div *ngIf="searching" class="spinner-container">
+               <ion-spinner></ion-spinner>
+             </div>
 
-
-<div style = "position: relative;">
-     <ion-input placeholder="Search" class="xz"[(ngModel)]="inp1" formControlName="finp" name="finp"></ion-input>
-     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('finp').touched && searchit.get('finp').hasError('required')">Departure place is required</p>
-     <img   src="../../assets/imgs/search.png" class="imgk"  (click)="inp()" >
-</div>
-
+             <ion-list *ngIf="showlist">
+               <ion-item *ngFor="let item of flight_items" (click)="selectdeparture(item)">
+                 {{ item.Name }}
+               </ion-item>
+             </ion-list>
+          </div>
     </div>
 <div class="margi"  >
-    <div style = "position: relative;" >
-        <img src="/../assets/imgs/bus.png\" class="placimgs">
+    <div style = "position: relative;">
         <ion-label class="dept">Destination</ion-label>
-    </div>
 
-  <div style = "position: relative;">
+          <ion-searchbar
+          class="xzy"
+          [formControl]="searchControlnew"
+          (ionChange)="onSearchInput2()"
+          placeholder="Search"
+          [showCancelButton]="true"
+          [(ngModel)]="destination">
+        </ion-searchbar>
 
-     <ion-input placeholder="Search" class="xz" formControlName="sinp" name="sinp" [(ngModel)]="inp2"></ion-input>
-     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('sinp').touched && searchit.get('sinp').hasError('required')">Destination place is required</p>
+        <div *ngIf="searching1" class="spinner-container">
+          <ion-spinner></ion-spinner>
+        </div>
 
-     <img src="../../assets/imgs/search.png" class="imgk">
-  </div>
+        <ion-list *ngIf="showlist2">
+          <ion-item *ngFor="let item of flight_items2" (click)="selectdestination(item)">
+            {{ item.Name }}
+          </ion-item>
+        </ion-list>
+      </div>
 </div>
 <div class="margi"  >
     <div style = "position: relative;" >
-       <img src="/../assets/imgs/bus.png\" class="placimgs">
-       <ion-label class="dept">Departure Date</ion-label>
-    </div>
-</div>
+       <!-- <img src="assets/imgs/bus.png" style="height: 30px; width: 30px;position: absolute;top: 0;">
+       <ion-label class="dept">Departure Date</ion-label> -->
 
-<ion-item>
-    <ion-datetime displayFormat="DD/MM/YY" placeholder="Select Date" formControlName="tinp" name="tinp"[(ngModel)]="date1"></ion-datetime>
+
+<ion-label class="dept">Departure Date</ion-label>
+
+<ion-item style="margin-top: 2px">
+    <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Date" formControlName="tinp" name="tinp"[(ngModel)]="date1"></ion-datetime>
 
 </ion-item>
 <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
+</div>
+</div>
 
   <div class="margi"  >
       <div style = "position: relative;" >
           <img src="/../assets/imgs/bus.png\" class="placimgs">
           <ion-label style=" margin: 0 0 12px 38px">Passengers</ion-label>
       </div>
-  </div>
 
 <div class = "layer">
     <div class = "thre">
@@ -91,47 +111,94 @@
           <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('siinp').touched && searchit.get('siinp').hasError('required')">How many infants info is required</p>
     </div>
 </div>
+</div>
 <div class="margi"  >
     <div style = "position: relative;" >
       <img src="/../assets/imgs/bus.png\" class="placimgs">
-        <ion-label class="dept">Economy</ion-label>
+        <ion-label class="dept">Class</ion-label>
      </div>
      <div class="divhead">
         <ion-select formControlName="eco" [(ngModel)]="economy">
-            <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+            <ion-option *ngFor="let data of flightType" [value]="data">{{data.key}}</ion-option>
         </ion-select>
    </div>
    <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>
 </div>
-<div class="margi"  >
-    <div style = "position: relative;" >
-      <img src="/../assets/imgs/bus.png\" class="placimgs">
-        <ion-label class="dept">Payment Types</ion-label>
-     </div>
-     <div class="divhead2">
-        <ion-select formControlName="pay" [(ngModel)]="payment">
-            <ion-option *ngFor="let data of paymentList" [value]="data">{{data}}</ion-option>
-        </ion-select>
-     </div>
-     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('pay').touched && searchit.get('pay').hasError('required')">How would you pay?</p>
-</div>
+
 
 
 
 </div>
+
+
 
 </form>
-<ion-footer style="height: 50px; background:  #0e6262" (click)="inp()">
-<ion-toolbar position="bottom">
-  <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
-    <p style="text-align: center;">BOOK NOW</p>
-  </button>
 
-</ion-toolbar>
-</ion-footer>
+<ion-scroll style="width:100%;height:100%;" scrollY="true">
+    <div >
+    <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of flight_onwardflights">
+
+            <ion-card class="cardBody">
+
+                <ion-card-header class="cardHeader">
+                  <div class="head1">
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+
+                  </div>
+                  <div class="head2">
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
+                  </div>
+                </ion-card-header>
+                <ion-row style="font-size:14px; color: #056387;">
+                    <ion-col col-4>Origin</ion-col>
+                    <ion-col col-1>:</ion-col>
+                    <ion-col col-7>{{item.origin}}</ion-col>
+                  </ion-row>
+                  <ion-row style="font-size:14px; color: #056387;">
+                      <ion-col col-4>AirLine</ion-col>
+                      <ion-col col-1>:</ion-col>
+                      <ion-col col-7>{{item.airline}}</ion-col>
+                    </ion-row>
+                    <ion-row style="font-size:14px; color: #056387;">
+                        <ion-col col-4>Ticket Type</ion-col>
+                        <ion-col col-1>:</ion-col>
+                        <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
+                      </ion-row>
+                    <ion-row style="font-size:14px; color: #056387;">
+                        <ion-col col-4>Fare</ion-col>
+                        <ion-col col-1>:</ion-col>
+                        <ion-col col-7>{{item.fare.grossamount}}</ion-col>
+                      </ion-row>
+                      <ion-row style="font-size:14px; color: #056387;">
+                          <ion-col col-4>Duration</ion-col>
+                          <ion-col col-1>:</ion-col>
+                          <ion-col col-7>{{item.duration}}</ion-col>
+                        </ion-row>
+                          <ion-row style="font-size:14px; color: #056387;">
+                              <ion-col col-4>SeatsAvailable</ion-col>
+                              <ion-col col-1>:</ion-col>
+                              <ion-col col-7>{{item.seatsavailable}}</ion-col>
+                            </ion-row>
+
+                <ion-card-content>
 
 
+                </ion-card-content>
 
+              </ion-card>
 
-
+    </ion-row>
+    </div>
+  </ion-scroll>
 </ion-content>
+
+<ion-footer style="height: 50px; background:  #0e6262" (click)="SaveRequest()">
+    <ion-toolbar position="bottom">
+      <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
+        <p style="text-align: center;">Search</p>
+      </button>
+
+    </ion-toolbar>
+    </ion-footer>

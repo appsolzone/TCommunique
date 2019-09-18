@@ -58,7 +58,6 @@ import { Calendar } from '@ionic-native/calendar';
 
 
 
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -68,7 +67,7 @@ export class TCommuniqueApp {
   	tabsPlacement: string = 'bottom';
   	tabsLayout: string = 'icon-top';
     rootPage:any = HomePage;
-    // rootPage = CarBookingPage;
+    // rootPage = BusSearchPage;
 
     homeItem: any;
     initialItem: any;
@@ -92,6 +91,7 @@ export class TCommuniqueApp {
     mywishlist:any;
     data:Observable<any>;
     latest_date:any;
+    user_review:any;
 
 
   constructor(public datepipe: DatePipe,private calendar: Calendar,public http:HttpClient,public constant:ConstantProvider,public userProvider:UserProvider,public storage:Storage,public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
@@ -198,6 +198,7 @@ export class TCommuniqueApp {
         this.carBooking = { component:'page-car-booking'};
         this.signinItem = { component: 'page-sign-in' };
         this.mywishlist = { component: 'page-my-wish-list' };
+        this.user_review= { component: 'page-user-review'};
 
 
 
@@ -215,7 +216,7 @@ export class TCommuniqueApp {
             {component: 'page-edit-profile'};
 
         this.searchMenuItems = [
-            {title: 'Hotel Search', component: 'page-hotel-search', icon: 'md-home'},
+            {title: 'Own Properties', component: 'page-hotel-search', icon: 'md-home'},
             {title: 'Flight Search', component: 'page-flight-search', icon: 'md-plane'},
             {title: 'Bus Search', component: 'page-bus-search', icon: 'md-bus'}
 
@@ -229,7 +230,7 @@ export class TCommuniqueApp {
     var url =this.constant.reminder;
     let postData = new FormData();
     postData.append('uId',u_Id);
-   
+
 
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
@@ -240,19 +241,19 @@ export class TCommuniqueApp {
         console.log("Hello",file);
         this.calendar.createEvent(file.title,null, 'TC', new Date(file.date+' '+file.time), new Date(file.date+' '+'23:59')).then(
 
-          (msg) => { 
+          (msg) => {
             console.log("Success Msg",msg);
           },
-          (err) => { 
+          (err) => {
             console.log("err Msg",err);
           }
-        ); 
+        );
 
       }
 
-    
 
-     
+
+
 
     });
   }

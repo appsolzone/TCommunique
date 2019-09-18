@@ -111,6 +111,12 @@ page-forgot-pwd {
     border-radius: 50px;
     background-color: #981b1b;
   }
+  .has-error {
+    margin: 0;
+    padding: .50rem;
+    background-color:transparent;
+    border-radius: 0 0 0px 0px;
+}
 
 
 }

@@ -14,19 +14,19 @@
 
 
 <ion-content>
-
   <form [formGroup]="searchit">
     <div class="all">
 
         <div class="margi"  >
-         <div style = "position: relative;" >
-           <img src="/../assets/imgs/bus.png\" style="height: 30px; width: 30px;position: absolute;top: 0;">
+         <!-- <div style = "position: relative;" >
+           <img src="assets/imgs/bus.png" style="height: 30px; width: 30px;position: absolute;top: 0;">
              <ion-label class="dept">Departure</ion-label>
           </div>
-
+ -->
 
 
     <div style = "position: relative;">
+      <ion-label class="dept">Departure</ion-label>
          <ion-searchbar
          class="xzy"
          [formControl]="searchControl"
@@ -35,11 +35,11 @@
          [showCancelButton]="true"
          [(ngModel)]="departure">
        </ion-searchbar>
-     
+
        <div *ngIf="searching" class="spinner-container">
          <ion-spinner></ion-spinner>
        </div>
-     
+
        <ion-list *ngIf="showlist">
          <ion-item *ngFor="let item of items" (click)="selectdeparture(item)">
            {{ item.NAME }}
@@ -49,12 +49,13 @@
 
         </div>
     <div class="margi"  >
-        <div style = "position: relative;" >
-            <img src="/../assets/imgs/bus.png\" style="height: 30px; width: 30px;position: absolute;top: 0;">
+        <!-- <div style = "position: relative;" >
+            <img src="assets/imgs/bus.png" style="height: 30px; width: 30px;position: absolute;top: 0;">
             <ion-label class="dept">Destination</ion-label>
-        </div>
+        </div> -->
 
       <div style = "position: relative;">
+        <ion-label class="dept">Destination</ion-label>
 
           <ion-searchbar
           class="xzy"
@@ -64,11 +65,11 @@
           [showCancelButton]="true"
           [(ngModel)]="destination">
         </ion-searchbar>
-    
+
         <div *ngIf="searching1" class="spinner-container">
           <ion-spinner></ion-spinner>
         </div>
-    
+
         <ion-list *ngIf="showlist2">
           <ion-item *ngFor="let item of items2" (click)="selectdestination(item)">
             {{ item.NAME }}
@@ -76,65 +77,95 @@
         </ion-list>
       </div>
   </div>
-    <div class="margi"  >
+<div class="margi"  >
         <div style = "position: relative;" >
-           <img src="/../assets/imgs/bus.png\" style="height: 30px; width: 30px;position: absolute;top: 0;">
-           <ion-label class="dept">Departure Date</ion-label>
-        </div>
-    </div>
+           <!-- <img src="assets/imgs/bus.png" style="height: 30px; width: 30px;position: absolute;top: 0;">
+           <ion-label class="dept">Departure Date</ion-label> -->
 
-    <ion-item>
+
+    <ion-label class="dept">Departure Date</ion-label>
+
+    <ion-item style="margin-top: 2px">
         <ion-datetime displayFormat="DD/MM/YY" placeholder="Select Date" formControlName="tinp" name="tinp"[(ngModel)]="date1"></ion-datetime>
 
     </ion-item>
     <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
-
-      <!-- <div class="margi"  >
-          <div style = "position: relative;" >
-              <img src="/../assets/imgs/bus.png\" style="height: 30px; width: 30px;position: absolute;top: 0;">
-              <ion-label style=" margin: 0 0 12px 38px">Passengers</ion-label>
-          </div>
-      </div> -->
-
-    <!-- <div class = "layer" style = "display:inline-block;">
-        <div class = "thre">
-            <ul>
-                <li>
-                    <ion-select placeholder="Adult"formControlName="foinp"[(ngModel)]="adult">
-                        <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
-                    </ion-select>
-                </li>
-                <li>
-                    <ion-select placeholder="Child" formControlName="fifinp" [(ngModel)]="child">
-                        <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
-                    </ion-select>
-
-                </li>
-                <li>
-                    <ion-select placeholder="Infant" formControlName="siinp"[(ngModel)]="infant">
-                        <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
-                    </ion-select>
-
-                </li>
-              </ul>
-              <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('foinp').touched && searchit.get('foinp').hasError('required')">How many adults info is required</p>
-              <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('fifinp').touched && searchit.get('fifinp').hasError('required')">How many child info is required</p>
-              <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('siinp').touched && searchit.get('siinp').hasError('required')">How many infants info is required</p>
-        </div>
-    </div> -->
-  
+  </div>
+</div>
 </div>
 </form>
 
+<ion-scroll style="width:100%;height:100%;" scrollY="true">
+    <div >
+    <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of bus_onwardflights">
+
+            <ion-card class="cardBody">
+
+                <ion-card-header class="cardHeader">
+                  <div class="head1">
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.depdate | date: "yyyy/MM/dd"}}</p>
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.DepartureTime}}</p>
+
+                  </div>
+                  <div class="head2">
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrdate | date: "yyyy/MM/dd"}}</p>
+                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.ArrivalTime}} </p>
+                  </div>
+                </ion-card-header>
+                <ion-row style="font-size:14px; color: #056387;">
+                    <ion-col col-4>Origin</ion-col>
+                    <ion-col col-1>:</ion-col>
+                    <ion-col col-7>{{item.origin}}</ion-col>
+                  </ion-row>
+                  <ion-row style="font-size:14px; color: #056387;">
+                      <ion-col col-4>Destination</ion-col>
+                      <ion-col col-1>:</ion-col>
+                      <ion-col col-7>{{item.destination}}</ion-col>
+                    </ion-row>
+                    <ion-row style="font-size:14px; color: #056387;">
+                        <ion-col col-4>Bus Routes</ion-col>
+                        <ion-col col-1>:</ion-col>
+                        <ion-col col-7><p>{{item.busRoutes}}</p></ion-col>
+                      </ion-row>
+                    <ion-row style="font-size:14px; color: #056387;">
+                        <ion-col col-4>Fare</ion-col>
+                        <ion-col col-1>:</ion-col>
+                        <ion-col col-7>{{item.RouteSeatTypeDetail.list[0].SellFare}}</ion-col>
+                      </ion-row>
+                      <ion-row style="font-size:14px; color: #056387;">
+                          <ion-col col-4>Travels</ion-col>
+                          <ion-col col-1>:</ion-col>
+                          <ion-col col-7>{{item.TravelsName}}</ion-col>
+                        </ion-row>
+                        <ion-row style="font-size:14px; color: #056387;">
+                            <ion-col col-4>Bus Type</ion-col>
+                            <ion-col col-1>:</ion-col>
+                            <ion-col col-7>{{item.busCondition}}</ion-col>
+                          </ion-row>
+                          <ion-row style="font-size:14px; color: #056387;">
+                              <ion-col col-4>SeatsAvailable</ion-col>
+                              <ion-col col-1>:</ion-col>
+                              <ion-col col-7>{{item.RouteSeatTypeDetail.list[0].SeatsAvailable}}</ion-col>
+                            </ion-row>
+
+                <ion-card-content>
+
+
+                </ion-card-content>
+
+              </ion-card>
+
+    </ion-row>
+    </div>
+  </ion-scroll>
+
+</ion-content>
 
 <ion-footer style="height: 50px; background:  #0e6262" (click)="SaveRequest()">
     <ion-toolbar position="bottom">
       <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
-        <p style="text-align: center;">BOOK NOW</p>
+        <p style="text-align: center;">Search</p>
       </button>
-    
+
     </ion-toolbar>
     </ion-footer>
-
-</ion-content>
-

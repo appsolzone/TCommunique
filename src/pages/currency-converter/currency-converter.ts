@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
@@ -18,25 +18,25 @@ import { HomePage } from '../../pages/home/home';
   selector: 'page-currency-converter',
   templateUrl: 'currency-converter.html',
 })
-export class CurrencyConverterPage {
-  currency = [
-    {id: 0, name: 'INR'},
-    {id: 1, name: 'USD'},
-    {id: 2, name: 'EUR'},
-    {id: 3, name: 'JPY'},
-    {id: 4, name: 'GBP'},
-    {id: 5, name: 'AUD'},
-    {id: 6, name: 'CAD'},
-    {id: 7, name: 'CHF'},
-    {id: 8, name: 'CNH'}
-    ];
+export class CurrencyConverterPage implements OnInit {
+    currency:any;
     set_default_currency:any;
     selected_currency:any;
 
 
   constructor(public toastCtrl:ToastController,public storage:Storage,public navCtrl: NavController, public navParams: NavParams) {
 
-
+    this.currency = [
+      {id: 0, name: 'INR'},
+      {id: 1, name: 'USD'},
+      {id: 2, name: 'EUR'},
+      {id: 3, name: 'JPY'},
+      {id: 4, name: 'GBP'},
+      {id: 5, name: 'AUD'},
+      {id: 6, name: 'CAD'},
+      {id: 7, name: 'CHF'},
+      {id: 8, name: 'CNH'}
+      ];
 
     this.storage.get('currency').then((val)=>{
 
@@ -60,6 +60,20 @@ export class CurrencyConverterPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CurrencyConverterPage');
+  }
+  ngOnInit() {
+    console.log("Hello")
+    this.currency = [
+      {id: 0, name: 'INR'},
+      {id: 1, name: 'USD'},
+      {id: 2, name: 'EUR'},
+      {id: 3, name: 'JPY'},
+      {id: 4, name: 'GBP'},
+      {id: 5, name: 'AUD'},
+      {id: 6, name: 'CAD'},
+      {id: 7, name: 'CHF'},
+      {id: 8, name: 'CNH'}
+      ];
   }
 
   save(){

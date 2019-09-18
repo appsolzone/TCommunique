@@ -7,22 +7,23 @@
         </div>
 
         <form [formGroup]="onForgotForm">
-          <div class="frmone">
-          <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email"></ion-input>
-          <p ion-text color="danger" class="text-12x has-error" *ngIf="onForgotForm.get('email').touched && onForgotForm.get('email').hasError('required')">This field is required</p>
-          <p ion-text color="danger" class="text-12x has-error" *ngIf="onForgotForm.get('email').touched && onForgotForm.get('email').hasError('pattern')">Email address invalid</p>
 
-        </div>
+            <div class="frmone">
+              <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email_or_phone"></ion-input>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onForgotForm.get('email').touched && onForgotForm.get('email').hasError('required')">This field is required</p>
+              <!-- <p ion-text color="danger" class="text-12x has-error" *ngIf="onForgotForm.get('email').touched && onForgotForm.get('email').hasError('pattern')">Email address invalid</p> -->
+            </div>
 
-              <button class="login-btn" ion-button (click) = "forgot()" [disabled]="!onForgotForm.valid">
-                  Send OTP
-                </button>
+            <button class="login-btn" ion-button (click) = "sendOtp()" [disabled]="!onForgotForm.valid">
+                Send OTP
+            </button>
+
         </form>
 
         <div class="social">
 
-            <button (click) = "backtosign()">
-              Back to <a>Sigin In</a>
+             <button (click) = "backtosign()">
+                Back to <a>Sigin In</a>
              </button>
 
         </div>
