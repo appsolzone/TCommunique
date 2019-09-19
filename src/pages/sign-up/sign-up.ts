@@ -14,6 +14,8 @@ import { SignInPage } from '../../pages/sign-in/sign-in';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Storage } from '@ionic/storage';
 import { OtpVarificationPage } from '../../pages/otp-varification/otp-varification';
+import { UserProvider } from '../../providers/user/user';
+
 
 
 /**
@@ -42,7 +44,7 @@ export class SignUpPage {
   data:Observable<any>;
 
 
-  constructor(private storage: Storage,private googlePlus: GooglePlus,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+  constructor(public userprovider:UserProvider,private storage: Storage,private googlePlus: GooglePlus,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -165,6 +167,48 @@ export class SignUpPage {
           this.googleData = { id,token,email,first_name,image,name,mobile,provider,publicUrl}
 
           console.log("DATA",this.googleData);
+
+          this.loading = this.loadingCtrl.create({
+            content: 'Please wait...',
+            dismissOnPageChange: true
+          });
+          this.loading.present();
+          var url =this.constant.signup;
+          let postData = new FormData();
+          postData.append('username',email);
+          postData.append('password',"");
+          postData.append('channel',provider);
+
+          this.data = this.http.post(url,postData);
+          this.data.subscribe(data =>{
+
+            this.loading.dismiss();
+            console.log("SignIn_Page",(JSON.stringify(data.json().username)));
+            if(data.json().status=="200"){
+                  this.storage.set('user_login_data',data.json());
+                  this.userprovider.put_user_img(data.json().profileData.profImg);
+                  this.userprovider.put_user_name(data.json().username);
+
+                  this.navCtrl.setRoot(HomePage);
+
+            }else{
+
+          let t = this.toastCtrl.create({
+            message: data.json().msg,
+            position: 'bottom'
+          });
+          let closedByTimeout = false;
+          let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+          t.onDidDismiss(() => {
+            if (closedByTimeout) return;
+            clearTimeout(timeoutHandle);
+
+          });
+          t.present();
+
+            }
+
+          });
 
 
     }, (error) => {

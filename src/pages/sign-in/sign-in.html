@@ -4,6 +4,23 @@
     <div text-center>
         <h4>Sign In</h4>
     </div>
+
+    <div class="social">
+
+
+      <!-- <button ion-button class="fb">
+        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+
+      </button> -->
+  <button ion-button class="google"  (click)="googleLogin()">
+      <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>
+
+    </button>
+</div>
+
+<div class="social">
+  _______________ Or _______________
+        </div>
     <form [formGroup]="onLoginForm">
       <div class="frmone">
       <ion-input type="email" formControlName="email" name="email" placeholder="E-mail or Phone No" [(ngModel)]="user_email"></ion-input>

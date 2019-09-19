@@ -41,7 +41,7 @@
 
 
         <ion-grid class="newcard">
-            <ion-card *ngFor="let item of searchData">
+            <ion-card *ngFor="let item of searchData;let idx = index">
                 <ion-card-content class="cardcontent">
             <ion-row align-items-start>
                 <ion-col>
@@ -108,6 +108,12 @@
 
                   </div>
                   </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-4 *ngFor="let tag of searchData[idx].amenities">
+                  <div style="height: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;"><p style="font-size: 12px; padding-top: 5px; text-align: center; font-weight: bold;">{{tag}}</p></div>
+                </ion-col>
+
               </ion-row>
               </ion-card-content>
               </ion-card>

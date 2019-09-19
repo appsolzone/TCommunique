@@ -289,7 +289,7 @@ export class TCommuniqueApp {
 
    login(page)
     {
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
     }
     logout(page){
       console.log('Logout');

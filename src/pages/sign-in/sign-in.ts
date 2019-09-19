@@ -14,6 +14,7 @@ import { SignUpPage } from '../../pages/sign-up/sign-up';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
 import { UserProvider } from '../../providers/user/user';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 
 
@@ -42,11 +43,13 @@ export class SignInPage implements OnInit{
   user_password:any;
   loading:Loading;
   data:Observable<any>;
+  googleData:any;
 
 
 
 
-  constructor(public userprovider:UserProvider,private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+
+  constructor(private googlePlus: GooglePlus,public userprovider:UserProvider,private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
     let status=this.network.type;
 
     if(status=='none')
@@ -160,6 +163,83 @@ export class SignInPage implements OnInit{
     this.navCtrl.push(SignUpPage);
   }
 
+  googleLogin() {
+
+    this.googlePlus.login({
+      'scopes': 'profile email',
+      'webClientId': '416461815684-g9fgbom3gvojj3m53gleonjh8n6v6ddg.apps.googleusercontent.com',
+      'offline': true
+    }).then((user) => {
+
+      console.log("USER",user);
+      console.log("USER",JSON.stringify(user));
+      console.log("USER",user.userId);
+      console.log("USER",user.email);
+
+          var id = user.userId;
+          var token = user.idToken;
+          var provider = "google";
+          var mobile = "";
+          var publicUrl = "";
+          var email = user.email;
+          var first_name = user.givenName;
+          var name = user.displayName;
+          var image = user.imageUrl;
+
+          this.googleData = { id,token,email,first_name,image,name,mobile,provider,publicUrl}
+
+          console.log("provider DATA",this.googleData);
+
+
+
+          this.loading = this.loadingCtrl.create({
+            content: 'Please wait...',
+            dismissOnPageChange: true
+          });
+          this.loading.present();
+          var url =this.constant.login;
+          let postData = new FormData();
+          postData.append('username',email);
+          postData.append('password',"");
+          postData.append('channel',provider);
+
+          this.data = this.http.post(url,postData);
+          this.data.subscribe(data =>{
+
+            this.loading.dismiss();
+            console.log("SignIn_Page",(JSON.stringify(data.json().username)));
+            if(data.json().status=="200"){
+                  this.storage.set('user_login_data',data.json());
+                  this.userprovider.put_user_img(data.json().profileData.profImg);
+                  this.userprovider.put_user_name(data.json().username);
+
+                  this.navCtrl.setRoot(HomePage);
+
+            }else{
+
+          let t = this.toastCtrl.create({
+            message: data.json().msg,
+            position: 'bottom'
+          });
+          let closedByTimeout = false;
+          let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+          t.onDidDismiss(() => {
+            if (closedByTimeout) return;
+            clearTimeout(timeoutHandle);
+
+          });
+          t.present();
+
+            }
+
+          });
+
+
+
+    }, (error) => {
+      console.log("ERROR",error);
+    });
+  }
 
 
 }

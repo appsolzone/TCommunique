@@ -90,7 +90,6 @@ export class HotelSearchPage {
       // this.loading.dismiss();
       console.log("price_Data",(JSON.stringify(data.json())));
       this.searchData = data.json().data;
-
     });
   }
 
