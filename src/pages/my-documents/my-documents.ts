@@ -8,6 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 /**
  * Generated class for the MyDocumentsPage page.
@@ -145,6 +147,10 @@ export class MyDocumentsPage {
       this.allmyDoc = data.json().data;
 
     });
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

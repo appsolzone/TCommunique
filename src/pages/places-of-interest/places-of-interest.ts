@@ -1,5 +1,6 @@
 import { Component ,NgZone, ElementRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * Generated class for the PlacesOfInterestPage page.
@@ -165,5 +166,8 @@ export class PlacesOfInterestPage {
 
     console.log("Selected Data",data);
 
+  }
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 }

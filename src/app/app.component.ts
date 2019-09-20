@@ -14,6 +14,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { DatePipe } from '@angular/common'
+import 'rxjs/add/observable/interval';
+
 
 
 
@@ -68,7 +70,6 @@ export class TCommuniqueApp {
   	tabsLayout: string = 'icon-top';
     rootPage:any = HomePage;
     // rootPage = BusSearchPage;
-
     homeItem: any;
     initialItem: any;
     aboutus: any;
@@ -153,27 +154,34 @@ export class TCommuniqueApp {
       }
   });
 
-  events.subscribe('user:login', () => {
-    console.log("logged in");
-    this.storage.get('user_login_data').then((val)=>{
+  setInterval(() => {
 
-    console.log("hsh",val);
-    if(val==null)
-    {
-      this.login_status = false;
-    }
-    else
-    {
-      this.getReminder(val.uId);
-    console.log("username","come here");
-    this.login_status=true;
-    this.user_img=val.profileData.profImg;
-    this.username=val.username;
-    console.log("username",this.username);
-    }
+    console.log("DAYA")
+    events.subscribe('user:login', () => {
+      console.log("logged in");
+      this.storage.get('user_login_data').then((val)=>{
 
-    })
-    });
+      console.log("hsh",val);
+      if(val==null)
+      {
+        this.login_status = false;
+      }
+      else
+      {
+
+
+        this.getReminder(val.uId);
+      console.log("username","come here");
+      this.login_status=true;
+      this.user_img=val.profileData.profImg;
+      this.username=val.username;
+      console.log("username",this.username);
+      }
+
+      })
+      }); }, 30000);
+
+
 
 
     this.user_img=this.userProvider.get_user_img();
@@ -225,6 +233,8 @@ export class TCommuniqueApp {
 
   }
 
+
+
   getReminder(u_Id){
 
     var url =this.constant.reminder;
@@ -238,16 +248,29 @@ export class TCommuniqueApp {
       console.log("Reminder DATA",data);
       for(let file of data.data) {
 
-        console.log("Hello",file);
-        this.calendar.createEvent(file.title,null, 'TC', new Date(file.date+' '+file.time), new Date(file.date+' '+'23:59')).then(
-
+        this.calendar.findEvent(file.title, null, 'TC', new Date(file.date+' '+file.startTime), new Date(file.date+' '+file.endTime)).then(
           (msg) => {
-            console.log("Success Msg",msg);
-          },
-          (err) => {
-            console.log("err Msg",err);
-          }
-        );
+            if(msg=='')
+              {
+                console.log("Hello",file);
+                this.calendar.createEvent(file.title,null, 'TC', new Date(file.date+' '+file.startTime), new Date(file.date+' '+file.endTime)).then(
+
+                  (msg) => {
+                    console.log("Success Msg",msg);
+                  },
+                  (err) => {
+                    console.log("err Msg",err);
+                  });
+              }
+              else
+              {
+                
+              }
+          }, (err) => {
+
+          });
+
+       
 
       }
 
@@ -257,6 +280,8 @@ export class TCommuniqueApp {
 
     });
   }
+
+ 
 
   initializeApp() {
     this.platform.ready().then(() => {

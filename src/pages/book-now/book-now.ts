@@ -206,4 +206,8 @@ export class BookNowPage {
 
   }
 
+  home(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
 }

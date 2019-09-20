@@ -10,6 +10,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number';
+import { HomePage } from '../../pages/home/home';
+
 
 
 
@@ -136,6 +138,10 @@ export class ContactUsPage {
       console.log("Emergency",data.json().data);
       this.emergency_number = data.json().data;
     })
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

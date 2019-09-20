@@ -168,5 +168,8 @@ export class CustomizePackagePage {
 
 
 }
+home(){
+  this.navCtrl.setRoot(HomePage);
+}
 
 }

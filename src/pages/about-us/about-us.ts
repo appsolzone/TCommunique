@@ -25,4 +25,8 @@ export class AboutUsPage {
     console.log('ionViewDidLoad AboutUsPage');
   }
 
+  home(){
+    
+  }
+
 }

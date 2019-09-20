@@ -10,6 +10,8 @@ import { CustomizePackagePage } from '../../pages/customize-package/customize-pa
 import { PackageDetailsPage } from '../../pages/package-details/package-details';
 import { FilterPage } from '../../pages/filter/filter';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 /**
  * Generated class for the MyWishListPage page.
  *
@@ -48,7 +50,7 @@ export class MyWishListPage {
       }
 
     });
-    storage.get('user_login_data').then((val) => {
+    this.storage.get('user_login_data').then((val) => {
       console.log('user_login_data', val);
       this.uId = val.uId;
       this.get_WishList(this.uId);
@@ -86,6 +88,10 @@ export class MyWishListPage {
     console.log("Data",pkgId);
     this.navCtrl.push(PackageDetailsPage,{pkgId:pkgId});
 
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

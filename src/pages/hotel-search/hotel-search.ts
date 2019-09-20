@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
+import { OwnPropertyDetailsPage } from '../../pages/own-property-details/own-property-details'; 
 
 
 
@@ -95,6 +96,12 @@ export class HotelSearchPage {
 
   home(){
     this.navCtrl.setRoot(HomePage);
+  }
+
+  goHotelDetails(data){
+    console.log("DATA",data);
+    this.navCtrl.push(OwnPropertyDetailsPage,{data:data});
+
   }
 
 

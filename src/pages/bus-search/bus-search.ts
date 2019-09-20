@@ -11,6 +11,8 @@ import 'rxjs/add/observable/interval';
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 /**
  * Generated class for the BusSearchPage page.
  *
@@ -192,6 +194,10 @@ SaveRequest(){
       });
 
 
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 

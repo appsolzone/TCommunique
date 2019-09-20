@@ -2,6 +2,10 @@ page-nearby-places {
   .scroll {
     height: 100%
   }
+  ion-icon {
+    display: inline-block;
+    font-size: 2em;
+}
 
   #map {
       width: 100%;

@@ -154,4 +154,8 @@ check()
     console.log('ionViewDidLoad CarbookingPage');
   }
 
+  home(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
 }

@@ -241,5 +241,9 @@ export class SignInPage implements OnInit{
     });
   }
 
+  skip(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
 
 }

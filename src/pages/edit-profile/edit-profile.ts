@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
 import { Camera, CameraOptions ,PictureSourceType } from '@ionic-native/camera';
+import { HomePage } from '../../pages/home/home';
+
 
 
 /**
@@ -205,4 +207,7 @@ export class EditProfilePage {
     });
 
      }
+     home(){
+      this.navCtrl.setRoot(HomePage);
+    }
 }

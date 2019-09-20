@@ -1,5 +1,7 @@
 import { Component ,NgZone, ElementRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../../pages/home/home';
+
 // import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation';
 
 /**
@@ -165,6 +167,9 @@ export class NearbyPlacesPage {
 
     console.log("Selected Data",data);
 
+  }
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 

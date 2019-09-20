@@ -61,6 +61,7 @@ import {PlacesOfInterestPageModule} from '../pages/places-of-interest/places-of-
 import { DatePipe } from '@angular/common'
 import { UserReviewPageModule } from '../pages/user-review/user-review.module';
 import {UpdatePasswordPageModule} from '../pages/update-password/update-password.module';
+import {OwnPropertyDetailsPageModule} from '../pages/own-property-details/own-property-details.module';
 
 
 
@@ -100,6 +101,7 @@ import {UpdatePasswordPageModule} from '../pages/update-password/update-password
     BusSearchPageModule,
     UserReviewPageModule,
     LanguagePageModule,
+    OwnPropertyDetailsPageModule,
     FilterPageModule,
     CategoryPackageDetailsPageModule,
     PackageDetailsPageModule,

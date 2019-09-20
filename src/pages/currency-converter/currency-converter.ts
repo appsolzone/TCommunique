@@ -96,4 +96,8 @@ export class CurrencyConverterPage implements OnInit {
 
   }
 
+  home(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
 }

@@ -9,6 +9,8 @@ import 'rxjs/add/observable/interval';
 import { CallNumber } from '@ionic-native/call-number';
 import { EditEmergencyCallPage } from '../../pages/edit-emergency-call/edit-emergency-call';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 /**
  * Generated class for the EmergencyCallingPage page.
@@ -91,6 +93,10 @@ export class EmergencyCallingPage {
 
         });
       myModal.present();
+  }
+
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

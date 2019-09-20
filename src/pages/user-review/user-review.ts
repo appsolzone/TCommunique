@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/Observable';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 /**
  * Generated class for the UserReviewPage page.
@@ -31,7 +33,7 @@ export class UserReviewPage {
 
   public onRegForm: FormGroup;
 
-  rating: number = 5;
+  rating: number = 1;
 
   public destination:any;
   public date:any;
@@ -107,6 +109,9 @@ export class UserReviewPage {
 
       toast.present();
     });
+  }
+  home(){
+    this.navCtrl.setRoot(HomePage);
   }
 }
 

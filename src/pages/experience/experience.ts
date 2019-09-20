@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { HomePage } from '../../pages/home/home';
+
 
 
 
@@ -172,6 +174,10 @@ export class ExperiencePage {
       }).catch(() => {
 
       });
+    }
+
+    home(){
+      this.navCtrl.setRoot(HomePage);
     }
 
 }

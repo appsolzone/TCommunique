@@ -11,6 +11,8 @@ import 'rxjs/add/observable/interval';
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
+
 
 
 /**
@@ -76,11 +78,14 @@ export class FlightSearchPage {
     this.searchControl.valueChanges
       .pipe(debounceTime(700))
       .subscribe(search => {
+
+
         this.setFilteredItems22(search);
       });
       this.searchControlnew.valueChanges
       .pipe(debounceTime(700))
       .subscribe(search => {
+        console.log("ngOnInit search",search);
         this.setFilteredItems44(search);
       });
 
@@ -143,8 +148,8 @@ SaveRequest(){
 
       this.searching = false;
       this.searching1 = false;
-
-      this.setFilteredItems44(search);
+      console.log("ionViewDidLoad search",search);
+        this.setFilteredItems44(search);
 
   });
 
@@ -166,7 +171,7 @@ SaveRequest(){
     }
 
     setFilteredItems22(searchTerm) {
-      console.log("searchTerm",searchTerm)
+      console.log("World searchTerm",searchTerm)
       if(searchTerm.length >=3){
         this.flight_items = this.constant.flight_filterItems(searchTerm)
          console.log("this.all",this.flight_items);
@@ -178,14 +183,17 @@ SaveRequest(){
     }
 
     setFilteredItems44(searchTerm) {
-      console.log("searchTerm",searchTerm)
-      if(searchTerm.length >=3){
-        this.flight_items2 = this.constant.flight_filterItems2(searchTerm)
-         console.log("this.all",this.flight_items2);
-      }else{
-        this.showlist = false;
-        this.showlist2 = false;
-      }
+      console.log("Hello searchTerm",searchTerm)
+
+        if(searchTerm.length >=3){
+          this.flight_items2 = this.constant.flight_filterItems2(searchTerm)
+           console.log("this.all",this.flight_items2);
+        }else{
+          this.showlist = false;
+          this.showlist2 = false;
+        }
+
+
 
     }
 
@@ -194,15 +202,23 @@ SaveRequest(){
       this.showlist2 = false;
       console.log("DATA",data);
       this.departure = data.Code;
+      this.setFilteredItems22("");
 
     }
 
     selectdestination(data){
+      this.destination = data.Code;
+      console.log("selectdestination_DATA",data);
       this.showlist = false;
       this.showlist2 = false;
-      console.log("DATA",data);
-      this.destination = data.Code;
+      this.setFilteredItems44("");
 
+
+
+    }
+
+    home(){
+      this.navCtrl.setRoot(HomePage);
     }
 
 }
