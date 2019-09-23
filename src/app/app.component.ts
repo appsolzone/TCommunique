@@ -264,13 +264,13 @@ export class TCommuniqueApp {
               }
               else
               {
-                
+
               }
           }, (err) => {
 
           });
 
-       
+
 
       }
 
@@ -281,7 +281,7 @@ export class TCommuniqueApp {
     });
   }
 
- 
+
 
   initializeApp() {
     this.platform.ready().then(() => {

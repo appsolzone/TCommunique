@@ -54,6 +54,8 @@ export class ConstantProvider {
   public viewWishList="https://appsolzone.com/aszdev/tcApi/wishlist/viewWishList.php";
   public planMyHoliday="https://appsolzone.com/aszdev/tcApi/planHoliday/planMyHoliday.php";
   public reminder="https://appsolzone.com/aszdev/tcApi/reminder/reminder.php";
+  public checkAvailability="https://appsolzone.com/aszdev/tcApi/hotel/checkAvailability.php";
+  public bookHotel="https://appsolzone.com/aszdev/tcApi/hotel/bookHotel.php";
 
 
 

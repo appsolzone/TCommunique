@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage,Events, NavController, NavParams, ViewController} from 'ionic-angular';
 import {DataProvider} from '../../providers/data/data';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 
 
@@ -23,7 +24,10 @@ export class VideoCallPage {
   isVideoMute;
   isAudioMute;
 
-  constructor(public dataProvider: DataProvider,public navCtrl: NavController,public navParams: NavParams,public events:Events,public viewCtrl: ViewController) {
+
+
+  constructor(public dataProvider: DataProvider,public navCtrl: NavController,public navParams: NavParams,public events:Events,public viewCtrl: ViewController,private nativeAudio: NativeAudio) {
+    console.log("Hello World 5")
 
     this.webRTCClient =  this.dataProvider.getwebRTCClient();
     this.events.subscribe('userMediaSuccess',(e)=>{
@@ -34,6 +38,8 @@ export class VideoCallPage {
     })
 
     this.events.subscribe('remoteStreamAdded',(e)=>{
+      console.log("Hello World 555")
+
       this.showHangup = true;
       this.showRemoteVideo = true;
       setTimeout(()=>{
@@ -92,3 +98,4 @@ export class VideoCallPage {
   }
 
 }
+

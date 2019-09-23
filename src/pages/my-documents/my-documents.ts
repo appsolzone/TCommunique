@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 
 /**
@@ -17,6 +18,7 @@ import { HomePage } from '../../pages/home/home';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare var cordova:any;
 
 @IonicPage({
   name: 'page-my-documents',
@@ -37,7 +39,7 @@ export class MyDocumentsPage {
   allmyDoc:any;
 
 
-  constructor(public toastCtrl:ToastController,private storage: Storage,public actionSheetCtrl:ActionSheetController,public navCtrl: NavController, public navParams: NavParams,public camera:Camera,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(public toastCtrl:ToastController,private storage: Storage,public actionSheetCtrl:ActionSheetController,public navCtrl: NavController, public navParams: NavParams,public camera:Camera,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private transfer: FileTransfer) {
 
     storage.get('user_login_data').then((val) => {
       console.log('user_login_data', val);
@@ -151,6 +153,21 @@ export class MyDocumentsPage {
 
   home(){
     this.navCtrl.setRoot(HomePage);
+  }
+
+  download(data){
+
+    console.log("DATA",data);
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    let targetPath = cordova.file.externalRootDirectory+ "download/"+data.docTitle+".jpg";
+    fileTransfer.download(data.docLink, targetPath, true).then((entry) => {
+      alert('download complete: ' + entry.toURL());
+    }, (error) => {
+            console.log("download error source " + error.source);
+            console.log("download error target " + error.target);
+            console.log("upload error code" + error.code);
+        });
   }
 
 }

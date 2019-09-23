@@ -5,7 +5,6 @@ import {NativeAudio} from '@ionic-native/native-audio';
 
 import 'rxjs/add/operator/map';
 import {DataProvider} from '../data/data';
-// import {AlertProvider} from './alert';
 
 declare var apiRTC: any;
 declare var cordova:any;
@@ -37,7 +36,11 @@ export class VideoProvider {
   }
 
   InitializingRTC(userData){
+
+    console.log("Hello World")
     if(this.platform.is('android')){
+      console.log("Hello World 2")
+
       var permissions = cordova.plugins.permissions;
       // permissions.hasPermission(permissions.CAMERA, this.checkVideoPermissionCallback, null);
       // permissions.hasPermission(permissions.RECORD_AUDIO, this.checkAudioPermissionCallback, null);
@@ -108,7 +111,7 @@ export class VideoProvider {
   }
 
   sessionReadyHandler(e){
-    this.webRTCClient.setUserAcceptOnIncomingCallBeforeGetUserMedia(true);
+    // this.webRTCClient.setUserAcceptOnIncomingCallBeforeGetUserMedia(true);
 
 
     this.webRTCClient = apiRTC.session.createWebRTCClient({
@@ -118,6 +121,8 @@ export class VideoProvider {
   }
 
   AddEventListeners(){
+    console.log("Hello World 3")
+
     apiRTC.addEventListener("userMediaSuccess", (e) => {
       this.events.publish('userMediaSuccess',e)
     })
@@ -166,6 +171,8 @@ export class VideoProvider {
       this.alert.dismiss();
     })
     apiRTC.addEventListener("remoteStreamAdded", (e) => {
+      console.log("Hello World 4")
+
       this.events.publish('remoteStreamAdded',e)
       this.alert.dismiss();
 
@@ -213,6 +220,8 @@ RejectCall(incomingCallId) {
   this.alert.dismiss();
   this.webRTCClient.refuseCall(incomingCallId);
   this.events.publish('rejectCall',incomingCallId)
+      // this.RemoveMediaElements(incomingCallId);
+
 }
 
 }

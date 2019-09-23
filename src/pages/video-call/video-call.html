@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content >
-  <div *ngIf="showHangup"> 
+  <div *ngIf="showHangup">
     <ion-fab  bottom center (click)='toggleVideoMute()' class="muteVideo">
       <button ion-fab color="primary" *ngIf="isVideoMute"><ion-icon name="mic-off"></ion-icon></button>
       <button ion-fab color="primary" *ngIf="!isVideoMute"><ion-icon name="videocam"></ion-icon></button>
@@ -31,3 +31,4 @@
   <div id="mini" class="miniVideo"></div>
 
 </ion-content>
+

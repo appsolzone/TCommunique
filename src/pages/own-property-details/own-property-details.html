@@ -98,9 +98,6 @@
               </ion-card-content>
               </ion-card>
               <ion-card>
-                <div style="background:#f6f6f6; ">
-                  <p style="margin-left: 11px; font-size: 20px;">Check Availability</p>
-                </div>
                 <ion-item>
                   <ion-label>Check In</ion-label>
                   <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Date" [(ngModel)]="checkIn"></ion-datetime>
@@ -109,12 +106,51 @@
                   <ion-label>Check Out</ion-label>
                   <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Date" [(ngModel)]="checkOut"></ion-datetime>
                 </ion-item>
+                <div class="row">
+                  <div class="col text-center">
                 <button class="login-btn" ion-button (click) = "checkAvail()">
-                  Check
+                  Check Availability
                 </button>
+              </div>
+            </div>
               </ion-card>
 
         </ion-grid>
+
+        <ion-scroll style="width:100%;height:100%;" scrollY="true">
+          <div >
+          <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of hotelsearchResult">
+
+
+                  <ion-card class="cardBody">
+                      <ion-card-content>
+                          <ion-row>
+                        <ion-col col-8>
+                          <ion-row style="font-size:14px; color: #056387;">
+                              <ion-col>Room Type: {{item.roomType}}</ion-col>
+                          </ion-row>
+                            <ion-row style="font-size:14px; color: #056387;">
+                                <ion-col col-3>Price</ion-col>
+                                <ion-col col-1>:</ion-col>
+                                <ion-col col-4>{{item.price}}</ion-col>
+                              </ion-row>
+                        </ion-col>
+                        <ion-col col-4>
+                          <div class="col text-center">
+                          <button  class="btn"  ion-button (click)="bookhotel(item)">Book Now</button>
+                        </div>
+                        </ion-col>
+                        </ion-row>
+
+
+
+                      </ion-card-content>
+
+                    </ion-card>
+
+          </ion-row>
+          </div>
+        </ion-scroll>
 
 
 </ion-content>

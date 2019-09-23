@@ -1,0 +1,64 @@
+page-hotel-booking-request {
+  .input_field
+  {
+      width: 100%;
+      height: 40px;
+      padding: 0px 0px;
+      margin: 5px 0;
+      // display: inline-block;
+      border: 1px solid #d43460;
+      border-radius: 4px;
+      // box-sizing: border-box;
+      text-align: center;
+
+  }
+  .box
+  {
+      width: 75px;
+      height: 30px;
+      border: 0px solid white;
+      border-radius: 5px;
+      padding: 0px;
+      margin: 0px;
+      color: #ffffff;
+      position: absolute;
+      background: #d51d1d;
+      top: 29px;
+      right: 2px;
+  }
+  .header_bg
+  {
+      text-align: center;
+      color: #056387;
+      font-size: 14px;
+  }
+  .bg
+  {
+    background: #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 8%;
+
+  }
+  .login-btn{
+    display: table;
+    margin-top: 25px;
+    background: -moz-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(111,227,252,1)), color-stop(100%, rgba(0,99,99,1)));
+    background: -webkit-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+    background: -o-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+    background: -ms-linear-gradient(269deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+    background: linear-gradient(181deg, rgba(111,227,252,1) 0%, rgba(0,99,99,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6FE3FC', endColorstr='#006363',GradientType=0 );
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 50px;
+    padding: 9px;
+    font-size: 21px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+}

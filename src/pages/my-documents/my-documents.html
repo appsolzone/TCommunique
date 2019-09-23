@@ -40,7 +40,15 @@
     </div>
 
     <div class="cardstyle" *ngFor="let data of allmyDoc">
-      <p style="margin-left: 10px;text-align: center;color: #fff;font-weight: 600;">{{data.docTitle}}</p>
+      <ion-row>
+          <ion-col col-10>
+              <p style="margin-left: 10px;text-align: center;color: #fff;font-weight: 600;">{{data.docTitle}}</p>
+          </ion-col>
+          <ion-col col-2>
+              <ion-icon ios="ios-download" md="md-download" (click)="download(data)"></ion-icon>
+            </ion-col>
+      </ion-row>
+
       <img src="{{data.docLink}}" style="width: 100%;height: 120px;border-radius: 7px 7px 7px 7px;">
    </div>
 

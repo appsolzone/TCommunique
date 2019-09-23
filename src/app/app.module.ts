@@ -62,12 +62,16 @@ import { DatePipe } from '@angular/common'
 import { UserReviewPageModule } from '../pages/user-review/user-review.module';
 import {UpdatePasswordPageModule} from '../pages/update-password/update-password.module';
 import {OwnPropertyDetailsPageModule} from '../pages/own-property-details/own-property-details.module';
+import {CordovaMediaProvider, defaultAudioProviderFactory, IonicAudioModule, WebAudioProvider} from "ionic-audio";
+import {HotelBookingRequestPageModule} from '../pages/hotel-booking-request/hotel-booking-request.module';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 
-
-
-
-
+export function myCustomAudioProviderFactory() {
+  return window.hasOwnProperty("cordova")
+    ? new CordovaMediaProvider()
+    : new WebAudioProvider();
+}
 
 
 
@@ -106,6 +110,7 @@ import {OwnPropertyDetailsPageModule} from '../pages/own-property-details/own-pr
     CategoryPackageDetailsPageModule,
     PackageDetailsPageModule,
     FlightSearchPageModule,
+    HotelBookingRequestPageModule,
     AboutUsPageModule,
     UpdatePasswordPageModule,
     PrivacyPolicyPageModule,
@@ -121,6 +126,7 @@ import {OwnPropertyDetailsPageModule} from '../pages/own-property-details/own-pr
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    IonicAudioModule.forRoot(defaultAudioProviderFactory),
     IonicModule.forRoot(TCommuniqueApp, {
     	preloadModules: true,
       scrollPadding: false,
@@ -151,7 +157,9 @@ import {OwnPropertyDetailsPageModule} from '../pages/own-property-details/own-pr
     NativeAudio,
     UserProvider,
     Calendar,
-    DatePipe
+    DatePipe,
+    FileTransfer,
+    FileTransferObject
   ]
 })
 export class AppModule {}
