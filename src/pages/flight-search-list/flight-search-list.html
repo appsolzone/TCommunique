@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>Search</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="closeModal()">
+              <ion-icon item-right name="ios-close-outline"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<div class="bg" padding>
+
+  <div style = "position: relative;">
+    <!-- <ion-label class="dept">Departure</ion-label> -->
+
+    <ion-searchbar
+       class="xzy"
+       [formControl]="searchControl"
+       (ionChange)="onSearchInput()"
+       placeholder="Search"
+       [showCancelButton]="true"
+       [(ngModel)]="departure">
+     </ion-searchbar>
+
+     <div *ngIf="searching" class="spinner-container">
+       <ion-spinner></ion-spinner>
+     </div>
+
+     <ion-list *ngIf="showlist">
+       <ion-item *ngFor="let item of flight_items" (click)="selectdeparture(item)">
+         {{ item.Name }}
+       </ion-item>
+     </ion-list>
+  </div>
+  </div>

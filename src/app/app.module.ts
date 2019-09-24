@@ -65,8 +65,8 @@ import {OwnPropertyDetailsPageModule} from '../pages/own-property-details/own-pr
 import {CordovaMediaProvider, defaultAudioProviderFactory, IonicAudioModule, WebAudioProvider} from "ionic-audio";
 import {HotelBookingRequestPageModule} from '../pages/hotel-booking-request/hotel-booking-request.module';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-
-
+import {BusSearchListPageModule} from '../pages/bus-search-list/bus-search-list.module';
+import {FlightSearchListPageModule} from '../pages/flight-search-list/flight-search-list.module';
 export function myCustomAudioProviderFactory() {
   return window.hasOwnProperty("cordova")
     ? new CordovaMediaProvider()
@@ -120,6 +120,8 @@ export function myCustomAudioProviderFactory() {
     MyDocumentsPageModule,
     OtpVarificationPageModule,
     PlacesOfInterestPageModule,
+    BusSearchListPageModule,
+    FlightSearchListPageModule,
     VideoCallPageModule,
     MyWishListPageModule,
     FilterDataPageModule,
