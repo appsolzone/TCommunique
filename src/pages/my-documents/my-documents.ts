@@ -160,7 +160,7 @@ export class MyDocumentsPage {
     console.log("DATA",data);
 
     const fileTransfer: FileTransferObject = this.transfer.create();
-    let targetPath = cordova.file.externalRootDirectory+ "download/"+data.docTitle+".jpg";
+    let targetPath = cordova.fileexternalRootDirectory +'/Download/'+data.docTitle+".jpg";
     fileTransfer.download(data.docLink, targetPath, true).then((entry) => {
       alert('download complete: ' + entry.toURL());
     }, (error) => {
