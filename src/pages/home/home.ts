@@ -17,6 +17,7 @@ import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { SignInPage } from '../../pages/sign-in/sign-in';
 import { CurrencyConverterPage } from '../../pages/currency-converter/currency-converter';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 
@@ -42,7 +43,11 @@ export class HomePage {
   categorydet_domestic:any;
   destination_inter:any;
   destination_domestic:any;
-  emergency_number:any;
+  emergency_number_contact1:any;
+  emergency_number_contact2:any;
+  emergency_number_contact3:any;
+  emergency_number_contact4:any;
+
   searchTerm: string = '';
   searching: any = false;
   domesticImg:any;
@@ -59,8 +64,10 @@ export class HomePage {
 
   public listArray=[{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'},{name:'ASU',id:'#103',bgColor:'#8C1D40',fontColor:'#FFC627'},{name:'WVU',id:'#104',bgColor:'#EAAA00',fontColor:'#002855'},{name:'UNC',id:'#105',bgColor:'#7BAFD4',fontColor:'#ffffff'},{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'}];
 
-  constructor(public storage:Storage,public events:Events,public videoProvider:VideoProvider,private callNumber: CallNumber, public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(private androidPermissions:AndroidPermissions,public storage:Storage,public events:Events,public videoProvider:VideoProvider,private callNumber: CallNumber, public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.icons = "INTERNATIONAL";
+    this.events.publish('user:login');
+
 
     this.storage.get('currency').then((val)=>{
       console.log("VAL11",val);
@@ -133,6 +140,14 @@ export class HomePage {
       this.get_trendingDest();
 
     }
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION]).then(
+        result2 => {},
+      ),
+
+
+      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+    );
 
 
   }
@@ -186,8 +201,12 @@ export class HomePage {
     var url2 = this.constant.get_viewAgentContact;
     this.data = this.http.get(url2);
     this.data.subscribe(data=>{
-      console.log("Emergency",data.json().data);
-      this.emergency_number = data.json().data;
+      console.log("Emergency",data.json().data.contact1);
+      this.emergency_number_contact1 = data.json().data.contact1;
+      this.emergency_number_contact2 = data.json().data.contact2;
+      this.emergency_number_contact3 = data.json().data.contact3;
+      this.emergency_number_contact4 = data.json().data.contact4;
+
     })
   }
 
@@ -235,8 +254,23 @@ export class HomePage {
       this.navCtrl.push(SignInPage);
     }
   }
-  callNumber_ph(){
-    this.callNumber.callNumber(this.emergency_number, true)
+  callNumber_ph1(){
+    this.callNumber.callNumber(this.emergency_number_contact1, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+  }
+  callNumber_ph2(){
+    this.callNumber.callNumber(this.emergency_number_contact2, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+  }
+  callNumber_ph3(){
+    this.callNumber.callNumber(this.emergency_number_contact1, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+  }
+  callNumber_ph4(){
+    this.callNumber.callNumber(this.emergency_number_contact4, true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
   }

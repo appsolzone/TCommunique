@@ -98,26 +98,23 @@
   </div>
   <div class="card">
     <ul class="abc">
-      <li>
-        <img src="assets/imgs/car1.png" class="selectEnable" (click)="select(1)" value="1" >
+      <li [style.background-color]="bgColorHatchback" (click)="select(1)">
+        <img src="assets/imgs/car1.png" class="selectEnable" >
         <h3>Hatchback</h3>
       </li>
-      <li>
-          <img src="assets/imgs/car2.png" class="selectEnable" (click)="select(2)" value="2">
+      <li [style.background-color]="bgColorSedan" (click)="select(2)">
+          <img src="assets/imgs/car2.png" class="selectEnable" >
           <h3>Sedan</h3>
         </li>
-        <li>
-            <img src="assets/imgs/car3.png"class="selectEnable"(click)="select(3)" value="3">
+        <li [style.background-color]="bgColorSuv" (click)="select(3)">
+            <img src="assets/imgs/car3.png"class="selectEnable" >
             <h3>Suv</h3>
           </li>
-          <li>
-              <img src="assets/imgs/car4.png"class="selectEnable"(click)="select(4)" value="4" >
+          <li [style.background-color]="bgColorLuxury" (click)="select(4)">
+              <img src="assets/imgs/car4.png"class="selectEnable" >
               <h3>Luxury</h3>
             </li>
-
-
     </ul>
-
 
   </div>
 </div>

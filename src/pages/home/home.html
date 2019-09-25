@@ -283,7 +283,11 @@
           <button ion-fab class="funcbtn"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>
           <ion-fab-list side="top">
             <button ion-fab>  <ion-icon ios="ios-chatboxes" md="md-chatboxes"></ion-icon></button>
-            <button ion-fab (click)="callNumber_ph()"><ion-icon ios="ios-call" md="md-call"></ion-icon></button>
+            <button ion-fab (click)="callNumber_ph1()"><ion-icon ios="ios-call" md="md-call"></ion-icon><ion-label>Agent 1</ion-label></button>
+            <button ion-fab (click)="callNumber_ph2()"><ion-icon ios="ios-call" md="md-call"></ion-icon><ion-label>Agent 2</ion-label></button>
+            <button ion-fab (click)="callNumber_ph3()"><ion-icon ios="ios-call" md="md-call"></ion-icon><ion-label>Agent 3</ion-label></button>
+            <button ion-fab (click)="callNumber_ph4()"><ion-icon ios="ios-call" md="md-call"></ion-icon><ion-label>Agent 4</ion-label></button>
+
             <button ion-fab><ion-icon ios="ios-videocam" md="md-videocam" (click)="VideoCall()"></ion-icon></button>
           </ion-fab-list>
       </ion-fab>

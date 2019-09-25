@@ -44,7 +44,10 @@ export class CarBookingPage {
 
   uId:any;
   ClickablePic:any;
-
+  bgColorHatchback="#776e0e";
+  bgColorSedan="#0a5a53";
+  bgColorSuv="#0a5a53";
+  bgColorLuxury="#0a5a53";
 
 
 
@@ -90,6 +93,35 @@ export class CarBookingPage {
 select(a){
   this.ClickablePic=a;
   console.log(this.ClickablePic);
+
+  if(this.ClickablePic==1)
+  {
+    this.bgColorHatchback="#776e0e";
+    this.bgColorSedan="#0a5a53";
+    this.bgColorSuv="#0a5a53";
+    this.bgColorLuxury="#0a5a53";
+  }
+  else  if(this.ClickablePic==2)
+  {
+    this.bgColorHatchback="#0a5a53";
+    this.bgColorSedan="#776e0e";
+    this.bgColorSuv="#0a5a53";
+    this.bgColorLuxury="#0a5a53";
+  }
+  else  if(this.ClickablePic==3)
+  {
+    this.bgColorHatchback="#0a5a53";
+    this.bgColorSedan="#0a5a53";
+    this.bgColorSuv="#776e0e";
+    this.bgColorLuxury="#0a5a53";
+  }
+  else
+  {
+    this.bgColorHatchback="#0a5a53";
+    this.bgColorSedan="#0a5a53";
+    this.bgColorSuv="#0a5a53";
+    this.bgColorLuxury="#776e0e";
+  }
 
 }
 
@@ -152,6 +184,10 @@ check()
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarbookingPage');
+    this.ClickablePic=1;
+
+
+
   }
 
   home(){

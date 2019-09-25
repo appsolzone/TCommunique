@@ -165,7 +165,7 @@ export class ExperiencePage {
     share(data){
 
       console.log("DATA")
-      let url="https://appsolzone.com";
+      let url="http://tcommunique.com/";
       let share_message= data.expTitle;
       let share_message_body= data.expContent;
 

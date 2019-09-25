@@ -163,6 +163,25 @@ page-home {
 .fabbtn .fab {
   font-size: 35px;
 }
+
+button[ion-fab] {
+  overflow: visible;
+  position: relative;
+
+  ion-label {
+      position: absolute;
+      top: -8px;
+      right: 40px;
+
+      color: white;
+      background-color: rgba(0,0,0,0.7);
+      font-size: 10px;
+      line-height: 24px;
+      padding: 4px 8px;
+      border-radius: 4px;
+  }
+  contain: layout;
+}
 .carp p{
   font-size: 20px;
   padding: 0;

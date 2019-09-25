@@ -82,30 +82,30 @@
 
 
               <ion-list class="user-list">
-                <button menuClose ion-item (click)="openPage(aboutus)">
+                <!-- <button menuClose ion-item (click)="openPage(aboutus)">
                   <ion-icon item-left ios="ios-shirt" md="md-shirt"></ion-icon>
                   <span ion-text color="font" class="fw500">Theme</span>
-                </button>
+                </button> -->
 
 
                     <!-- <button menuClose ion-item (click)="openPage(scanner)">
                       <ion-icon item-left ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon>
                       <span ion-text color="font" class="fw500">Passpor Scanner</span>
                     </button> -->
-                    <button *ngIf="login_status" menuClose ion-item (click)="openPage(user_review)">
+                    <button  menuClose ion-item (click)="openPage2(user_review)">
                         <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon>
                         <span ion-text color="font" class="fw500">User Review</span>
                       </button>
-                    <button *ngIf="login_status" menuClose ion-item (click)="openPage(mywishlist)">
+                    <button menuClose ion-item (click)="openPage2(mywishlist)">
                         <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon>
                         <span ion-text color="font" class="fw500">My WishList</span>
                       </button>
 
-                    <button *ngIf="login_status" menuClose ion-item (click)="openPage(myexperience)">
+                    <button menuClose ion-item (click)="openPage2(myexperience)">
                         <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon>
                         <span ion-text color="font" class="fw500">My Experience</span>
                       </button>
-                      <button *ngIf="login_status" menuClose ion-item (click)="openPage(mydocuments)">
+                      <button menuClose ion-item (click)="openPage2(mydocuments)">
                           <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon>
                           <span ion-text color="font" class="fw500">My Documents</span>
                         </button>
@@ -120,7 +120,7 @@
                             <span ion-text color="font" class="fw500">Privacy Policy</span>
                           </button>
 
-                    <button *ngIf="login_status" menuClose ion-item (click)="openPage(emergency_calling)">
+                    <button  menuClose ion-item (click)="openPage2(emergency_calling)">
                               <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
                               <span ion-text color="font" class="fw500">Emergency Calling</span>
                             </button>

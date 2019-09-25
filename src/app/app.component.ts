@@ -3,7 +3,6 @@ import {Events,App,Nav, Platform,AlertController,ModalController} from 'ionic-an
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import {IonicApp } from 'ionic-angular';
 import {DataProvider} from '../providers/data/data';
 import {VideoProvider} from '../providers/video/video';
@@ -57,6 +56,8 @@ import { OtpVarificationPage} from '../pages/otp-varification/otp-varification';
 import { UserProvider } from '../providers/user/user';
 import { MyWishListPage } from '../pages/my-wish-list/my-wish-list';
 import { Calendar } from '@ionic-native/calendar';
+
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 
@@ -132,7 +133,17 @@ export class TCommuniqueApp {
               alert.present();
 
       }else if(page && (page instanceof SignInPage)){
-        const val = null;
+        // const val = null;
+        //   if(val==null)
+        //   {
+
+        //   }
+        //   else
+        //   {
+        //     this.nav.setRoot(HomePage);
+        //   }
+
+        this.storage.get('user_login_data').then((val) => {
           if(val==null)
           {
 
@@ -141,6 +152,7 @@ export class TCommuniqueApp {
           {
             this.nav.setRoot(HomePage);
           }
+        });
       }
       else
       {
@@ -154,7 +166,7 @@ export class TCommuniqueApp {
       }
   });
 
-  setInterval(() => {
+  // setInterval(() => {
 
     console.log("DAYA")
     events.subscribe('user:login', () => {
@@ -179,7 +191,8 @@ export class TCommuniqueApp {
       }
 
       })
-      }); }, 30000);
+      });
+    // }, 30000);
 
 
 
@@ -310,6 +323,14 @@ export class TCommuniqueApp {
   }
    openPage(page) {
       this.nav.setRoot(page.component);
+    }
+    openPage2(page){
+
+      if(this.login_status){
+        this.nav.setRoot(page.component);
+      }else{
+        this.nav.setRoot(this.signinItem.component);
+      }
     }
 
    login(page)

@@ -20,16 +20,17 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
-    "@ionic-native/android-permissions": "^5.12.0",
+    "@ionic-native/android-permissions": "^4.20.0",
     "@ionic-native/barcode-scanner": "^4.20.0",
     "@ionic-native/calendar": "^4.20.0",
     "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "^3.14.0",
-    "@ionic-native/file": "^5.14.0",
+    "@ionic-native/file": "^4.20.0",
     "@ionic-native/file-transfer": "^4.20.0",
     "@ionic-native/geolocation": "^5.12.0",
     "@ionic-native/google-plus": "^4.20.0",
+    "@ionic-native/location-accuracy": "^4.20.0",
     "@ionic-native/native-audio": "^4.20.0",
     "@ionic-native/network": "^4.20.0",
     "@ionic-native/push": "^4.20.0",
@@ -39,7 +40,6 @@
     "@ionic/storage": "^2.2.0",
     "android-camera-permission": "^1.0.0",
     "call-number": "^1.0.1",
-    "cordova-android": "^8.0.0",
     "cordova-custom-config": "^5.1.0",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-calendar": "^5.1.4",
@@ -70,6 +70,7 @@
     "ionic-resources": "^0.1.8",
     "ionic3-star-rating": "^2.1.0",
     "ionicons": "3.0.0",
+    "mx.ferreyra.callnumber": "~0.0.2",
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "phonegap-plugin-multidex": "^1.0.0",
     "phonegap-plugin-push": "^2.2.3",
@@ -108,7 +109,6 @@
         "ANDROID_SUPPORT_V13_VERSION": "27.+",
         "FCM_VERSION": "11.6.2"
       },
-      "cordova-plugin-android-permissions": {},
       "cordova-plugin-console": {},
       "cordova-custom-config": {},
       "cordova-plugin-iosrtc": {},
@@ -129,10 +129,9 @@
       "cordova-plugin-nativeaudio": {},
       "cordova-plugin-calendar": {},
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-android-permissions": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }

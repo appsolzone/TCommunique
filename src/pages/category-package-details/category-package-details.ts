@@ -85,7 +85,6 @@ export class CategoryPackageDetailsPage {
 
     });
 
-
     if (this.searchDetails != null)
     {
       console.log("this.searchDetails",this.searchDetails)
@@ -121,6 +120,7 @@ export class CategoryPackageDetailsPage {
       dismissOnPageChange: true
     });
     this.loading.present();
+
     var url =this.constant.get_listOfPackageByDestId;
     let postData = new FormData();
     postData.append('catId',catId);
@@ -359,7 +359,8 @@ export class CategoryPackageDetailsPage {
           }
         }
       }
-      this.loading.dismiss();
+      // this.loading.dismiss();
+      this.get_UserReview();
     });
 
   }

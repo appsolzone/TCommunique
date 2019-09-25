@@ -22,7 +22,7 @@
       <div style="background: white;width: 100%; bottom: 0px; border-top-left-radius: 15px; border-top-right-radius: 15px;">
           <ion-row style="margin-top: 10px;">
               <ion-col col-7>
-                <p style="margin-left: 11px; font-weight: bold; font-size: 12px;">Spectacular Cochin Tour Package</p>
+                <p style="margin-left: 11px; font-weight: bold; font-size: 12px;">{{package_pkgTitle}}</p>
               </ion-col>
               <ion-col col-5>
                 <div style="border: 1px solid #a61c1d; border-radius: 27px; height: 40px;">
@@ -145,7 +145,7 @@
                   defaultIcon = "ios-star-outline"
                   activeColor = "#ffbf01"
                   defaultColor = "red"
-                  readonly="false"
+                  readonly="true"
                   [rating]=[data.hotelRating]>
                  </ionic3-star-rating>
                   <!-- <p>326 Reviews</p> -->
@@ -194,7 +194,9 @@
                 <ion-card-content>
 
                   <ion-row>
-                    <ion-col col-4><img src="{{data.profImg}}" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
+                    <ion-col col-4 *ngIf="data.profImg"><img src="{{data.profImg}}" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
+                    <ion-col col-4 *ngIf="!data.profImg"><img src="assets/imgs/profile.png" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
+
                     <ion-col col-8>
                         <div>
                           <P style="margin-left: 4px;">{{data.comment}}</P>
@@ -210,7 +212,7 @@
                               defaultIcon = "ios-star-outline"
                               activeColor = "#ffbf01"
                               defaultColor = "red"
-                              readonly="false"
+                              readonly="true"
                               [rating]=[data.rating]>
                             </ionic3-star-rating>
                           </div>
@@ -236,7 +238,7 @@
                     <ion-card class="cardBody" (click)="goclick(data.pkgId)">
 
                         <ion-card-header class="cardHeader">
-                          <p style=" color: white; font-size: 14px;">{{data.pkgTitle}}<span>{{data.duration}}</span></p>
+                          <p style=" color: white; font-size: 14px;">{{data.pkgTitle}}<span>  ({{data.duration}})</span></p>
                         </ion-card-header>
 
                         <ion-card-content>

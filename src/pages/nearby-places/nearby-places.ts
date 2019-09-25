@@ -1,6 +1,8 @@
 import { Component ,NgZone, ElementRef, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+// import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 // import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation';
 
@@ -28,7 +30,7 @@ export class NearbyPlacesPage {
   latLng:any;
   markers:any;
   mapOptions:any;
-  isKM:any=5000;
+  isKM:any=2000;
   isType:any="restaurant";
   infowindow: any;
   options = {
@@ -39,11 +41,12 @@ export class NearbyPlacesPage {
 
 
   arraySource=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private ngZone: NgZone) {
+  constructor(public androidPermissions:AndroidPermissions,public navCtrl: NavController, public navParams: NavParams,private ngZone: NgZone) {
   }
 
   ionViewDidLoad() {
-    this.loadMap();
+    // this.loadMap();
+    this.checkPermission();
   }
 
   loadMap(){
@@ -111,10 +114,13 @@ export class NearbyPlacesPage {
   }
   /*--------------------Find Nearby Place------------------------*/
 
-  nearbyPlace(){
+  nearbyPlace(data){
+    console.log("HDHDD",data);
+    this.isKM = data;
     this.arraySource = [];
     this.arraySource.length = 0;
-    this.loadMap();
+    this.checkPermission();
+    // this.loadMap();
     // this.markers = [];
     // let service = new google.maps.places.PlacesService(this.map);
     // service.nearbySearch({
@@ -171,6 +177,33 @@ export class NearbyPlacesPage {
   home(){
     this.navCtrl.setRoot(HomePage);
   }
+
+  checkPermission(){
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION]).then(
+        result2 => this.loadMap,
+      ),
+
+
+      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+    );
+
+  }
+
+  // checkGPS()
+  // {
+  //   this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+
+  //     if(canRequest) {
+  //       // the accuracy option will be ignored by iOS
+  //       this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+  //         () => this.loadMap(),
+  //         error =>console.log('Error getting location', error)
+  //       );
+  //     }
+
+  //   });
+  // }
 
 
 }

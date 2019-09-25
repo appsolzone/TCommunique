@@ -26,7 +26,7 @@ import { IonicRatingModule } from 'ionic-rating';
 import { Geolocation ,GeolocationOptions } from '@ionic-native/geolocation/ngx';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { BusSearchPageModule } from '../pages/bus-search/bus-search.module';
 import { LanguagePageModule } from '../pages/language/language.module';
 import { FilterPageModule } from '../pages/filter/filter.module';
@@ -69,6 +69,8 @@ import {BusSearchListPageModule} from '../pages/bus-search-list/bus-search-list.
 import {FlightSearchListPageModule} from '../pages/flight-search-list/flight-search-list.module';
 import {BookBusPageModule} from '../pages/book-bus/book-bus.module';
 import {BookFlightPageModule} from '../pages/book-flight/book-flight.module';
+import { File } from '@ionic-native/file';
+// import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 
 export function myCustomAudioProviderFactory() {
@@ -167,7 +169,9 @@ export function myCustomAudioProviderFactory() {
     Calendar,
     DatePipe,
     FileTransfer,
-    FileTransferObject
+    FileTransferObject,
+    File,
+    // LocationAccuracy
   ]
 })
 export class AppModule {}
