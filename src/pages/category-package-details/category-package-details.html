@@ -1,235 +1,232 @@
 <ion-header >
 
   <ion-navbar color="searchbg">
-    <button ion-button menuToggle>
-      <button class="button button-clear  ion-arrow-left-c  " ></button>
-    </button>
-    <ion-title>
-      <span ion-text class="fw700">Category Details</span>
-    </ion-title>
+  <button ion-button menuToggle>
+  <button class="button button-clear ion-arrow-left-c " ></button>
+  </button>
+  <ion-title>
+  <span ion-text class="fw700">Category Details</span>
+  </ion-title>
 
-    <ion-buttons end>
-        <button ion-button class="blinking_button" (click)="home()">
-            <ion-icon ios="ios-home" md="md-home"></ion-icon>
-        </button>
-    </ion-buttons>
+  <ion-buttons end>
+  <button ion-button class="blinking_button" (click)="home()">
+  <ion-icon ios="ios-home" md="md-home"></ion-icon>
+  </button>
+  </ion-buttons>
 
-    <ion-buttons end>
-        <button ion-button class="blinking_button"  (click)="filter()">
-          <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
-      </button>
-      </ion-buttons>
+  <ion-buttons end>
+  <button ion-button class="blinking_button" (click)="filter()">
+  <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
+  </button>
+  </ion-buttons>
   </ion-navbar>
 
 
-</ion-header>
+  </ion-header>
 
-<ion-content>
+  <ion-content>
 
   <div>
-      <img  src="{{destinationImg}}" style="width: 100%; height: 150px;">
-      <div class="placeName">{{destinationName}}</div>
-      <P class="sb">Starting budget</P>
-      <p class="price" *ngIf="default_currency=='INR'">&#8377;{{startingprice}}</p>
-      <p class="price" *ngIf="default_currency=='USD'">&#36;{{startingpriceUSD}}</p>
-      <p class="price" *ngIf="default_currency=='EUR'">&#8364;{{startingpriceEUR}}</p>
-      <p class="price" *ngIf="default_currency=='JPY'">&#165;{{startingpriceJPY}}</p>
-      <p class="price" *ngIf="default_currency=='GBP'">&#163;{{startingpriceGBP}}</p>
-      <p class="price" *ngIf="default_currency=='CAD'">C&#36;{{startingpriceCAD}}</p>
-      <p class="price" *ngIf="default_currency=='CHF'">Fr.{{startingpriceCHF}}</p>
-      <p class="price" *ngIf="default_currency=='CNH'">&#65509;{{startingpriceCNH}}</p>
-      <p class="price" *ngIf="default_currency=='AUD'">A&#36;{{startingpriceAUD}}</p>
-      <p class="aftPrice">person</p>
+  <img src="{{destinationImg}}" style="width: 100%; height: 150px;">
+  <div class="placeName">{{destinationName}}</div>
+  <P class="sb">Starting budget</P>
+  <p class="price" *ngIf="default_currency=='INR'">&#8377;{{startingprice}}</p>
+  <p class="price" *ngIf="default_currency=='USD'">&#36;{{startingpriceUSD}}</p>
+  <p class="price" *ngIf="default_currency=='EUR'">&#8364;{{startingpriceEUR}}</p>
+  <p class="price" *ngIf="default_currency=='JPY'">&#165;{{startingpriceJPY}}</p>
+  <p class="price" *ngIf="default_currency=='GBP'">&#163;{{startingpriceGBP}}</p>
+  <p class="price" *ngIf="default_currency=='CAD'">C&#36;{{startingpriceCAD}}</p>
+  <p class="price" *ngIf="default_currency=='CHF'">Fr.{{startingpriceCHF}}</p>
+  <p class="price" *ngIf="default_currency=='CNH'">&#65509;{{startingpriceCNH}}</p>
+  <p class="price" *ngIf="default_currency=='AUD'">A&#36;{{startingpriceAUD}}</p>
+  <p class="aftPrice">person</p>
   </div>
 
   <p class="bsp">BEST SELLING PACKAGES</p>
 
   <ion-slides pager class="cardBody1">
-      <ion-slide *ngFor="let data of ListofPackage_byDest; let idx = index">
-          <ion-card class="cardBody" (click)="goclick(data.pkgId)">
+  <ion-slide *ngFor="let data of ListofPackage_byDest; let idx = index">
+  <ion-card class="cardBody">
 
-              <ion-card-header class="cardHeader">
-                <p style=" color: white; font-size: 14px;">{{data.pkgTitle}}<span>{{data.duration}}</span></p>
-              </ion-card-header>
+  <ion-card-header class="cardHeader">
+  <p style=" color: white; font-size: 14px;">{{data.pkgTitle}}<span>{{data.duration}}</span></p>
+  </ion-card-header>
 
-              <ion-card-content>
-                  <div class="bxtxt">
-                      <ion-icon class="favBtn" ios="ios-heart" md="md-heart" (click)="setUserFav()"></ion-icon>
+  <ion-card-content>
+  <div class="bxtxt">
 
-                  <!-- <div class="xyz" *ngFor="let item of getWishlistData">
-                      <ion-icon class="notFavBtn"ios="ios-heart" md="md-heart" *ngIf="item.pkgId != data.pkgId" (click)="setUserFav()"></ion-icon>
-                      <ion-icon class="favBtn" ios="ios-heart" md="md-heart"  *ngIf="item.pkgId == data.pkgId"  (click)="setUserFav()"></ion-icon>
-                  </div> -->
-
-                  <p>Starting Budget </p>
-                      <p *ngIf="default_currency=='INR'"><span>&#8377;{{data.startingPrice}}</span>/Person
-                     </p>
-                     <p *ngIf="default_currency=='USD'"> <span>&#36;{{data.priceUSD}}</span>/Person
-                       </p>
-                      <p *ngIf="default_currency=='EUR'"><span>&#8364;{{data.priceEUR}}</span>/Person
-                         </p>
-                       <p *ngIf="default_currency=='JPY'"><span>&#165;{{data.priceJPY}}</span>/Person
-                           </p>
-                        <p *ngIf="default_currency=='GBP'"><span>&#163;{{data.priceGBP}}</span>/Person
-                             </p>
-                          <p *ngIf="default_currency=='AUD'"><span>A&#36;{{data.priceAUD}}</span>/Person
-                               </p>
-                       <p *ngIf="default_currency=='CAD'"><span>C&#36;{{data.priceCAD}}</span>/Person
-                                 </p>
-                       <p *ngIf="default_currency=='CHF'"><span>Fr. {{data.priceCHF}}</span>/Person
-                                   </p>
-                          <p *ngIf="default_currency=='CNH'"> <span>&#65509;{{data.priceCNH}}</span>/Person
-                                     </p>
+  <ion-icon class="notFavBtn"ios="ios-heart" md="md-heart" *ngIf="data.favHeart=='no'" (click)="setUserFav(data)"></ion-icon>
+  <ion-icon class="favBtn" ios="ios-heart" md="md-heart" *ngIf="data.favHeart=='yes'" (click)="setUserFav(data)"></ion-icon>
 
 
+  <div (click)="goclick(data.pkgId)">
+  <p>Starting Budget</p>
+  <p *ngIf="default_currency=='INR'"><span>&#8377;{{data.startingPrice}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='USD'"> <span>&#36;{{data.priceUSD}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='EUR'"><span>&#8364;{{data.priceEUR}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='JPY'"><span>&#165;{{data.priceJPY}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='GBP'"><span>&#163;{{data.priceGBP}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='AUD'"><span>A&#36;{{data.priceAUD}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='CAD'"><span>C&#36;{{data.priceCAD}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='CHF'"><span>Fr. {{data.priceCHF}}</span>/Person
+  </p>
+  <p *ngIf="default_currency=='CNH'"> <span>&#65509;{{data.priceCNH}}</span>/Person
+  </p>
+  </div>
+  </div>
 
 
-                  </div>
+  <ion-row (click)="goclick(data.pkgId)">
+  <ion-col col-2 *ngIf="data.flight ==='yes'">
+  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+  <ion-icon ios="ios-plane" md="md-plane" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
 
+  </div>
+  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Flight</p>
+  </ion-col>
+  <ion-col col-2 *ngIf="data.cab ==='yes'">
+  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+  <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+  </div>
+  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Cab</p>
+  </ion-col>
+  <ion-col col-2 *ngIf="data.hotel ==='yes'">
+  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+  <ion-icon ios="ios-home" md="md-home"
+  style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+  </div>
+  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">{{data.hotelRating}}</p>
+  </ion-col>
+  <ion-col col-2 *ngIf="data.meal ==='yes'">
+  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+  <ion-icon ios="ios-pizza" md="md-pizza"
+  style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+  </div>
+  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Meals</p>
+  </ion-col>
+  <ion-col col-2 *ngIf="data.sightSeeing ==='yes'">
+  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+  <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+  </div>
+  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Sight Seeing</p>
+  </ion-col>
+  <ion-col col-2 *ngIf="data.other ==='yes'">
+  <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
+  <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+  </div>
+  <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Other</p>
+  </ion-col>
+  </ion-row>
 
-                  <ion-row>
-                    <ion-col col-2 *ngIf="data.flight ==='yes'">
-                      <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                          <ion-icon ios="ios-plane" md="md-plane" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
+  </ion-card-content>
 
-                      </div>
-                      <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Flight</p>
-                  </ion-col>
-                  <ion-col col-2 *ngIf="data.cab ==='yes'">
-                      <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                        <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
-                        </div>
-                        <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Cab</p>
-                  </ion-col>
-                  <ion-col col-2 *ngIf="data.hotel ==='yes'">
-                      <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                        <ion-icon ios="ios-home" md="md-home"
-                        style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
-                        </div>
-                        <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">{{data.hotelRating}}</p>
-                  </ion-col>
-                  <ion-col col-2 *ngIf="data.meal ==='yes'">
-                      <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                        <ion-icon ios="ios-pizza" md="md-pizza"
-                        style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
-                        </div>
-                        <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Meals</p>
-                  </ion-col>
-                  <ion-col col-2 *ngIf="data.sightSeeing ==='yes'">
-                      <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                          <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12); margin-top: 15px;"></ion-icon>
-                        </div>
-                        <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Sight Seeing</p>
-                  </ion-col>
-                  <ion-col col-2 *ngIf="data.other ==='yes'">
-                    <div style="background: transparent; height: 50px; width: 50px; border-radius: 5px; display: block; margin: auto;">
-                        <ion-icon ios="ios-car" md="md-car" style="color: rgb(12, 12, 12);  margin-top: 15px;"></ion-icon>
-                      </div>
-                      <p style="font-size: 11px; text-align: center; margin-top: 2px; margin-left: 5px">Other</p>
-                </ion-col>
-                  </ion-row>
-
-              </ion-card-content>
-
-            </ion-card>
-      </ion-slide>
-    </ion-slides>
-
-
-
-    <div style="background: #d6d6d6; height:5px; width:100%; margin-top:25px;"></div>
-
-    <p class="bsp">USER REVIEW</p>
-    <ion-slides pager class="cardBody1">
-        <ion-slide *ngFor="let data of userReview; let idx = index">
-    <ion-card class="cardBody" >
-
-        <ion-card-content>
-
-          <ion-row>
-            <ion-col col-4><img src="{{data.profImg}}" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
-            <ion-col col-8>
-                <div>
-                  <P style="margin-left: 4px;">{{data.comment}}</P>
-                    <ion-row style=" font-size: 6px;">
-                      <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
-                      <ion-col col-5>{{data.fName}}{{data.lName}}</ion-col>
-                      <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
-                      <ion-col col-5>{{data.date}}</ion-col>
-                    </ion-row>
-                    <!-- <img src="assets/imgs/rating.png" style="height: 10px; width: 50px; margin-left: 4px;"> -->
-                    <ionic3-star-rating
-                      activeIcon = "ios-star"
-                      defaultIcon = "ios-star-outline"
-                      activeColor = "#ffbf01"
-                      defaultColor = "red"
-                      readonly="false"
-                      [rating]=[data.rating]>
-                    </ionic3-star-rating>
-                  </div>
-
-            </ion-col>
-          </ion-row>
-
-          <p style="margin-left: 20px; font-size: 10px;">{{data.comment}}</p>
-          <P style="color: red; float: right; margin-top: 5px;">read more..</P>
-
-        </ion-card-content>
-
-      </ion-card>
-    </ion-slide>
+  </ion-card>
+  </ion-slide>
   </ion-slides>
 
-      <div style="background: #d6d6d6; height:5px; width:100%; margin-top:20px;"></div>
-
-      <p class="bsp">HOW TO REACH</p>
-
-      <div style="margin-top: 10px; display: table;    width: 100%;
-      margin: 15px 0;">
-          <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
-              <ion-icon ios="ios-plane" md="md-plane" style="margin-left: 7px; margin-top: 4px;  color: white;"></ion-icon>
-          </div>
-          <p style="margin-top: -35px;
-          margin-left: 50px; font-weight: bold;">By Air</p>
-
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byAir}}</p>
-      </div>
-
-      <div style="margin-top: 10px; display: table;    width: 100%;
-      margin: 15px 0;">
-          <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
-              <ion-icon ios="ios-car" md="md-car" style="margin-left: 7px; margin-top: 4px;  color: white;"></ion-icon>
-          </div>
-          <p style="margin-top: -35px;
-          margin-left: 50px; font-weight: bold;">By Car</p>
-
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byCar}}</p>
-      </div>
-
-      <div style="margin-top: 10px; display: table;    width: 100%;
-      margin: 15px 0;">
-          <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
-              <ion-icon ios="ios-train" md="md-train" style="margin-left: 7px; margin-top: 4px;  color: white;"></ion-icon>
-          </div>
-          <p style=" margin-top: -35px;
-          margin-left: 50px; font-weight: bold;">By Train</p>
-
-          <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byTrain}}</p>
-      </div>
 
 
+  <div style="background: #d6d6d6; height:5px; width:100%; margin-top:25px;"></div>
 
+  <p class="bsp">USER REVIEW</p>
+  <ion-slides pager class="cardBody1">
+  <ion-slide *ngFor="let data of userReview; let idx = index">
+  <ion-card class="cardBody" >
 
+  <ion-card-content>
 
-</ion-content>
-
-<!-- <ion-footer style="height: 50px; background: #ffffff00; display: block;">
   <ion-row>
-    <ion-col col-6 class="rmd">
-      <button ion-button full  class="book">BOOK NOW</button>
-    </ion-col>
-    <ion-col col-6 class="lmd">
-        <button  ion-button full  class="customize" (click)="customize()">CUSTOMIZE</button>
-    </ion-col>
+  <ion-col col-4><img src="{{data.profImg}}" style="height: 60px; border-radius: 50%; width: 60px; border: 2px solid #13b8b9;"></ion-col>
+  <ion-col col-8>
+  <div>
+  <P style="margin-left: 4px;">{{data.comment}}</P>
+  <ion-row style=" font-size: 6px;">
+  <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
+  <ion-col col-5>{{data.fName}}{{data.lName}}</ion-col>
+  <ion-col col-1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon></ion-col>
+  <ion-col col-5>{{data.date}}</ion-col>
   </ion-row>
-</ion-footer> -->
+  <!-- <img src="assets/imgs/rating.png" style="height: 10px; width: 50px; margin-left: 4px;"> -->
+  <ionic3-star-rating
+  activeIcon = "ios-star"
+  defaultIcon = "ios-star-outline"
+  activeColor = "#ffbf01"
+  defaultColor = "red"
+  readonly="false"
+  [rating]=[data.rating]>
+  </ionic3-star-rating>
+  </div>
+
+  </ion-col>
+  </ion-row>
+
+  <p style="margin-left: 20px; font-size: 10px;">{{data.comment}}</p>
+  <P style="color: red; float: right; margin-top: 5px;">read more..</P>
+
+  </ion-card-content>
+
+  </ion-card>
+  </ion-slide>
+  </ion-slides>
+
+  <div style="background: #d6d6d6; height:5px; width:100%; margin-top:20px;"></div>
+
+  <p class="bsp">HOW TO REACH</p>
+
+  <div style="margin-top: 10px; display: table; width: 100%;
+  margin: 15px 0;">
+  <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
+  <ion-icon ios="ios-plane" md="md-plane" style="margin-left: 7px; margin-top: 4px; color: white;"></ion-icon>
+  </div>
+  <p style="margin-top: -35px;
+  margin-left: 50px; font-weight: bold;">By Air</p>
+
+  <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byAir}}</p>
+  </div>
+
+  <div style="margin-top: 10px; display: table; width: 100%;
+  margin: 15px 0;">
+  <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
+  <ion-icon ios="ios-car" md="md-car" style="margin-left: 7px; margin-top: 4px; color: white;"></ion-icon>
+  </div>
+  <p style="margin-top: -35px;
+  margin-left: 50px; font-weight: bold;">By Car</p>
+
+  <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byCar}}</p>
+  </div>
+
+  <div style="margin-top: 10px; display: table; width: 100%;
+  margin: 15px 0;">
+  <div style="height: 35px; border-radius: 50%; width: 35px; margin-left: 10px; background: #0b9595;">
+  <ion-icon ios="ios-train" md="md-train" style="margin-left: 7px; margin-top: 4px; color: white;"></ion-icon>
+  </div>
+  <p style=" margin-top: -35px;
+  margin-left: 50px; font-weight: bold;">By Train</p>
+
+  <p style="font-size: 10px; margin-top: -10px; margin-left: 50px;">{{byTrain}}</p>
+  </div>
+
+
+
+
+
+  </ion-content>
+
+  <!-- <ion-footer style="height: 50px; background: #ffffff00; display: block;">
+  <ion-row>
+  <ion-col col-6 class="rmd">
+  <button ion-button full class="book">BOOK NOW</button>
+  </ion-col>
+  <ion-col col-6 class="lmd">
+  <button ion-button full class="customize" (click)="customize()">CUSTOMIZE</button>
+  </ion-col>
+  </ion-row>
+  </ion-footer> -->
+  <script src="src/toastify.js"></script>

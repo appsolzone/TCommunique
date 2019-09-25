@@ -135,45 +135,47 @@
                       <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.ArrivalTime}} </p>
                   </div>
                 </ion-card-header>
-                <ion-row style="font-size:14px; color: #056387;">
-                    <ion-col col-4>Origin</ion-col>
-                    <ion-col col-1>:</ion-col>
-                    <ion-col col-7>{{item.origin}}</ion-col>
-                  </ion-row>
-                  <ion-row style="font-size:14px; color: #056387;">
-                      <ion-col col-4>Destination</ion-col>
-                      <ion-col col-1>:</ion-col>
-                      <ion-col col-7>{{item.destination}}</ion-col>
-                    </ion-row>
+
+
+                <ion-card-content style="position: relative;">
+
                     <ion-row style="font-size:14px; color: #056387;">
-                        <ion-col col-4>Bus Routes</ion-col>
+                        <ion-col col-4>Origin</ion-col>
                         <ion-col col-1>:</ion-col>
-                        <ion-col col-7><p>{{item.busRoutes}}</p></ion-col>
-                      </ion-row>
-                    <ion-row style="font-size:14px; color: #056387;">
-                        <ion-col col-4>Fare</ion-col>
-                        <ion-col col-1>:</ion-col>
-                        <ion-col col-7>{{item.RouteSeatTypeDetail.list[0].SellFare}}</ion-col>
+                        <ion-col col-7>{{item.origin}}</ion-col>
                       </ion-row>
                       <ion-row style="font-size:14px; color: #056387;">
-                          <ion-col col-4>Travels</ion-col>
+                          <ion-col col-4>Destination</ion-col>
                           <ion-col col-1>:</ion-col>
-                          <ion-col col-7>{{item.TravelsName}}</ion-col>
+                          <ion-col col-7>{{item.destination}}</ion-col>
                         </ion-row>
                         <ion-row style="font-size:14px; color: #056387;">
-                            <ion-col col-4>Bus Type</ion-col>
+                            <ion-col col-4>Bus Routes</ion-col>
                             <ion-col col-1>:</ion-col>
-                            <ion-col col-7>{{item.busCondition}}</ion-col>
+                            <ion-col col-7><p>{{item.busRoutes}}</p></ion-col>
+                          </ion-row>
+                        <ion-row style="font-size:14px; color: #056387;">
+                            <ion-col col-4>Fare</ion-col>
+                            <ion-col col-1>:</ion-col>
+                            <ion-col col-7>{{item.RouteSeatTypeDetail.list[0].SellFare}}</ion-col>
                           </ion-row>
                           <ion-row style="font-size:14px; color: #056387;">
-                              <ion-col col-4>SeatsAvailable</ion-col>
+                              <ion-col col-4>Travels</ion-col>
                               <ion-col col-1>:</ion-col>
-                              <ion-col col-7>{{item.RouteSeatTypeDetail.list[0].SeatsAvailable}}</ion-col>
+                              <ion-col col-7>{{item.TravelsName}}</ion-col>
                             </ion-row>
+                            <ion-row style="font-size:14px; color: #056387;">
+                                <ion-col col-4>Bus Type</ion-col>
+                                <ion-col col-1>:</ion-col>
+                                <ion-col col-7>{{item.busCondition}}</ion-col>
+                              </ion-row>
+                              <ion-row style="font-size:14px; color: #056387;">
+                                  <ion-col col-4>SeatsAvailable</ion-col>
+                                  <ion-col col-1>:</ion-col>
+                                  <ion-col col-7>{{item.RouteSeatTypeDetail.list[0].SeatsAvailable}}</ion-col>
+                                </ion-row>
 
-                <ion-card-content>
-
-
+                                <button class="bookBtn" (click)="boook_bus(item)">Book</button>
                 </ion-card-content>
 
               </ion-card>

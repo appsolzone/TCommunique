@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController,Loading} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,Loading,ToastController} from 'ionic-angular';
 import { ConstantProvider } from '../../providers/constant/constant';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
@@ -63,46 +63,40 @@ export class CategoryPackageDetailsPage {
   getWishlistData:any;
 
 
-  constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(public storage:Storage,public navCtrl: NavController,private toast:ToastController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController)
+  {
     this.searchDetails = navParams.get('Details');
 
     this.catId=navParams.get('catId');
     this.tourType=navParams.get('tourType');
     this.destId = navParams.get('destId');
 
-    storage.get('user_login_data').then((val) => {
-      console.log('user_login_data', val);
-      this.uId = val.uId;
-      this.viewWishlist(this.uId);
-    });
-
     this.storage.get('currency').then((val)=>{
 
-      if(val==null){
+      if(val==null)
+      {
         this.default_currency = "INR";
 
-      }else{
+      }else
+      {
         this.default_currency = val.name;
         console.log("VAL)))",this.default_currency);
-
-
       }
 
     });
 
 
-    if (this.searchDetails != null) {
-
+    if (this.searchDetails != null)
+    {
       console.log("this.searchDetails",this.searchDetails)
       this.showsearchData(this.searchDetails);
     }
 
-    if(this.catId!=null){
+    if(this.catId!=null)
+    {
       console.log("this.catId",this.catId)
       this.getListofPackage_byDest(this.catId,this.tourType,this.destId);
     }
-
-    this.get_UserReview();
   }
 
   ionViewDidLoad() {
@@ -115,16 +109,18 @@ export class CategoryPackageDetailsPage {
 
   }
 
-  customize(){
+  customize()
+  {
     this.navCtrl.push(CustomizePackagePage);
   }
-  getListofPackage_byDest(catId,tourType,destId){
 
+  getListofPackage_byDest(catId,tourType,destId)
+  {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
       dismissOnPageChange: true
     });
-    // this.loading.present();
+    this.loading.present();
     var url =this.constant.get_listOfPackageByDestId;
     let postData = new FormData();
     postData.append('catId',catId);
@@ -134,7 +130,7 @@ export class CategoryPackageDetailsPage {
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
 
-      console.log("DATA_#",(JSON.stringify(data.json())));
+      // console.log("DATA_#$",(JSON.stringify(data.json())));
       this.byAir = data.json().howToReach.byAir;
       this.byCar = data.json().howToReach.byCar;
       this.byTrain = data.json().howToReach.byTrain;
@@ -152,11 +148,25 @@ export class CategoryPackageDetailsPage {
       this.startingpriceJPY = data.json().startingpriceJPY;
       this.startingpriceUSD = data.json().startingpriceUSD;
 
+      this.storage.get('user_login_data').then((val) => {
+        console.log('user_login_data', val);
+        if(val)
+        {
+          this.uId = val.uId;
+          this.viewWishlist();
+        }
+        else
+        {
+          this.get_UserReview();
+        }
+      });
+
+
     });
   }
 
-  showsearchData(data){
-
+  showsearchData(data)
+  {
       console.log("DATA__",data);
       this.byAir = data.howToReach.byAir;
       this.byCar = data.howToReach.byCar;
@@ -174,53 +184,188 @@ export class CategoryPackageDetailsPage {
       this.startingpriceGBP = data.startingpriceGBP;
       this.startingpriceJPY = data.startingpriceJPY;
       this.startingpriceUSD = data.startingpriceUSD;
-
-
   }
-  filter(){
+
+  filter()
+  {
     this.navCtrl.push(FilterPage,{tourType:this.tourType});
-
   }
 
-  get_UserReview(){
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      dismissOnPageChange: true
-    });
-    this.loading.present();
+  get_UserReview()
+  {
+    // this.loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   dismissOnPageChange: true
+    // });
+    // this.loading.present();
     var url =this.constant.fetch_user_review;
     this.data = this.http.get(url);
     this.data.subscribe(data =>{
       this.userReview = data.json().data;
       this.loading.dismiss();
     });
-
   }
 
-  setUserFav(){
-
-  }
-
-  viewWishlist(u_id){
-
+  setUserFav(data)
+  {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
       dismissOnPageChange: true
     });
-    // this.loading.present();
-    var url =this.constant.viewWishList;
+    this.loading.present();
+
+    var url =this.constant.addToWishList;
     let postData = new FormData();
-    postData.append('uId',u_id);
+    postData.append('uId',this.uId);
+    postData.append('pkgId',data.pkgId);
+
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
-      console.log("getWishlistData",data);
-      this.getWishlistData = data.json().data;
       // this.loading.dismiss();
+
+      let toast = this.toast.create({
+        message: data.json().msg,
+        duration: 3000,
+        position: 'top'
+      });
+
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+
+      toast.present();
+
+      this.viewWishlist();
     });
 
   }
 
-  home(){
+  viewWishlist()
+  {
+    // this.loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   dismissOnPageChange: true
+    // });
+    // this.loading.present();
+    this.getWishlistData=[];
+    var url =this.constant.viewWishList;
+    let postData = new FormData();
+    postData.append('uId',this.uId);
+    this.data = this.http.post(url,postData);
+    this.data.subscribe(data =>{
+      // console.log("getWishlistData",JSON.stringify(data.json()));
+      this.getWishlistData = data.json().data;
+
+      let ListofPackage_byDest_data=[];
+      ListofPackage_byDest_data =this.ListofPackage_byDest;
+      this.ListofPackage_byDest=[];
+
+      for(let i=0;i<ListofPackage_byDest_data.length;i++)
+      {
+        for(let j=0;j<this.getWishlistData.length;j++)
+        {
+          if(ListofPackage_byDest_data[i].pkgId==this.getWishlistData[j].pkgId)
+          {
+            let obj=
+            {
+                pkgId:ListofPackage_byDest_data[i].pkgId,
+                pkgTitle:ListofPackage_byDest_data[i].pkgTitle,
+                duration:ListofPackage_byDest_data[i].duration,
+                startingPrice:ListofPackage_byDest_data[i].startingPrice,
+                priceUSD:ListofPackage_byDest_data[i].priceUSD,
+                priceEUR:ListofPackage_byDest_data[i].priceEUR,
+                priceJPY:ListofPackage_byDest_data[i].priceJPY,
+                priceGBP:ListofPackage_byDest_data[i].priceGBP,
+                priceAUD:ListofPackage_byDest_data[i].priceAUD,
+                priceCAD:ListofPackage_byDest_data[i].priceCAD,
+                priceCHF:ListofPackage_byDest_data[i].priceCHF,
+                priceCNH:ListofPackage_byDest_data[i].priceCNH,
+                tourType:ListofPackage_byDest_data[i].tourType,
+                overview:ListofPackage_byDest_data[i].overview,
+                inclusion:ListofPackage_byDest_data[i].inclusion,
+                exclusion:ListofPackage_byDest_data[i].exclusion,
+                flight:ListofPackage_byDest_data[i].flight,
+                cab:ListofPackage_byDest_data[i].cab,
+                hotel:ListofPackage_byDest_data[i].hotel,
+                hotelRating:ListofPackage_byDest_data[i].hotelRating,
+                meal:ListofPackage_byDest_data[i].meal,
+                sightSeeing:ListofPackage_byDest_data[i].sightSeeing,
+                other:ListofPackage_byDest_data[i].other,
+                pkgImg:this.getWishlistData[j].pkgImg,
+                destId:this.getWishlistData[j].destId,
+                catId:this.getWishlistData[j].catId,
+                favHeart:"yes"
+            }
+
+            if(this.ListofPackage_byDest[i])
+            {
+              this.ListofPackage_byDest.splice(i, 1);
+              this.ListofPackage_byDest.splice(i, 0,obj);
+            }
+            else
+            {
+              this.ListofPackage_byDest.push(obj);
+            }
+          }
+          else
+          {
+            let obj=
+            {
+                pkgId:ListofPackage_byDest_data[i].pkgId,
+                pkgTitle:ListofPackage_byDest_data[i].pkgTitle,
+                duration:ListofPackage_byDest_data[i].duration,
+                startingPrice:ListofPackage_byDest_data[i].startingPrice,
+                priceUSD:ListofPackage_byDest_data[i].priceUSD,
+                priceEUR:ListofPackage_byDest_data[i].priceEUR,
+                priceJPY:ListofPackage_byDest_data[i].priceJPY,
+                priceGBP:ListofPackage_byDest_data[i].priceGBP,
+                priceAUD:ListofPackage_byDest_data[i].priceAUD,
+                priceCAD:ListofPackage_byDest_data[i].priceCAD,
+                priceCHF:ListofPackage_byDest_data[i].priceCHF,
+                priceCNH:ListofPackage_byDest_data[i].priceCNH,
+                tourType:ListofPackage_byDest_data[i].tourType,
+                overview:ListofPackage_byDest_data[i].overview,
+                inclusion:ListofPackage_byDest_data[i].inclusion,
+                exclusion:ListofPackage_byDest_data[i].exclusion,
+                flight:ListofPackage_byDest_data[i].flight,
+                cab:ListofPackage_byDest_data[i].cab,
+                hotel:ListofPackage_byDest_data[i].hotel,
+                hotelRating:ListofPackage_byDest_data[i].hotelRating,
+                meal:ListofPackage_byDest_data[i].meal,
+                sightSeeing:ListofPackage_byDest_data[i].sightSeeing,
+                other:ListofPackage_byDest_data[i].other,
+                pkgImg:"",
+                destId:"",
+                catId:"",
+                favHeart:"no"
+            }
+
+            if(this.ListofPackage_byDest[i])
+              {
+                if(this.ListofPackage_byDest[i].favHeart=='yes')
+                {
+
+                }
+                else
+                {
+                  this.ListofPackage_byDest.splice(i, 1);
+                  this.ListofPackage_byDest.splice(i, 0,obj);
+                }
+              }
+            else
+              {
+                this.ListofPackage_byDest.push(obj);
+              }
+          }
+        }
+      }
+      this.loading.dismiss();
+    });
+
+  }
+
+  home()
+  {
     this.navCtrl.setRoot(HomePage);
   }
 

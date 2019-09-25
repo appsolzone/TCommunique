@@ -67,6 +67,10 @@ import {HotelBookingRequestPageModule} from '../pages/hotel-booking-request/hote
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import {BusSearchListPageModule} from '../pages/bus-search-list/bus-search-list.module';
 import {FlightSearchListPageModule} from '../pages/flight-search-list/flight-search-list.module';
+import {BookBusPageModule} from '../pages/book-bus/book-bus.module';
+import {BookFlightPageModule} from '../pages/book-flight/book-flight.module';
+
+
 export function myCustomAudioProviderFactory() {
   return window.hasOwnProperty("cordova")
     ? new CordovaMediaProvider()
@@ -101,6 +105,8 @@ export function myCustomAudioProviderFactory() {
     CurrencyConverterPageModule,
     CarBookingPageModule,
     NearbyPlacesPageModule,
+    BookBusPageModule,
+    BookFlightPageModule,
     EditEmergencyCallPageModule,
     BusSearchPageModule,
     UserReviewPageModule,

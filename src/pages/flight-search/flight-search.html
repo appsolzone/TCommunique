@@ -190,7 +190,10 @@
                               <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
                           </div>
                         </ion-card-header>
-                        <ion-row style="font-size:14px; color: #056387;">
+
+                        <ion-card-content style="position: relative;">
+
+                          <ion-row style="font-size:14px; color: #056387;">
                             <ion-col col-4>Origin</ion-col>
                             <ion-col col-1>:</ion-col>
                             <ion-col col-7>{{item.origin}}</ion-col>
@@ -221,10 +224,9 @@
                                       <ion-col col-7>{{item.seatsavailable}}</ion-col>
                                     </ion-row>
 
-                        <ion-card-content>
-
-
+                                    <button class="bookBtn" (click)="boook_flight(item,'oneway')">Book</button>
                         </ion-card-content>
+
 
                       </ion-card>
 
@@ -259,41 +261,42 @@
                                   <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
                               </div>
                             </ion-card-header>
-                            <ion-row style="font-size:14px; color: #056387;">
-                                <ion-col col-4>Origin</ion-col>
-                                <ion-col col-1>:</ion-col>
-                                <ion-col col-7>{{item.origin}}</ion-col>
-                              </ion-row>
-                              <ion-row style="font-size:14px; color: #056387;">
-                                  <ion-col col-4>AirLine</ion-col>
-                                  <ion-col col-1>:</ion-col>
-                                  <ion-col col-7>{{item.airline}}</ion-col>
-                                </ion-row>
+
+                            <ion-card-content style="position: relative;">
                                 <ion-row style="font-size:14px; color: #056387;">
-                                    <ion-col col-4>Ticket Type</ion-col>
+                                    <ion-col col-4>Origin</ion-col>
                                     <ion-col col-1>:</ion-col>
-                                    <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
-                                  </ion-row>
-                                <ion-row style="font-size:14px; color: #056387;">
-                                    <ion-col col-4>Fare</ion-col>
-                                    <ion-col col-1>:</ion-col>
-                                    <ion-col col-7>{{item.fare.grossamount}}</ion-col>
+                                    <ion-col col-7>{{item.origin}}</ion-col>
                                   </ion-row>
                                   <ion-row style="font-size:14px; color: #056387;">
-                                      <ion-col col-4>Duration</ion-col>
+                                      <ion-col col-4>AirLine</ion-col>
                                       <ion-col col-1>:</ion-col>
-                                      <ion-col col-7>{{item.duration}}</ion-col>
+                                      <ion-col col-7>{{item.airline}}</ion-col>
                                     </ion-row>
+                                    <ion-row style="font-size:14px; color: #056387;">
+                                        <ion-col col-4>Ticket Type</ion-col>
+                                        <ion-col col-1>:</ion-col>
+                                        <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
+                                      </ion-row>
+                                    <ion-row style="font-size:14px; color: #056387;">
+                                        <ion-col col-4>Fare</ion-col>
+                                        <ion-col col-1>:</ion-col>
+                                        <ion-col col-7>{{item.fare.grossamount}}</ion-col>
+                                      </ion-row>
                                       <ion-row style="font-size:14px; color: #056387;">
-                                          <ion-col col-4>SeatsAvailable</ion-col>
+                                          <ion-col col-4>Duration</ion-col>
                                           <ion-col col-1>:</ion-col>
-                                          <ion-col col-7>{{item.seatsavailable}}</ion-col>
+                                          <ion-col col-7>{{item.duration}}</ion-col>
                                         </ion-row>
+                                          <ion-row style="font-size:14px; color: #056387;">
+                                              <ion-col col-4>SeatsAvailable</ion-col>
+                                              <ion-col col-1>:</ion-col>
+                                              <ion-col col-7>{{item.seatsavailable}}</ion-col>
+                                            </ion-row>
 
-                            <ion-card-content>
-
-
+                                            <button class="bookBtn" (click)="boook_flight(item,'roundTrip')">Book</button>
                             </ion-card-content>
+
 
                           </ion-card>
 

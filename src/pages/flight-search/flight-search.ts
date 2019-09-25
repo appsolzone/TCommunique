@@ -13,6 +13,7 @@ import { debounceTime } from "rxjs/operators";
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
 import {FlightSearchListPage} from '../../pages/flight-search-list/flight-search-list';
+import {BookFlightPage} from '../../pages/book-flight/book-flight';
 
 
 
@@ -257,6 +258,20 @@ SaveRequest(){
         });
       myModal.present();
 
+    }
+
+    boook_flight(item,_Flights_tab)
+    {
+      console.log(item);
+      console.log(_Flights_tab);
+
+      let myModal = this.modal.create(BookFlightPage,{data:item,tabType:_Flights_tab,uId: this.uId});
+
+      myModal.onDidDismiss(data =>
+        {
+          console.log(data);
+        });
+      myModal.present();
     }
 
 

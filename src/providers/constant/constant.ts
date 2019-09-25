@@ -57,6 +57,11 @@ export class ConstantProvider {
   public checkAvailability="https://appsolzone.com/aszdev/tcApi/hotel/checkAvailability.php";
   public bookHotel="https://appsolzone.com/aszdev/tcApi/hotel/bookHotel.php";
 
+  public addToWishList="https://appsolzone.com/aszdev/tcApi/wishlist/addToWishList.php";
+
+  public bookFlight="https://appsolzone.com/aszdev/tcApi/flight/bookFlight.php";
+  public bookBus="https://appsolzone.com/aszdev/tcApi/bus/bookBus.php";
+
 
 
   constructor(public httpClient: HttpClient,) {

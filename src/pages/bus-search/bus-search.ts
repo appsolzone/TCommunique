@@ -14,6 +14,8 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
 import {BusSearchListPage} from '../../pages/bus-search-list/bus-search-list';
 
+import {BookBusPage} from '../../pages/book-bus/book-bus';
+
 /**
  * Generated class for the BusSearchPage page.
  *
@@ -227,9 +229,15 @@ SaveRequest(){
 
   }
 
+  boook_bus(item)
+  {
+    let myModal = this.modal.create(BookBusPage,{data:item,uId: this.uId});
 
-
-
-
+    myModal.onDidDismiss(data =>
+      {
+        console.log(data);
+      });
+    myModal.present();
+  }
 
 }
