@@ -238,6 +238,7 @@ export class TCommuniqueApp {
 
         this.searchMenuItems = [
             {title: 'Own Properties', component: 'page-hotel-search', icon: 'md-home'},
+            {title: 'Hotel Search', component: 'page-hotel-search-goibibo', icon: 'md-home'},
             {title: 'Flight Search', component: 'page-flight-search', icon: 'md-plane'},
             {title: 'Bus Search', component: 'page-bus-search', icon: 'md-bus'}
 

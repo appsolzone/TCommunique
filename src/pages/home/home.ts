@@ -18,6 +18,8 @@ import { Storage } from '@ionic/storage';
 import { SignInPage } from '../../pages/sign-in/sign-in';
 import { CurrencyConverterPage } from '../../pages/currency-converter/currency-converter';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { NetworkConnectionProvider } from '../../providers/network-connection/network-connection';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 
@@ -61,10 +63,12 @@ export class HomePage {
 
 
 
+  private readonly tawkChatLink : string = 'https://tawk.to/chat/5d8b5c0fdb28311764d5cc9e/default/?$_tawk_popout=true';
 
   public listArray=[{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'},{name:'ASU',id:'#103',bgColor:'#8C1D40',fontColor:'#FFC627'},{name:'WVU',id:'#104',bgColor:'#EAAA00',fontColor:'#002855'},{name:'UNC',id:'#105',bgColor:'#7BAFD4',fontColor:'#ffffff'},{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'}];
 
-  constructor(private androidPermissions:AndroidPermissions,public storage:Storage,public events:Events,public videoProvider:VideoProvider,private callNumber: CallNumber, public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(private platform: Platform,private iab: InAppBrowser, private networkConnection: NetworkConnectionProvider,private androidPermissions:AndroidPermissions,public storage:Storage,public events:Events,public videoProvider:VideoProvider,private callNumber: CallNumber, public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private alertCtrl: AlertController)
+  {
     this.icons = "INTERNATIONAL";
     this.events.publish('user:login');
 
@@ -99,9 +103,42 @@ export class HomePage {
 
       })
     this.networkCheck();
+    this.addConnectivityListeners();
 
 
 
+  }
+
+
+  addConnectivityListeners() {
+
+    this.platform.ready().then((readySource) => {
+      console.log('Platform ready from', readySource);
+      // Platform now ready, execute any required native code.
+      if (readySource == "cordova") {
+        this.networkConnection.addConnectivityListenersDevice();
+      }
+      else if (readySource == "dom") {
+         this.networkConnection.addConnectivityListenersBrowser();
+      }
+    });
+
+  }
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Error Internet Connection',
+      subTitle: 'There is no internet connection. Please check your connection.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  onClickChat() {
+    if (this.networkConnection.hasConnection()) {
+      const browser = this.iab.create(this.tawkChatLink,'_self',{location:'no'});
+    }
+    else this.presentAlert();
   }
 
 

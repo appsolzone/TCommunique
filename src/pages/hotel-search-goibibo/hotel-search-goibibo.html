@@ -1,15 +1,50 @@
-<!--
-  Generated template for the HotelSearchGoibiboPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>HotelSearchGoibibo</ion-title>
-  </ion-navbar>
+
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+      <ion-title>
+        <span ion-text class="fw700">Bus Search</span>
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button class="blinking_button" (click)="home()">
+            <ion-icon ios="ios-home" md="md-home"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+
+
 </ion-header>
+<ion-content class="bg">
+    <ion-row >
+      <ion-col>
 
-<ion-content padding>
+          <form [formGroup]="onHotelSearchForm">
 
+              <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">City</p>
+              <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                  <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="userData.city" formControlName="city" name="city"></ion-input>
+              </div>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onHotelSearchForm.get('city').touched && onHotelSearchForm.get('city').hasError('required')">This field is required</p>
+
+              <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Check In Date</p>
+              <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                  <!-- <ion-input type="date" style="margin-left: 10px;" [(ngModel)]="checkInDate"></ion-input> -->
+                  <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" [(ngModel)]="userData.checkInDate" formControlName="checkInDate" name="checkInDate"></ion-datetime>
+              </div>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onHotelSearchForm.get('checkInDate').touched && onHotelSearchForm.get('checkInDate').hasError('required')">This field is required</p>
+
+              <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Check Out Date</p>
+              <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                  <!-- <ion-input type="Date" style="margin-left: 10px;" [(ngModel)]="checkOutDate"></ion-input> -->
+                  <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" [(ngModel)]="userData.checkOutDate" formControlName="checkOutDate" name="checkOutDate"></ion-datetime>
+              </div>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="onHotelSearchForm.get('checkOutDate').touched && onHotelSearchForm.get('checkOutDate').hasError('required')">This field is required</p>
+
+            <button class="submitBtn"   ion-button (click)="submit()" [disabled]="!onHotelSearchForm.valid">Submit</button>
+
+          </form>
+      </ion-col>
+    </ion-row>
 </ion-content>

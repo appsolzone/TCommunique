@@ -175,6 +175,17 @@ var fileName = url.substr(url.indexOf(pattern)+9, url.length);
 fileTransfer.download(url, this.file.externalRootDirectory + 'TCommunique/'+fileName).then((entry) => {
 console.log('download complete: ' + entry.toURL());
 this.loading.dismiss();
+let toast = this.toastCtrl.create({
+  message: 'The file has been downloaded to TCommunique folder',
+  duration: 3000,
+  position: 'bottom',
+});
+
+toast.onDidDismiss(() => {
+
+});
+
+toast.present();
 }, (error) => {
 // handle error
 });

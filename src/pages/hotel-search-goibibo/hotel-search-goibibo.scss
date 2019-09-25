@@ -1,3 +1,255 @@
 page-hotel-search-goibibo {
 
+
+  .text-input-md {
+      margin: 15px 30px;
+      padding: 0;
+      width: calc(100% - 8px - 8px);
+      font-size: 15px;
+  }
+  .xz {
+      border-radius: 50px;background: #CECCCD; width: 100%;padding: 4px 0 4px 30px;
+  }
+  .margi{
+      margin-top: 2px;
+      margin-bottom: 2px;
+
+
+  }
+  ion-label.dept.label.label-md {
+      padding: 0px 0 0px;
+  }
+  .label-md {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0 0px;
+  }
+  ion-item.item.item-block.item-md.item-datetime {
+      margin-top: 0px;
+      border-radius: 50px;
+      background: #CECCCD;
+  }
+
+  select {
+      width:67px;
+      margin: 5px;
+  }
+  .all{
+      width: 100%;
+      padding: 0 12px;
+      height: auto;
+  }
+  .imgk{
+      position: absolute;top: 0;
+    border-radius: 0 20px 20px 0;right: 0;
+    background: #036f56;
+      height: 55px;
+  width: 55px;
+  top: 0px;
+  }
+  .thre{
+      list-style-type: none;
+      display: inline-block;
+      margin: 0 ;
+      width: 100%;
+      margin-top: -12px;
+      ul{
+          width: 100%
+      }
+      }
+      .thre li {
+          list-style-type: none;
+          display: inline-block;
+          width: 33%;
+          padding: 0px 10px;
+          margin: 0 0;
+          border-radius: 50px;
+          background: #CECCCD;
+
+          .select-md {
+              padding: 12px 5px;
+          }
+
+      }
+      ion-select {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  }
+  .select-ios {
+  padding: 10px 2px;
+  }
+      .button{
+          width: 100%
+
+      }
+
+      .thre ul{
+
+          padding: 0;
+
+      }
+      page-bussearch .inp {
+  border-radius: 50px;
+  background: #CECCCD;
+  width: 100%;
+  padding: 4px 0 4px 30px;
+  }
+
+      .carbbtn {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          background-color: #036f56;
+          padding: 17px;
+          border-radius: 20px 20px 0px 0px;
+          left: 0;
+          right: 0;
+
+      }
+  .inp{
+      // margin: -3px 0 0 33px;
+      border-radius: 50px;
+      background: #CECCCD;
+       width: 100%;
+  }
+  .dept{
+      margin: 0px 0px 0px 0px;
+      padding : 0px 0 0 0;
+  }
+
+  page-bussearch .thre {
+      list-style-type: none;
+      display: inline-block;
+      margin: 0;
+      width: 100%;
+
+  }
+  page-bussearch .inp {
+      border-radius: 50px;
+      background: #CECCCD;
+      width: 100%;
+      padding: 4px 0 4px 30px;
+  }
+  page-bussearch .xz {
+      border-radius: 50px;
+      background: #CECCCD;
+      width: 100%;
+
+  }
+
+  .layer {
+      width: 100%;
+  }
+  ion-select {
+      max-width: 100%;
+  }
+  .item-cover{
+      width: auto;
+      height: auto;
+  }
+
+  .select-md .select-placeholder {
+      color: #999;
+      text-align: left;
+  }
+
+
+
+
+  @media(max-width: 767px){
+      .thre li {
+          width: 30%;
+          margin: 0 3px;}
+  }
+
+  .select-md .select-placeholder {
+    color: #999;
+    text-align: left;
+  }
+  .spinner-container {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  }
+
+  .searchbar-md .searchbar-input {
+  padding: 6px 55px;
+  border-radius: 20px;
+  background-position: left 8px center;
+  height: auto;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 3rem;
+  color: #141414;
+  background-color: #CECCCD;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  .searchbar-md {
+    // / background: inherit; /
+    padding: 0px;
+  }
+  .xzy{
+    padding: 6px 55px;
+  border-radius: 20px;
+  background-position: left 8px center;
+  height: auto;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 3rem;
+  color: #141414;
+  background-color: #CECCCD;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  ion-icon {
+    display: inline-block;
+    font-size: 2em;
+  }
+  .cardBody
+  {
+      border-radius: 20px;
+      height: auto;
+      box-shadow: none;
+      border: 1px solid #0b9595;
+  }
+
+  .cardHeader
+  {
+      background: #0b9595;
+      padding: 6px 15px;
+  }
+  .head1{
+    float: left;
+  }
+  .head2{
+    float: right;
+  }
+
+  .bookBtn
+  {
+      background: black;
+      height: 25px;
+      width: 60px;
+      color: white;
+      border-radius: 5px;
+      position: absolute;
+      right: 6px;
+      top: 6px;
+  }
+
+  .submitBtn
+  {
+      margin-top: 25px;
+  }
+
+  .has-error {
+      margin: 0;
+      padding: .50rem;
+      background: transparent;
+  }
+
 }

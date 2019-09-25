@@ -71,7 +71,9 @@ import {BookBusPageModule} from '../pages/book-bus/book-bus.module';
 import {BookFlightPageModule} from '../pages/book-flight/book-flight.module';
 import { File } from '@ionic-native/file';
 // import { LocationAccuracy } from '@ionic-native/location-accuracy';
-
+import {HotelSearchGoibiboPageModule} from '../pages/hotel-search-goibibo/hotel-search-goibibo.module';
+import { NetworkConnectionProvider } from '../providers/network-connection/network-connection';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 export function myCustomAudioProviderFactory() {
   return window.hasOwnProperty("cordova")
@@ -117,6 +119,7 @@ export function myCustomAudioProviderFactory() {
     FilterPageModule,
     CategoryPackageDetailsPageModule,
     PackageDetailsPageModule,
+    HotelSearchGoibiboPageModule,
     FlightSearchPageModule,
     HotelBookingRequestPageModule,
     AboutUsPageModule,
@@ -155,6 +158,7 @@ export function myCustomAudioProviderFactory() {
     SplashScreen,
     Geolocation,
     GooglePlus,
+    InAppBrowser,
     BarcodeScanner,
     Network,Camera,
     Push,AndroidPermissions,
@@ -171,6 +175,7 @@ export function myCustomAudioProviderFactory() {
     FileTransfer,
     FileTransferObject,
     File,
+    NetworkConnectionProvider,
     // LocationAccuracy
   ]
 })
