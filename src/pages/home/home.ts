@@ -62,8 +62,7 @@ export class HomePage {
 
 
 
-
-  private readonly tawkChatLink : string = 'https://tawk.to/chat/5d8b5c0fdb28311764d5cc9e/default/?$_tawk_popout=true';
+  private readonly tawkChatLink : string = 'https://tawk.to/chat/5d8c51196c1dde20ed03855b/default/?$_tawk_popout=true';
 
   public listArray=[{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'},{name:'ASU',id:'#103',bgColor:'#8C1D40',fontColor:'#FFC627'},{name:'WVU',id:'#104',bgColor:'#EAAA00',fontColor:'#002855'},{name:'UNC',id:'#105',bgColor:'#7BAFD4',fontColor:'#ffffff'},{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'}];
 
@@ -134,8 +133,11 @@ export class HomePage {
     alert.present();
   }
 
-  onClickChat() {
+  onClickChat(){
+    console.log("Ko")
+
     if (this.networkConnection.hasConnection()) {
+      console.log("tu")
       const browser = this.iab.create(this.tawkChatLink,'_self',{location:'no'});
     }
     else this.presentAlert();
