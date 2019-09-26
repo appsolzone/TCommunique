@@ -198,9 +198,7 @@ ion-select {
     position: fixed;
     bottom: 0;
     width: 100%;
-    /* background-color: #000; */
     text-align: center;
-    /* padding: 6px 0; */
 }
 
 .select-md .select-placeholder {
@@ -228,7 +226,6 @@ ion-select {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   }
   .searchbar-md {
-    /* background: inherit; */
     padding: 0px;
   }
   ion-icon {
@@ -266,6 +263,12 @@ ion-select {
     position: absolute;
     right: 6px;
     top: 6px;
+}
+
+.item-radio.item-md ion-label
+{
+    margin-left: 0;
+    text-align: center;
 }
 
 }

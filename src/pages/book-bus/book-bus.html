@@ -17,16 +17,36 @@
         </div> -->
         <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Adult</p>
           <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-              <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="adult"></ion-input>
+              <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="adult"></ion-input>
           </div>
           <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Child</p>
           <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-              <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="child" ></ion-input>
+              <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="child" ></ion-input>
           </div>
           <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Infant</p>
           <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-              <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="infant"></ion-input>
+              <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="infant"></ion-input>
           </div>
+
+          <ion-row>
+              <ion-col col-6>
+                    <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Seater</p>
+                    <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                          <ion-select [(ngModel)]="seater" interface="popover">
+                                  <ion-option *ngFor="let data of numberList" [value]="data">{{data}}</ion-option>
+                              </ion-select>
+                    </div>
+              </ion-col>
+              <ion-col col-6>
+                    <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Sleeper</p>
+                    <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                          <ion-select [(ngModel)]="sleeper" interface="popover">
+                                  <ion-option *ngFor="let data of numberList" [value]="data">{{data}}</ion-option>
+                              </ion-select>
+                    </div>
+              </ion-col>
+          </ion-row>
+
         <button class="login-btn"   ion-button (click)="submit()">Book</button>
     </ion-col>
   </ion-row>

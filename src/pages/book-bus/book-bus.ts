@@ -40,6 +40,11 @@ export class BookBusPage {
 
   bus_info_data:any;
 
+  public numberList=["1","2","3","4","5","6","7","8","9","10"];
+
+  public seater:any;
+  public sleeper:any;
+
   constructor(public toastCtrl:ToastController,private modal: ModalController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public view:ViewController) {
 
   }
@@ -71,6 +76,8 @@ export class BookBusPage {
     postData.append('adult',this.adult);
     postData.append('child',this.child);
     postData.append('infant',this.infant);
+    postData.append('noOfSeater',this.seater);
+    postData.append('noOfSleeper',this.sleeper);
 
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{

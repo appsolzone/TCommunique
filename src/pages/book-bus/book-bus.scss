@@ -63,4 +63,28 @@ page-book-bus {
     color: #fff;
   }
 
+  
+ion-select {
+  margin-right: 10px;
+  display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    max-width: 100%;
+}
+.select-text {
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 16px;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: end;
+  margin-right: 10px;
+}
+
 }

@@ -18,252 +18,170 @@
 </ion-header>
 
 <ion-content >
-  <form [formGroup]="searchit">
-<div class="all">
 
-    <div class="margi"  >
-        <div style = "position: relative;">
-            <ion-label class="dept">Departure</ion-label>
-            <div sclass="xzy" (click)="onClickFuntion()">
-              <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
-              border-radius: 20px;">
-                <p style="text-align: center;">{{departure}}</p>
-              </button>
-              </div>
-               <!-- <ion-searchbar
-               class="xzy"
-               [formControl]="searchControl"
-               (ionChange)="onSearchInput()"
-               placeholder="Search"
-               [showCancelButton]="true"
-               [(ngModel)]="departure">
-             </ion-searchbar>
-
-             <div *ngIf="searching" class="spinner-container">
-               <ion-spinner></ion-spinner>
-             </div>
-
-             <ion-list *ngIf="showlist">
-               <ion-item *ngFor="let item of flight_items" (click)="selectdeparture(item)">
-                 {{ item.Name }}
-               </ion-item>
-             </ion-list> -->
-          </div>
-    </div>
-<div class="margi"  >
-    <div style = "position: relative;">
-        <ion-label class="dept">Destination</ion-label>
-
-        <div sclass="xzy" (click)="onClickFuntion2()">
-          <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
-          border-radius: 20px;">
-            <p style="text-align: center;">{{destination}}</p>
-          </button>
-          </div>
-          <!-- <ion-searchbar
-          class="xzy"
-          [formControl]="searchControlnew"
-          (ionChange)="onSearchInput2()"
-          placeholder="Search"
-          [showCancelButton]="true"
-          [(ngModel)]="destination">
-        </ion-searchbar>
-
-        <div *ngIf="searching1" class="spinner-container">
-          <ion-spinner></ion-spinner>
-        </div>
-
-        <ion-list *ngIf="showlist2">
-          <ion-item *ngFor="let item of flight_items2" (click)="selectdestination(item)">
-            {{ item.Name }}
-          </ion-item>
-        </ion-list> -->
-      </div>
-</div>
-<div class="margi"  >
-    <div style = "position: relative;" >
+    <ion-list radio-group (ionChange)="onChangeHandler($event)">
+      <ion-row>
+          <ion-col col-1></ion-col>
+          <ion-col col-5>
+              <ion-item no-lines>
+                  <ion-label>Onward</ion-label>
+                  <ion-radio value="onward" checked></ion-radio>
+              </ion-item>
+          </ion-col>
+          <ion-col col-5>
+              <ion-item no-lines>
+                  <ion-label>Return</ion-label>
+                  <ion-radio value="return"></ion-radio>
+              </ion-item>
+          </ion-col>
+          <ion-col col-1></ion-col>
+      </ion-row>
+    </ion-list>
 
 
-<ion-label class="dept">Departure Date</ion-label>
+    <div *ngIf="onwardOrReturn=='onward'">
 
-<ion-item style="margin-top: 2px">
-    <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Departure Date" formControlName="tinp" name="tinp"[(ngModel)]="date1"></ion-datetime>
+        <form [formGroup]="searchit">
+            <div class="all">
 
-</ion-item>
-<p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
-</div>
-</div>
-<div class="margi"  >
-    <div style = "position: relative;" >
+                <div class="margi"  >
 
-
-<ion-label class="dept">Arrival Date</ion-label>
-
-<ion-item style="margin-top: 2px">
-    <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Arrival Date" formControlName="ainp" name="ainp"[(ngModel)]="date2"></ion-datetime>
-
-</ion-item>
-<p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('ainp').touched && searchit.get('ainp').hasError('required')">Date is required</p>
-</div>
-</div>
-  <div class="margi"  >
-      <div style = "position: relative;" >
-          <ion-label style=" margin: 0 0 12px 38px">Passengers</ion-label>
-      </div>
-
-<div class = "layer">
-    <div class = "thre">
-        <ul>
-            <li>
-                <ion-select placeholder="Adult"formControlName="foinp"[(ngModel)]="adult">
-                    <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
-                </ion-select>
-            </li>
-            <li>
-                <ion-select placeholder="Child" formControlName="fifinp" [(ngModel)]="child">
-                    <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
-                </ion-select>
-
-            </li>
-            <li>
-                <ion-select placeholder="Infant" formControlName="siinp"[(ngModel)]="infant">
-                    <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
-                </ion-select>
-
-            </li>
-          </ul>
-          <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('foinp').touched && searchit.get('foinp').hasError('required')">How many adults info is required</p>
-          <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('fifinp').touched && searchit.get('fifinp').hasError('required')">How many child info is required</p>
-          <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('siinp').touched && searchit.get('siinp').hasError('required')">How many infants info is required</p>
-    </div>
-</div>
-</div>
-<div class="margi"  >
-    <div style = "position: relative;" >
-        <ion-label class="dept">Class</ion-label>
-     </div>
-     <div class="divhead">
-        <ion-select formControlName="eco" [(ngModel)]="economy">
-            <ion-option *ngFor="let data of flightType" [value]="data">{{data.key}}</ion-option>
-        </ion-select>
-   </div>
-   <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>
-</div>
-
-
-
-
-</div>
-
-
-
-</form>
-
-<div class="inex">
-
-  <ion-segment [(ngModel)]="icons" color="searchbg">
-      <ion-segment-button value="Onward_Flights" class="segment-button segment-activated">Onward Flights
-
-      </ion-segment-button>
-      <ion-segment-button value="Return_Flights">Return Flights
-
-      </ion-segment-button>
-    </ion-segment>
-
-    <div [ngSwitch]="icons">
-          <ion-list *ngSwitchCase="'Onward_Flights'">
-
-        <!-- <ion-scroll style="width:100%;height:100%;" scrollY="true" > -->
-            <div>
-            <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of flight_onwardflights">
-
-                    <ion-card class="cardBody">
-
-                        <ion-card-header class="cardHeader">
-                          <div class="head1">
-                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
-                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
-
+                  <ion-row>
+                    <ion-col col-6>
+                        <div style = "position: relative;">
+                            <ion-label class="dept">Departure</ion-label>
+                            <div sclass="xzy" (click)="onClickFuntion()">
+                              <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
+                              border-radius: 20px;">
+                                <p style="text-align: center;">{{departure}}</p>
+                              </button>
+                              </div>
                           </div>
-                          <div class="head2">
-                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
-                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
+                    </ion-col>
+                    <ion-col col-6>
+                        <div style = "position: relative;">
+                            <ion-label class="dept">Destination</ion-label>
+
+                            <div sclass="xzy" (click)="onClickFuntion2()">
+                              <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
+                              border-radius: 20px;">
+                                <p style="text-align: center;">{{destination}}</p>
+                              </button>
+                              </div>
                           </div>
-                        </ion-card-header>
+                    </ion-col>
+                  </ion-row>
 
-                        <ion-card-content style="position: relative;">
+                </div>
+            <!-- <div class="margi"  >
+                <div style = "position: relative;">
+                    <ion-label class="dept">Destination</ion-label>
 
-                          <ion-row style="font-size:14px; color: #056387;">
-                            <ion-col col-4>Origin</ion-col>
-                            <ion-col col-1>:</ion-col>
-                            <ion-col col-7>{{item.origin}}</ion-col>
-                          </ion-row>
-                          <ion-row style="font-size:14px; color: #056387;">
-                              <ion-col col-4>AirLine</ion-col>
-                              <ion-col col-1>:</ion-col>
-                              <ion-col col-7>{{item.airline}}</ion-col>
-                            </ion-row>
-                            <ion-row style="font-size:14px; color: #056387;">
-                                <ion-col col-4>Ticket Type</ion-col>
-                                <ion-col col-1>:</ion-col>
-                                <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
-                              </ion-row>
-                            <ion-row style="font-size:14px; color: #056387;">
-                                <ion-col col-4>Fare</ion-col>
-                                <ion-col col-1>:</ion-col>
-                                <ion-col col-7>{{item.fare.grossamount}}</ion-col>
-                              </ion-row>
-                              <ion-row style="font-size:14px; color: #056387;">
-                                  <ion-col col-4>Duration</ion-col>
-                                  <ion-col col-1>:</ion-col>
-                                  <ion-col col-7>{{item.duration}}</ion-col>
-                                </ion-row>
-                                  <ion-row style="font-size:14px; color: #056387;">
-                                      <ion-col col-4>SeatsAvailable</ion-col>
-                                      <ion-col col-1>:</ion-col>
-                                      <ion-col col-7>{{item.seatsavailable}}</ion-col>
-                                    </ion-row>
-
-                                    <button class="bookBtn" (click)="boook_flight(item,'oneway')">Book</button>
-                        </ion-card-content>
+                    <div sclass="xzy" (click)="onClickFuntion2()">
+                      <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
+                      border-radius: 20px;">
+                        <p style="text-align: center;">{{destination}}</p>
+                      </button>
+                      </div>
+                  </div>
+            </div> -->
+            <div class="margi"  >
+                <div style = "position: relative;" >
 
 
-                      </ion-card>
+            <ion-label class="dept">Departure Date</ion-label>
 
-            </ion-row>
+            <ion-item style="margin-top: 2px">
+                <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Departure Date" formControlName="tinp" name="tinp"[(ngModel)]="date1"></ion-datetime>
+
+            </ion-item>
+            <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
             </div>
-          <!-- </ion-scroll> -->
-          </ion-list>
-          <div *ngSwitchCase="'Onward_Flights'">
-              <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;"*ngIf="flight_onwardflights == 0">No Data Found</p>
-
-          </div>
+            </div>
 
 
-          </div>
-        <div [ngSwitch]="icons">
-            <ion-list *ngSwitchCase="'Return_Flights'">
+              <div class="margi"  >
+                  <div style = "position: relative;" >
+                      <ion-label style=" margin: 0 0 12px 38px">Passengers</ion-label>
+                  </div>
 
-            <!-- <ion-scroll style="width:100%;height:100%;" scrollY="true" *ngSwitchCase="'Return_Flights'"> -->
-                <div >
-                <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of flight_returnflights">
+                  <ion-row>
+                    <ion-col col-4><ion-label>Adult</ion-label></ion-col>
+                    <ion-col col-4> <ion-label>Child</ion-label></ion-col>
+                    <ion-col col-4><ion-label>Infant</ion-label></ion-col>
+                  </ion-row>
 
-                        <ion-card class="cardBody">
+            <div class = "layer">
+                <div class = "thre">
+                    <ul>
 
-                            <ion-card-header class="cardHeader">
-                              <div class="head1">
-                                  <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
-                                  <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+                        <li>
+                            <ion-select placeholder="Adult"formControlName="foinp"[(ngModel)]="adult" interface="popover">
+                                <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+                            </ion-select>
+                        </li>
 
-                              </div>
-                              <div class="head2">
-                                  <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
-                                  <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
-                              </div>
-                            </ion-card-header>
 
-                            <ion-card-content style="position: relative;">
-                                <ion-row style="font-size:14px; color: #056387;">
+                        <li>
+                            <ion-select placeholder="Child" formControlName="fifinp" [(ngModel)]="child" interface="popover">
+                                <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
+                            </ion-select>
+
+                        </li>
+
+
+                        <li>
+                            <ion-select placeholder="Infant" formControlName="siinp"[(ngModel)]="infant" interface="popover">
+                                <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
+                            </ion-select>
+
+                        </li>
+                      </ul>
+                      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('foinp').touched && searchit.get('foinp').hasError('required')">How many adults info is required</p>
+                      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('fifinp').touched && searchit.get('fifinp').hasError('required')">How many child info is required</p>
+                      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('siinp').touched && searchit.get('siinp').hasError('required')">How many infants info is required</p>
+                </div>
+            </div>
+
+            </div>
+            <div class="margi"  >
+                <div style = "position: relative;" >
+                    <ion-label class="dept">Class</ion-label>
+                 </div>
+                 <div class="divhead">
+                    <ion-select formControlName="eco" [(ngModel)]="economy" interface="popover" style="margin-right: 10px;">
+                        <ion-option *ngFor="let data of flightType" [value]="data">{{data.key}}</ion-option>
+                    </ion-select>
+               </div>
+               <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>
+            </div>
+
+            </div>
+            </form>
+
+            <ion-list>
+
+                <!-- <ion-scroll style="width:100%;height:100%;" scrollY="true" > -->
+                    <div>
+                    <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of flight_onwardflights">
+
+                            <ion-card class="cardBody">
+
+                                <ion-card-header class="cardHeader">
+                                  <div class="head1">
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+
+                                  </div>
+                                  <div class="head2">
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
+                                  </div>
+                                </ion-card-header>
+
+                                <ion-card-content style="position: relative;">
+
+                                  <ion-row style="font-size:14px; color: #056387;">
                                     <ion-col col-4>Origin</ion-col>
                                     <ion-col col-1>:</ion-col>
                                     <ion-col col-7>{{item.origin}}</ion-col>
@@ -294,24 +212,315 @@
                                               <ion-col col-7>{{item.seatsavailable}}</ion-col>
                                             </ion-row>
 
-                                            <button class="bookBtn" (click)="boook_flight(item,'roundTrip')">Book</button>
-                            </ion-card-content>
+                                            <button class="bookBtn" (click)="boook_flight(item,'oneway')">Book</button>
+                                </ion-card-content>
 
 
-                          </ion-card>
+                              </ion-card>
 
-                </ion-row>
+                    </ion-row>
+                    </div>
+                  <!-- </ion-scroll> -->
+                  </ion-list>
+
+      </div>
+
+    <div *ngIf="onwardOrReturn=='return'">
+        <form [formGroup]="searchit">
+            <div class="all">
+
+                <div class="margi"  >
+                    <div style = "position: relative;">
+                        <ion-label class="dept">Departure</ion-label>
+                        <div sclass="xzy" (click)="onClickFuntion()">
+                          <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
+                          border-radius: 20px;">
+                            <p style="text-align: center;">{{departure}}</p>
+                          </button>
+                          </div>
+                           <!-- <ion-searchbar
+                           class="xzy"
+                           [formControl]="searchControl"
+                           (ionChange)="onSearchInput()"
+                           placeholder="Search"
+                           [showCancelButton]="true"
+                           [(ngModel)]="departure">
+                         </ion-searchbar>
+
+                         <div *ngIf="searching" class="spinner-container">
+                           <ion-spinner></ion-spinner>
+                         </div>
+
+                         <ion-list *ngIf="showlist">
+                           <ion-item *ngFor="let item of flight_items" (click)="selectdeparture(item)">
+                             {{ item.Name }}
+                           </ion-item>
+                         </ion-list> -->
+                      </div>
                 </div>
-              <!-- </ion-scroll> -->
-              </ion-list>
-              <div *ngSwitchCase="'Return_Flights'">
-                  <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;" *ngIf="flight_returnflights == 0">No Data Found</p>
+            <div class="margi"  >
+                <div style = "position: relative;">
+                    <ion-label class="dept">Destination</ion-label>
 
-              </div>
+                    <div sclass="xzy" (click)="onClickFuntion2()">
+                      <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
+                      border-radius: 20px;">
+                        <p style="text-align: center;">{{destination}}</p>
+                      </button>
+                      </div>
+                      <!-- <ion-searchbar
+                      class="xzy"
+                      [formControl]="searchControlnew"
+                      (ionChange)="onSearchInput2()"
+                      placeholder="Search"
+                      [showCancelButton]="true"
+                      [(ngModel)]="destination">
+                    </ion-searchbar>
+
+                    <div *ngIf="searching1" class="spinner-container">
+                      <ion-spinner></ion-spinner>
+                    </div>
+
+                    <ion-list *ngIf="showlist2">
+                      <ion-item *ngFor="let item of flight_items2" (click)="selectdestination(item)">
+                        {{ item.Name }}
+                      </ion-item>
+                    </ion-list> -->
+                  </div>
+            </div>
+            <div class="margi"  >
+                <div style = "position: relative;" >
+
+
+            <ion-label class="dept">Departure Date</ion-label>
+
+            <ion-item style="margin-top: 2px">
+                <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Departure Date" formControlName="tinp" name="tinp"[(ngModel)]="date1"></ion-datetime>
+
+            </ion-item>
+            <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
+            </div>
+            </div>
+            <div class="margi"  >
+                <div style = "position: relative;" >
+
+
+            <ion-label class="dept">Arrival Date</ion-label>
+
+            <ion-item style="margin-top: 2px">
+                <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Arrival Date" formControlName="ainp" name="ainp"[(ngModel)]="date2"></ion-datetime>
+
+            </ion-item>
+            <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('ainp').touched && searchit.get('ainp').hasError('required')">Date is required</p>
+            </div>
+            </div>
+              <div class="margi"  >
+                  <div style = "position: relative;" >
+                      <ion-label style=" margin: 0 0 12px 38px">Passengers</ion-label>
+                  </div>
+
+            <div class = "layer">
+                <div class = "thre">
+                    <ul>
+                        <li>
+                            <ion-select placeholder="Adult"formControlName="foinp"[(ngModel)]="adult">
+                                <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+                            </ion-select>
+                        </li>
+                        <li>
+                            <ion-select placeholder="Child" formControlName="fifinp" [(ngModel)]="child">
+                                <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
+                            </ion-select>
+
+                        </li>
+                        <li>
+                            <ion-select placeholder="Infant" formControlName="siinp"[(ngModel)]="infant">
+                                <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
+                            </ion-select>
+
+                        </li>
+                      </ul>
+                      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('foinp').touched && searchit.get('foinp').hasError('required')">How many adults info is required</p>
+                      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('fifinp').touched && searchit.get('fifinp').hasError('required')">How many child info is required</p>
+                      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('siinp').touched && searchit.get('siinp').hasError('required')">How many infants info is required</p>
+                </div>
+            </div>
+            </div>
+            <div class="margi"  >
+                <div style = "position: relative;" >
+                    <ion-label class="dept">Class</ion-label>
+                 </div>
+                 <div class="divhead">
+                    <ion-select formControlName="eco" [(ngModel)]="economy">
+                        <ion-option *ngFor="let data of flightType" [value]="data">{{data.key}}</ion-option>
+                    </ion-select>
+               </div>
+               <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>
+            </div>
+
+
+
 
             </div>
 
-</div>
+
+
+            </form>
+
+            <div class="inex">
+
+              <ion-segment [(ngModel)]="sections.selectedSection" color="searchbg">
+                  <ion-segment-button value="{{sections.first}}" class="segment-button segment-activated">Onward Flights
+
+                  </ion-segment-button>
+                  <ion-segment-button value="{{sections.second}}">Return Flights
+
+                  </ion-segment-button>
+                </ion-segment>
+
+                <div [ngSwitch]="sections.selectedSection">
+                      <ion-list *ngSwitchCase="'Onward_Flights'">
+
+                    <!-- <ion-scroll style="width:100%;height:100%;" scrollY="true" > -->
+                        <div>
+                        <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of flight_onwardflights">
+
+                                <ion-card class="cardBody">
+
+                                    <ion-card-header class="cardHeader">
+                                      <div class="head1">
+                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
+                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+
+                                      </div>
+                                      <div class="head2">
+                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
+                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
+                                      </div>
+                                    </ion-card-header>
+
+                                    <ion-card-content style="position: relative;">
+
+                                      <ion-row style="font-size:14px; color: #056387;">
+                                        <ion-col col-4>Origin</ion-col>
+                                        <ion-col col-1>:</ion-col>
+                                        <ion-col col-7>{{item.origin}}</ion-col>
+                                      </ion-row>
+                                      <ion-row style="font-size:14px; color: #056387;">
+                                          <ion-col col-4>AirLine</ion-col>
+                                          <ion-col col-1>:</ion-col>
+                                          <ion-col col-7>{{item.airline}}</ion-col>
+                                        </ion-row>
+                                        <ion-row style="font-size:14px; color: #056387;">
+                                            <ion-col col-4>Ticket Type</ion-col>
+                                            <ion-col col-1>:</ion-col>
+                                            <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
+                                          </ion-row>
+                                        <ion-row style="font-size:14px; color: #056387;">
+                                            <ion-col col-4>Fare</ion-col>
+                                            <ion-col col-1>:</ion-col>
+                                            <ion-col col-7>{{item.fare.grossamount}}</ion-col>
+                                          </ion-row>
+                                          <ion-row style="font-size:14px; color: #056387;">
+                                              <ion-col col-4>Duration</ion-col>
+                                              <ion-col col-1>:</ion-col>
+                                              <ion-col col-7>{{item.duration}}</ion-col>
+                                            </ion-row>
+                                              <ion-row style="font-size:14px; color: #056387;">
+                                                  <ion-col col-4>SeatsAvailable</ion-col>
+                                                  <ion-col col-1>:</ion-col>
+                                                  <ion-col col-7>{{item.seatsavailable}}</ion-col>
+                                                </ion-row>
+
+                                                <button class="bookBtn" (click)="boook_flight(item,'oneway')">Book</button>
+                                    </ion-card-content>
+
+
+                                  </ion-card>
+
+                        </ion-row>
+                        </div>
+                      <!-- </ion-scroll> -->
+                      </ion-list>
+                      <div *ngSwitchCase="'Onward_Flights'">
+                          <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;"*ngIf="flight_onwardflights == 0">No Data Found</p>
+
+                      </div>
+
+
+                      </div>
+                    <div [ngSwitch]="sections.selectedSection">
+                        <ion-list *ngSwitchCase="'Return_Flights'">
+
+                        <!-- <ion-scroll style="width:100%;height:100%;" scrollY="true" *ngSwitchCase="'Return_Flights'"> -->
+                            <div >
+                            <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of flight_returnflights">
+
+                                    <ion-card class="cardBody">
+
+                                        <ion-card-header class="cardHeader">
+                                          <div class="head1">
+                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
+                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+
+                                          </div>
+                                          <div class="head2">
+                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
+                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
+                                          </div>
+                                        </ion-card-header>
+
+                                        <ion-card-content style="position: relative;">
+                                            <ion-row style="font-size:14px; color: #056387;">
+                                                <ion-col col-4>Origin</ion-col>
+                                                <ion-col col-1>:</ion-col>
+                                                <ion-col col-7>{{item.origin}}</ion-col>
+                                              </ion-row>
+                                              <ion-row style="font-size:14px; color: #056387;">
+                                                  <ion-col col-4>AirLine</ion-col>
+                                                  <ion-col col-1>:</ion-col>
+                                                  <ion-col col-7>{{item.airline}}</ion-col>
+                                                </ion-row>
+                                                <ion-row style="font-size:14px; color: #056387;">
+                                                    <ion-col col-4>Ticket Type</ion-col>
+                                                    <ion-col col-1>:</ion-col>
+                                                    <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
+                                                  </ion-row>
+                                                <ion-row style="font-size:14px; color: #056387;">
+                                                    <ion-col col-4>Fare</ion-col>
+                                                    <ion-col col-1>:</ion-col>
+                                                    <ion-col col-7>{{item.fare.grossamount}}</ion-col>
+                                                  </ion-row>
+                                                  <ion-row style="font-size:14px; color: #056387;">
+                                                      <ion-col col-4>Duration</ion-col>
+                                                      <ion-col col-1>:</ion-col>
+                                                      <ion-col col-7>{{item.duration}}</ion-col>
+                                                    </ion-row>
+                                                      <ion-row style="font-size:14px; color: #056387;">
+                                                          <ion-col col-4>SeatsAvailable</ion-col>
+                                                          <ion-col col-1>:</ion-col>
+                                                          <ion-col col-7>{{item.seatsavailable}}</ion-col>
+                                                        </ion-row>
+
+                                                        <button class="bookBtn" (click)="boook_flight(item,'roundTrip')">Book</button>
+                                        </ion-card-content>
+
+
+                                      </ion-card>
+
+                            </ion-row>
+                            </div>
+                          <!-- </ion-scroll> -->
+                          </ion-list>
+                          <div *ngSwitchCase="'Return_Flights'">
+                              <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;" *ngIf="flight_returnflights == 0">No Data Found</p>
+
+                          </div>
+
+                        </div>
+
+            </div>
+    </div>
 
 
 </ion-content>
@@ -321,6 +530,5 @@
       <button ion-button full  style="height: 50px; background: #0e6262; color: white;">
         <p style="text-align: center;">Search</p>
       </button>
-
     </ion-toolbar>
-    </ion-footer>
+</ion-footer>

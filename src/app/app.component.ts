@@ -94,9 +94,47 @@ export class TCommuniqueApp {
     data:Observable<any>;
     latest_date:any;
     user_review:any;
+    role:any;
+    videoId:any;
 
 
   constructor(public datepipe: DatePipe,private calendar: Calendar,public http:HttpClient,public constant:ConstantProvider,public userProvider:UserProvider,public storage:Storage,public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
+
+    this.platform.ready().then(() => {
+      this.statusBar.overlaysWebView(false);
+      this.splashScreen.hide();
+      this.events.subscribe('openVideocall',()=>{
+        let profileModal = this.modalCtrl.create(VideoCallPage);
+        profileModal.present();
+      })
+
+
+
+      this.storage.get('user_login_data').then((val) => {
+        if(val==null)
+        {
+
+        }
+        else
+        {
+
+          const userData= {
+            uniqueId:val.videoId,
+            name:val.username
+
+          }
+
+          console.log("userData",userData);
+
+          this.videoProvider.InitializingRTC(userData);
+        }
+      });
+
+
+
+
+  });
+
 
     platform.registerBackButtonAction(() => {
       let activeModal=this.ionicApp._modalPortal.getActive();
@@ -150,6 +188,8 @@ export class TCommuniqueApp {
           }
           else
           {
+
+
             this.nav.setRoot(HomePage);
           }
         });
@@ -173,7 +213,7 @@ export class TCommuniqueApp {
       console.log("logged in");
       this.storage.get('user_login_data').then((val)=>{
 
-      console.log("hsh",val);
+      console.log("hsh",val.role);
       if(val==null)
       {
         this.login_status = false;
@@ -187,7 +227,11 @@ export class TCommuniqueApp {
       this.login_status=true;
       this.user_img=val.profileData.profImg;
       this.username=val.username;
+      this.role = val.role;
+      this.videoId = val.videoId;
       console.log("username",this.username);
+
+
       }
 
       })
@@ -301,19 +345,22 @@ export class TCommuniqueApp {
     this.platform.ready().then(() => {
         this.statusBar.overlaysWebView(false);
         this.splashScreen.hide();
-        this.events.subscribe('openVideocall',()=>{
-          let profileModal = this.modalCtrl.create(VideoCallPage);
-          profileModal.present();
-        })
+        // this.events.subscribe('openVideocall',()=>{
+        //   let profileModal = this.modalCtrl.create(VideoCallPage);
+        //   profileModal.present();
+        // })
+        // const userData= {
+        //   uniqueId:this.videoId,
+        //   name:this.username
 
-        const userData= {
-          uniqueId:"1234",
-          name:"Tuhin"
+        // }
 
-        }
+        // console.log("userData",userData);
+
+        // this.videoProvider.InitializingRTC(userData);
 
 
-        this.videoProvider.InitializingRTC(userData);
+
         this.pushNotify();
     });
 

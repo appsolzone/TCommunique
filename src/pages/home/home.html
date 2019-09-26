@@ -279,7 +279,7 @@
 
       </ion-content>
 
-      <ion-fab right bottom class="fabbtn">
+      <ion-fab right bottom class="fabbtn" *ngIf="role !='admin'">
           <button ion-fab class="funcbtn"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles" ></ion-icon></button>
           <ion-fab-list side="top">
             <button ion-fab (click)="onClickChat()" >  <ion-icon ios="ios-chatboxes" md="md-chatboxes"></ion-icon></button>
@@ -288,7 +288,9 @@
             <button ion-fab (click)="callNumber_ph3()"><ion-icon ios="ios-call" md="md-call"></ion-icon><ion-label>Agent 3</ion-label></button>
             <button ion-fab (click)="callNumber_ph4()"><ion-icon ios="ios-call" md="md-call"></ion-icon><ion-label>Agent 4</ion-label></button>
 
-            <button ion-fab (click)="VideoCall()"><ion-icon ios="ios-videocam" md="md-videocam" ></ion-icon></button>
+            <button ion-fab (click)="VideoCall1()"><ion-icon ios="ios-videocam" md="md-videocam" ><ion-label>Video Chat 1</ion-label></ion-icon></button>
+            <button ion-fab (click)="VideoCall2()"><ion-icon ios="ios-videocam" md="md-videocam" ><ion-label>Video Chat 2</ion-label></ion-icon></button>
+
           </ion-fab-list>
       </ion-fab>
       <ion-footer style="height: 50px; background: #ffffff00; display: block;">

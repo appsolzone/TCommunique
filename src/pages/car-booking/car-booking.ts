@@ -143,7 +143,7 @@ check()
       dismissOnPageChange: true
     });
     this.loading.present();
-    var url =this.constant.get_listOfPackageByDestId;
+    var url =this.constant.carBooking;
     let postData = new FormData();
     postData.append('uId',this.uId);
     postData.append('pickUpLoc',this.pickuploc);

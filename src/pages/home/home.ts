@@ -20,6 +20,7 @@ import { CurrencyConverterPage } from '../../pages/currency-converter/currency-c
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { NetworkConnectionProvider } from '../../providers/network-connection/network-connection';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import {VideoCallPage} from '../../pages/video-call/video-call';
 
 
 
@@ -59,6 +60,10 @@ export class HomePage {
   default_currency:any;
   login_status:any;
   uId:any;
+  role:any;
+  video_agent1:any;
+  video_agent2:any;
+
 
 
 
@@ -66,7 +71,7 @@ export class HomePage {
 
   public listArray=[{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'},{name:'ASU',id:'#103',bgColor:'#8C1D40',fontColor:'#FFC627'},{name:'WVU',id:'#104',bgColor:'#EAAA00',fontColor:'#002855'},{name:'UNC',id:'#105',bgColor:'#7BAFD4',fontColor:'#ffffff'},{name:'MIAMI',id:'#100',bgColor:'#005030',fontColor:'#D67321'},{name:'BAMA',id:'#102',bgColor:'#9E1B32',fontColor:'#828A8F'}];
 
-  constructor(private platform: Platform,private iab: InAppBrowser, private networkConnection: NetworkConnectionProvider,private androidPermissions:AndroidPermissions,public storage:Storage,public events:Events,public videoProvider:VideoProvider,private callNumber: CallNumber, public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private alertCtrl: AlertController)
+  constructor(public modalCtrl:ModalController,private platform: Platform,private iab: InAppBrowser, private networkConnection: NetworkConnectionProvider,private androidPermissions:AndroidPermissions,public storage:Storage,public events:Events,public videoProvider:VideoProvider,private callNumber: CallNumber, public menuCtrl:MenuController,private network:Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private alertCtrl: AlertController)
   {
     this.icons = "INTERNATIONAL";
     this.events.publish('user:login');
@@ -97,6 +102,7 @@ export class HomePage {
       {
       this.uId = val.uId;
       this.login_status=true;
+      this.role = val.role;
 
       }
 
@@ -177,6 +183,7 @@ export class HomePage {
       this.get_viewAgentContact();
       this.get_bannerImages();
       this.get_trendingDest();
+      this.videoAgentList();
 
     }
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
@@ -314,8 +321,30 @@ export class HomePage {
     .catch(err => console.log('Error launching dialer', err));
   }
 
-  VideoCall(){
-    this.videoProvider.MakeCall("12345");
+  VideoCall1(){
+
+    if(this.login_status){
+
+      console.log("video_agent1",this.video_agent1);
+
+    this.videoProvider.MakeCall(this.video_agent1);
+
+    }else{
+      this.navCtrl.push(SignInPage);
+    }
+
+  }
+  VideoCall2(){
+
+    if(this.login_status){
+    console.log("video_agent2",this.video_agent2);
+
+    this.videoProvider.MakeCall(this.video_agent2);
+
+    }else{
+      this.navCtrl.push(SignInPage);
+    }
+
   }
 
 
@@ -443,6 +472,22 @@ export class HomePage {
   go_converter(){
     this.navCtrl.push(CurrencyConverterPage);
 
+  }
+
+
+  videoAgentList(){
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    var url =this.constant.videoAgentList;
+
+    this.data = this.http.get(url);
+    this.data.subscribe(data =>{
+      console.log('DATA2222',data.json().data);
+      this.video_agent1 = data.json().data[0].videoId;
+      this.video_agent2 = data.json().data[1].videoId;
+    });
   }
 
 

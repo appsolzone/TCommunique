@@ -28,7 +28,12 @@ export class VideoProvider {
   private nativeAudio: NativeAudio) {
     console.log('Hello VideoProvider Provider');
     this.platform.ready().then(()=>{
-      this.nativeAudio.preloadComplex('uniqueI1', 'assets/tone.mp3', 1, 1, 0).then((succ)=>{
+      // this.nativeAudio.preloadComplex('uniqueI1', 'assets/tone.mp3', 1, 1, 0).then((succ)=>{
+
+      // }, (err)=>{
+      // });
+
+      this.nativeAudio.preloadComplex('uniqueI1', '', 1, 1, 0).then((succ)=>{
 
       }, (err)=>{
       });

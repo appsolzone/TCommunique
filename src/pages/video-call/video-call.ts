@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage,Events, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage,Platform,Events, NavController, NavParams, ViewController} from 'ionic-angular';
 import {DataProvider} from '../../providers/data/data';
 import { NativeAudio } from '@ionic-native/native-audio';
 
@@ -26,7 +26,15 @@ export class VideoCallPage {
 
 
 
-  constructor(public dataProvider: DataProvider,public navCtrl: NavController,public navParams: NavParams,public events:Events,public viewCtrl: ViewController,private nativeAudio: NativeAudio) {
+  session: any;
+  publisher: any;
+  apiKey: any;
+  sessionId: string;
+  token: string;
+
+  constructor(private platform:Platform,public dataProvider: DataProvider,public navCtrl: NavController,public navParams: NavParams,public events:Events,public viewCtrl: ViewController,private nativeAudio: NativeAudio) {
+
+
     console.log("Hello World 5")
 
     this.webRTCClient =  this.dataProvider.getwebRTCClient();
@@ -58,6 +66,7 @@ export class VideoCallPage {
     this.events.subscribe('rejectCall',(e)=>{
       this.RemoveMediaElements(e);
     })
+
 
   }
 
@@ -96,6 +105,7 @@ export class VideoCallPage {
     this.webRTCClient.toggleVideoMute();
     this.isVideoMute = this.webRTCClient.isVideoMuted();
   }
+
 
 }
 

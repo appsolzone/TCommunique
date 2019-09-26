@@ -37,7 +37,8 @@ export class BookFlightPage {
   roomType:any;
   uId:any;
 
-  flight_booking_info:any;
+  oneway_flight_booking_info:any;
+  return_flight_booking_info:any;
   tripType:any;
 
   constructor(public toastCtrl:ToastController,private modal: ModalController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public view:ViewController)
@@ -49,11 +50,23 @@ export class BookFlightPage {
   {
     console.log('ionViewDidLoad HotelBookingRequestPage');
 
-    console.log(this.navParams.get('data'));
     console.log(this.navParams.get('tabType'));
 
-    this.flight_booking_info=this.navParams.get('data');
     this.tripType=this.navParams.get('tabType');
+
+    if(this.tripType=='oneway')
+    {
+      this.oneway_flight_booking_info=this.navParams.get('onewayData');
+
+      console.log(this.oneway_flight_booking_info);
+    }
+    else
+    {
+      this.oneway_flight_booking_info=this.navParams.get('onewayData');
+      this.return_flight_booking_info=this.navParams.get('returnData');
+      console.log(this.oneway_flight_booking_info);
+      console.log(this.return_flight_booking_info);
+    }
     this.uId=this.navParams.get('uId');
   }
 
@@ -73,50 +86,34 @@ export class BookFlightPage {
 
     if(this.tripType=='oneway')
     {
-      postData.append('outboundOrigin',this.flight_booking_info.origin);
-      postData.append('outboundDestination',this.flight_booking_info.destination);
-      postData.append('outboundDate',this.flight_booking_info.depdate);
-      postData.append('outboundTime',this.flight_booking_info.deptime);
-      postData.append('outboundFlightNo',this.flight_booking_info.flightcode);
+      postData.append('outboundOrigin',this.oneway_flight_booking_info.origin);
+      postData.append('outboundDestination',this.oneway_flight_booking_info.destination);
+      postData.append('outboundDate',this.oneway_flight_booking_info.depdate);
+      postData.append('outboundTime',this.oneway_flight_booking_info.deptime);
+      postData.append('outboundFlightNo',this.oneway_flight_booking_info.flightcode);
     }
     else
     {
-      postData.append('outboundOrigin',this.flight_booking_info.origin);
-      postData.append('outboundDestination',this.flight_booking_info.destination);
-      postData.append('outboundDate',this.flight_booking_info.depdate);
-      postData.append('outboundTime',this.flight_booking_info.deptime);
-      postData.append('outboundFlightNo',this.flight_booking_info.flightno);
+      postData.append('outboundOrigin',this.oneway_flight_booking_info.origin);
+      postData.append('outboundDestination',this.oneway_flight_booking_info.destination);
+      postData.append('outboundDate',this.oneway_flight_booking_info.depdate);
+      postData.append('outboundTime',this.oneway_flight_booking_info.deptime);
+      postData.append('outboundFlightNo',this.oneway_flight_booking_info.flightno);
 
-      postData.append('inboundOrigin',this.flight_booking_info.destination);
-      postData.append('inboundDestination',this.flight_booking_info.origin);
-      postData.append('inboundDate',this.flight_booking_info.arrdate);
-      postData.append('inboundTime',this.flight_booking_info.arrtime);
-      postData.append('inboundFlightNo',this.flight_booking_info.flightno);
+      postData.append('inboundOrigin',this.return_flight_booking_info.destination);
+      postData.append('inboundDestination',this.return_flight_booking_info.origin);
+      postData.append('inboundDate',this.return_flight_booking_info.arrdate);
+      postData.append('inboundTime',this.return_flight_booking_info.arrtime);
+      postData.append('inboundFlightNo',this.return_flight_booking_info.flightno);
     }
 
-    postData.append('class',this.flight_booking_info.seatingclass);
+    postData.append('class',this.oneway_flight_booking_info.seatingclass);
     postData.append('adult',this.adult);
     postData.append('child',this.child);
     postData.append('infant',this.infant);
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
 
-      console.log('uId : '+this.uId);
-      console.log('tripType : '+this.tripType);
-      console.log('outboundOrigin : '+this.flight_booking_info.origin);
-      console.log('outboundDestination : '+this.flight_booking_info.destination);
-      console.log('outboundDate : '+this.flight_booking_info.depdate);
-      console.log('outboundTime : '+this.flight_booking_info.deptime);
-      console.log('outboundFlightNo : '+this.flight_booking_info.flightno);
-      console.log('inboundOrigin : '+this.flight_booking_info.destination);
-      console.log('inboundDestination : '+this.flight_booking_info.origin);
-      console.log('inboundDate : '+this.flight_booking_info.arrdate);
-      console.log('inboundTime : '+this.flight_booking_info.arrtime);
-      console.log('inboundFlightNo : '+this.flight_booking_info.flightno);
-      console.log('class : '+this.flight_booking_info.seatingclass);
-      console.log('adult : '+this.adult);
-      console.log('child : '+this.child);
-      console.log('infant : '+this.infant);
 
       this.loading.dismiss();
       console.log("DATA",data.json());

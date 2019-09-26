@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
 import {FlightSearchListPage} from '../../pages/flight-search-list/flight-search-list';
 import {BookFlightPage} from '../../pages/book-flight/book-flight';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -33,6 +34,12 @@ import {BookFlightPage} from '../../pages/book-flight/book-flight';
   templateUrl: 'flight-search.html',
 })
 export class FlightSearchPage {
+
+  public sections: any = {
+    first: 'Onward_Flights',
+    second: 'Return_Flights',
+    selectedSection: ''
+ };
   loading:Loading;
   data:Observable<any>;
   public searchit: FormGroup;
@@ -62,10 +69,21 @@ export class FlightSearchPage {
   peopleList=["1","2","3","4","5"];
   peopleList2=["0","1","2","3"];
   icons:any;
-  flightType = [{"key":"Economy","value":"E"},{"key":"Business","value":"B"}]
+  flightType = [{"key":"Economy","value":"E"},{"key":"Business","value":"B"}];
+
+  public onwardOrReturn:any;
+
+  public count=0;
+
+  public onewayData:any;
+  public returnData:any;
 
   constructor(public modal:ModalController,public toastCtrl:ToastController,public storage:Storage,private callNumber: CallNumber,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public fb:FormBuilder) {
     this.icons = "Onward_Flights";
+    this.sections.selectedSection = "Onward_Flights";
+
+
+
 
     this.searchControl = new FormControl();
     this.searchControlnew = new FormControl();
@@ -76,6 +94,8 @@ export class FlightSearchPage {
       console.log('user_login_data', val);
       this.uId = val.uId;
     });
+
+    this.onwardOrReturn='onward';
   }
 
   ngOnInit() {
@@ -113,34 +133,55 @@ export class FlightSearchPage {
 
   });
 }
-SaveRequest(){
-      let d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
-      console.log(d2);
-      let d3 =this.date2.replace(/[^a-zA-Z0-9]/g, '');
+SaveRequest()
+{
+      this.flight_onwardflights = [];
+      this.flight_returnflights = [];
 
-  console.log("DJDLD",this.departure,this.destination,d2,this.child,this.adult,this.infant,this.economy.value)
-  this.loading = this.loadingCtrl.create({
-    content: 'Please wait...',
-    dismissOnPageChange: true
-  });
-  this.loading.present();
+      this.loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        dismissOnPageChange: true
+      });
+      this.loading.present();
 
-  var url= "https://developer.goibibo.com/api/search/?app_id="
-  +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
-  +this.departure+"&destination="+this.destination+"&dateofdeparture="+d2+"&dateofarrival="+d3+"&seatingclass="
-  +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=100";
+      var url;
+      let d2,d3;
 
-  this.data = this.http.get(url);
-  this.data.subscribe(data =>{
-    this.loading.dismiss();
-    console.log("DATA",data.json().data);
-    console.log("DATA_onwardflights",data.json().data.onwardflights);
-    console.log("DATA_oreturnflights",data.json().data.returnflights);
+      if(this.onwardOrReturn=='onward')
+      {
+        d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
 
-    this.flight_onwardflights = data.json().data.onwardflights;
-    this.flight_returnflights = data.json().data.returnflights;
+        url= "https://developer.goibibo.com/api/search/?app_id="
+        +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
+        +this.departure+"&destination="+this.destination+"&dateofdeparture="+d2+"&seatingclass="
+        +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=100";
+      }
+      else
+      {
+        d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
+        console.log(d2);
+        d3 =this.date2.replace(/[^a-zA-Z0-9]/g, '');
 
-  });
+        url= "https://developer.goibibo.com/api/search/?app_id="
+        +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
+        +this.departure+"&destination="+this.destination+"&dateofdeparture="+d2+"&dateofarrival="+d3+"&seatingclass="
+        +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=100";
+      }
+
+      console.log("DJDLD",this.departure,this.destination,d2,this.child,this.adult,this.infant,this.economy.value)
+
+
+      this.data = this.http.get(url);
+      this.data.subscribe(data =>{
+        this.loading.dismiss();
+        console.log("DATA",data.json().data);
+        console.log("DATA_onwardflights",data.json().data.onwardflights);
+        console.log("DATA_oreturnflights",data.json().data.returnflights);
+
+        this.flight_onwardflights = data.json().data.onwardflights;
+        this.flight_returnflights = data.json().data.returnflights;
+
+      });
   }
 
 
@@ -241,8 +282,11 @@ SaveRequest(){
         let myModal = this.modal.create(FlightSearchListPage);
         myModal.onDidDismiss(data =>
           {
-            console.log("TADA",data);
-            this.departure = data;
+            console.log("TADA-1",data);
+            if(data)
+            {
+              this.departure = data;
+            }
           });
         myModal.present();
 
@@ -253,26 +297,77 @@ SaveRequest(){
       let myModal = this.modal.create(FlightSearchListPage);
       myModal.onDidDismiss(data =>
         {
-          console.log("TADA",data);
-          this.destination = data;
+          console.log("TADA-2",data);
+          if(data)
+          {
+            this.destination = data;
+          }
         });
       myModal.present();
 
     }
 
-    boook_flight(item,_Flights_tab)
+    boook_flight(item,_flights_tab)
     {
       console.log(item);
-      console.log(_Flights_tab);
+      if(this.onwardOrReturn=='onward')
+      {
+        this.onewayData=item;
+        let myModal = this.modal.create(BookFlightPage,{onewayData:this.onewayData,tabType:_flights_tab,uId: this.uId});
 
-      let myModal = this.modal.create(BookFlightPage,{data:item,tabType:_Flights_tab,uId: this.uId});
+              myModal.onDidDismiss(data =>
+                {
+                  console.log(data);
+                });
+              myModal.present();
+      }
+      else
+      {
+        this.count=this.count+1;
 
-      myModal.onDidDismiss(data =>
+        if(_flights_tab=='oneway')
         {
-          console.log(data);
-        });
-      myModal.present();
+          this.onewayData=item;
+          if(this.count==2)
+          {
+            let myModal = this.modal.create(BookFlightPage,{onewayData:this.onewayData,returnData:this.returnData,tabType:_flights_tab,uId: this.uId});
+
+              myModal.onDidDismiss(data =>
+                {
+                  console.log(data);
+                });
+              myModal.present();
+          }
+          else
+          {
+            this.sections.selectedSection = this.sections.second;
+          }
+        }
+        else
+        {
+          this.returnData=item;
+          if(this.count==2)
+          {
+             let myModal = this.modal.create(BookFlightPage,{onewayData:this.onewayData,returnData:this.returnData,tabType:_flights_tab,uId: this.uId});
+
+              myModal.onDidDismiss(data =>
+                {
+                  console.log(data);
+                });
+              myModal.present();
+          }
+          else
+          {
+            this.sections.selectedSection = this.sections.first;
+          }
+        }
+      }
+}
+
+   onChangeHandler(event: string)
+    {
+      console.log(event);
+      this.onwardOrReturn=event;
+      this.count=0;
     }
-
-
 }
