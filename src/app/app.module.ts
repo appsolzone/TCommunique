@@ -74,6 +74,8 @@ import { File } from '@ionic-native/file';
 import {HotelSearchGoibiboPageModule} from '../pages/hotel-search-goibibo/hotel-search-goibibo.module';
 import { NetworkConnectionProvider } from '../providers/network-connection/network-connection';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import {OwnPropertyGalleryPageModule} from '../pages/own-property-gallery/own-property-gallery.module';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 export function myCustomAudioProviderFactory() {
   return window.hasOwnProperty("cordova")
@@ -95,6 +97,7 @@ export function myCustomAudioProviderFactory() {
   imports: [
     IonicRatingModule,
     HomePageModule,
+    IonicImageViewerModule,
     StarRatingModule,
     SignInPageModule,
     SignUpPageModule,
@@ -133,6 +136,7 @@ export function myCustomAudioProviderFactory() {
     PlacesOfInterestPageModule,
     BusSearchListPageModule,
     FlightSearchListPageModule,
+    OwnPropertyGalleryPageModule,
     VideoCallPageModule,
     MyWishListPageModule,
     FilterDataPageModule,

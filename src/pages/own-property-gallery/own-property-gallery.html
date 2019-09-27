@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Booking Hotel Request</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="closeModal()">
+                <ion-icon item-right name="ios-close-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+  <ion-content padding>
+
+    <ion-grid no-padding fixed *ngIf="view_full_img">
+        <ion-row no-padding>
+                <ion-col>
+                        <ion-slides pager="true"  class="" effect="coverflow">
+                                <ion-slide *ngFor="let data of gallery_image">
+
+                                                <img class="full_img" id={{data}} src="{{data}}" imageViewer
+                                                #menuImg (tap)="viewMenuImage(menuImg)">
+
+                                </ion-slide>
+                        </ion-slides>
+
+                </ion-col>
+        </ion-row>
+    </ion-grid>
+
+  </ion-content>

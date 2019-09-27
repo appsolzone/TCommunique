@@ -15,6 +15,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
 import { UserProvider } from '../../providers/user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
+import {VideoProvider} from '../../providers/video/video';
 
 
 
@@ -49,7 +50,7 @@ export class SignInPage implements OnInit{
 
 
 
-  constructor(private googlePlus: GooglePlus,public userprovider:UserProvider,private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+  constructor(public videoProvider:VideoProvider,private googlePlus: GooglePlus,public userprovider:UserProvider,private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
     let status=this.network.type;
 
     if(status=='none')
@@ -130,6 +131,17 @@ export class SignInPage implements OnInit{
               this.storage.set('user_login_data',data.json());
               this.userprovider.put_user_img(data.json().profileData.profImg);
               this.userprovider.put_user_name(data.json().username);
+
+
+              const userData= {
+                uniqueId:data.json().videoId,
+                name:data.json().username
+
+              }
+
+              console.log("userData",userData);
+
+              this.videoProvider.InitializingRTC(userData);
 
               this.navCtrl.setRoot(HomePage);
 
@@ -212,6 +224,16 @@ export class SignInPage implements OnInit{
                   this.storage.set('user_login_data',data.json());
                   this.userprovider.put_user_img(data.json().profileData.profImg);
                   this.userprovider.put_user_name(data.json().username);
+
+                  const userData= {
+                    uniqueId:data.json().videoId,
+                    name:data.json().username
+
+                  }
+
+                  console.log("userData",userData);
+
+                  this.videoProvider.InitializingRTC(userData);
 
                   this.navCtrl.setRoot(HomePage);
 

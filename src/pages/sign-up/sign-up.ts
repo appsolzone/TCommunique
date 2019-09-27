@@ -15,6 +15,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { Storage } from '@ionic/storage';
 import { OtpVarificationPage } from '../../pages/otp-varification/otp-varification';
 import { UserProvider } from '../../providers/user/user';
+import {VideoProvider} from '../../providers/video/video';
 
 
 
@@ -44,7 +45,7 @@ export class SignUpPage {
   data:Observable<any>;
 
 
-  constructor(public userprovider:UserProvider,private storage: Storage,private googlePlus: GooglePlus,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
+  constructor(public videoProvider:VideoProvider,public userprovider:UserProvider,private storage: Storage,private googlePlus: GooglePlus,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private _fb: FormBuilder,public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -189,6 +190,16 @@ export class SignUpPage {
                   this.userprovider.put_user_img(data.json().profileData.profImg);
                   this.userprovider.put_user_name(data.json().username);
 
+
+                  const userData= {
+                    uniqueId:data.json().videoId,
+                    name:data.json().username
+
+                  }
+
+                  console.log("userData",userData);
+
+                  this.videoProvider.InitializingRTC(userData);
                   this.navCtrl.setRoot(HomePage);
 
             }else{

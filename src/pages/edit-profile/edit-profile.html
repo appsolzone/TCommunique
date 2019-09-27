@@ -38,7 +38,7 @@
 
             </div>
             <div class="frmone">
-                <ion-input type="text" formControlName="dob" name="dob" placeholder="Date-Of-Birth" [(ngModel)]="dateofbirth" value={{dateofbirth}}></ion-input>
+                <ion-datetime displayFormat="DD-MM-YYYY" formControlName="dob" name="dob" placeholder="Date-Of-Birth" [(ngModel)]="dateofbirth" ></ion-datetime>
                 <p ion-text color="danger" class="text-12x has-error" *ngIf="onProfileForm.get('dob').touched && onProfileForm.get('dob').hasError('required')">This field is required</p>
 
               </div>

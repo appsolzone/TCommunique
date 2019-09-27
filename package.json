@@ -69,6 +69,7 @@
     "es6-promise-plugin": "^4.2.2",
     "ionic-angular": "3.9.5",
     "ionic-audio": "^3.2.2",
+    "ionic-img-viewer": "^2.9.0",
     "ionic-rating": "^1.0.6",
     "ionic-resources": "^0.1.8",
     "ionic3-star-rating": "^2.1.0",

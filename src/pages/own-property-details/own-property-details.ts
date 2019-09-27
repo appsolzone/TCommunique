@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import {SignInPage} from '../../pages/sign-in/sign-in';
 import {HotelBookingRequestPage} from '../../pages/hotel-booking-request/hotel-booking-request';
+import {OwnPropertyGalleryPage} from '../../pages/own-property-gallery/own-property-gallery';
 
 
 
@@ -150,6 +151,19 @@ export class OwnPropertyDetailsPage {
     }else{
       this.navCtrl.push(SignInPage);
     }
+
+  }
+
+  openGallery(){
+
+    let myModal = this.modal.create(OwnPropertyGalleryPage, {hotelId:this.searchData.hotelId});
+
+      myModal.onDidDismiss(data =>
+        {
+
+        });
+      myModal.present();
+
 
   }
 

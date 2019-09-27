@@ -121,6 +121,7 @@ export class ContactUsPage {
 
   callnow(){
 
+    console.log("emergency_number",this.emergency_number);
     this.callNumber.callNumber(this.emergency_number, true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
@@ -136,7 +137,7 @@ export class ContactUsPage {
     this.data = this.http.get(url2);
     this.data.subscribe(data=>{
       console.log("Emergency",data.json().data);
-      this.emergency_number = data.json().data;
+      this.emergency_number = data.json().data.contact1;
     })
   }
 
