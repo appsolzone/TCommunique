@@ -193,7 +193,11 @@ export class EditProfilePage {
 
   getPicture(sourceType: PictureSourceType) {
     this.camera.getPicture({
-      quality: 100,
+      quality: 20,
+      targetWidth: 600,
+      targetHeight: 600,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE,
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: sourceType,
       allowEdit: true,

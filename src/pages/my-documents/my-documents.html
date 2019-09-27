@@ -35,7 +35,9 @@
         </ion-row>
         <img *ngIf="img_status" src={{selectedImage}} style="height: 150px; width: 100%; text-align: center;">
         <div class="ionbutton">
-        <button ion-button (click)="UploadDocuments()">Upload File</button>
+            <button ion-button icon-left round color="searchbg" class="upload" (click)="UploadDocuments()">
+                Upload File
+              </button>
       </div>
     </div>
 

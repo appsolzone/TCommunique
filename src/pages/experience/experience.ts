@@ -80,7 +80,11 @@ export class ExperiencePage {
 
   getPicture(sourceType: PictureSourceType) {
     this.camera.getPicture({
-      quality: 100,
+      quality: 20,
+      targetWidth: 600,
+      targetHeight: 600,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE,
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: sourceType,
       allowEdit: true,
@@ -97,7 +101,25 @@ export class ExperiencePage {
 
      PostDataClick(){
 
-      this.experienceShare_expPost(this.uId,this.name,this.note,this.encoded_img);
+      if(this.PostDataClick == undefined && this.note==null){
+
+        let t = this.toastCtrl.create({
+          message: "Please upload your experience images with notes.",
+          position: 'bottom'
+        });
+        let closedByTimeout = false;
+        let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+        t.onDidDismiss(() => {
+          if (closedByTimeout) return;
+          clearTimeout(timeoutHandle);
+        });
+        t.present();
+
+      }else{
+        this.experienceShare_expPost(this.uId,this.name,this.note,this.encoded_img);
+
+      }
+
 
      }
 

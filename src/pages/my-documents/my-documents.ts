@@ -81,12 +81,16 @@ actionSheet.present();
 
 getPicture(sourceType: PictureSourceType) {
 this.camera.getPicture({
-quality: 100,
-destinationType: this.camera.DestinationType.DATA_URL,
-sourceType: sourceType,
-allowEdit: true,
-saveToPhotoAlbum: false,
-correctOrientation: true
+  quality: 20,
+  targetWidth: 600,
+  targetHeight: 600,
+  encodingType: this.camera.EncodingType.PNG,
+  mediaType: this.camera.MediaType.PICTURE,
+  destinationType: this.camera.DestinationType.DATA_URL,
+  sourceType: sourceType,
+  allowEdit: true,
+  saveToPhotoAlbum: false,
+  correctOrientation: true
 }).then((imageData) => {
 this.selectedImage = `data:image/jpeg;base64,${imageData}`;
 this.encoded_img=imageData;
@@ -98,7 +102,23 @@ this.img_status = true;
 
 UploadDocuments(){
 
-this.loading = this.loadingCtrl.create({
+console.log(this.encoded_img);
+
+if(this.encoded_img == undefined){
+  let t = this.toastCtrl.create({
+    message: "Please upload your documents first",
+    position: 'bottom'
+    });
+    let closedByTimeout = false;
+    let timeoutHandle = setTimeout(() => { closedByTimeout = true; t.dismiss(); }, 7000);
+    t.onDidDismiss(() => {
+    if (closedByTimeout) return;
+    clearTimeout(timeoutHandle);
+    });
+    t.present();
+}else{
+
+  this.loading = this.loadingCtrl.create({
 content: 'Please wait...',
 dismissOnPageChange: true
 });
@@ -129,6 +149,8 @@ clearTimeout(timeoutHandle);
 t.present();
 
 });
+}
+
 
 }
 

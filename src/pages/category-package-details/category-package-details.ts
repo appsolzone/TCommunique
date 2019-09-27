@@ -260,105 +260,113 @@ export class CategoryPackageDetailsPage {
       ListofPackage_byDest_data =this.ListofPackage_byDest;
       this.ListofPackage_byDest=[];
 
-      for(let i=0;i<ListofPackage_byDest_data.length;i++)
-      {
-        for(let j=0;j<this.getWishlistData.length;j++)
+      let status = data.json().status;
+
+      if(status ==400){
+        this.ListofPackage_byDest = ListofPackage_byDest_data;
+      }else{
+        for(let i=0;i<ListofPackage_byDest_data.length;i++)
         {
-          if(ListofPackage_byDest_data[i].pkgId==this.getWishlistData[j].pkgId)
+          for(let j=0;j<this.getWishlistData.length;j++)
           {
-            let obj=
+            if(ListofPackage_byDest_data[i].pkgId==this.getWishlistData[j].pkgId)
             {
-                pkgId:ListofPackage_byDest_data[i].pkgId,
-                pkgTitle:ListofPackage_byDest_data[i].pkgTitle,
-                duration:ListofPackage_byDest_data[i].duration,
-                startingPrice:ListofPackage_byDest_data[i].startingPrice,
-                priceUSD:ListofPackage_byDest_data[i].priceUSD,
-                priceEUR:ListofPackage_byDest_data[i].priceEUR,
-                priceJPY:ListofPackage_byDest_data[i].priceJPY,
-                priceGBP:ListofPackage_byDest_data[i].priceGBP,
-                priceAUD:ListofPackage_byDest_data[i].priceAUD,
-                priceCAD:ListofPackage_byDest_data[i].priceCAD,
-                priceCHF:ListofPackage_byDest_data[i].priceCHF,
-                priceCNH:ListofPackage_byDest_data[i].priceCNH,
-                tourType:ListofPackage_byDest_data[i].tourType,
-                overview:ListofPackage_byDest_data[i].overview,
-                inclusion:ListofPackage_byDest_data[i].inclusion,
-                exclusion:ListofPackage_byDest_data[i].exclusion,
-                flight:ListofPackage_byDest_data[i].flight,
-                cab:ListofPackage_byDest_data[i].cab,
-                hotel:ListofPackage_byDest_data[i].hotel,
-                hotelRating:ListofPackage_byDest_data[i].hotelRating,
-                meal:ListofPackage_byDest_data[i].meal,
-                sightSeeing:ListofPackage_byDest_data[i].sightSeeing,
-                other:ListofPackage_byDest_data[i].other,
-                pkgImg:this.getWishlistData[j].pkgImg,
-                destId:this.getWishlistData[j].destId,
-                catId:this.getWishlistData[j].catId,
-                favHeart:"yes"
-            }
-
-            if(this.ListofPackage_byDest[i])
-            {
-              this.ListofPackage_byDest.splice(i, 1);
-              this.ListofPackage_byDest.splice(i, 0,obj);
-            }
-            else
-            {
-              this.ListofPackage_byDest.push(obj);
-            }
-          }
-          else
-          {
-            let obj=
-            {
-                pkgId:ListofPackage_byDest_data[i].pkgId,
-                pkgTitle:ListofPackage_byDest_data[i].pkgTitle,
-                duration:ListofPackage_byDest_data[i].duration,
-                startingPrice:ListofPackage_byDest_data[i].startingPrice,
-                priceUSD:ListofPackage_byDest_data[i].priceUSD,
-                priceEUR:ListofPackage_byDest_data[i].priceEUR,
-                priceJPY:ListofPackage_byDest_data[i].priceJPY,
-                priceGBP:ListofPackage_byDest_data[i].priceGBP,
-                priceAUD:ListofPackage_byDest_data[i].priceAUD,
-                priceCAD:ListofPackage_byDest_data[i].priceCAD,
-                priceCHF:ListofPackage_byDest_data[i].priceCHF,
-                priceCNH:ListofPackage_byDest_data[i].priceCNH,
-                tourType:ListofPackage_byDest_data[i].tourType,
-                overview:ListofPackage_byDest_data[i].overview,
-                inclusion:ListofPackage_byDest_data[i].inclusion,
-                exclusion:ListofPackage_byDest_data[i].exclusion,
-                flight:ListofPackage_byDest_data[i].flight,
-                cab:ListofPackage_byDest_data[i].cab,
-                hotel:ListofPackage_byDest_data[i].hotel,
-                hotelRating:ListofPackage_byDest_data[i].hotelRating,
-                meal:ListofPackage_byDest_data[i].meal,
-                sightSeeing:ListofPackage_byDest_data[i].sightSeeing,
-                other:ListofPackage_byDest_data[i].other,
-                pkgImg:"",
-                destId:"",
-                catId:"",
-                favHeart:"no"
-            }
-
-            if(this.ListofPackage_byDest[i])
+              let obj=
               {
-                if(this.ListofPackage_byDest[i].favHeart=='yes')
-                {
-
-                }
-                else
-                {
-                  this.ListofPackage_byDest.splice(i, 1);
-                  this.ListofPackage_byDest.splice(i, 0,obj);
-                }
+                  pkgId:ListofPackage_byDest_data[i].pkgId,
+                  pkgTitle:ListofPackage_byDest_data[i].pkgTitle,
+                  duration:ListofPackage_byDest_data[i].duration,
+                  startingPrice:ListofPackage_byDest_data[i].startingPrice,
+                  priceUSD:ListofPackage_byDest_data[i].priceUSD,
+                  priceEUR:ListofPackage_byDest_data[i].priceEUR,
+                  priceJPY:ListofPackage_byDest_data[i].priceJPY,
+                  priceGBP:ListofPackage_byDest_data[i].priceGBP,
+                  priceAUD:ListofPackage_byDest_data[i].priceAUD,
+                  priceCAD:ListofPackage_byDest_data[i].priceCAD,
+                  priceCHF:ListofPackage_byDest_data[i].priceCHF,
+                  priceCNH:ListofPackage_byDest_data[i].priceCNH,
+                  tourType:ListofPackage_byDest_data[i].tourType,
+                  overview:ListofPackage_byDest_data[i].overview,
+                  inclusion:ListofPackage_byDest_data[i].inclusion,
+                  exclusion:ListofPackage_byDest_data[i].exclusion,
+                  flight:ListofPackage_byDest_data[i].flight,
+                  cab:ListofPackage_byDest_data[i].cab,
+                  hotel:ListofPackage_byDest_data[i].hotel,
+                  hotelRating:ListofPackage_byDest_data[i].hotelRating,
+                  meal:ListofPackage_byDest_data[i].meal,
+                  sightSeeing:ListofPackage_byDest_data[i].sightSeeing,
+                  other:ListofPackage_byDest_data[i].other,
+                  pkgImg:this.getWishlistData[j].pkgImg,
+                  destId:this.getWishlistData[j].destId,
+                  catId:this.getWishlistData[j].catId,
+                  favHeart:"yes"
               }
-            else
+
+              if(this.ListofPackage_byDest[i])
+              {
+                this.ListofPackage_byDest.splice(i, 1);
+                this.ListofPackage_byDest.splice(i, 0,obj);
+              }
+              else
               {
                 this.ListofPackage_byDest.push(obj);
               }
+            }
+            else
+            {
+              let obj=
+              {
+                  pkgId:ListofPackage_byDest_data[i].pkgId,
+                  pkgTitle:ListofPackage_byDest_data[i].pkgTitle,
+                  duration:ListofPackage_byDest_data[i].duration,
+                  startingPrice:ListofPackage_byDest_data[i].startingPrice,
+                  priceUSD:ListofPackage_byDest_data[i].priceUSD,
+                  priceEUR:ListofPackage_byDest_data[i].priceEUR,
+                  priceJPY:ListofPackage_byDest_data[i].priceJPY,
+                  priceGBP:ListofPackage_byDest_data[i].priceGBP,
+                  priceAUD:ListofPackage_byDest_data[i].priceAUD,
+                  priceCAD:ListofPackage_byDest_data[i].priceCAD,
+                  priceCHF:ListofPackage_byDest_data[i].priceCHF,
+                  priceCNH:ListofPackage_byDest_data[i].priceCNH,
+                  tourType:ListofPackage_byDest_data[i].tourType,
+                  overview:ListofPackage_byDest_data[i].overview,
+                  inclusion:ListofPackage_byDest_data[i].inclusion,
+                  exclusion:ListofPackage_byDest_data[i].exclusion,
+                  flight:ListofPackage_byDest_data[i].flight,
+                  cab:ListofPackage_byDest_data[i].cab,
+                  hotel:ListofPackage_byDest_data[i].hotel,
+                  hotelRating:ListofPackage_byDest_data[i].hotelRating,
+                  meal:ListofPackage_byDest_data[i].meal,
+                  sightSeeing:ListofPackage_byDest_data[i].sightSeeing,
+                  other:ListofPackage_byDest_data[i].other,
+                  pkgImg:"",
+                  destId:"",
+                  catId:"",
+                  favHeart:"no"
+              }
+
+              if(this.ListofPackage_byDest[i])
+                {
+                  if(this.ListofPackage_byDest[i].favHeart=='yes')
+                  {
+
+                  }
+                  else
+                  {
+                    this.ListofPackage_byDest.splice(i, 1);
+                    this.ListofPackage_byDest.splice(i, 0,obj);
+                  }
+                }
+              else
+                {
+                  this.ListofPackage_byDest.push(obj);
+                }
+            }
           }
         }
+
       }
+
       // this.loading.dismiss();
       this.get_UserReview();
     });
