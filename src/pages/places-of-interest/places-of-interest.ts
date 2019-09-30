@@ -130,6 +130,16 @@ export class PlacesOfInterestPage {
     //         });
   }
 
+  nearbyPlacebyDist(data){
+    console.log("HDHDD",data);
+    this.isKM = data;
+    console.log("isType DATA",data);
+    this.arraySource = [];
+    this.arraySource.length = 0;
+    // this.loadMap();
+    this.checkPermission();
+  }
+
   // callback(results, status) {
   //   if (status === google.maps.places.PlacesServiceStatus.OK) {
   //     for (var i = 0; i < results.length; i++) {

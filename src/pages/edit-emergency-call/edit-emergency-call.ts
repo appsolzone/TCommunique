@@ -7,6 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 
+
 /**
  * Generated class for the EditEmergencyCallPage page.
  *

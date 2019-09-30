@@ -27,7 +27,7 @@
         <ion-option value="atm">Atm</ion-option>
         <ion-option value="casino">Casino</ion-option>
         <ion-option value="hospital">Hospital</ion-option>
-        <ion-option value="hindu_temple">Hindu Temple</ion-option>
+        <ion-option value="hindu_temple">Temple</ion-option>
         <ion-option value="mosque">Mosque</ion-option>
       <ion-option value="museum">Museum</ion-option>
       <ion-option value="park">Park</ion-option>
@@ -35,6 +35,16 @@
       <ion-option value="supermarket">Supermarket</ion-option>
     </ion-select>
   </ion-item>
+
+  <ion-item>
+ <ion-label>Select Distance</ion-label>
+  <ion-select [(ngModel)]="isKM" (ionChange)="nearbyPlacebyDist(isKM)">
+      <ion-option value="2000">2 KM</ion-option>
+      <ion-option value="5000">5 KM</ion-option>
+      <ion-option value="5000">10 KM</ion-option>
+  </ion-select>
+</ion-item>
+
   
  
   

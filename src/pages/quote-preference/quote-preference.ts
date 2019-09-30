@@ -12,6 +12,9 @@ import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
+import "rxjs/Rx";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/debounceTime";
 
 
 

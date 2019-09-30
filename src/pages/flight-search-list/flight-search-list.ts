@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/debounceTime";
 /**
  * Generated class for the FlightSearchListPage page.
  *
@@ -87,9 +89,10 @@ export class FlightSearchListPage {
 selectdeparture(data){
 this.showlist = false;
 console.log("DATA",data);
+console.log("Country",data.Country);
 this.departure =data.Code;
 // this.navCtrl.pop();
-this.view.dismiss(data.Code);
+this.view.dismiss({"Code":data.Code,"Country":data.Country,"Name":data.Name});
 
 }
 

@@ -33,7 +33,7 @@
               </button>
         </ion-col>
         </ion-row>
-        <img *ngIf="img_status" src={{selectedImage}} style="height: 150px; width: 100%; text-align: center;">
+        <img *ngIf="img_status" src={{selectedImage}} style="height: auto; width: 100%; text-align: center;">
         <div class="ionbutton">
             <button ion-button icon-left round color="searchbg" class="upload" (click)="UploadDocuments()">
                 Upload File
@@ -51,8 +51,9 @@
             </ion-col>
       </ion-row>
 
-      <img src="{{data.docLink}}" style="width: 100%;height: 120px;border-radius: 7px 7px 7px 7px;">
+      <img src="{{data.docLink}}" style="width: 100%;height: auto;border-radius: 7px 7px 7px 7px;">
    </div>
+
 
 
 

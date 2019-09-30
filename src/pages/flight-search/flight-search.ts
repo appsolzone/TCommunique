@@ -15,7 +15,8 @@ import { HomePage } from '../../pages/home/home';
 import {FlightSearchListPage} from '../../pages/flight-search-list/flight-search-list';
 import {BookFlightPage} from '../../pages/book-flight/book-flight';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/debounceTime";
 
 
 /**
@@ -77,6 +78,13 @@ export class FlightSearchPage {
 
   public onewayData:any;
   public returnData:any;
+
+  departure_Name:any;
+  departure_Country:any;
+  destination_Name:any;
+  destination_Country:any;
+  destination_Code:any;
+  departure_Code:any;
 
   constructor(public modal:ModalController,public toastCtrl:ToastController,public storage:Storage,private callNumber: CallNumber,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public fb:FormBuilder) {
     this.icons = "Onward_Flights";
@@ -147,28 +155,70 @@ SaveRequest()
       var url;
       let d2,d3;
 
-      if(this.onwardOrReturn=='onward')
+
+      if(this.destination_Country=="India" && this.departure_Country=="India" ){
+        console.log("Domestic");
+        if(this.onwardOrReturn=="onward")
+        {
+          console.log("onward Domestic");
+          d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
+  
+          url= "https://developer.goibibo.com/api/search/?app_id="
+          +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
+          +this.departure_Code+"&destination="+this.destination_Code+"&dateofdeparture="+d2+"&seatingclass="
+          +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=100";
+        }
+        if(this.onwardOrReturn=="return")
+        {
+          console.log("return Domestic");
+
+          d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
+          console.log(d2);
+          d3 =this.date2.replace(/[^a-zA-Z0-9]/g, '');
+          console.log(d3);
+
+          url= "https://developer.goibibo.com/api/search/?app_id="
+          +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
+          +this.departure_Code+"&destination="+this.destination_Code+"&dateofdeparture="+d2+"&dateofarrival="+d3+"&seatingclass="
+          +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=100";
+        }
+        console.log("DJDLD",this.departure,this.destination,d2,d3,this.child,this.adult,this.infant,this.economy.value)
+
+      }else{
+
+        console.log("InterNational")
+        if(this.onwardOrReturn=="onward")
       {
+        console.log("onward InterNational");
+
         d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
 
         url= "https://developer.goibibo.com/api/search/?app_id="
         +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
-        +this.departure+"&destination="+this.destination+"&dateofdeparture="+d2+"&seatingclass="
-        +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=100";
+        +this.departure_Code+"&destination="+this.destination_Code+"&dateofdeparture="+d2+"&seatingclass="
+        +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=0";
       }
-      else
+      if(this.onwardOrReturn=="return")
       {
+        console.log("return InterNational");
+
         d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
         console.log(d2);
         d3 =this.date2.replace(/[^a-zA-Z0-9]/g, '');
+        console.log(d3);
+
 
         url= "https://developer.goibibo.com/api/search/?app_id="
         +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
-        +this.departure+"&destination="+this.destination+"&dateofdeparture="+d2+"&dateofarrival="+d3+"&seatingclass="
-        +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=100";
+        +this.departure_Code+"&destination="+this.destination_Code+"&dateofdeparture="+d2+"&dateofarrival="+d3+"&seatingclass="
+        +this.economy.value+"&adults="+this.adult+"&children="+this.child+"&infants="+this.infant+"&counter=0";
+      }
+      console.log("DJDLD",this.departure,this.destination,d2,d3,this.child,this.adult,this.infant,this.economy.value)
+
       }
 
-      console.log("DJDLD",this.departure,this.destination,d2,this.child,this.adult,this.infant,this.economy.value)
+      
+
 
 
       this.data = this.http.get(url);
@@ -285,7 +335,10 @@ SaveRequest()
             console.log("TADA-1",data);
             if(data)
             {
-              this.departure = data;
+              this.departure = data.Name;
+              this.departure_Code = data.Code;
+              // this.departure_Name = data.Name;
+              this.departure_Country = data.Country;
             }
           });
         myModal.present();
@@ -300,7 +353,11 @@ SaveRequest()
           console.log("TADA-2",data);
           if(data)
           {
-            this.destination = data;
+
+              this.destination = data.Name;
+              this.destination_Code = data.Code;
+              // this.destination_Name = data.Name;
+              this.destination_Country = data.Country;
           }
         });
       myModal.present();

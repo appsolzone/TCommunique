@@ -26,14 +26,17 @@
     "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "^3.14.0",
+    "@ionic-native/diagnostic": "^4.20.0",
     "@ionic-native/file": "^4.20.0",
     "@ionic-native/file-transfer": "^4.20.0",
-    "@ionic-native/geolocation": "^5.12.0",
+    "@ionic-native/geolocation": "^4.20.0",
     "@ionic-native/google-plus": "^4.20.0",
     "@ionic-native/in-app-browser": "^4.20.0",
     "@ionic-native/location-accuracy": "^4.20.0",
     "@ionic-native/native-audio": "^4.20.0",
+    "@ionic-native/native-geocoder": "^4.20.0",
     "@ionic-native/network": "^4.20.0",
+    "@ionic-native/open-native-settings": "^4.20.0",
     "@ionic-native/push": "^4.20.0",
     "@ionic-native/social-sharing": "^4.20.0",
     "@ionic-native/splash-screen": "~4.20.0",
@@ -43,6 +46,7 @@
     "call-number": "^1.0.1",
     "cordova-android": "^8.0.0",
     "cordova-custom-config": "^5.1.0",
+    "cordova-open-native-settings": "^1.5.2",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-calendar": "^5.1.4",
     "cordova-plugin-camera": "^4.1.0",
@@ -58,7 +62,9 @@
     "cordova-plugin-iosrtc": "^5.0.0",
     "cordova-plugin-media": "^5.0.3",
     "cordova-plugin-nativeaudio": "^3.0.9",
+    "cordova-plugin-nativegeocoder": "^3.2.2",
     "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-request-location-accuracy": "^2.3.0",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "1.3.3",
@@ -66,6 +72,7 @@
     "cordova-res": "^0.6.0",
     "cordova-sqlite-storage": "^3.3.0",
     "cordova-support-google-services": "^1.1.0",
+    "cordova.plugins.diagnostic": "^5.0.0",
     "es6-promise-plugin": "^4.2.2",
     "ionic-angular": "3.9.5",
     "ionic-audio": "^3.2.2",
@@ -84,6 +91,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "^3.1.7",
+    "@ionic/lab": "2.0.11",
     "@types/googlemaps": "^3.37.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
@@ -104,7 +112,6 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-geolocation": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.416461815684-g9fgbom3gvojj3m53gleonjh8n6v6ddg"
       },
@@ -135,7 +142,18 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-file": {},
       "cordova-plugin-android-permissions": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-request-location-accuracy": {
+        "PLAY_SERVICES_LOCATION_VERSION": "16.+"
+      },
+      "cordova-plugin-nativegeocoder": {},
+      "cordova.plugins.diagnostic": {
+        "ANDROID_SUPPORT_VERSION": "28.+"
+      },
+      "cordova-open-native-settings": {},
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      }
     },
     "platforms": [
       "android"

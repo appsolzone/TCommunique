@@ -141,7 +141,7 @@ export class SignInPage implements OnInit{
 
               console.log("userData",userData);
 
-              this.videoProvider.InitializingRTC(userData);
+              // this.videoProvider.InitializingRTC(userData);
 
               this.navCtrl.setRoot(HomePage);
 

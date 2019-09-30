@@ -56,6 +56,7 @@ import { OtpVarificationPage} from '../pages/otp-varification/otp-varification';
 import { UserProvider } from '../providers/user/user';
 import { MyWishListPage } from '../pages/my-wish-list/my-wish-list';
 import { Calendar } from '@ionic-native/calendar';
+import { SettingsProvider } from '../providers/settings/settings';
 
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
@@ -96,13 +97,16 @@ export class TCommuniqueApp {
     user_review:any;
     role:any;
     videoId:any;
+    selectedTheme: String;
 
-
-  constructor(public datepipe: DatePipe,private calendar: Calendar,public http:HttpClient,public constant:ConstantProvider,public userProvider:UserProvider,public storage:Storage,public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen) {
+  constructor(private settings: SettingsProvider,public datepipe: DatePipe,private calendar: Calendar,public http:HttpClient,public constant:ConstantProvider,public userProvider:UserProvider,public storage:Storage,public videoProvider : VideoProvider,public modalCtrl:ModalController,public events:Events,private ionicApp: IonicApp,public alertCtrl:AlertController,public  app: App,private androidPermissions: AndroidPermissions,private push: Push,public platform: Platform,public statusBar: StatusBar,public  splashScreen: SplashScreen)
+   {
 
     this.platform.ready().then(() => {
       this.statusBar.overlaysWebView(false);
       this.splashScreen.hide();
+      this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
+
       this.events.subscribe('openVideocall',()=>{
         let profileModal = this.modalCtrl.create(VideoCallPage);
         profileModal.present();
@@ -268,27 +272,35 @@ export class TCommuniqueApp {
 
 
         this.nearbyplacesItem = [
-            {title: 'Nearby Restaurant', component: 'page-nearby-places', icon: 'md-locate'},
-            {title: 'Places of Interest', component: 'page-places-of-interest', icon: 'md-locate'}
+            {title: 'Nearby Restaurant', component: 'page-nearby-places', icon: 'assets/img_icon/nerby.png'},
+            {title: 'Places of Interest', component: 'page-places-of-interest', icon: 'assets/img_icon/places-of-interest.png'}
 
 
         ];
         this.converterItem = [
-          {title: 'Converter', component: 'page-currency-converter', icon: 'logo-yen'}
+          {title: 'Converter', component: 'page-currency-converter', icon: 'assets/img_icon/currency-converter.png'}
 
       ];
         this.accountMenuItems =
             {component: 'page-edit-profile'};
 
         this.searchMenuItems = [
-            {title: 'Own Properties', component: 'page-hotel-search', icon: 'md-home'},
-            {title: 'Hotel Search', component: 'page-hotel-search-goibibo', icon: 'md-home'},
-            {title: 'Flight Search', component: 'page-flight-search', icon: 'md-plane'},
-            {title: 'Bus Search', component: 'page-bus-search', icon: 'md-bus'}
+            {title: 'Own Properties', component: 'page-hotel-search', icon: 'assets/img_icon/own-property.png'},
+            {title: 'Hotel Search', component: 'page-hotel-search-goibibo', icon: 'assets/img_icon/hotel-search.png'},
+            {title: 'Flight Search', component: 'page-flight-search', icon: 'assets/img_icon/flight-dep.png'},
+            {title: 'Bus Search', component: 'page-bus-search', icon: 'assets/img_icon/bus-1.png'}
 
         ];
 
 
+  }
+
+  toggleAppTheme(){
+    if (this.selectedTheme === 'dark-theme') {
+      this.settings.setActiveTheme('light-theme');
+    } else {
+      this.settings.setActiveTheme('dark-theme');
+    }
   }
 
 

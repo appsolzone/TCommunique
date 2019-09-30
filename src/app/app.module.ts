@@ -23,7 +23,7 @@ import { CurrencyConverterPageModule } from '../pages/currency-converter/currenc
 import { CarBookingPageModule } from '../pages/car-booking/car-booking.module';
 import { NearbyPlacesPageModule } from '../pages/nearby-places/nearby-places.module';
 import { IonicRatingModule } from 'ionic-rating';
-import { Geolocation ,GeolocationOptions } from '@ionic-native/geolocation/ngx';
+import { Geolocation ,GeolocationOptions } from '@ionic-native/geolocation';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -70,12 +70,16 @@ import {FlightSearchListPageModule} from '../pages/flight-search-list/flight-sea
 import {BookBusPageModule} from '../pages/book-bus/book-bus.module';
 import {BookFlightPageModule} from '../pages/book-flight/book-flight.module';
 import { File } from '@ionic-native/file';
-// import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import {HotelSearchGoibiboPageModule} from '../pages/hotel-search-goibibo/hotel-search-goibibo.module';
 import { NetworkConnectionProvider } from '../providers/network-connection/network-connection';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {OwnPropertyGalleryPageModule} from '../pages/own-property-gallery/own-property-gallery.module';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { SettingsProvider } from '../providers/settings/settings';
 
 export function myCustomAudioProviderFactory() {
   return window.hasOwnProperty("cordova")
@@ -180,7 +184,8 @@ export function myCustomAudioProviderFactory() {
     FileTransferObject,
     File,
     NetworkConnectionProvider,
-    // LocationAccuracy
+    LocationAccuracy,Diagnostic,OpenNativeSettings,NativeGeocoder,
+    SettingsProvider
   ]
 })
 export class AppModule {}

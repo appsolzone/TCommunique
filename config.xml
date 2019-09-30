@@ -128,5 +128,16 @@
     <plugin name="cordova-plugin-file" spec="^6.0.2" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.1.0" />
+    <plugin name="cordova-plugin-request-location-accuracy" spec="^2.3.0">
+        <variable name="PLAY_SERVICES_LOCATION_VERSION" value="16.+" />
+    </plugin>
+    <plugin name="cordova-plugin-nativegeocoder" spec="^3.2.2" />
+    <plugin name="cordova.plugins.diagnostic" spec="^5.0.0">
+        <variable name="ANDROID_SUPPORT_VERSION" value="28.+" />
+    </plugin>
+    <plugin name="cordova-open-native-settings" spec="^1.5.2" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.2">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
     <engine name="android" spec="^8.0.0" />
 </widget>

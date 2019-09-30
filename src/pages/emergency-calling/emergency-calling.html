@@ -28,7 +28,7 @@
           <ion-col col-6>
             <P>{{primary_name}}</P>
             <P>{{primary_number}}</P>
-            <button ion-button icon-left round color="secondary" (click)="callNumber_ph(primary_number)" >
+            <button ion-button icon-left round color="secondary" (click)="callNumber_ph(primary_number,primary_name)" >
                 <ion-icon ios="ios-call" md="md-call" ></ion-icon>
                 Call
               </button>
@@ -57,7 +57,7 @@
           </ion-col>
           <ion-col col-2>
               <div class="iconbdr">
-                  <ion-icon ios="ios-call" md="md-call" style="color: white;" (click)="callNumber_ph(data.contactNo)"></ion-icon>
+                  <ion-icon ios="ios-call" md="md-call" style="color: white;" (click)="callNumber_ph(data.contactNo,data.name)"></ion-icon>
 
               </div>
           </ion-col>

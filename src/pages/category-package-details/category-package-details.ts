@@ -253,7 +253,7 @@ export class CategoryPackageDetailsPage {
     postData.append('uId',this.uId);
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
-      // console.log("getWishlistData",JSON.stringify(data.json()));
+      console.log("getWishlistData",JSON.stringify(data.json()));
       this.getWishlistData = data.json().data;
 
       let ListofPackage_byDest_data=[];
@@ -263,7 +263,41 @@ export class CategoryPackageDetailsPage {
       let status = data.json().status;
 
       if(status ==400){
-        this.ListofPackage_byDest = ListofPackage_byDest_data;
+        // this.ListofPackage_byDest = ListofPackage_byDest_data;
+        for(let i=0;i<ListofPackage_byDest_data.length;i++){
+
+          let obj=
+          {
+              pkgId:ListofPackage_byDest_data[i].pkgId,
+              pkgTitle:ListofPackage_byDest_data[i].pkgTitle,
+              duration:ListofPackage_byDest_data[i].duration,
+              startingPrice:ListofPackage_byDest_data[i].startingPrice,
+              priceUSD:ListofPackage_byDest_data[i].priceUSD,
+              priceEUR:ListofPackage_byDest_data[i].priceEUR,
+              priceJPY:ListofPackage_byDest_data[i].priceJPY,
+              priceGBP:ListofPackage_byDest_data[i].priceGBP,
+              priceAUD:ListofPackage_byDest_data[i].priceAUD,
+              priceCAD:ListofPackage_byDest_data[i].priceCAD,
+              priceCHF:ListofPackage_byDest_data[i].priceCHF,
+              priceCNH:ListofPackage_byDest_data[i].priceCNH,
+              tourType:ListofPackage_byDest_data[i].tourType,
+              overview:ListofPackage_byDest_data[i].overview,
+              inclusion:ListofPackage_byDest_data[i].inclusion,
+              exclusion:ListofPackage_byDest_data[i].exclusion,
+              flight:ListofPackage_byDest_data[i].flight,
+              cab:ListofPackage_byDest_data[i].cab,
+              hotel:ListofPackage_byDest_data[i].hotel,
+              hotelRating:ListofPackage_byDest_data[i].hotelRating,
+              meal:ListofPackage_byDest_data[i].meal,
+              sightSeeing:ListofPackage_byDest_data[i].sightSeeing,
+              other:ListofPackage_byDest_data[i].other,
+              pkgImg:"",
+              destId:"",
+              catId:"",
+              favHeart:"no"
+          }
+          this.ListofPackage_byDest.push(obj);
+        }
       }else{
         for(let i=0;i<ListofPackage_byDest_data.length;i++)
         {
