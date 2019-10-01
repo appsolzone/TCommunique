@@ -44,10 +44,12 @@
     "@ionic/storage": "^2.2.0",
     "android-camera-permission": "^1.0.0",
     "call-number": "^1.0.1",
+    "com.lampa.startapp": "git+https://github.com/lampaa/com.lampa.startapp.git",
     "cordova-android": "^8.0.0",
     "cordova-custom-config": "^5.1.0",
     "cordova-open-native-settings": "^1.5.2",
     "cordova-plugin-android-permissions": "^1.0.0",
+    "cordova-plugin-app-launcher": "git+https://github.com/nchutchind/cordova-plugin-app-launcher.git",
     "cordova-plugin-calendar": "^5.1.4",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-console": "^1.1.0",
@@ -153,7 +155,9 @@
       "cordova-open-native-settings": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      },
+      "com.lampa.startapp": {},
+      "cordova-plugin-app-launcher": {}
     },
     "platforms": [
       "android"

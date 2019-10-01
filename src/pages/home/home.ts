@@ -21,6 +21,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { NetworkConnectionProvider } from '../../providers/network-connection/network-connection';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {VideoCallPage} from '../../pages/video-call/video-call';
+import * as launcher from '../../assets/js/start-app';
 
 
 
@@ -345,6 +346,23 @@ export class HomePage {
       this.navCtrl.push(SignInPage);
     }
 
+  }
+
+  onClickWhatsapp(){
+          var sApp = (window as any).startApp.set({
+            "package":"com.whatsapp"
+        });
+
+        // check app for exists
+        sApp.check(function(values) {
+            // sApp.start();
+            launcher.packageLaunch("com.whatsapp");
+        }, function(error) { // not exists, open play market
+          (window as any).startApp.set({
+                "action":"ACTION_VIEW",
+                "uri":"market://details?id=com.whatsapp"
+            }).start();
+        });
   }
 
 

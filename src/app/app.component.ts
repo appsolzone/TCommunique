@@ -75,6 +75,7 @@ export class TCommuniqueApp {
     homeItem: any;
     initialItem: any;
     aboutus: any;
+    themechange:any;
     privacypolicy:any;
     settingsItem: any;
     contactUs:any;
@@ -256,6 +257,7 @@ export class TCommuniqueApp {
 
 
 
+        this.themechange = {component:'page-theme-change'};
         this.homeItem = { component: 'page-home' };
         this.aboutus = { component: 'page-about-us'};
         this.privacypolicy = { component: 'page-privacy-policy'};

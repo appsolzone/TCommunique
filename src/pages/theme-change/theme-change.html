@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar color="searchbg">
+      <button ion-button menuToggle>
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+      <ion-title>
+        <span ion-text class="fw700">Theme</span>
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button class="blinking_button" (click)="home()">
+            <ion-icon ios="ios-home" md="md-home"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+
+
+</ion-header>
+
+<ion-content padding>
+  <!-- <button ion-button full icon-left (click)="toggleAppTheme()">
+    <ion-icon  name="bulb"></ion-icon>Toggle Theme
+  </button> -->
+
+  <!-- Checkboxes in a List -->
+<ion-list>
+  <ion-item *ngFor="let entry of form">
+    <ion-label>{{entry.val}}</ion-label>
+    <ion-checkbox  color="{{entry.color}}"slot="end" [(ngModel)]="entry.isChecked" (click)="CheckboxClicked(entry, $event)"></ion-checkbox>
+  </ion-item>
+</ion-list>
+</ion-content>

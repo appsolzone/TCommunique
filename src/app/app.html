@@ -84,10 +84,10 @@
 
 
               <ion-list class="user-list">
-                <button menuClose ion-item (click)="openPage(aboutus)">
+                <button menuClose ion-item (click)="openPage(themechange)">
                   <ion-icon item-left ios="ios-shirt" md="md-shirt"></ion-icon>
-                  <ion-label ion-text color="font" class="fw500">Night Mode</ion-label>
-                  <ion-toggle style=" margin-top: 5px;" (ionChange)="toggleAppTheme()"></ion-toggle>
+                  <ion-label ion-text color="font" class="fw500">Theme</ion-label>
+                  <!-- <ion-toggle style=" margin-top: 5px;" (ionChange)="toggleAppTheme()"></ion-toggle> -->
                 </button>
 
 
@@ -109,7 +109,7 @@
                     <button menuClose ion-item (click)="openPage2(myexperience)">
                         <!-- <ion-icon item-left ios="ios-ribbon" md="md-ribbon"></ion-icon> -->
                         <ion-icon item-left style="margin-right: 0px !important"><img src="assets/img_icon/experience.png" class="promoIcon"></ion-icon>
-                        
+
                         <span ion-text color="font" class="fw500">My Experience</span>
                       </button>
                       <button menuClose ion-item (click)="openPage2(mydocuments)">

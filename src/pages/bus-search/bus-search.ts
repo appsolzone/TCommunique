@@ -11,10 +11,10 @@ import 'rxjs/add/observable/interval';
 import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
 import { Storage } from '@ionic/storage';
-import { HomePage } from '../../pages/home/home';
-import {BusSearchListPage} from '../../pages/bus-search-list/bus-search-list';
+import { HomePage } from '../home/home';
+import {BusSearchListPage} from '../bus-search-list/bus-search-list';
 
-import {BookBusPage} from '../../pages/book-bus/book-bus';
+import {BookBusPage} from '../book-bus/book-bus';
 
 /**
  * Generated class for the BusSearchPage page.

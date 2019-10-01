@@ -80,7 +80,7 @@ export class EditProfilePage {
       dob: ['', Validators.compose([
           Validators.required])],
       phone: ['', Validators.compose([
-          Validators.required,Validators.pattern(regExp)])],
+          Validators.required,Validators.pattern(regExp)])]
     });
   }
 
@@ -108,6 +108,7 @@ export class EditProfilePage {
         this.firstname=data.json().data.fName;
         this.lastname=data.json().data.lName;
         this.phoneno=data.json().data.phone;
+        this.dateofbirth=data.json().data.dob;
         this.selectedImage=data.json().data.profImg;
 
         console.log("this.selectedImage",this.selectedImage);
@@ -127,6 +128,8 @@ export class EditProfilePage {
   submit(){
     // uId,fName,lName,email,phone,addr,profImg
 
+    console.log("this.encoded_img",this.encoded_img);
+
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
       dismissOnPageChange: true
@@ -140,7 +143,15 @@ export class EditProfilePage {
     postData.append('email',this.emailid);
     postData.append('phone',this.phoneno);
     postData.append('addr',this.addressid);
-    postData.append('profImg',this.encoded_img);
+    postData.append('dob',this.dateofbirth);
+
+    // if(this.encoded_img == undefined){
+    //   postData.append('profImg',this.selectedImage);
+
+    // }else{
+      postData.append('profImg',this.encoded_img);
+
+    // }
 
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{

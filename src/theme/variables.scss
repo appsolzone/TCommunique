@@ -43,7 +43,10 @@ $colors: (
   skyblue: #00F6FF,
   searchbg: #0E6262,
   font: #272727,
-  star:#d8c72b
+  star:#d8c72b,
+  dipbrown:#75351a,
+  lightbrown:#ba733b,
+
 );
 
 
@@ -80,6 +83,7 @@ $colors: (
 
 @import "theme.light";
 @import "theme.dark";
+@import "theme.brown";
 
 
 // Ionicons

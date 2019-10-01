@@ -139,5 +139,7 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.2">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <plugin name="com.lampa.startapp" spec="https://github.com/lampaa/com.lampa.startapp.git" />
+    <plugin name="cordova-plugin-app-launcher" spec="https://github.com/nchutchind/cordova-plugin-app-launcher.git" />
     <engine name="android" spec="^8.0.0" />
 </widget>
