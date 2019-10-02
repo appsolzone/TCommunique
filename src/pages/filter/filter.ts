@@ -29,7 +29,8 @@ import { HomePage } from '../../pages/home/home';
 export class FilterPage {
   loading:Loading;
   data:Observable<any>;
-  price =[{ id:1,val: 'Below 10000', isChecked: false },{ id:2,val: '60000-80000', isChecked: false },{id:3, val: '10000-20000', isChecked: false },{ id:4,val: '90000-100000', isChecked: false },{id:5, val: '20000-40000', isChecked: false },{ id:6,val: '1Lac-2Lac', isChecked: false },{id:7, val: '40000-60000', isChecked: false },{id:8, val: 'Above 2Lac', isChecked: false }];
+  price:any;
+  // price =[{ id:1,val: 'Below 10000', isChecked: false },{ id:2,val: '60000-80000', isChecked: false },{id:3, val: '10000-20000', isChecked: false },{ id:4,val: '90000-100000', isChecked: false },{id:5, val: '20000-40000', isChecked: false },{ id:6,val: '1Lac-2Lac', isChecked: false },{id:7, val: '40000-60000', isChecked: false },{id:8, val: 'Above 2Lac', isChecked: false }];
   duration = [{ id:1,val: '1-3', isChecked: false },{ id:2,val: '4-6', isChecked: false },{ id:3,val: '7-9', isChecked: false },{ id:4,val: '10-12', isChecked: false },{ id:5,val: '13-15', isChecked: false },{ id:6,val: '>15', isChecked: false }];
   months=[{ id:1,val: 'Jan-Mar', isChecked: false },{ id:2,val: 'Apr-Jun', isChecked: false },{ id:3,val: 'Jul-Sept', isChecked: false },{ id:4,val: 'Oct-Dec', isChecked: false }]
   activities = [];
@@ -50,12 +51,28 @@ export class FilterPage {
   tourType:any;
 
   filterData:any;
+  default_currency:any;
 
 
   constructor(public navParams:NavParams,private storage: Storage,public menu:MenuController,private network: Network,public toastCtrl: ToastController,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public alertCtrl:AlertController) {
 
     this.tourType=navParams.get('tourType');
+
+    this.storage.get('currency').then((val)=>{
+
+      if(val==null){
+        this.default_currency = "INR";
+
+      }else{
+        this.default_currency = val.name;
+        console.log("VAL)))",this.default_currency);
+
+
+      }
+
+    });
     this.getCatList();
+    this.pkgFilterPrice();
 
 
   }
@@ -66,12 +83,12 @@ export class FilterPage {
           content: 'Please wait...',
           dismissOnPageChange: true
         });
-        this.loading.present();
+        // this.loading.present();
         var url =this.constant.getCatList;
 
         this.data = this.http.get(url);
         this.data.subscribe(data =>{
-          this.loading.dismiss();
+          // this.loading.dismiss();
 
           console.log("DATA",(JSON.stringify(data.json())));
           if(data.json().status=="200"){
@@ -89,6 +106,33 @@ export class FilterPage {
           }
 
         });
+
+  }
+
+  pkgFilterPrice(){
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    // this.loading.present();
+    var url =this.constant.pkgFilterPrice;
+
+    this.data = this.http.get(url);
+    this.data.subscribe(data =>{
+      // this.loading.dismiss();
+
+      console.log("DATA",(JSON.stringify(data.json())));
+      if(data.json().status=="200"){
+        // this.loading.dismiss();
+        this.price = data.json().data;
+
+      }else{
+
+      }
+
+    });
+
 
   }
 

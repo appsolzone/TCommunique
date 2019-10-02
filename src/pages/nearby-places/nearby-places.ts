@@ -72,7 +72,7 @@ export class NearbyPlacesPage {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           // console.log("HEE",results[i].photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
-
+          console.log("HEE",results[i]);
           var object_data = new Object ({
             name: results[i].name,
             photo: typeof results[i].photos !== 'undefined'
@@ -152,7 +152,7 @@ export class NearbyPlacesPage {
 
   f1(data){
 
-    console.log("Selected Data",data);
+    console.log("Selected Data",data.loc);
 
   }
   home(){

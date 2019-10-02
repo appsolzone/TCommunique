@@ -64,6 +64,7 @@ export class ConstantProvider {
   public videoAgentList="https://appsolzone.com/aszdev/tcApi/videoAgent/videoAgentList.php";
   public getGallery="https://appsolzone.com/aszdev/tcApi/hotel/getGallery.php";
   public emergencyCallLog="https://appsolzone.com/aszdev/tcApi/emergContact/emergencyCallLog.php";
+  public pkgFilterPrice="https://appsolzone.com/aszdev/tcApi/fetchData/pkgFilterPrice.php";
 
 
   constructor(public httpClient: HttpClient,) {

@@ -27,7 +27,7 @@ export class PlacesOfInterestPage {
   latLng:any;
   markers:any;
   mapOptions:any;
-  isKM:any=4000;
+  isKM:any=5000;
   isType:any="hospital";
   infowindow: any;
   options = {

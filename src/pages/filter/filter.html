@@ -29,10 +29,43 @@
     <div class="middle">
       <ion-row >
         <ion-col col-6 *ngFor="let item of price; let i=index">
-          <ion-item>
-              <ion-label>{{item.val}}</ion-label>
-              <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.val)" ></ion-checkbox>
+
+          <ion-item *ngIf="default_currency=='USD'">
+              <ion-label>&#36;{{item.priceUSD}}</ion-label>
+              <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
             </ion-item>
+            <ion-item *ngIf="default_currency=='INR'">
+                <ion-label>&#8377;{{item.budget}}</ion-label>
+                <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+              </ion-item>
+              <ion-item *ngIf="default_currency=='EUR'">
+                  <ion-label>&#8364;{{item.priceEUR}}</ion-label>
+                  <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+                </ion-item>
+                <ion-item *ngIf="default_currency=='JPY'">
+                    <ion-label>&#165;{{item.priceJPY}}</ion-label>
+                    <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+                  </ion-item>
+                  <ion-item *ngIf="default_currency=='GBP'">
+                      <ion-label>&#163;{{item.priceGBP}}</ion-label>
+                      <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+                    </ion-item>
+                    <ion-item *ngIf="default_currency=='AUD'">
+                        <ion-label>A&#36;{{item.priceAUD}}</ion-label>
+                        <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+                      </ion-item>
+                      <ion-item *ngIf="default_currency=='CAD'">
+                          <ion-label>C&#36;{{item.priceCAD}}</ion-label>
+                          <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+                        </ion-item>
+                        <ion-item *ngIf="default_currency=='CHF'">
+                            <ion-label>Fr.{{item.priceCHF}}</ion-label>
+                            <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+                          </ion-item>
+                          <ion-item *ngIf="default_currency=='CNH'">
+                              <ion-label>&#65509;{{item.priceCNH}}</ion-label>
+                              <ion-checkbox   [checked]="item.isChecked" (ionChange)="pricingType($event,item.id,item.budget)" ></ion-checkbox>
+                            </ion-item>
         </ion-col>
       </ion-row>
     </div>

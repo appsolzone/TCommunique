@@ -13,13 +13,13 @@
           </button>
       </ion-buttons>
       </ion-navbar>
-  
-  
+
+
   </ion-header>
-  
+
   <ion-content>
   <div #map id="map"></div>
-  
+
   <ion-item>
   <ion-label>Select Place</ion-label>
     <ion-select [(ngModel)]="isType" (ionChange)="nearbyPlace(isType)">
@@ -39,18 +39,19 @@
   <ion-item>
  <ion-label>Select Distance</ion-label>
   <ion-select [(ngModel)]="isKM" (ionChange)="nearbyPlacebyDist(isKM)">
-      <ion-option value="2000">2 KM</ion-option>
+      <ion-option value="3000">3 KM</ion-option>
       <ion-option value="5000">5 KM</ion-option>
-      <ion-option value="5000">10 KM</ion-option>
+      <ion-option value="7000">7 KM</ion-option>
+      <ion-option value="9000">9 KM</ion-option>
   </ion-select>
 </ion-item>
 
-  
- 
-  
-  
+
+
+
+
   <ion-content style="background: #d6d6d6">
-  
+
       <div *ngFor="let data of arraySource">
       <ion-row style="background: white; margin-bottom: 5px;">
       <ion-col col-6 style="height: 130px;">
@@ -61,7 +62,7 @@
               </div>
           <p class="bname">{{data.name}}</p>
          <!-- <p style="margin-top: -6px; font-size: 10px;">{{data.loc}}</p> -->
-  
+
          <div (click)="f1(data)" class="btndir">
           <ion-icon ios="ios-call" md="md-call"
           style="height: 16px;
@@ -69,17 +70,16 @@
          margin-left: 10px;
          margin-top: 5px;"></ion-icon>
          </div>
-  
-      
-  
-  
-  
+
+
+
+
+
       </ion-col>
       </ion-row>
       </div>
-  
+
       </ion-content>
-  
-  
+
+
   </ion-content>
-  
