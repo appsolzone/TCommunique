@@ -81,6 +81,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 import { SettingsProvider } from '../providers/settings/settings';
 import {ThemeChangePageModule} from '../pages/theme-change/theme-change.module';
+import {QuotePreferenceSearchPageModule} from '../pages/quote-preference-search/quote-preference-search.module';
 export function myCustomAudioProviderFactory() {
   return window.hasOwnProperty("cordova")
     ? new CordovaMediaProvider()
@@ -145,6 +146,7 @@ export function myCustomAudioProviderFactory() {
     VideoCallPageModule,
     MyWishListPageModule,
     FilterDataPageModule,
+    QuotePreferenceSearchPageModule,
     BrowserModule,
     HttpClientModule,
     HttpModule,

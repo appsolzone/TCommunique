@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController,ToastController, NavParams,LoadingController,Loading} from 'ionic-angular';
+import { IonicPage, NavController,ToastController, NavParams,LoadingController,Loading,ModalController} from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CallNumber } from '@ionic-native/call-number';
 import { ConstantProvider } from '../../providers/constant/constant';
@@ -15,6 +15,7 @@ import { HomePage } from '../../pages/home/home';
 import "rxjs/Rx";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/debounceTime";
+import {QuotePreferenceSearchPage} from '../../pages/quote-preference-search/quote-preference-search';
 
 
 
@@ -64,7 +65,7 @@ export class QuotePreferencePage implements OnInit {
   peopleList=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"];
   ss:any;
 
-  constructor(public toastCtrl:ToastController,public storage:Storage,private callNumber: CallNumber,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public fb:FormBuilder) {
+  constructor(public modal:ModalController,public toastCtrl:ToastController,public storage:Storage,private callNumber: CallNumber,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public fb:FormBuilder) {
     this.searchControl = new FormControl();
     this.searchControlnew = new FormControl();
     storage.get('user_login_data').then((val) => {
@@ -76,43 +77,62 @@ export class QuotePreferencePage implements OnInit {
   }
 
   ionViewDidLoad() {
-    this.setFilteredItems("");
-    this.setFilteredItems2("");
+  //   this.setFilteredItems("");
+  //   this.setFilteredItems2("");
 
-    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+  //   this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
 
-        this.searching = false;
-        this.searching1 = false;
+  //       this.searching = false;
+  //       this.searching1 = false;
 
-        this.setFilteredItems(search);
+  //       this.setFilteredItems(search);
 
-    });
+  //   });
 
-    this.searchControlnew.valueChanges.debounceTime(700).subscribe(search => {
+  //   this.searchControlnew.valueChanges.debounceTime(700).subscribe(search => {
 
-      this.searching = false;
-      this.searching1 = false;
+  //     this.searching = false;
+  //     this.searching1 = false;
 
-      this.setFilteredItems2(search);
+  //     this.setFilteredItems2(search);
 
-  });
+  // });
 
 
 }
 
-    onSearchInput(){
-        this.searching = true;
-        this.showlist = true;
+    // onSearchInput(){
+    //     this.searching = true;
+    //     this.showlist = true;
 
-        this.searching1 = false;
-        this.showlist2 = false;
+    //     this.searching1 = false;
+    //     this.showlist2 = false;
+    // }
+
+    onSearchInput(){
+      let myModal = this.modal.create(QuotePreferenceSearchPage);
+      myModal.onDidDismiss(data =>
+        {
+          console.log("TADA",data);
+          this.departure = data.Name;
+        });
+      myModal.present();
+
     }
     onSearchInput2(){
-      this.searching1 = true;
-      this.showlist2 = true;
+      // this.searching1 = true;
+      // this.showlist2 = true;
 
-      this.searching = false;
-      this.showlist = false;
+      // this.searching = false;
+      // this.showlist = false;
+
+      let myModal = this.modal.create(QuotePreferenceSearchPage);
+      myModal.onDidDismiss(data =>
+        {
+          console.log("TADA",data);
+          this.destination = data.Name;
+        });
+      myModal.present();
     }
 
     selectEmployee(data)
@@ -129,19 +149,19 @@ export class QuotePreferencePage implements OnInit {
   }
 
   ngOnInit() {
-    this.setFilteredItems("");
-    this.setFilteredItems2("");
+    // this.setFilteredItems("");
+    // this.setFilteredItems2("");
 
-    this.searchControl.valueChanges
-      .pipe(debounceTime(700))
-      .subscribe(search => {
-        this.setFilteredItems(search);
-      });
-      this.searchControlnew.valueChanges
-      .pipe(debounceTime(700))
-      .subscribe(search => {
-        this.setFilteredItems2(search);
-      });
+    // this.searchControl.valueChanges
+    //   .pipe(debounceTime(700))
+    //   .subscribe(search => {
+    //     this.setFilteredItems(search);
+    //   });
+    //   this.searchControlnew.valueChanges
+    //   .pipe(debounceTime(700))
+    //   .subscribe(search => {
+    //     this.setFilteredItems2(search);
+    //   });
     let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     this.searchit = this.fb.group({
       // finp: ['', Validators.compose([
@@ -177,45 +197,45 @@ export class QuotePreferencePage implements OnInit {
     }
 
 
-    setFilteredItems(searchTerm) {
-      console.log("searchTerm",searchTerm)
-      if(searchTerm.length >=3){
-        this.items = this.constant.filterItems(searchTerm)
-         console.log("this.all",this.items);
-      }else{
-        this.showlist = false;
-        this.showlist2 = false;
-      }
+    // setFilteredItems(searchTerm) {
+    //   console.log("searchTerm",searchTerm)
+    //   if(searchTerm.length >=3){
+    //     this.items = this.constant.filterItems(searchTerm)
+    //      console.log("this.all",this.items);
+    //   }else{
+    //     this.showlist = false;
+    //     this.showlist2 = false;
+    //   }
 
-    }
+    // }
 
-    setFilteredItems2(searchTerm) {
-      console.log("searchTerm",searchTerm)
-      if(searchTerm.length >=3){
-        this.items2 = this.constant.filterItems2(searchTerm)
-         console.log("this.all",this.items);
-      }else{
-        this.showlist = false;
-        this.showlist2 = false;
-      }
+    // setFilteredItems2(searchTerm) {
+    //   console.log("searchTerm",searchTerm)
+    //   if(searchTerm.length >=3){
+    //     this.items2 = this.constant.filterItems2(searchTerm)
+    //      console.log("this.all",this.items);
+    //   }else{
+    //     this.showlist = false;
+    //     this.showlist2 = false;
+    //   }
 
-    }
+    // }
 
-    selectdeparture(data){
-      this.showlist = false;
-      this.showlist2 = false;
-      console.log("DATA",data);
-      this.departure = data.NAME;
+    // selectdeparture(data){
+    //   this.showlist = false;
+    //   this.showlist2 = false;
+    //   console.log("DATA",data);
+    //   this.departure = data.NAME;
 
-    }
+    // }
 
-    selectdestination(data){
-      this.showlist = false;
-      this.showlist2 = false;
-      console.log("DATA",data);
-      this.destination = data.NAME;
+    // selectdestination(data){
+    //   this.showlist = false;
+    //   this.showlist2 = false;
+    //   console.log("DATA",data);
+    //   this.destination = data.NAME;
 
-    }
+    // }
 
     SaveRequest(){
       console.log("ALL DATA",this.destination,this,this.departure,this.email,this,this.date1,this.phoneno)
