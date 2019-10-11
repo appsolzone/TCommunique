@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController,ToastController, NavParams,LoadingController,Loading,ModalController} from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl } from "@angular/forms";
+
 import { CallNumber } from '@ionic-native/call-number';
 import { ConstantProvider } from '../../providers/constant/constant';
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -8,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
-import { FormControl } from "@angular/forms";
 import { debounceTime } from "rxjs/operators";
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
@@ -167,13 +168,13 @@ export class QuotePreferencePage implements OnInit {
       // finp: ['', Validators.compose([
       //   Validators.required])],
 
-      sinp: ['', Validators.compose([
-        Validators.required])],
+      // sinp: ['', Validators.compose([
+      //   Validators.required])],
 
         date: ['', Validators.compose([
           Validators.required])],
              email: ['', Validators.compose([
-                  Validators.required])],
+              Validators.required,Validators.pattern(EMAILPATTERN)])],
                   mob: ['', Validators.compose([
                     Validators.required])],
                     days: ['', Validators.compose([

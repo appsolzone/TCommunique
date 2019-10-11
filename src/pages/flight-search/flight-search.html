@@ -305,10 +305,10 @@
                 <div style = "position: relative;" >
 
 
-            <ion-label class="dept">Arrival Date</ion-label>
+            <ion-label class="dept">Return Date</ion-label>
 
             <ion-item style="margin-top: 2px">
-                <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Arrival Date" formControlName="ainp" name="ainp"[(ngModel)]="date2"></ion-datetime>
+                <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Return Date" formControlName="ainp" name="ainp"[(ngModel)]="date2"></ion-datetime>
 
             </ion-item>
             <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('ainp').touched && searchit.get('ainp').hasError('required')">Date is required</p>

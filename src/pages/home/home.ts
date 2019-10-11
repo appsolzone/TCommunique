@@ -179,12 +179,12 @@ export class HomePage {
       this.menuCtrl.swipeEnable(true, 'authenticated');
       this.menuCtrl.enable(true);
       this.events.publish('user:login');
+      this.videoAgentList();
       this.getCategoryList();
       this.destinationByCat();
       this.get_viewAgentContact();
       this.get_bannerImages();
       this.get_trendingDest();
-      this.videoAgentList();
 
     }
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(

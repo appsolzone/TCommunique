@@ -36,7 +36,7 @@
           <ion-row>
             <ion-col col-7>
                 <div>
-                    <ion-datetime displayFormat="MM/DD/YYYY"class="btn" formControlName="pickupdate" name="pickupdate"placeholder="Date" [(ngModel)]="pickupdate"> </ion-datetime>
+                    <ion-datetime displayFormat="DD-MM-YYYY"class="btn" formControlName="pickupdate" name="pickupdate"placeholder="Date" [(ngModel)]="pickupdate"> </ion-datetime>
                 </div>
                      <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('pickupdate').touched && carbook.get('pickupdate').hasError('required')">Date is required</p>
             </ion-col>
@@ -52,7 +52,7 @@
           <ion-row>
             <ion-col col-7>
                 <div>
-                    <ion-datetime displayFormat="MM/DD/YYYY"class="btn" formControlName="dropdate" name="dropdate"placeholder="Date" [(ngModel)]="dropdate"> </ion-datetime>
+                    <ion-datetime displayFormat="DD-MM-YYYY"class="btn" formControlName="dropdate" name="dropdate"placeholder="Date" [(ngModel)]="dropdate"> </ion-datetime>
                 </div>
                      <p ion-text color="danger" class="text-12x has-error" *ngIf="carbook.get('dropdate').touched && carbook.get('dropdate').hasError('required')">Date is required</p>
             </ion-col>

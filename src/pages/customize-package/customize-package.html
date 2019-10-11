@@ -121,12 +121,12 @@
         <ion-row style="margin-top: -23px;">
           <ion-col col-4>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                  <ion-datetime placeholder="Start Date" displayFormat="MM/DD/YYYY" [(ngModel)]="cust_startdate"></ion-datetime>
+                  <ion-datetime placeholder="Start Date" displayFormat="DD-MM-YYYY" [(ngModel)]="cust_startdate"></ion-datetime>
               </div>
           </ion-col>
           <ion-col col-4>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
-                  <ion-datetime placeholder="End Date" displayFormat="MM/DD/YYYY" [(ngModel)]="cust_enddate"></ion-datetime>
+                  <ion-datetime placeholder="End Date" displayFormat="DD-MM-YYYY" [(ngModel)]="cust_enddate"></ion-datetime>
               </div>
           </ion-col>
           <ion-col col-4>
@@ -136,15 +136,27 @@
           </ion-col>
         </ion-row>
 
-        <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Email</p>
-        <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-            <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="cust_email"></ion-input>
-        </div>
+        <form [formGroup]="searchit">
 
-        <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Phone</p>
-        <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-            <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="cust_phone"></ion-input>
-        </div>
+            <div class="abc">
+            <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Email</p>
+            <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                <ion-input type="text" style="margin-left: 10px;"  formControlName="email" name="email" [(ngModel)]="cust_email"></ion-input>
+
+              </div>
+
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('email').touched && searchit.get('email').hasError('required')">Email is needed!</p>
+            </div>
+
+          <div class="abc">
+            <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Phone</p>
+            <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                <ion-input type="number" formControlName="mob"  name="mob" [(ngModel)]="cust_phone" style="margin-left: 10px;" ></ion-input>
+
+              </div>
+              <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('mob').touched && searchit.get('mob').hasError('required')">Enter your mobile number.</p>
+              </div>
+              </form>
 
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Note</p>
@@ -153,10 +165,21 @@
               </div>
 
 
-              <div style="background-image: linear-gradient(#0a989a, #075a5a); height: 50px; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;" (click)="cust_submit()">
+              <!-- <div style="background-image: linear-gradient(#0a989a, #075a5a); height: 50px; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;" (click)="cust_submit()">
                 <p style="color: white; text-align: center; padding-top: 17px;">SUBMIT</p>
-            </div>
+            </div> -->
 
         </div>
 
   </ion-content>
+
+
+  <ion-footer style="height: 50px; background: #0e6262;">
+      <ion-toolbar position="bottom">
+        <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="cust_submit()" [disabled]="searchit.invalid">
+          <p style="text-align: center;">SUBMIT </p>
+        </button>
+
+      </ion-toolbar>
+    </ion-footer>
+

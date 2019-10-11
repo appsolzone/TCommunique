@@ -19,7 +19,11 @@
 
 <ion-content style="background: #ffffff">
 
+
+
         <img src="{{package_pkgImg}}" style="height: 140px; width: 100%;">
+
+
         <div style="background: white; position: absolute; top: 178px; width: 100%; bottom: 0px; border-top-left-radius: 15px; border-top-right-radius: 15px;">
 
 
@@ -90,6 +94,7 @@
               </ion-col>
                 </ion-row>
 
+
               <label style="margin-left: 4%; font-size: 18px; color: #4f8894;">Departure City</label>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: 10px;">
                   <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="book_city"></ion-input>
@@ -126,15 +131,28 @@
                     </ion-item>
               </div>
 
+              <form [formGroup]="searchit">
+
+              <div class="abc">
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Email</p>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-                  <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="book_email"></ion-input>
+                  <ion-input type="text" style="margin-left: 10px;"  formControlName="email" name="email" [(ngModel)]="book_email"></ion-input>
+
+                </div>
+
+                <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('email').touched && searchit.get('email').hasError('required')">Email is needed!</p>
               </div>
 
+            <div class="abc">
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Phone</p>
               <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-                  <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="book_phone"></ion-input>
-              </div>
+                  <ion-input type="number" formControlName="mob"  name="mob" [(ngModel)]="book_phone" style="margin-left: 10px;" ></ion-input>
+
+                </div>
+                <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('mob').touched && searchit.get('mob').hasError('required')">Enter your mobile number.</p>
+                </div>
+                </form>
+
 
               <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Price (INR)</p>
               <div style="background: #7e7e7e; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
@@ -142,11 +160,22 @@
               </div>
 
 
-              <div style="background-image: linear-gradient(#0a989a, #075a5a); height: 50px; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;" (click)="book_submit()">
+
+              <!-- <div style="background-image: linear-gradient(#0a989a, #075a5a); height: 50px; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;" (click)="book_submit()">
                   <p style="color: white; text-align: center; padding-top: 17px;">SUBMIT</p>
-              </div>
+              </div> -->
 
         </div>
     <!-- </ion-scroll> -->
 
   </ion-content>
+
+  <ion-footer style="height: 50px; background: #0e6262;">
+      <ion-toolbar position="bottom">
+        <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="book_submit()" [disabled]="searchit.invalid">
+          <p style="text-align: center;">SUBMIT </p>
+        </button>
+
+      </ion-toolbar>
+    </ion-footer>
+

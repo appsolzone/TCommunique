@@ -170,7 +170,7 @@
 </ion-content>
 <ion-footer style="height: 50px; background: #0e6262;">
   <ion-toolbar position="bottom">
-    <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="SaveRequest()">
+    <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="SaveRequest()" [disabled]="searchit.invalid">
       <p style="text-align: center;">GET CUSTOMISED QUOTE </p>
     </button>
 

@@ -8,7 +8,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl } from "@angular/forms";
 
 
 /**
@@ -31,6 +32,7 @@ export class BookNowPage {
   data:Observable<any>;
   pkgId:any;
   package_details:any;
+  public searchit: FormGroup;
 
   package_pkgImg:any;
   package_duration:any;
@@ -70,7 +72,7 @@ export class BookNowPage {
   priceA:any;
   priceB:any;
 
-  constructor(public storage:Storage,public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(public fb:FormBuilder,public storage:Storage,public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController) {
     this.pkgId=navParams.get('pkgId');
     this.uId = navParams.get('uId');
     this.package_details = navParams.get('package_details');
@@ -138,6 +140,21 @@ export class BookNowPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookNowPage');
   }
+
+
+  ngOnInit() {
+    let MobilePattern = "[7-9]{1}[0-9]{9}";
+
+    let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+    this.searchit = this.fb.group({
+             email: ['', Validators.compose([
+              Validators.required,Validators.pattern(EMAILPATTERN)])],
+                  mob: ['', Validators.compose([
+                    Validators.required,Validators.pattern(MobilePattern)])]
+
+
+      });
+    }
 
   book_submit(){
 
