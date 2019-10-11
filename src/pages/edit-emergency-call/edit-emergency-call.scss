@@ -33,18 +33,7 @@ page-edit-emergency-call {
         color: #056387;
         font-size: 14px;
     }
-    .bg
-    {
-        background:#ffffff;
-        border-radius: 10px;
-        border: 1px solid #056387;
-        width: 85%;
-        height: auto;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: auto;
-    }
+
     .login-btn{
       display: table;
       margin-top: 25px;
@@ -64,5 +53,36 @@ page-edit-emergency-call {
       text-transform: uppercase;
       color: #fff;
     }
+
+
+
+
+  .bg
+  {
+    background: #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 5%;
+
+  }
+
+  .myprofile{
+    display: flex;
+
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+
+    img{
+      height: 70px;
+      width: 70px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      border: solid 4px #0E6262;
+      }
+}
+
 
 }

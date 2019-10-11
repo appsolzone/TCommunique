@@ -27,17 +27,17 @@ export class VideoProvider {
   public dataProvider:DataProvider,
   private nativeAudio: NativeAudio) {
     console.log('Hello VideoProvider Provider');
-    this.platform.ready().then(()=>{
-      // this.nativeAudio.preloadComplex('uniqueI1', 'assets/tone.mp3', 1, 1, 0).then((succ)=>{
+    // this.platform.ready().then(()=>{
+    //   // this.nativeAudio.preloadComplex('uniqueI1', 'assets/tone.mp3', 1, 1, 0).then((succ)=>{
 
-      // }, (err)=>{
-      // });
+    //   // }, (err)=>{
+    //   // });
 
-      this.nativeAudio.preloadComplex('uniqueI1', '', 1, 1, 0).then((succ)=>{
+    //   // this.nativeAudio.preloadComplex('uniqueI1', '', 1, 1, 0).then((succ)=>{
 
-      }, (err)=>{
-      });
-    })
+    //   // }, (err)=>{
+    //   // });
+    // })
   }
 
   InitializingRTC(userData){
@@ -209,8 +209,6 @@ MakeCall(calleeId) {
         enableBackdropDismiss:false
       });
     this.alert.present();
-
-
   }
 }
 AnswerCall(incomingCallId) {
@@ -226,7 +224,6 @@ RejectCall(incomingCallId) {
   this.webRTCClient.refuseCall(incomingCallId);
   this.events.publish('rejectCall',incomingCallId)
       // this.RemoveMediaElements(incomingCallId);
-
 }
 
 }

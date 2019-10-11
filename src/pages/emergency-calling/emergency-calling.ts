@@ -41,11 +41,14 @@ export class EmergencyCallingPage {
   primary_number:any;
   primary_uid:any;
   primary_id:any;
+  primary_img:any;
   uId:any;
   lat:any;
   long:any;
   address:any;
   fulladdress:any;
+  img_status:any;
+  selectedImage:any;
 
   constructor(public toastCtrl:ToastController,private openNativeSettings: OpenNativeSettings,private storage: Storage,private modal: ModalController,private callNumber: CallNumber,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,private platform: Platform,private diagnostic: Diagnostic,private androidPermissions: AndroidPermissions,private locationAccuracy: LocationAccuracy,private nativeGeocoder: NativeGeocoder,private geolocation:Geolocation) {
 
@@ -85,6 +88,7 @@ export class EmergencyCallingPage {
       this.primary_number= data.json().data.primary.contactNo;
       this.primary_uid  = data.json().data.primary.uId;
       this.primary_id = data.json().data.primary.id;
+      this.primary_img = data.json().data.primary.img;
 
     });
   }
@@ -99,8 +103,8 @@ export class EmergencyCallingPage {
 
   }
 
-  edit_details(emergContactId,number,name){
-    let myModal = this.modal.create(EditEmergencyCallPage, { emergContactId: emergContactId,contactName:name,contactNo:number});
+  edit_details(emergContactId,number,name,img){
+    let myModal = this.modal.create(EditEmergencyCallPage, { emergContactId: emergContactId,contactName:name,contactNo:number,profile_image:img});
       myModal.onDidDismiss(data =>
         {
           this.get_emergencyContact(this.uId);

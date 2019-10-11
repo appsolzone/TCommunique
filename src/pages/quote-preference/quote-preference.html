@@ -142,15 +142,17 @@
     <div style = "position: relative;" >
       <!-- <img src="/../assets/imgs/bus.png\" class="placimgs"> -->
         <ion-label class="dept">Mobile no</ion-label>
+    </div>
 
-     </div>
-   <ion-row>
-     <ion-col >
+
+   <!-- <ion-row> -->
+     <!-- <ion-col > -->
         <ion-input formControlName="mob" [(ngModel)]="phoneno"></ion-input>
-      </ion-col>
+      <!-- </ion-col> -->
      <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('mob').touched && searchit.get('mob').hasError('required')">Mobile no is needed</p>
 
-   </ion-row>
+   <!-- </ion-row> -->
+  </div>
    <div class="margi"  >
       <div style = "position: relative;" >
         <!-- <img src="/../assets/imgs/bus.png\" class="placimgs"> -->
@@ -162,9 +164,6 @@
    <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('email').touched && searchit.get('email').hasError('required')">Email is needed!</p>
 </div>
 
-
-
-</div>
 </div>
 
 </form>

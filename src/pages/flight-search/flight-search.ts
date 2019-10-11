@@ -143,6 +143,7 @@ export class FlightSearchPage {
 }
 SaveRequest()
 {
+      this.count = 0;
       this.flight_onwardflights = [];
       this.flight_returnflights = [];
 
@@ -162,7 +163,7 @@ SaveRequest()
         {
           console.log("onward Domestic");
           d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
-  
+
           url= "https://developer.goibibo.com/api/search/?app_id="
           +this.constant.goibibi_app_id+"&app_key="+this.constant.goibibo_app_key+"&format=json&source="
           +this.departure_Code+"&destination="+this.destination_Code+"&dateofdeparture="+d2+"&seatingclass="
@@ -217,7 +218,7 @@ SaveRequest()
 
       }
 
-      
+
 
 
 
@@ -387,11 +388,12 @@ SaveRequest()
           this.onewayData=item;
           if(this.count==2)
           {
-            let myModal = this.modal.create(BookFlightPage,{onewayData:this.onewayData,returnData:this.returnData,tabType:_flights_tab,uId: this.uId});
+            let myModal = this.modal.create(BookFlightPage,{onewayData:this.onewayData,returnData:this.returnData,tabType:"roundTrip",uId: this.uId});
 
               myModal.onDidDismiss(data =>
                 {
                   console.log(data);
+                  this.count=this.count-1;
                 });
               myModal.present();
           }
@@ -410,6 +412,7 @@ SaveRequest()
               myModal.onDidDismiss(data =>
                 {
                   console.log(data);
+                  this.count=this.count-1;
                 });
               myModal.present();
           }
