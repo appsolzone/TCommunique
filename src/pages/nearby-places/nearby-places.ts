@@ -150,11 +150,12 @@ export class NearbyPlacesPage {
     });
   }
 
-  f1(data){
 
-    console.log("Selected Data",data.loc);
-
-  }
+    getMap(lat,long,name){
+        
+    console.log("Details",lat,long,name);      
+      }
+  
   home(){
     this.navCtrl.setRoot(HomePage);
   }

@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl } from "@angular/forms";
 /**
  * Generated class for the HotelBookingRequestPage page.
  *
@@ -25,6 +26,7 @@ import 'rxjs/add/observable/interval';
 export class HotelBookingRequestPage {
   loading:Loading;
   data:Observable<any>;
+  public searchit: FormGroup;
 
   infant:any;
   child:any;
@@ -35,8 +37,10 @@ export class HotelBookingRequestPage {
   hotelId:any;
   roomType:any;
   uId:any;
+  book_email:any;
+  book_phone:any;
 
-  constructor(public toastCtrl:ToastController,private modal: ModalController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public view:ViewController) {
+  constructor(public fb:FormBuilder,public toastCtrl:ToastController,private modal: ModalController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public view:ViewController) {
 
     this.checkOut=navParams.get('checkOut');
     this.checkIn=navParams.get('checkIn');
@@ -48,6 +52,20 @@ export class HotelBookingRequestPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HotelBookingRequestPage');
   }
+
+  ngOnInit() {
+    let MobilePattern = "[7-9]{1}[0-9]{9}";
+
+    let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+    this.searchit = this.fb.group({
+             email: ['', Validators.compose([
+              Validators.required,Validators.pattern(EMAILPATTERN)])],
+                  mob: ['', Validators.compose([
+                    Validators.required,Validators.pattern(MobilePattern)])]
+
+
+      });
+    }
 
   submit(){
 
@@ -69,6 +87,8 @@ export class HotelBookingRequestPage {
     postData.append('adult',this.adult);
     postData.append('child',this.child);
     postData.append('infant',this.infant);
+    postData.append('email',this.book_email);
+    postData.append('phone',this.book_phone);
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{
 

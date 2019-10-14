@@ -27,8 +27,39 @@
           <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
               <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="infant"></ion-input>
           </div>
-        <button class="login-btn"   ion-button (click)="submit()">Book</button>
+<form [formGroup]="searchit">
+
+              <div class="abc">
+              <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Email</p>
+              <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                  <ion-input type="text" style="margin-left: 10px;"  formControlName="email" name="email" [(ngModel)]="book_email"></ion-input>
+
+                </div>
+
+                <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('email').touched && searchit.get('email').hasError('required')">Email is needed!</p>
+              </div>
+
+            <div class="abc">
+              <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Phone</p>
+              <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
+                  <ion-input type="number" formControlName="mob"  name="mob" [(ngModel)]="book_phone" style="margin-left: 10px;" ></ion-input>
+
+                </div>
+                <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('mob').touched && searchit.get('mob').hasError('required')">Enter your mobile number.</p>
+                </div>
+                </form>
     </ion-col>
   </ion-row>
 
   </div>
+
+          <!-- <button class="login-btn"   ion-button (click)="submit()">Book</button> -->
+            <ion-footer style="height: 50px; background: #0e6262;">
+      <ion-toolbar position="bottom">
+        <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="submit" [disabled]="searchit.invalid">
+          <p style="text-align: center;">Book </p>
+        </button>
+
+      </ion-toolbar>
+    </ion-footer>
+

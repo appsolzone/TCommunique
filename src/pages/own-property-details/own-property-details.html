@@ -104,22 +104,30 @@
               </ion-row>
               </ion-card-content>
               </ion-card>
+             
+             
               <ion-card>
+              <form [formGroup]="onHotelSearchForm">
                 <ion-item>
                   <ion-label>Check In</ion-label>
-                  <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Date" [(ngModel)]="checkIn"></ion-datetime>
+                  <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Date" [(ngModel)]="checkIn" formControlName="checkInDate" name="checkInDate"></ion-datetime>
+                  <p ion-text color="danger" class="text-12x has-error" *ngIf="onHotelSearchForm.get('checkInDate').touched && onHotelSearchForm.get('checkInDate').hasError('required')">This field is required</p>
+
                 </ion-item>
                 <ion-item>
                   <ion-label>Check Out</ion-label>
-                  <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Date" [(ngModel)]="checkOut"></ion-datetime>
+                  <ion-datetime displayFormat="DD-MM-YYYY" placeholder="Select Date" [(ngModel)]="checkOut" formControlName="checkOutDate" name="checkOutDate"></ion-datetime>
+                  <p ion-text color="danger" class="text-12x has-error" *ngIf="onHotelSearchForm.get('checkOutDate').touched && onHotelSearchForm.get('checkOutDate').hasError('required')">This field is required</p>
+
                 </ion-item>
                 <div class="row">
                   <div class="col text-center">
-                <button class="login-btn" ion-button (click) = "checkAvail()">
+                <button class="login-btn" ion-button (click) = "checkAvail()" [disabled]="!onHotelSearchForm.valid">
                   Check Availability
                 </button>
               </div>
             </div>
+             </form>
               </ion-card>
 
         </ion-grid>

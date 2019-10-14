@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDNfnFKT8HlkvFo9ocmEidrw2-ZR0nhyK8" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="21" />
     <preference name="BackupWebStorage" value="none" />
@@ -141,5 +142,5 @@
     </plugin>
     <plugin name="com.lampa.startapp" spec="https://github.com/lampaa/com.lampa.startapp.git" />
     <plugin name="cordova-plugin-app-launcher" spec="https://github.com/nchutchind/cordova-plugin-app-launcher.git" />
-    <engine name="android" spec="^8.0.0" />
+    <engine name="android" spec="^8.1.0" />
 </widget>

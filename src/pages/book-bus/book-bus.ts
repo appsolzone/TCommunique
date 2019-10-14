@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl } from "@angular/forms";
 
 /**
  * Generated class for the BookBusPage page.
@@ -27,7 +29,7 @@ export class BookBusPage {
 
   loading:Loading;
   data:Observable<any>;
-
+  public searchit: FormGroup;
   infant:any;
   child:any;
   adult:any;
@@ -37,6 +39,8 @@ export class BookBusPage {
   hotelId:any;
   roomType:any;
   uId:any;
+  book_email:any;
+  book_phone:any;
 
   bus_info_data:any;
 
@@ -45,7 +49,7 @@ export class BookBusPage {
   public seater:any;
   public sleeper:any;
 
-  constructor(public toastCtrl:ToastController,private modal: ModalController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public view:ViewController) {
+  constructor(public fb:FormBuilder,public toastCtrl:ToastController,private modal: ModalController,public navCtrl: NavController, public navParams: NavParams,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public view:ViewController) {
 
   }
 
@@ -55,6 +59,20 @@ export class BookBusPage {
     this.uId=this.navParams.get('uId');
     console.log(this.bus_info_data);
   }
+
+  ngOnInit() {
+    let MobilePattern = "[7-9]{1}[0-9]{9}";
+
+    let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+    this.searchit = this.fb.group({
+             email: ['', Validators.compose([
+              Validators.required,Validators.pattern(EMAILPATTERN)])],
+                  mob: ['', Validators.compose([
+                    Validators.required,Validators.pattern(MobilePattern)])]
+
+
+      });
+    }
 
   submit()
   {
@@ -78,6 +96,8 @@ export class BookBusPage {
     postData.append('infant',this.infant);
     postData.append('noOfSeater',this.seater);
     postData.append('noOfSleeper',this.sleeper);
+    postData.append('email',this.book_email);
+    postData.append('phone',this.book_phone);
 
     this.data = this.http.post(url,postData);
     this.data.subscribe(data =>{

@@ -11,6 +11,7 @@ import 'rxjs/add/observable/interval';
 import {SignInPage} from '../../pages/sign-in/sign-in';
 import {HotelBookingRequestPage} from '../../pages/hotel-booking-request/hotel-booking-request';
 import {OwnPropertyGalleryPage} from '../../pages/own-property-gallery/own-property-gallery';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 
 
@@ -40,10 +41,11 @@ export class OwnPropertyDetailsPage {
   loading:Loading;
   data:Observable<any>;
   login_status:any;
+  public onHotelSearchForm: FormGroup;
 
   hotelsearchResult:any;
 
-  constructor(public modal:ModalController,public toastCtrl:ToastController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public navCtrl: NavController, public navParams: NavParams,public storage:Storage) {
+  constructor(private _fb: FormBuilder,public modal:ModalController,public toastCtrl:ToastController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public navCtrl: NavController, public navParams: NavParams,public storage:Storage) {
 
     this.searchData = navParams.get('data');
 
@@ -81,6 +83,16 @@ export class OwnPropertyDetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OwnPropertyDetailsPage');
+  }
+
+  ngOnInit()
+  {
+    this.onHotelSearchForm = this._fb.group({
+      checkInDate: ['', Validators.compose([
+        Validators.required])],
+        checkOutDate: ['', Validators.compose([
+          Validators.required])]
+    });
   }
 
   home(){

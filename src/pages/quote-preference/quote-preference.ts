@@ -163,6 +163,7 @@ export class QuotePreferencePage implements OnInit {
     //   .subscribe(search => {
     //     this.setFilteredItems2(search);
     //   });
+    let MobilePattern = "[7-9]{1}[0-9]{9}";
     let EMAILPATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     this.searchit = this.fb.group({
       // finp: ['', Validators.compose([
@@ -176,7 +177,7 @@ export class QuotePreferencePage implements OnInit {
              email: ['', Validators.compose([
               Validators.required,Validators.pattern(EMAILPATTERN)])],
                   mob: ['', Validators.compose([
-                    Validators.required])],
+                    Validators.required,Validators.pattern(MobilePattern)])],
                     days: ['', Validators.compose([
                       Validators.required])]
 

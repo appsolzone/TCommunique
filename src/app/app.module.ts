@@ -82,6 +82,8 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { SettingsProvider } from '../providers/settings/settings';
 import {ThemeChangePageModule} from '../pages/theme-change/theme-change.module';
 import {QuotePreferenceSearchPageModule} from '../pages/quote-preference-search/quote-preference-search.module';
+
+
 export function myCustomAudioProviderFactory() {
   return window.hasOwnProperty("cordova")
     ? new CordovaMediaProvider()
