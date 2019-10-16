@@ -8,7 +8,11 @@
       </ion-buttons>
   </ion-navbar>
 </ion-header>
+<ion-content>
+    <ion-scroll style="width:100%;height:100%;" scrollY="true">
 <div class="bg" padding>
+
+
   <ion-row >
     <ion-col>
         <!-- <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">No Of Rooms</p>
@@ -17,15 +21,15 @@
         </div> -->
         <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Adult</p>
           <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-              <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="adult"></ion-input>
+              <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="adult"></ion-input>
           </div>
           <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Child</p>
           <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-              <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="child" ></ion-input>
+              <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="child" ></ion-input>
           </div>
           <p style="margin-left: 4%; font-size: 18px; color: #4f8894;">Infant</p>
           <div style="background: #efeff1; border-radius: 20px; display: block; width: 95%; margin-left: auto; margin-right: auto; margin-top: -10px;">
-              <ion-input type="text" style="margin-left: 10px;" [(ngModel)]="infant"></ion-input>
+              <ion-input type="number" style="margin-left: 10px;" [(ngModel)]="infant"></ion-input>
           </div>
 <form [formGroup]="searchit">
 
@@ -47,19 +51,23 @@
                 </div>
                 <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('mob').touched && searchit.get('mob').hasError('required')">Enter your mobile number.</p>
                 </div>
+
+                <button class="login-btn"   ion-button (click)="submit()" [disabled]="searchit.invalid">Book</button>
                 </form>
+
+
     </ion-col>
   </ion-row>
-
   </div>
+</ion-scroll>
+</ion-content>
 
-          <!-- <button class="login-btn"   ion-button (click)="submit()">Book</button> -->
-            <ion-footer style="height: 50px; background: #0e6262;">
+            <!-- <ion-footer style="height: 50px; background: #0e6262;">
       <ion-toolbar position="bottom">
-        <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="submit" [disabled]="searchit.invalid">
+        <button ion-button full  style="height: 50px; background: #0e6262; color: white;" (click)="submit()" [disabled]="searchit.invalid">
           <p style="text-align: center;">Book </p>
         </button>
 
       </ion-toolbar>
-    </ion-footer>
+    </ion-footer> -->
 

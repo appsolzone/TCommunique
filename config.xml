@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tcommunique.tcommunique" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tcommunique.tcommunique" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TCommunique</name>
     <description>TCommunique</description>
     <author email="tcommunique2019@gmail.com" href="http://tcommunique.com/">Tcommunique Team</author>
@@ -31,6 +31,7 @@
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>
         <resource-file src="resources/android/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -142,5 +143,9 @@
     </plugin>
     <plugin name="com.lampa.startapp" spec="https://github.com/lampaa/com.lampa.startapp.git" />
     <plugin name="cordova-plugin-app-launcher" spec="https://github.com/nchutchind/cordova-plugin-app-launcher.git" />
-    <engine name="android" spec="^8.1.0" />
+    <plugin name="phonegap-plugin-push" spec="^2.1.3">
+        <variable name="SENDER_ID" value="416461815684" />
+        <variable name="FCM_VERSION" value="11.6.2" />
+    </plugin>
+    <engine name="android" spec="^8.0.0" />
 </widget>
