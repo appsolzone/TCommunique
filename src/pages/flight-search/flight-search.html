@@ -50,7 +50,7 @@
                     <ion-col col-6>
                         <div style = "position: relative;">
                             <ion-label class="dept">Departure</ion-label>
-                            <div sclass="xzy" (click)="onClickFuntion()">
+                            <div class="xzy" (click)="onClickFuntion()">
                               <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);
                               border-radius: 20px;">
                                 <p style="text-align: center;">{{departure}}</p>
@@ -62,7 +62,7 @@
                         <div style = "position: relative;">
                             <ion-label class="dept">Destination</ion-label>
 
-                            <div sclass="xzy" (click)="onClickFuntion2()">
+                            <div class="xzy" (click)="onClickFuntion2()">
                               <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);
                               border-radius: 20px;">
                                 <p style="text-align: center;">{{destination}}</p>
@@ -73,19 +73,9 @@
                   </ion-row>
 
                 </div>
-            <!-- <div class="margi"  >
-                <div style = "position: relative;">
-                    <ion-label class="dept">Destination</ion-label>
-
-                    <div sclass="xzy" (click)="onClickFuntion2()">
-                      <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
-                      border-radius: 20px;">
-                        <p style="text-align: center;">{{destination}}</p>
-                      </button>
-                      </div>
-                  </div>
-            </div> -->
             <div class="margi"  >
+                <ion-row>
+                    <ion-col col-6>
                 <div style = "position: relative;" >
 
 
@@ -97,6 +87,19 @@
             </ion-item>
             <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
             </div>
+          </ion-col>
+          <ion-col col-6>
+              <div style = "position: relative;" >
+                  <ion-label class="dept">Class</ion-label>
+               </div>
+               <div class="divhead">
+                  <ion-select formControlName="eco" [(ngModel)]="economy" interface="popover" style="margin-right: 10px;">
+                      <ion-option *ngFor="let data of flightType" [value]="data" [selected]="data.key == 'Economy'">{{data.key}}</ion-option>
+                  </ion-select>
+             </div>
+             <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>
+            </ion-col>
+          </ion-row>
             </div>
 
 
@@ -117,14 +120,14 @@
 
                         <li>
                             <ion-select placeholder="Adult"formControlName="foinp"[(ngModel)]="adult" interface="popover">
-                                <ion-option *ngFor="let data of peopleList" [value]="data">{{data}}</ion-option>
+                                <ion-option *ngFor="let data of peopleList" [value]="data" >{{data}}</ion-option>
                             </ion-select>
                         </li>
 
 
                         <li>
                             <ion-select placeholder="Child" formControlName="fifinp" [(ngModel)]="child" interface="popover">
-                                <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
+                                <ion-option *ngFor="let data of peopleList2" [value]="data" >{{data}}</ion-option>
                             </ion-select>
 
                         </li>
@@ -132,7 +135,7 @@
 
                         <li>
                             <ion-select placeholder="Infant" formControlName="siinp"[(ngModel)]="infant" interface="popover">
-                                <ion-option *ngFor="let data of peopleList2" [value]="data">{{data}}</ion-option>
+                                <ion-option *ngFor="let data of peopleList2" [value]="data" >{{data}}</ion-option>
                             </ion-select>
 
                         </li>
@@ -144,17 +147,7 @@
             </div>
 
             </div>
-            <div class="margi"  >
-                <div style = "position: relative;" >
-                    <ion-label class="dept">Class</ion-label>
-                 </div>
-                 <div class="divhead">
-                    <ion-select formControlName="eco" [(ngModel)]="economy" interface="popover" style="margin-right: 10px;">
-                        <ion-option *ngFor="let data of flightType" [value]="data">{{data.key}}</ion-option>
-                    </ion-select>
-               </div>
-               <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>
-            </div>
+
 
             </div>
             </form>
@@ -169,13 +162,13 @@
 
                                 <ion-card-header class="cardHeader">
                                   <div class="head1">
-                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.depdate}}</p>
                                       <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
 
                                   </div>
                                   <div class="head2">
-                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
-                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
+                                      <p style=" color: white; font-size: 20px; font-weight: bold;">{{item.airline}}</p>
+                                      <!-- <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p> -->
                                   </div>
                                 </ion-card-header>
 
@@ -184,13 +177,8 @@
                                   <ion-row style="font-size:14px; color: #056387;">
                                     <ion-col col-4>Origin</ion-col>
                                     <ion-col col-1>:</ion-col>
-                                    <ion-col col-7>{{item.origin}}</ion-col>
+                                    <ion-col col-7 >{{item.origin}}</ion-col>
                                   </ion-row>
-                                  <ion-row style="font-size:14px; color: #056387;">
-                                      <ion-col col-4>AirLine</ion-col>
-                                      <ion-col col-1>:</ion-col>
-                                      <ion-col col-7>{{item.airline}}</ion-col>
-                                    </ion-row>
                                     <ion-row style="font-size:14px; color: #056387;">
                                         <ion-col col-4>Ticket Type</ion-col>
                                         <ion-col col-1>:</ion-col>
@@ -202,7 +190,7 @@
                                         <ion-col col-7>{{item.fare.grossamount}}</ion-col>
                                       </ion-row>
                                       <ion-row style="font-size:14px; color: #056387;">
-                                          <ion-col col-4>Duration</ion-col>
+                                          <ion-col col-4>Total Duration</ion-col>
                                           <ion-col col-1>:</ion-col>
                                           <ion-col col-7>{{item.duration}}</ion-col>
                                         </ion-row>
@@ -212,11 +200,49 @@
                                               <ion-col col-7>{{item.seatsavailable}}</ion-col>
                                             </ion-row>
 
+                                            <ion-card style="border-radius: 4px;border: 2px solid; border-color: #161515;margin-bottom: 30px">
+                                                <ion-row >
+                                                    <ion-col col-3>{{item.origin}}({{item.deptime}})</ion-col>
+                                                    <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                    </ion-col>
+                                                    <ion-col col-4 style="text-align: center;">{{item.splitduration}}</ion-col>
+                                                    <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                    </ion-col>
+                                                    <ion-col col-3>{{item.destination}}({{item.arrtime}})</ion-col>
+                                                  </ion-row>
+                                            </ion-card>
+
                                             <button class="bookBtn" (click)="boook_flight(item,'oneway')">Book</button>
+                                            <button class="flightBtn" (click)="expandItem(item)">Flight Details </button>
                                 </ion-card-content>
 
 
                               </ion-card>
+
+
+
+
+                                    <flight-expandable [expanded]="item.expanded" *ngIf="item.onwardflights.length>0"> 
+                                      
+                                        <ion-row style="
+                                        border: 2px solid #056387;
+                                        border-radius: 20px;">
+                                            <ion-col col-12 *ngFor="let data of item.onwardflights">
+                                           
+                                                    <ion-row style="font-size:14px; color: #161515;border: 2px solid #000;border-radius: 10px; height: 70px;padding-top: 20px;">
+                                                        <ion-col col-3>{{data.origin}}({{data.deptime}})</ion-col>
+                                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                        </ion-col>
+                                                        <ion-col col-4 style="text-align: center;">{{data.splitduration}}</ion-col>
+                                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                        </ion-col>
+                                                        <ion-col col-3>{{data.destination}}({{data.arrtime}})</ion-col>
+                                                      </ion-row>
+                                       
+                                                  </ion-col>
+                                        </ion-row>
+                                  </flight-expandable>
+
 
                     </ion-row>
                     </div>
@@ -230,65 +256,39 @@
             <div class="all">
 
                 <div class="margi"  >
+                    <ion-row>
+                        <ion-col col-6>
                     <div style = "position: relative;">
                         <ion-label class="dept">Departure</ion-label>
-                        <div sclass="xzy" (click)="onClickFuntion()">
-                          <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
+                        <div class="xzy" (click)="onClickFuntion()">
+                          <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);
                           border-radius: 20px;">
                             <p style="text-align: center;">{{departure}}</p>
                           </button>
                           </div>
-                           <!-- <ion-searchbar
-                           class="xzy"
-                           [formControl]="searchControl"
-                           (ionChange)="onSearchInput()"
-                           placeholder="Search"
-                           [showCancelButton]="true"
-                           [(ngModel)]="departure">
-                         </ion-searchbar>
 
-                         <div *ngIf="searching" class="spinner-container">
-                           <ion-spinner></ion-spinner>
-                         </div>
-
-                         <ion-list *ngIf="showlist">
-                           <ion-item *ngFor="let item of flight_items" (click)="selectdeparture(item)">
-                             {{ item.Name }}
-                           </ion-item>
-                         </ion-list> -->
                       </div>
-                </div>
-            <div class="margi"  >
+                      </ion-col>
+                      <ion-col col-6>
+
+
                 <div style = "position: relative;">
                     <ion-label class="dept">Destination</ion-label>
 
-                    <div sclass="xzy" (click)="onClickFuntion2()">
-                      <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);  padding: 6px 55px;
+                    <div class="xzy" (click)="onClickFuntion2()">
+                      <button  style="height: 50px; width: 100%;color: rgb(8, 8, 8);
                       border-radius: 20px;">
                         <p style="text-align: center;">{{destination}}</p>
                       </button>
                       </div>
-                      <!-- <ion-searchbar
-                      class="xzy"
-                      [formControl]="searchControlnew"
-                      (ionChange)="onSearchInput2()"
-                      placeholder="Search"
-                      [showCancelButton]="true"
-                      [(ngModel)]="destination">
-                    </ion-searchbar>
 
-                    <div *ngIf="searching1" class="spinner-container">
-                      <ion-spinner></ion-spinner>
-                    </div>
-
-                    <ion-list *ngIf="showlist2">
-                      <ion-item *ngFor="let item of flight_items2" (click)="selectdestination(item)">
-                        {{ item.Name }}
-                      </ion-item>
-                    </ion-list> -->
                   </div>
+                  </ion-col>
+                  </ion-row>
             </div>
             <div class="margi"  >
+                <ion-row>
+                    <ion-col col-6>
                 <div style = "position: relative;" >
 
 
@@ -300,8 +300,10 @@
             </ion-item>
             <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('tinp').touched && searchit.get('tinp').hasError('required')">Date is required</p>
             </div>
-            </div>
-            <div class="margi"  >
+            </ion-col>
+            <ion-col col-6>
+
+
                 <div style = "position: relative;" >
 
 
@@ -313,6 +315,8 @@
             </ion-item>
             <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('ainp').touched && searchit.get('ainp').hasError('required')">Date is required</p>
             </div>
+            </ion-col>
+            </ion-row>
             </div>
               <div class="margi"  >
                   <div style = "position: relative;" >
@@ -352,7 +356,7 @@
                  </div>
                  <div class="divhead">
                     <ion-select formControlName="eco" [(ngModel)]="economy">
-                        <ion-option *ngFor="let data of flightType" [value]="data">{{data.key}}</ion-option>
+                        <ion-option *ngFor="let data of flightType" [value]="data" [selected]="data.key == 'Economy'">{{data.key}}</ion-option>
                     </ion-select>
                </div>
                <p ion-text color="danger" class="text-12x has-error" *ngIf="searchit.get('eco').touched && searchit.get('eco').hasError('required')">How many people?</p>

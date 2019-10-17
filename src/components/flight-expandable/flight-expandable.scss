@@ -1,0 +1,16 @@
+flight-expandable {
+
+  .expand-wrapper {
+    transition: max-height 0.4s ease-in-out;
+    overflow: hidden;
+    height: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 415px;
+  }
+
+  .collapsed {
+    max-height: 0 !important;
+  }
+
+}

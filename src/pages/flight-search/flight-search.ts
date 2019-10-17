@@ -237,90 +237,11 @@ SaveRequest()
 
 
   ionViewDidLoad() {
-  //   this.setFilteredItems22("");
-  //   this.setFilteredItems44("");
 
-  //   this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
-
-  //       this.searching = false;
-  //       this.searching1 = false;
-
-  //       this.setFilteredItems22(search);
-
-  //   });
-
-  //   this.searchControlnew.valueChanges.debounceTime(700).subscribe(search => {
-
-  //     this.searching = false;
-  //     this.searching1 = false;
-  //     console.log("ionViewDidLoad search",search);
-  //       this.setFilteredItems44(search);
-
-  // });
 
   }
 
-    // onSearchInput(){
-    //   this.searching = true;
-    //   this.showlist = true;
 
-    //   this.searching1 = false;
-    //   this.showlist2 = false;
-    //   }
-    // onSearchInput2(){
-    //   this.searching1 = true;
-    //   this.showlist2 = true;
-
-    //   this.searching = false;
-    //   this.showlist = false;
-    // }
-
-    // setFilteredItems22(searchTerm) {
-    //   console.log("World searchTerm",searchTerm)
-    //   if(searchTerm.length >=3){
-    //     this.flight_items = this.constant.flight_filterItems(searchTerm)
-    //      console.log("this.all",this.flight_items);
-    //   }else{
-    //     this.showlist = false;
-    //     this.showlist2 = false;
-    //   }
-
-    // }
-
-    // setFilteredItems44(searchTerm) {
-    //   console.log("Hello searchTerm",searchTerm)
-
-    //     if(searchTerm.length >=3){
-    //       this.flight_items2 = this.constant.flight_filterItems2(searchTerm)
-    //        console.log("this.all",this.flight_items2);
-    //     }else{
-    //       this.showlist = false;
-    //       this.showlist2 = false;
-    //     }
-
-
-
-    // }
-
-    // selectdeparture(data){
-    //   this.showlist = false;
-    //   this.showlist2 = false;
-    //   console.log("DATA",data);
-    //   this.departure = data.Code;
-    //   this.setFilteredItems22("");
-
-    // }
-
-    // selectdestination(data){
-    //   this.destination = data.Code;
-    //   console.log("selectdestination_DATA",data);
-    //   this.showlist = false;
-    //   this.showlist2 = false;
-    //   this.setFilteredItems44("");
-
-
-
-    // }
 
     home(){
       this.navCtrl.setRoot(HomePage);
@@ -429,5 +350,24 @@ SaveRequest()
       console.log(event);
       this.onwardOrReturn=event;
       this.count=0;
+    }
+
+    expandItem(item): void {
+
+      console.log("Item",item);
+      if (item.expanded) {
+        item.expanded = false;
+      } else {
+          this.flight_onwardflights.map(listItem => {
+
+            console.log("listItem",listItem);
+          if (item == listItem) {
+            listItem.expanded = !listItem.expanded;
+          } else {
+            listItem.expanded = false;
+          }
+          return listItem;
+        });
+      }
     }
 }
