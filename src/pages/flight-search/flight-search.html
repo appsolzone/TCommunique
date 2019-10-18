@@ -162,7 +162,7 @@
 
                                 <ion-card-header class="cardHeader">
                                   <div class="head1">
-                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.depdate}}</p>
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.depdate | slice:0:10}}</p>
                                       <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
 
                                   </div>
@@ -200,17 +200,7 @@
                                               <ion-col col-7>{{item.seatsavailable}}</ion-col>
                                             </ion-row>
 
-                                            <ion-card style="border-radius: 4px;border: 2px solid; border-color: #161515;margin-bottom: 30px">
-                                                <ion-row >
-                                                    <ion-col col-3>{{item.origin}}({{item.deptime}})</ion-col>
-                                                    <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
-                                                    </ion-col>
-                                                    <ion-col col-4 style="text-align: center;">{{item.splitduration}}</ion-col>
-                                                    <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
-                                                    </ion-col>
-                                                    <ion-col col-3>{{item.destination}}({{item.arrtime}})</ion-col>
-                                                  </ion-row>
-                                            </ion-card>
+
 
                                             <button class="bookBtn" (click)="boook_flight(item,'oneway')">Book</button>
                                             <button class="flightBtn" (click)="expandItem(item)">Flight Details </button>
@@ -222,14 +212,36 @@
 
 
 
-                                    <flight-expandable [expanded]="item.expanded" *ngIf="item.onwardflights.length>0"> 
-                                      
+                                    <flight-expandable [expanded]="item.expanded" >
+
                                         <ion-row style="
                                         border: 2px solid #056387;
                                         border-radius: 20px;">
-                                            <ion-col col-12 *ngFor="let data of item.onwardflights">
-                                           
-                                                    <ion-row style="font-size:14px; color: #161515;border: 2px solid #000;border-radius: 10px; height: 70px;padding-top: 20px;">
+
+                                        <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;">
+                                          <ion-row style="height: 30px;color: #056387">
+                                            <ion-col col-8 style="font-size: 16px; font-weight: bold">{{item.airline}}  ({{item.carrierid}}-{{item.flightno}})</ion-col>
+                                            <ion-col col-4 style="font-size: 16px; font-weight: bold">{{item.depdate | slice:0:10}}</ion-col>
+
+                                          </ion-row>
+                                          <ion-row style="height: 50px;margin-top: 10px">
+                                              <ion-col col-3>{{item.origin}}({{item.deptime}})</ion-col>
+                                              <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                              </ion-col>
+                                              <ion-col col-4 style="text-align: center;">{{item.splitduration}}</ion-col>
+                                              <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                              </ion-col>
+                                              <ion-col col-3>{{item.destination}}({{item.arrtime}})</ion-col>
+                                            </ion-row>
+                                      </ion-card>
+                                            <ion-col col-12 *ngIf="item.onwardflights.length>0">
+                                              <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;"  *ngFor="let data of item.onwardflights">
+                                                <ion-row style="height: 30px;color: #056387">
+                                                  <ion-col col-8 style="font-size: 16px; font-weight: bold">{{data.airline}}  ({{data.carrierid}}-{{data.flightno}})</ion-col>
+                                                  <ion-col col-4 style="font-size: 16px; font-weight: bold">{{data.depdate | slice:0:10}}</ion-col>
+
+                                                </ion-row>
+                                                    <ion-row style="height: 50px; margin-top: 10px">
                                                         <ion-col col-3>{{data.origin}}({{data.deptime}})</ion-col>
                                                         <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
                                                         </ion-col>
@@ -238,7 +250,8 @@
                                                         </ion-col>
                                                         <ion-col col-3>{{data.destination}}({{data.arrtime}})</ion-col>
                                                       </ion-row>
-                                       
+                                                      </ion-card>
+
                                                   </ion-col>
                                         </ion-row>
                                   </flight-expandable>
@@ -371,7 +384,7 @@
 
             </form>
 
-            <div class="inex">
+            <div class="inex" *ngIf="showDomestic">
 
               <ion-segment [(ngModel)]="sections.selectedSection" color="searchbg">
                   <ion-segment-button value="{{sections.first}}" class="segment-button segment-activated">Onward Flights
@@ -393,14 +406,14 @@
 
                                     <ion-card-header class="cardHeader">
                                       <div class="head1">
-                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
-                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+                                        <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.depdate | slice:0:10}}</p>
+                                        <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
 
-                                      </div>
-                                      <div class="head2">
-                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
-                                          <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
-                                      </div>
+                                    </div>
+                                    <div class="head2">
+                                        <p style=" color: white; font-size: 20px; font-weight: bold;">{{item.airline}}</p>
+                                        <!-- <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p> -->
+                                    </div>
                                     </ion-card-header>
 
                                     <ion-card-content style="position: relative;">
@@ -408,13 +421,8 @@
                                       <ion-row style="font-size:14px; color: #056387;">
                                         <ion-col col-4>Origin</ion-col>
                                         <ion-col col-1>:</ion-col>
-                                        <ion-col col-7>{{item.origin}}</ion-col>
+                                        <ion-col col-7 >{{item.origin}}</ion-col>
                                       </ion-row>
-                                      <ion-row style="font-size:14px; color: #056387;">
-                                          <ion-col col-4>AirLine</ion-col>
-                                          <ion-col col-1>:</ion-col>
-                                          <ion-col col-7>{{item.airline}}</ion-col>
-                                        </ion-row>
                                         <ion-row style="font-size:14px; color: #056387;">
                                             <ion-col col-4>Ticket Type</ion-col>
                                             <ion-col col-1>:</ion-col>
@@ -426,7 +434,7 @@
                                             <ion-col col-7>{{item.fare.grossamount}}</ion-col>
                                           </ion-row>
                                           <ion-row style="font-size:14px; color: #056387;">
-                                              <ion-col col-4>Duration</ion-col>
+                                              <ion-col col-4>Total Duration</ion-col>
                                               <ion-col col-1>:</ion-col>
                                               <ion-col col-7>{{item.duration}}</ion-col>
                                             </ion-row>
@@ -436,11 +444,58 @@
                                                   <ion-col col-7>{{item.seatsavailable}}</ion-col>
                                                 </ion-row>
 
+
+
                                                 <button class="bookBtn" (click)="boook_flight(item,'oneway')">Book</button>
+                                                <button class="flightBtn" (click)="expandItem(item)">Flight Details </button>
                                     </ion-card-content>
 
-
                                   </ion-card>
+
+
+                                  <flight-expandable [expanded]="item.expanded" >
+
+                                    <ion-row style="
+                                    border: 2px solid #056387;
+                                    border-radius: 20px;">
+
+                                    <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;">
+                                      <ion-row style="height: 30px;color: #056387">
+                                        <ion-col col-8 style="font-size: 16px; font-weight: bold">{{item.airline}}  ({{item.carrierid}}-{{item.flightno}})</ion-col>
+                                        <ion-col col-4 style="font-size: 16px; font-weight: bold">{{item.depdate | slice:0:10}}</ion-col>
+
+                                      </ion-row>
+                                      <ion-row style="height: 50px;margin-top: 10px">
+                                          <ion-col col-3>{{item.origin}}({{item.deptime}})</ion-col>
+                                          <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                          </ion-col>
+                                          <ion-col col-4 style="text-align: center;">{{item.splitduration}}</ion-col>
+                                          <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                          </ion-col>
+                                          <ion-col col-3>{{item.destination}}({{item.arrtime}})</ion-col>
+                                        </ion-row>
+                                  </ion-card>
+                                        <ion-col col-12 *ngIf="item.onwardflights.length>0">
+                                          <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;"  *ngFor="let data of item.onwardflights">
+                                            <ion-row style="height: 30px;color: #056387">
+                                              <ion-col col-8 style="font-size: 16px; font-weight: bold">{{data.airline}}  ({{data.carrierid}}-{{data.flightno}})</ion-col>
+                                              <ion-col col-4 style="font-size: 16px; font-weight: bold">{{data.depdate | slice:0:10}}</ion-col>
+
+                                            </ion-row>
+                                                <ion-row style="height: 50px; margin-top: 10px">
+                                                    <ion-col col-3>{{data.origin}}({{data.deptime}})</ion-col>
+                                                    <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                    </ion-col>
+                                                    <ion-col col-4 style="text-align: center;">{{data.splitduration}}</ion-col>
+                                                    <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                    </ion-col>
+                                                    <ion-col col-3>{{data.destination}}({{data.arrtime}})</ion-col>
+                                                  </ion-row>
+                                                  </ion-card>
+
+                                              </ion-col>
+                                    </ion-row>
+                              </flight-expandable>
 
                         </ion-row>
                         </div>
@@ -462,55 +517,98 @@
 
                                     <ion-card class="cardBody">
 
-                                        <ion-card-header class="cardHeader">
-                                          <div class="head1">
-                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.std | date: "yyyy/MM/dd"}}</p>
-                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+                                      <ion-card-header class="cardHeader">
+                                        <div class="head1">
+                                            <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.depdate | slice:0:10}}</p>
+                                            <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
 
-                                          </div>
-                                          <div class="head2">
-                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.sta | date: "yyyy/MM/dd"}}</p>
-                                              <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p>
-                                          </div>
-                                        </ion-card-header>
+                                        </div>
+                                        <div class="head2">
+                                            <p style=" color: white; font-size: 20px; font-weight: bold;">{{item.airline}}</p>
+                                            <!-- <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p> -->
+                                        </div>
+                                      </ion-card-header>
 
-                                        <ion-card-content style="position: relative;">
+                                      <ion-card-content style="position: relative;">
+
+                                        <ion-row style="font-size:14px; color: #056387;">
+                                          <ion-col col-4>Origin</ion-col>
+                                          <ion-col col-1>:</ion-col>
+                                          <ion-col col-7 >{{item.origin}}</ion-col>
+                                        </ion-row>
+                                          <ion-row style="font-size:14px; color: #056387;">
+                                              <ion-col col-4>Ticket Type</ion-col>
+                                              <ion-col col-1>:</ion-col>
+                                              <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
+                                            </ion-row>
+                                          <ion-row style="font-size:14px; color: #056387;">
+                                              <ion-col col-4>Fare</ion-col>
+                                              <ion-col col-1>:</ion-col>
+                                              <ion-col col-7>{{item.fare.grossamount}}</ion-col>
+                                            </ion-row>
                                             <ion-row style="font-size:14px; color: #056387;">
-                                                <ion-col col-4>Origin</ion-col>
+                                                <ion-col col-4>Total Duration</ion-col>
                                                 <ion-col col-1>:</ion-col>
-                                                <ion-col col-7>{{item.origin}}</ion-col>
+                                                <ion-col col-7>{{item.duration}}</ion-col>
                                               </ion-row>
-                                              <ion-row style="font-size:14px; color: #056387;">
-                                                  <ion-col col-4>AirLine</ion-col>
-                                                  <ion-col col-1>:</ion-col>
-                                                  <ion-col col-7>{{item.airline}}</ion-col>
-                                                </ion-row>
                                                 <ion-row style="font-size:14px; color: #056387;">
-                                                    <ion-col col-4>Ticket Type</ion-col>
+                                                    <ion-col col-4>SeatsAvailable</ion-col>
                                                     <ion-col col-1>:</ion-col>
-                                                    <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
+                                                    <ion-col col-7>{{item.seatsavailable}}</ion-col>
                                                   </ion-row>
-                                                <ion-row style="font-size:14px; color: #056387;">
-                                                    <ion-col col-4>Fare</ion-col>
-                                                    <ion-col col-1>:</ion-col>
-                                                    <ion-col col-7>{{item.fare.grossamount}}</ion-col>
-                                                  </ion-row>
-                                                  <ion-row style="font-size:14px; color: #056387;">
-                                                      <ion-col col-4>Duration</ion-col>
-                                                      <ion-col col-1>:</ion-col>
-                                                      <ion-col col-7>{{item.duration}}</ion-col>
-                                                    </ion-row>
-                                                      <ion-row style="font-size:14px; color: #056387;">
-                                                          <ion-col col-4>SeatsAvailable</ion-col>
-                                                          <ion-col col-1>:</ion-col>
-                                                          <ion-col col-7>{{item.seatsavailable}}</ion-col>
-                                                        </ion-row>
 
-                                                        <button class="bookBtn" (click)="boook_flight(item,'roundTrip')">Book</button>
-                                        </ion-card-content>
 
+
+                                                  <button class="bookBtn" (click)="boook_flight(item,'roundTrip')">Book</button>
+                                                  <button class="flightBtn" (click)="expandItem2(item)">Flight Details </button>
+                                      </ion-card-content>
 
                                       </ion-card>
+
+
+                                      <flight-expandable [expanded]="item.expanded" >
+
+                                        <ion-row style="
+                                        border: 2px solid #056387;
+                                        border-radius: 20px;">
+
+                                        <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;">
+                                          <ion-row style="height: 30px;color: #056387">
+                                            <ion-col col-8 style="font-size: 16px; font-weight: bold">{{item.airline}}  ({{item.carrierid}}-{{item.flightno}})</ion-col>
+                                            <ion-col col-4 style="font-size: 16px; font-weight: bold">{{item.depdate | slice:0:10}}</ion-col>
+
+                                          </ion-row>
+                                          <ion-row style="height: 50px;margin-top: 10px">
+                                              <ion-col col-3>{{item.origin}}({{item.deptime}})</ion-col>
+                                              <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                              </ion-col>
+                                              <ion-col col-4 style="text-align: center;">{{item.splitduration}}</ion-col>
+                                              <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                              </ion-col>
+                                              <ion-col col-3>{{item.destination}}({{item.arrtime}})</ion-col>
+                                            </ion-row>
+                                      </ion-card>
+                                            <ion-col col-12 *ngIf="item.onwardflights.length>0">
+                                              <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;"  *ngFor="let data of item.onwardflights">
+                                                <ion-row style="height: 30px;color: #056387">
+                                                  <ion-col col-8 style="font-size: 16px; font-weight: bold">{{data.airline}}  ({{data.carrierid}}-{{data.flightno}})</ion-col>
+                                                  <ion-col col-4 style="font-size: 16px; font-weight: bold">{{data.depdate | slice:0:10}}</ion-col>
+
+                                                </ion-row>
+                                                    <ion-row style="height: 50px; margin-top: 10px">
+                                                        <ion-col col-3>{{data.origin}}({{data.deptime}})</ion-col>
+                                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                        </ion-col>
+                                                        <ion-col col-4 style="text-align: center;">{{data.splitduration}}</ion-col>
+                                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                        </ion-col>
+                                                        <ion-col col-3>{{data.destination}}({{data.arrtime}})</ion-col>
+                                                      </ion-row>
+                                                      </ion-card>
+
+                                                  </ion-col>
+                                        </ion-row>
+                                  </flight-expandable>
 
                             </ion-row>
                             </div>
@@ -522,6 +620,168 @@
                           </div>
 
                         </div>
+
+            </div>
+
+            <div class="inex" *ngIf="showInterNational">
+
+                <div [ngSwitch]="sections.selectedSection">
+                    <ion-list *ngSwitchCase="'Onward_Flights'">
+
+                  <!-- <ion-scroll style="width:100%;height:100%;" scrollY="true" > -->
+                      <div>
+                      <ion-row style="background: white; margin-top: 2px;margin-bottom:2px;" *ngFor="let item of flight_onwardflights">
+
+                              <ion-card class="cardBody">
+
+                                  <ion-card-header class="cardHeader">
+                                    <div class="head1">
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.depdate | slice:0:10}}</p>
+                                      <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.deptime}}</p>
+
+                                  </div>
+                                  <div class="head2">
+                                      <p style=" color: white; font-size: 20px; font-weight: bold;">{{item.airline}}</p>
+                                      <!-- <p style=" color: white; font-size: 14px; font-weight: bold;">{{item.arrtime}} </p> -->
+                                  </div>
+                                  </ion-card-header>
+
+                                  <ion-card-content style="position: relative;">
+
+                                    <ion-row style="font-size:14px; color: #056387;">
+                                      <ion-col col-4>Origin</ion-col>
+                                      <ion-col col-1>:</ion-col>
+                                      <ion-col col-7 >{{item.origin}}</ion-col>
+                                    </ion-row>
+                                      <ion-row style="font-size:14px; color: #056387;">
+                                          <ion-col col-4>Ticket Type</ion-col>
+                                          <ion-col col-1>:</ion-col>
+                                          <ion-col col-7><p>{{item.seatingclass}}</p></ion-col>
+                                        </ion-row>
+                                      <ion-row style="font-size:14px; color: #056387;">
+                                          <ion-col col-4>Fare</ion-col>
+                                          <ion-col col-1>:</ion-col>
+                                          <ion-col col-7>{{item.fare.grossamount}}</ion-col>
+                                        </ion-row>
+                                        <ion-row style="font-size:14px; color: #056387;">
+                                            <ion-col col-4>Total Duration</ion-col>
+                                            <ion-col col-1>:</ion-col>
+                                            <ion-col col-7>{{item.duration}}</ion-col>
+                                          </ion-row>
+                                            <ion-row style="font-size:14px; color: #056387;">
+                                                <ion-col col-4>SeatsAvailable</ion-col>
+                                                <ion-col col-1>:</ion-col>
+                                                <ion-col col-7>{{item.seatsavailable}}</ion-col>
+                                              </ion-row>
+
+
+
+                                              <button class="bookBtn" (click)="boook_flight2(item,item.returnfl[0],'roundTrip')">Book</button>
+                                              <button class="flightBtn" (click)="expandItem(item)">Flight Details </button>
+                                  </ion-card-content>
+
+                                </ion-card>
+
+
+                                <flight-expandable [expanded]="item.expanded" >
+
+                                  <ion-row style="
+                                  border: 2px solid #056387;
+                                  border-radius: 20px;">
+
+                                  <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;">
+                                    <ion-row style="height: 30px;color: #056387">
+                                      <ion-col col-8 style="font-size: 16px; font-weight: bold">{{item.airline}}  ({{item.carrierid}}-{{item.flightno}})</ion-col>
+                                      <ion-col col-4 style="font-size: 16px; font-weight: bold">{{item.depdate | slice:0:10}}</ion-col>
+
+                                    </ion-row>
+                                    <ion-row style="height: 50px;margin-top: 10px">
+                                        <ion-col col-3>{{item.origin}}({{item.deptime}})</ion-col>
+                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                        </ion-col>
+                                        <ion-col col-4 style="text-align: center;">{{item.splitduration}}</ion-col>
+                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                        </ion-col>
+                                        <ion-col col-3>{{item.destination}}({{item.arrtime}})</ion-col>
+                                      </ion-row>
+                                </ion-card>
+                                      <ion-col col-12 *ngIf="item.onwardflights.length>0">
+                                        <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;"  *ngFor="let data of item.onwardflights">
+                                          <ion-row style="height: 30px;color: #056387">
+                                            <ion-col col-8 style="font-size: 16px; font-weight: bold">{{data.airline}}  ({{data.carrierid}}-{{data.flightno}})</ion-col>
+                                            <ion-col col-4 style="font-size: 16px; font-weight: bold">{{data.depdate | slice:0:10}}</ion-col>
+
+                                          </ion-row>
+                                              <ion-row style="height: 50px; margin-top: 10px">
+                                                  <ion-col col-3>{{data.origin}}({{data.deptime}})</ion-col>
+                                                  <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                  </ion-col>
+                                                  <ion-col col-4 style="text-align: center;">{{data.splitduration}}</ion-col>
+                                                  <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                  </ion-col>
+                                                  <ion-col col-3>{{data.destination}}({{data.arrtime}})</ion-col>
+                                                </ion-row>
+                                                </ion-card>
+
+                                            </ion-col>
+                                  </ion-row>
+
+                                  <!-- change -->
+
+                                  <ion-row style="
+                                  border: 2px solid #056387;
+                                  border-radius: 20px;">
+
+                                  <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;">
+                                    <ion-row style="height: 30px;color: #056387">
+                                      <ion-col col-8 style="font-size: 16px; font-weight: bold">{{item.returnfl[0].airline}}  ({{item.returnfl[0].carrierid}}-{{item.returnfl[0].flightno}})</ion-col>
+                                      <ion-col col-4 style="font-size: 16px; font-weight: bold">{{item.returnfl[0].depdate | slice:0:10}}</ion-col>
+
+                                    </ion-row>
+                                    <ion-row style="height: 50px;margin-top: 10px">
+                                        <ion-col col-3>{{item.returnfl[0].origin}}({{item.returnfl[0].deptime}})</ion-col>
+                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                        </ion-col>
+                                        <ion-col col-4 style="text-align: center;">{{item.returnfl[0].splitduration}}</ion-col>
+                                        <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                        </ion-col>
+                                        <ion-col col-3>{{item.returnfl[0].destination}}({{item.returnfl[0].arrtime}})</ion-col>
+                                      </ion-row>
+                                </ion-card>
+                                      <ion-col col-12 *ngIf="item.returnfl[0].onwardflights.length>0">
+                                        <ion-card style="font-size:14px;border-radius: 6px;border: 1px solid; border-color: #161515;height: 80px;"  *ngFor="let data of item.returnfl[0].onwardflights">
+                                          <ion-row style="height: 30px;color: #056387">
+                                            <ion-col col-8 style="font-size: 16px; font-weight: bold">{{data.airline}}  ({{data.carrierid}}-{{data.flightno}})</ion-col>
+                                            <ion-col col-4 style="font-size: 16px; font-weight: bold">{{data.depdate | slice:0:10}}</ion-col>
+
+                                          </ion-row>
+                                              <ion-row style="height: 50px; margin-top: 10px">
+                                                  <ion-col col-3>{{data.origin}}({{data.deptime}})</ion-col>
+                                                  <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                  </ion-col>
+                                                  <ion-col col-4 style="text-align: center;">{{data.splitduration}}</ion-col>
+                                                  <ion-col col-1>  <ion-icon ios="ios-plane" md="md-plane"></ion-icon>
+                                                  </ion-col>
+                                                  <ion-col col-3>{{data.destination}}({{data.arrtime}})</ion-col>
+                                                </ion-row>
+                                                </ion-card>
+
+                                            </ion-col>
+                                  </ion-row>
+                                  <!-- end -->
+                            </flight-expandable>
+
+                      </ion-row>
+                      </div>
+                    <!-- </ion-scroll> -->
+                    </ion-list>
+                    <div *ngSwitchCase="'Onward_Flights'">
+                        <p style="margin-top: 5px; margin-left: 11px; margin-right: 11px;"*ngIf="flight_onwardflights == 0">No Data Found</p>
+
+                    </div>
+
+
+                    </div>
 
             </div>
     </div>

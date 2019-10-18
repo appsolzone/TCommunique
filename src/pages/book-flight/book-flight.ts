@@ -118,8 +118,8 @@ export class BookFlightPage {
       postData.append('outboundTime',this.oneway_flight_booking_info.deptime);
       postData.append('outboundFlightNo',this.oneway_flight_booking_info.flightno);
 
-      postData.append('inboundOrigin',this.return_flight_booking_info.destination);
-      postData.append('inboundDestination',this.return_flight_booking_info.origin);
+      postData.append('inboundOrigin',this.return_flight_booking_info.origin);
+      postData.append('inboundDestination',this.return_flight_booking_info.destination);
       postData.append('inboundDate',this.return_flight_booking_info.arrdate);
       postData.append('inboundTime',this.return_flight_booking_info.arrtime);
       postData.append('inboundFlightNo',this.return_flight_booking_info.flightno);

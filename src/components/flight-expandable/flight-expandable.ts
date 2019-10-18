@@ -13,7 +13,7 @@ import { IonicPage } from "ionic-angular";
 export class FlightExpandableComponent implements AfterViewInit {
   @ViewChild("expandWrapper", { read: ElementRef }) expandWrapper: ElementRef;
   @Input("expanded") expanded: boolean = false;
-  @Input("expandHeight") expandHeight: string = "500px";
+  @Input("expandHeight") expandHeight: string = "700px";
   text: string;
 
   constructor(public renderer: Renderer2) {

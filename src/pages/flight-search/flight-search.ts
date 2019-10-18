@@ -86,6 +86,9 @@ export class FlightSearchPage {
   destination_Code:any;
   departure_Code:any;
 
+  showInterNational = false;
+  showDomestic = false;
+
   constructor(public modal:ModalController,public toastCtrl:ToastController,public storage:Storage,private callNumber: CallNumber,public navCtrl: NavController,private constant: ConstantProvider,public http:Http,public httpClient:HttpClient,public loadingCtrl:LoadingController,public fb:FormBuilder) {
     this.icons = "Onward_Flights";
     this.sections.selectedSection = "Onward_Flights";
@@ -171,6 +174,8 @@ SaveRequest()
         }
         if(this.onwardOrReturn=="return")
         {
+          this.showDomestic = true;
+          this.showInterNational = false;
           console.log("return Domestic");
 
           d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
@@ -190,6 +195,8 @@ SaveRequest()
         console.log("InterNational")
         if(this.onwardOrReturn=="onward")
       {
+        this.showDomestic = false;
+        this.showInterNational = false;
         console.log("onward InterNational");
 
         d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
@@ -201,6 +208,8 @@ SaveRequest()
       }
       if(this.onwardOrReturn=="return")
       {
+        this.showDomestic = false;
+        this.showInterNational = true;
         console.log("return InterNational");
 
         d2=this.date1.replace(/[^a-zA-Z0-9]/g, '');
@@ -369,5 +378,38 @@ SaveRequest()
           return listItem;
         });
       }
+    }
+
+    expandItem2(item): void {
+
+      console.log("Item",item);
+      if (item.expanded) {
+        item.expanded = false;
+      } else {
+          this.flight_returnflights.map(listItem => {
+
+            console.log("listItem",listItem);
+          if (item == listItem) {
+            listItem.expanded = !listItem.expanded;
+          } else {
+            listItem.expanded = false;
+          }
+          return listItem;
+        });
+      }
+    }
+
+    boook_flight2(item,item2,_flights_tab){
+      this.onewayData=item;
+      this.returnData =item2;
+      let myModal = this.modal.create(BookFlightPage,{onewayData:this.onewayData,returnData:this.returnData,tabType:_flights_tab,uId: this.uId});
+
+              myModal.onDidDismiss(data =>
+                {
+                  console.log(data);
+                  this.count=this.count-1;
+                });
+              myModal.present();
+
     }
 }
